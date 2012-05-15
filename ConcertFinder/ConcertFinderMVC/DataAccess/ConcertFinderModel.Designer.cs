@@ -34,32 +34,32 @@ namespace ConcertFinderMVC.DataAccess
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    public partial class ConcertFinderEntities1 : ObjectContext
+    public partial class ConcertFinderEntities : ObjectContext
     {
         #region Constructors
     
         /// <summary>
-        /// Initializes a new ConcertFinderEntities1 object using the connection string found in the 'ConcertFinderEntities1' section of the application configuration file.
+        /// Initializes a new ConcertFinderEntities object using the connection string found in the 'ConcertFinderEntities' section of the application configuration file.
         /// </summary>
-        public ConcertFinderEntities1() : base("name=ConcertFinderEntities1", "ConcertFinderEntities1")
+        public ConcertFinderEntities() : base("name=ConcertFinderEntities", "ConcertFinderEntities")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
         /// <summary>
-        /// Initialize a new ConcertFinderEntities1 object.
+        /// Initialize a new ConcertFinderEntities object.
         /// </summary>
-        public ConcertFinderEntities1(string connectionString) : base(connectionString, "ConcertFinderEntities1")
+        public ConcertFinderEntities(string connectionString) : base(connectionString, "ConcertFinderEntities")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
         /// <summary>
-        /// Initialize a new ConcertFinderEntities1 object.
+        /// Initialize a new ConcertFinderEntities object.
         /// </summary>
-        public ConcertFinderEntities1(EntityConnection connection) : base(connection, "ConcertFinderEntities1")
+        public ConcertFinderEntities(EntityConnection connection) : base(connection, "ConcertFinderEntities")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();

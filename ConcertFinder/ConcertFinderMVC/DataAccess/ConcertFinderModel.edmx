@@ -273,7 +273,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ConcertFinderModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="ConcertFinderEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ConcertFinderEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="EVENTs" EntityType="ConcertFinderModel.EVENT" />
           <EntitySet Name="LOCATIONs" EntityType="ConcertFinderModel.LOCATION" />
           <EntitySet Name="NOTIFICATIONs" EntityType="ConcertFinderModel.NOTIFICATION" />
@@ -403,7 +403,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ConcertFinderModelStoreContainer" CdmEntityContainer="ConcertFinderEntities1">
+        <EntityContainerMapping StorageEntityContainer="ConcertFinderModelStoreContainer" CdmEntityContainer="ConcertFinderEntities">
           <EntitySetMapping Name="EVENTs"><EntityTypeMapping TypeName="ConcertFinderModel.EVENT"><MappingFragment StoreEntitySet="EVENT">
             <ScalarProperty Name="EVENT_ID" ColumnName="EVENT_ID" />
             <ScalarProperty Name="EVENT_DATEDEBUT" ColumnName="EVENT_DATEDEBUT" />

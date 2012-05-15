@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ConcertFinderMVC.Models;
 
 namespace ConcertFinderMVC.Controllers
 {
@@ -13,7 +14,8 @@ namespace ConcertFinderMVC.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            EventsList eventList = new EventsList();
+            return View("Index", eventList);
         }
 
         //

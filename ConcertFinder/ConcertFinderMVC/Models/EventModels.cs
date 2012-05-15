@@ -13,6 +13,32 @@ namespace ConcertFinderMVC.Models
         Festival
     }
 
+    public class EventItem
+    {
+        public string Type { get; set; }
+        public string Salle { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string Description { get; set; }
+        public string Titre { get; set; }
+        public string Image { get; set; }
+        public string Email { get; set; }
+        public string Tel { get; set; }
+        public string Website { get; set; }
+    }
+
+    public class EventsList
+    {
+        public List<EventItem> Events { get; set; }
+        public List<EventItem> Last { get; set; }
+
+        public EventsList()
+        {
+            Events = new List<EventItem>();
+            Last = new List<EventItem>();
+        }
+    }
+
     public class FormEventModels
     {
         [Required]

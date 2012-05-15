@@ -47,21 +47,37 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        public static Boolean update(long idUser)
+        public static Boolean update(USER upUser)
         {
             using (ConcertFinderEntities concert = new ConcertFinderEntities ())
             {
                 try
                 {
-                    USER user = concert.USERs.Where(u => u.USER_ID == idUser).FirstOrDefault();
-
-
+                    var user = new EVENT { EVENT_ID = upUser.USER_ID };
+                    concert.EVENTs.Attach(user);
+                    concert.ApplyCurrentValues("USER", upUser);
+                    concert.SaveChanges();
                 }
                 catch (Exception)
                 {
                     return false;
                 }
                 return true;
+            }
+        }
+
+        public static USER get(long idUser)
+        {
+            using (ConcertFinderEntities concert = new ConcertFinderEntities())
+            {
+                try
+                {
+                    return (concert.USERs.Where(u => u.USER_ID == idUser).FirstOrDefault());
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
             }
         }
     }

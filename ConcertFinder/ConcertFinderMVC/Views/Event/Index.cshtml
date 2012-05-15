@@ -1,11 +1,25 @@
 ﻿@model ConcertFinderMVC.Models.EventsList
 
+<h2>Tous les événements :</h2>
+
 @foreach (ConcertFinderMVC.Models.EventItem item in Model.Events)
 {
-    
+    <div class="item">
+        <div class="picture">
+        </div>
+        <div class="content">
+            <p>
+                <span>@item.Type</span>
+                <span>@item.Salle</span>
+                <span>Adresse</span>
+            </p>
+            <p>
+                <span>@item.Titre</span>
+                <span>@item.StartDate</span>
+            </p>
+            <p>@item.Description</p>
+        </div>
+    </div>
 }
 
-@foreach (ConcertFinderMVC.Models.EventItem item in Model.Last)
-{
-    
-}
+@Html.Partial("_LastAdded", Model.Last)

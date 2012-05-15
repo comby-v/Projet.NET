@@ -14,9 +14,11 @@ namespace ConcertFinderMVC.Controllers
 
         public ActionResult Index()
         {
-            EventsList eventList = new EventsList() {
-                        Last = BusinessManagement.T_Event.GetListLastAddEvent(5),
-                        Events = BusinessManagement.T_Event.GetListEvent(10) };
+            EventsList eventList = new EventsList()
+            {
+                Last = BusinessManagement.T_Event.GetListLastAddEvent(5),
+                Events = BusinessManagement.T_Event.GetListEvent(10)
+            };
             return View("Index", eventList);
         }
 
@@ -25,7 +27,12 @@ namespace ConcertFinderMVC.Controllers
 
         public ActionResult Concert()
         {
-            return View();
+            EventsList eventList = new EventsList()
+            {
+                Last = BusinessManagement.T_Event.GetListLastAddEvent(5),
+                Events = BusinessManagement.T_Event.GetListEvent(10, "Concert")
+            };
+            return View("Index", eventList);
         }
 
         //
@@ -33,7 +40,12 @@ namespace ConcertFinderMVC.Controllers
 
         public ActionResult Spectacle()
         {
-            return View();
+            EventsList eventList = new EventsList()
+            {
+                Last = BusinessManagement.T_Event.GetListLastAddEvent(5),
+                Events = BusinessManagement.T_Event.GetListEvent(10, "Spectacle")
+            };
+            return View("Index", eventList);
         }
 
         //
@@ -41,7 +53,12 @@ namespace ConcertFinderMVC.Controllers
 
         public ActionResult Festival()
         {
-            return View();
+            EventsList eventList = new EventsList()
+            {
+                Last = BusinessManagement.T_Event.GetListLastAddEvent(5),
+                Events = BusinessManagement.T_Event.GetListEvent(10, "Festival")
+            };
+            return View("Index", eventList);
         }
 
         //
@@ -52,5 +69,12 @@ namespace ConcertFinderMVC.Controllers
             return View();
         }
 
+        //
+        // GET : /Event/Detail/Id
+
+        public ActionResult Detail()
+        {
+            return View();
+        }
     }
 }

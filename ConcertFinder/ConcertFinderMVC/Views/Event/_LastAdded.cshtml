@@ -1,0 +1,11 @@
+﻿@model List<ConcertFinderMVC.Models.EventItem>
+
+<h2>Dernier Ajout :</h2>
+
+@foreach (ConcertFinderMVC.Models.EventItem item in Model)
+{
+    <div class="item">
+        <span>@Html.ActionLink(item.Titre, "Detail", "Event")</span>
+        <span>A Paris, le @item.StartDate</span>
+    </div>
+}

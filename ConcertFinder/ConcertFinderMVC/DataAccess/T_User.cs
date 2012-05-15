@@ -9,16 +9,59 @@ namespace ConcertFinderMVC.DataAccess
     {
         public static Boolean create(USER user)
         {
-            using (ConcertFinderEntities1 concert = new ConcertFinderEntities1())
+            using (ConcertFinderEntities concert = new ConcertFinderEntities())
             {
-                long id = user.USER_ID;
 
-                concert.AddToUSERs(user);
-                concert.SaveChanges();
+                try
+                {
+                    concert.AddToUSERs(user);
+                    concert.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+                return (true);
+            }
+        }
 
-                USER us = concert.USERs.Where(u => u.USER_ID == user.USER_ID).FirstOrDefault();
+        public static Boolean delete(long idUser)
+        {
+            using (ConcertFinderEntities concert = new ConcertFinderEntities())
+            {
+                try
+                {
+                    USER user = concert.USERs.Where(u => u.USER_ID == idUser).FirstOrDefault();
 
-                return (us.USER_ID == id);
+                    user.USER_ROLE = "deactivated";
+
+                    concert.AddToUSERs(user);
+                    concert.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        public static Boolean update(long idUser)
+        {
+            using (ConcertFinderEntities concert = new ConcertFinderEntities ())
+            {
+                try
+                {
+                    USER user = concert.USERs.Where(u => u.USER_ID == idUser).FirstOrDefault();
+
+
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+                return true;
             }
         }
     }

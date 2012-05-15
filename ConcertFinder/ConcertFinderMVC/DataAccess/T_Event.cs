@@ -25,8 +25,7 @@ namespace ConcertFinderMVC.DataAccess
             return true;
         }
 
-
-        static public bool delete(long id)
+        static public bool Delete(long id)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
@@ -71,7 +70,8 @@ namespace ConcertFinderMVC.DataAccess
                 EVENT myevent;
                 try
                 {
-                    myevent = bdd.EVENTs.Where(x => x.EVENT_ID == id).FirstOrDefault();
+                    myevent = bdd.EVENTs.Include("TAG").Include("LOCATION").Include("USER").Include("NOTIFICATION").
+                        Where(x => x.EVENT_ID == id).FirstOrDefault();
                 }
                 catch (Exception)
                 {

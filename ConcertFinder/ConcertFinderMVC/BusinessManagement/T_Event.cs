@@ -29,16 +29,20 @@ namespace ConcertFinderMVC.BusinessManagement
         static public EventItem Get(long id)
         {
 
-        }
+        }*/
 
         static public List<EventItem> GetListEvent(int nbr, string type = "")
         {
-
+            List<EventItem> listevent = new List<EventItem>();
+            /*DataAccess.T_Event*/
+            return listevent;
         }
 
         static public List<EventItem> GetListLastAddEvent(int nbr, string type = "")
         {
-
-        }*/
+            List<EventItem> listevent = new List<EventItem>();
+            /*DataAccess.T_Event*/
+            return listevent;
+        }
     }
 }

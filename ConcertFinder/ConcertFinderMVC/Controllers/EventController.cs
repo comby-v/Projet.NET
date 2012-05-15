@@ -14,7 +14,9 @@ namespace ConcertFinderMVC.Controllers
 
         public ActionResult Index()
         {
-            EventsList eventList = new EventsList();
+            EventsList eventList = new EventsList() {
+                        Last = BusinessManagement.T_Event.GetListLastAddEvent(5),
+                        Events = BusinessManagement.T_Event.GetListEvent(10) };
             return View("Index", eventList);
         }
 

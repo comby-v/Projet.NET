@@ -80,8 +80,5 @@ namespace ConcertFinderMVC.DataAccess
                 return myevent;
             }
         }
-
-
-
     }
 }

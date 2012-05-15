@@ -1,5 +1,11 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model ConcertFinderMVC.Models.EventsList
+
+@foreach (ConcertFinderMVC.Models.EventItem item in Model.Events)
+{
+    
 }
 
-<h2>Index</h2>
+@foreach (ConcertFinderMVC.Models.EventItem item in Model.Last)
+{
+    
+}

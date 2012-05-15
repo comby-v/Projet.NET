@@ -6,13 +6,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ConcertFinderMVC.Models
 {
-    public enum Type
-    {
-        Spectacle = 0,
-        Concert,
-        Festival
-    }
-
     public class EventItem
     {
         public string Type { get; set; }
@@ -31,21 +24,21 @@ namespace ConcertFinderMVC.Models
     {
         public List<EventItem> Events { get; set; }
         public List<EventItem> Last { get; set; }
-
-        public EventsList()
-        {
-            Events = new List<EventItem>();
-            Last = new List<EventItem>();
-        }
     }
 
     public class FormEventModels
     {
+        public FormEventModels()
+        {
+            Type = new List<string>() { "Spectacle", "Concert", "Festival" };
+        }
+
         [Required]
         [Display(Name = "Titre")]
         public string Title { get; set; }
 
-
+        [Display(Name = "Type")]
+        public List<string> Type { get; set; }
 
         [Required]
         [Display(Name = "Date de début")]

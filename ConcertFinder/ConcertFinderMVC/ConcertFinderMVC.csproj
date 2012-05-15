@@ -65,6 +65,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessManagement\T_Event.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="DataAccess\ConcertFinderModel.Designer.cs">
@@ -200,7 +201,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="BusinessManagement\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>

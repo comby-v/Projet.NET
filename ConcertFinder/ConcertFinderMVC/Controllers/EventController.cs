@@ -16,5 +16,29 @@ namespace ConcertFinderMVC.Controllers
             return View();
         }
 
+        //
+        // GET: /Event/Concert
+
+        public ActionResult Concert()
+        {
+            return View();
+        }
+
+        //
+        // GET: /Event/Spectacle
+
+        public ActionResult Spectacle()
+        {
+            return View();
+        }
+
+        //
+        // GET: /Event/MyEvents
+
+        public ActionResult MyEvents()
+        {
+            return View();
+        }
+
     }
 }

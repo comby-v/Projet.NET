@@ -33,6 +33,14 @@ namespace ConcertFinderMVC.Controllers
         }
 
         //
+        // GET: /Event/Festival
+
+        public ActionResult Festival()
+        {
+            return View();
+        }
+
+        //
         // GET: /Event/MyEvents
 
         public ActionResult MyEvents()

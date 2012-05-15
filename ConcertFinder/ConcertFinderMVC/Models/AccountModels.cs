@@ -27,7 +27,7 @@ namespace ConcertFinderMVC.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class LogOnModel
+  /*  public class LogOnModel
     {
         [Required]
         [Display(Name = "User name")]
@@ -63,5 +63,5 @@ namespace ConcertFinderMVC.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-    }
+    }*/
 }

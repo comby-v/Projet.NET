@@ -1,0 +1,5 @@
+C:\Users\Vince\Documents\ING2\NET\Projet.NET\ConcertFinder\BackEndAdmin\bin\BackEndAdmin.dll
+C:\Users\Vince\Documents\ING2\NET\Projet.NET\ConcertFinder\BackEndAdmin\bin\BackEndAdmin.pdb
+C:\Users\Vince\Documents\ING2\NET\Projet.NET\ConcertFinder\BackEndAdmin\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Vince\Documents\ING2\NET\Projet.NET\ConcertFinder\BackEndAdmin\obj\Debug\BackEndAdmin.dll
+C:\Users\Vince\Documents\ING2\NET\Projet.NET\ConcertFinder\BackEndAdmin\obj\Debug\BackEndAdmin.pdb

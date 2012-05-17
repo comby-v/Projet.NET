@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ConcertFinderModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="ConcertFinderModelStoreContainer">
+    <EntitySet Name="EVENT" EntityType="ConcertFinderModel.Store.EVENT" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HAS_NOTIFICATION" EntityType="ConcertFinderModel.Store.HAS_NOTIFICATION" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HAS_TAGS" EntityType="ConcertFinderModel.Store.HAS_TAGS" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LOCATION" EntityType="ConcertFinderModel.Store.LOCATION" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NOTIFICATION" EntityType="ConcertFinderModel.Store.NOTIFICATION" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NOTIFIED" EntityType="ConcertFinderModel.Store.NOTIFIED" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PREFERS" EntityType="ConcertFinderModel.Store.PREFERS" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TAG" EntityType="ConcertFinderModel.Store.TAG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="USER" EntityType="ConcertFinderModel.Store.USER" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_EVENT_LOCATION" Association="ConcertFinderModel.Store.FK_EVENT_LOCATION">
+      <End Role="LOCATION" EntitySet="LOCATION" />
+      <End Role="EVENT" EntitySet="EVENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EVENT_USER" Association="ConcertFinderModel.Store.FK_EVENT_USER">
+      <End Role="USER" EntitySet="USER" />
+      <End Role="EVENT" EntitySet="EVENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HAS_NOTIFICATION_EVENT" Association="ConcertFinderModel.Store.FK_HAS_NOTIFICATION_EVENT">
+      <End Role="EVENT" EntitySet="EVENT" />
+      <End Role="HAS_NOTIFICATION" EntitySet="HAS_NOTIFICATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HAS_NOTIFICATION_NOTIFICATION" Association="ConcertFinderModel.Store.FK_HAS_NOTIFICATION_NOTIFICATION">
+      <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
+      <End Role="HAS_NOTIFICATION" EntitySet="HAS_NOTIFICATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HAS_TAGS_EVENT" Association="ConcertFinderModel.Store.FK_HAS_TAGS_EVENT">
+      <End Role="EVENT" EntitySet="EVENT" />
+      <End Role="HAS_TAGS" EntitySet="HAS_TAGS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HAS_TAGS_TAG" Association="ConcertFinderModel.Store.FK_HAS_TAGS_TAG">
+      <End Role="TAG" EntitySet="TAG" />
+      <End Role="HAS_TAGS" EntitySet="HAS_TAGS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NOTIFIED_NOTIFICATION" Association="ConcertFinderModel.Store.FK_NOTIFIED_NOTIFICATION">
+      <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
+      <End Role="NOTIFIED" EntitySet="NOTIFIED" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NOTIFIED_USER" Association="ConcertFinderModel.Store.FK_NOTIFIED_USER">
+      <End Role="USER" EntitySet="USER" />
+      <End Role="NOTIFIED" EntitySet="NOTIFIED" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PREFERS_TAG" Association="ConcertFinderModel.Store.FK_PREFERS_TAG">
+      <End Role="TAG" EntitySet="TAG" />
+      <End Role="PREFERS" EntitySet="PREFERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PREFERS_USER" Association="ConcertFinderModel.Store.FK_PREFERS_USER">
+      <End Role="USER" EntitySet="USER" />
+      <End Role="PREFERS" EntitySet="PREFERS" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="EVENT">
+    <Key>
+      <PropertyRef Name="EVENT_ID" />
+    </Key>
+    <Property Name="EVENT_ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="USER_ID" Type="bigint" Nullable="false" />
+    <Property Name="LOCATION_ID" Type="bigint" Nullable="false" />
+    <Property Name="EVENT_DATEDEBUT" Type="datetime" Nullable="false" />
+    <Property Name="EVENT_DATEFIN" Type="datetime" />
+    <Property Name="EVENT_DESCRIPTION" Type="text" Nullable="false" />
+    <Property Name="EVENT_TITRE" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="EVENT_TYPE" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="EVENT_IMG_PATH" Type="text" />
+    <Property Name="EVENT_VALIDE" Type="bit" />
+    <Property Name="EVENT_EMAIL" Type="varchar" MaxLength="50" />
+    <Property Name="EVENT_TEL" Type="varchar" MaxLength="10" />
+    <Property Name="EVENT_SITE" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="HAS_NOTIFICATION">
+    <Key>
+      <PropertyRef Name="EVENT_ID" />
+      <PropertyRef Name="NOTIF_ID" />
+    </Key>
+    <Property Name="EVENT_ID" Type="bigint" Nullable="false" />
+    <Property Name="NOTIF_ID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HAS_TAGS">
+    <Key>
+      <PropertyRef Name="EVENT_ID" />
+      <PropertyRef Name="TAG_ID" />
+    </Key>
+    <Property Name="EVENT_ID" Type="bigint" Nullable="false" />
+    <Property Name="TAG_ID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LOCATION">
+    <Key>
+      <PropertyRef Name="LOCATION_ID" />
+    </Key>
+    <Property Name="LOCATION_ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="LOCATION_NAME" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="LOCATION_VILLE" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LOCATION_PAYS" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LOCATION_RUE" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="LOCATION_CP" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="LOCATION_LATTITUDE" Type="float" />
+    <Property Name="LOCATION_LONGITUDE" Type="float" />
+  </EntityType>
+  <EntityType Name="NOTIFICATION">
+    <Key>
+      <PropertyRef Name="NOTIF_ID" />
+    </Key>
+    <Property Name="NOTIF_ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NOTIF_TITRE" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="NOTIF_DATE" Type="datetime" Nullable="false" />
+    <Property Name="NOTIF_MESSAGE" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NOTIFIED">
+    <Key>
+      <PropertyRef Name="USER_ID" />
+      <PropertyRef Name="NOTIF_ID" />
+    </Key>
+    <Property Name="USER_ID" Type="bigint" Nullable="false" />
+    <Property Name="NOTIF_ID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PREFERS">
+    <Key>
+      <PropertyRef Name="USER_ID" />
+      <PropertyRef Name="TAG_ID" />
+    </Key>
+    <Property Name="USER_ID" Type="bigint" Nullable="false" />
+    <Property Name="TAG_ID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TAG">
+    <Key>
+      <PropertyRef Name="TAG_ID" />
+    </Key>
+    <Property Name="TAG_ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TAG_CONTENT" Type="varchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="USER_ID" />
+    </Key>
+    <Property Name="USER_ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="USER_NAME" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="USER_FIRSTNAME" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="USER_MAIL" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="USER_LOGIN" Type="varchar" Nullable="false" MaxLength="25" />
+    <Property Name="USER_PASSWORD" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="USER_ROLE" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="USER_VILLE" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_EVENT_LOCATION">
+    <End Role="LOCATION" Type="ConcertFinderModel.Store.LOCATION" Multiplicity="1" />
+    <End Role="EVENT" Type="ConcertFinderModel.Store.EVENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOCATION">
+        <PropertyRef Name="LOCATION_ID" />
+      </Principal>
+      <Dependent Role="EVENT">
+        <PropertyRef Name="LOCATION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EVENT_USER">
+    <End Role="USER" Type="ConcertFinderModel.Store.USER" Multiplicity="1" />
+    <End Role="EVENT" Type="ConcertFinderModel.Store.EVENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="EVENT">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HAS_NOTIFICATION_EVENT">
+    <End Role="EVENT" Type="ConcertFinderModel.Store.EVENT" Multiplicity="1" />
+    <End Role="HAS_NOTIFICATION" Type="ConcertFinderModel.Store.HAS_NOTIFICATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EVENT">
+        <PropertyRef Name="EVENT_ID" />
+      </Principal>
+      <Dependent Role="HAS_NOTIFICATION">
+        <PropertyRef Name="EVENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HAS_NOTIFICATION_NOTIFICATION">
+    <End Role="NOTIFICATION" Type="ConcertFinderModel.Store.NOTIFICATION" Multiplicity="1" />
+    <End Role="HAS_NOTIFICATION" Type="ConcertFinderModel.Store.HAS_NOTIFICATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NOTIFICATION">
+        <PropertyRef Name="NOTIF_ID" />
+      </Principal>
+      <Dependent Role="HAS_NOTIFICATION">
+        <PropertyRef Name="NOTIF_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HAS_TAGS_EVENT">
+    <End Role="EVENT" Type="ConcertFinderModel.Store.EVENT" Multiplicity="1" />
+    <End Role="HAS_TAGS" Type="ConcertFinderModel.Store.HAS_TAGS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EVENT">
+        <PropertyRef Name="EVENT_ID" />
+      </Principal>
+      <Dependent Role="HAS_TAGS">
+        <PropertyRef Name="EVENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HAS_TAGS_TAG">
+    <End Role="TAG" Type="ConcertFinderModel.Store.TAG" Multiplicity="1" />
+    <End Role="HAS_TAGS" Type="ConcertFinderModel.Store.HAS_TAGS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAG">
+        <PropertyRef Name="TAG_ID" />
+      </Principal>
+      <Dependent Role="HAS_TAGS">
+        <PropertyRef Name="TAG_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NOTIFIED_NOTIFICATION">
+    <End Role="NOTIFICATION" Type="ConcertFinderModel.Store.NOTIFICATION" Multiplicity="1" />
+    <End Role="NOTIFIED" Type="ConcertFinderModel.Store.NOTIFIED" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NOTIFICATION">
+        <PropertyRef Name="NOTIF_ID" />
+      </Principal>
+      <Dependent Role="NOTIFIED">
+        <PropertyRef Name="NOTIF_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NOTIFIED_USER">
+    <End Role="USER" Type="ConcertFinderModel.Store.USER" Multiplicity="1" />
+    <End Role="NOTIFIED" Type="ConcertFinderModel.Store.NOTIFIED" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="NOTIFIED">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PREFERS_TAG">
+    <End Role="TAG" Type="ConcertFinderModel.Store.TAG" Multiplicity="1" />
+    <End Role="PREFERS" Type="ConcertFinderModel.Store.PREFERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAG">
+        <PropertyRef Name="TAG_ID" />
+      </Principal>
+      <Dependent Role="PREFERS">
+        <PropertyRef Name="TAG_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PREFERS_USER">
+    <End Role="USER" Type="ConcertFinderModel.Store.USER" Multiplicity="1" />
+    <End Role="PREFERS" Type="ConcertFinderModel.Store.PREFERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="PREFERS">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

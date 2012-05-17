@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcertFinderMVC", "ConcertFinderMVC\ConcertFinderMVC.csproj", "{8215B895-B247-42CF-AB3D-16E63179AC44}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackEndAdmin", "BackEndAdmin\BackEndAdmin.csproj", "{6BAD1B9D-843C-4652-BBC0-B3489AC73596}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMVC", "TestMVC\TestMVC.csproj", "{BBF73506-BFD4-492F-8B3E-64D9B709F53F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{8215B895-B247-42CF-AB3D-16E63179AC44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8215B895-B247-42CF-AB3D-16E63179AC44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8215B895-B247-42CF-AB3D-16E63179AC44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BAD1B9D-843C-4652-BBC0-B3489AC73596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BAD1B9D-843C-4652-BBC0-B3489AC73596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BAD1B9D-843C-4652-BBC0-B3489AC73596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BAD1B9D-843C-4652-BBC0-B3489AC73596}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBF73506-BFD4-492F-8B3E-64D9B709F53F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBF73506-BFD4-492F-8B3E-64D9B709F53F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBF73506-BFD4-492F-8B3E-64D9B709F53F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBF73506-BFD4-492F-8B3E-64D9B709F53F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

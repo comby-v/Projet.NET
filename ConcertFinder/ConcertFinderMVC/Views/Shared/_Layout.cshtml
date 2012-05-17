@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿          
+<!DOCTYPE html>
 <html>
 <head>
     <title>Concert Finder</title>
@@ -7,12 +8,15 @@
 </head>
 <body>
     <header>
-        <img src="" alt="banniere" />
-
-        <div class="log">
-            
+        <div id="banniere">
+               <div id="connect" class="float-right">
+                    <div id="open_connect" class="float-right">se connecter</div>
+                    <div id="connect_panel" class="clear">
+                    @Html.Partial("_logOn")
+                    </div>
+               </div>
         </div>
-        <ul class="menu">
+        <ul id="menu">
             <li>@Html.ActionLink("Tous les événements", "Index", "Event")</li>
             <li>@Html.ActionLink("Concerts", "Concert", "Event")</li>
             <li>@Html.ActionLink("Spectacles", "Spectacle", "Event")</li>
@@ -48,3 +52,8 @@
     </div>-->
 </body>
 </html>
+<script type="text/javascript">
+    $("#open_connect").click(function () {
+        $("#connect_panel").toggle();
+    });
+</script>

@@ -1,0 +1,151 @@
+﻿@model ConcertFinderMVC.Models.FormEventModels
+
+@using (Html.BeginForm("CreateEvent", "Event", "POST"))
+{
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.Title)
+        </span>
+        <span class="connexion_form ">
+            @Html.TextBoxFor(m => m.Title)
+            @Html.ValidationMessageFor(m => m.Title)
+        </span>
+    </div>
+    
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.StartDate)
+        </span>
+        <span class="connexion_form ">
+            @Html.TextBoxFor(m => m.StartDate)
+            @Html.ValidationMessageFor(m => m.StartDate)
+        </span>
+    </div>
+    
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.EndDate)
+        </span>
+        <span class="connexion_form ">
+            @Html.TextBoxFor(m => m.EndDate)
+            @Html.ValidationMessageFor(m => m.EndDate)
+        </span>
+    </div>
+    
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.Description)
+        </span>
+        <span class="connexion_form ">
+            @Html.TextBoxFor(m => m.Description)
+            @Html.ValidationMessageFor(m => m.Description)
+        </span>
+    </div>
+    
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.Image)
+        </span>
+        <span class="connexion_form ">
+            @Html.TextBoxFor(m => m.Image)
+            @Html.ValidationMessageFor(m => m.Image)
+        </span>
+    </div>
+    
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.Tags)
+        </span>
+        <span class="connexion_form ">
+            @Html.TextBoxFor(m => m.Tags)
+            @Html.ValidationMessageFor(m => m.Tags)
+        </span>
+    </div>
+    
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.Country)
+        </span>
+        <span class="connexion_form ">
+            @Html.TextBoxFor(m => m.Country)
+            @Html.ValidationMessageFor(m => m.Country)
+        </span>
+    </div>
+    
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.City)
+        </span>
+        <span class="connexion_form ">
+            @Html.TextBoxFor(m => m.City)
+            @Html.ValidationMessageFor(m => m.City)
+        </span>
+    </div>
+    
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.CodePostal)
+        </span>
+        <span class="connexion_form ">
+            @Html.TextBoxFor(m => m.CodePostal)
+            @Html.ValidationMessageFor(m => m.CodePostal)
+        </span>
+    </div>
+    
+    <div class="clear">
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.Address)
+        </span>
+        <span class="connexion_form ">
+            @Html.PasswordFor(m => m.Address)
+            @Html.ValidationMessageFor(m => m.Address)
+        </span>
+    </div>
+    
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.RoomName)
+        </span>
+        <span class="connexion_form ">
+            @Html.TextBoxFor(m => m.RoomName)
+            @Html.ValidationMessageFor(m => m.RoomName)
+        </span>
+    </div>
+    
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.Email)
+        </span>
+        <span class="connexion_form ">
+            @Html.TextBoxFor(m => m.Email)
+            @Html.ValidationMessageFor(m => m.Email)
+        </span>
+    </div>
+    
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.Phone)
+        </span>
+        <span class="connexion_form ">
+            @Html.TextBoxFor(m => m.Phone)
+            @Html.ValidationMessageFor(m => m.Phone)
+        </span>
+    </div>
+    
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.Website)
+        </span>
+        <span class="connexion_form ">
+            @Html.TextBoxFor(m => m.Website)
+            @Html.ValidationMessageFor(m => m.Website)
+        </span>
+    </div>
+    
+     <div class="clear">
+        <div class="">
+            <input type="submit" value="S'inscrire" />
+        </div>
+    </div>
+    <div class="clear"></div>
+}

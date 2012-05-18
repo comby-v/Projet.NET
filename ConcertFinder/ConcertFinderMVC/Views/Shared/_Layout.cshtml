@@ -11,6 +11,8 @@
         <div id="banniere">
                <div id="connect" class="float-right">
                     <div id="open_connect" class="float-right">se connecter</div>
+                    <div id="open_connect" class="float-right">@Html.ActionLink("S'inscrire", "Register", "Account")</div>
+                    <div id="open_connect" class="float-right">@Html.ActionLink("Ajouter un événement", "CreateEvent", "Event")</div>
                     <div id="connect_panel" class="clear">
                     @Html.Partial("_logOn", new ConcertFinderMVC.Models.LogOnModel ())
                     </div>

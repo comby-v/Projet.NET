@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ConcertFinderMVC.Models;
 
 namespace ConcertFinderMVC.Controllers
 {
@@ -39,6 +40,30 @@ namespace ConcertFinderMVC.Controllers
           // If we got this far, something failed, redisplay form
            return View(model);
 
+        }
+
+        public ActionResult Register()
+        {
+            RegisterModel form = new RegisterModel();
+            return View(form);
+        }
+
+        [HttpPost]
+        public ActionResult Register(RegisterModel form)
+        {
+            if (ModelState.IsValid)
+            {
+                if (BusinessManagement.T_User.create(form))
+                {
+                    return View("Index", "Event");
+                }
+                else
+                {
+                    // TODO : Rediriger vers une page d'erreur
+                    return View("Error");
+                }
+            }
+            return View(form);
         }
     }
 }

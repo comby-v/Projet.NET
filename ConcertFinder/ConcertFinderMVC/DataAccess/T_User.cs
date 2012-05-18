@@ -11,7 +11,6 @@ namespace ConcertFinderMVC.DataAccess
         {
             using (ConcertFinderEntities concert = new ConcertFinderEntities())
             {
-
                 try
                 {
                     concert.AddToUSERs(user);

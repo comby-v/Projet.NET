@@ -1,7 +1,8 @@
 ﻿@model ConcertFinderMVC.Models.LogOnModel
 
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("LogOn", "Account","POST"))
+{
     <div>
             <span class="connexion_lbl float-left">
                 @Html.LabelFor(m => m.Pseudo)

@@ -13,7 +13,7 @@ namespace ConcertFinderMVC.BusinessManagement
         {
             EVENT ev = new EVENT ();
             ev.EVENT_TITRE = myevent.Title;
-            ev.EVENT_TYPE = myevent.Type;
+           // ev.EVENT_TYPE = myevent.Type;
             ev.EVENT_DESCRIPTION = myevent.Description;
             ev.EVENT_DATEDEBUT = myevent.StartDate;
             ev.EVENT_DATEFIN = myevent.EndDate;
@@ -49,7 +49,7 @@ namespace ConcertFinderMVC.BusinessManagement
             EVENT ev = new EVENT ();
             ev.EVENT_ID = id;
             ev.EVENT_TITRE = myevent.Title;
-            ev.EVENT_TYPE = myevent.Type;
+          //  ev.EVENT_TYPE = myevent.Type;
             ev.EVENT_DESCRIPTION = myevent.Description;
             ev.EVENT_DATEDEBUT = myevent.StartDate;
             ev.EVENT_DATEFIN = myevent.EndDate;
@@ -64,7 +64,7 @@ namespace ConcertFinderMVC.BusinessManagement
 
         static public EventItem Get(long id)
         {
-
+            return null;
         }
 
         static public List<EventItem> GetListEvent(int nbr, string type = "")

@@ -14,7 +14,14 @@
                 <h1>My MVC Application</h1>
             </div>
             <div id="logindisplay">
-                @Html.Partial("_LogOnPartial")
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    @Html.Partial("_LogOnPartial")
+                }
+                else
+                {
+                      <span > @User.Identity.Name</span>
+                }
             </div>
             <nav>
                 <ul id="menu">

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ConcertFinderMVC.Models;
+using System.Web.Security;
 
 namespace ConcertFinderMVC.Controllers
 {
@@ -24,9 +25,9 @@ namespace ConcertFinderMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-              /*  if (Membership.ValidateUser(model.Pseudo, model.Password))
-                {
-                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);*/
+                    FormsAuthentication.SetAuthCookie(model.Pseudo, false);
+                    var ojb = User.Identity.Name;
+                    var bidon = Request.IsAuthenticated;
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {

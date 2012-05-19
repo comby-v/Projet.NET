@@ -14,11 +14,12 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    bdd.AddToEVENTs (myevent);
+                    bdd.AddToEVENTs(myevent);
                     bdd.SaveChanges();
                 }
                 catch (Exception)
                 {
+                    throw;
                     return false;
                 }
             }
@@ -78,6 +79,23 @@ namespace ConcertFinderMVC.DataAccess
                     return null;
                 }
                 return myevent;
+            }
+        }
+
+        public static List<TAG> getTaglistfromEvent(long idEvent)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                try
+                {
+                    EVENT eve = bdd.EVENTs.Where(x => x.EVENT_ID == idEvent).FirstOrDefault();
+                    List<TAG> tags = eve.TAGs.ToList();
+                    return tags;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
             }
         }
     }

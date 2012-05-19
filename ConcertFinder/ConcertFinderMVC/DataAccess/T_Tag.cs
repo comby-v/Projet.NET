@@ -40,6 +40,22 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
+        public static TAG GetTagbycontent(String content)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                try
+                {
+                    TAG tag = bdd.TAGs.Where(x => x.TAG_CONTENT == content).FirstOrDefault();
+                    return tag;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
         static public bool Update(TAG tag)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
@@ -75,5 +91,39 @@ namespace ConcertFinderMVC.DataAccess
             }
             return true;
         }
+
+       public static List<USER> getUserlistfromTag(long idTag)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                try
+                {
+                    TAG tag = bdd.TAGs.Where(x => x.TAG_ID == idTag).FirstOrDefault();
+                    List<USER> users = tag.USERs.ToList();
+                    return users;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+       public static List<EVENT> getEventlistfromTag(long idTag)
+       {
+           using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+           {
+               try
+               {
+                   TAG tag = bdd.TAGs.Where(x => x.TAG_ID == idTag).FirstOrDefault();
+                   List<EVENT> events = tag.EVENTs.ToList();
+                   return events;
+               }
+               catch (Exception)
+               {
+                   return null;
+               }
+           }
+       }
     }
 }

@@ -39,6 +39,11 @@ namespace ConcertFinderMVC.Models
         [Display(Name = "Confirmer le mot de passe")]
         [Compare("Password", ErrorMessage = "La confirmation de mot de passe n'est pas identique.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [StringLength (255, ErrorMessage = "Le {0} doit faire au moins {2} caractères de long.",MinimumLength = 3)]
+        [Display(Name = "Tags")]
+        public string Tags { get; set; }
     }
 
     public class LogOnModel

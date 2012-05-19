@@ -72,6 +72,17 @@
             @Html.ValidationMessageFor(m => m.ConfirmPassword)
         </span>
     </div>
+    
+    <div>
+        <span class="connexion_lbl">
+            @Html.LabelFor(m => m.Tags)
+        </span>
+        <span class="">
+            @Html.TextBoxFor(m => m.Tags)
+            @Html.ValidationMessageFor(m => m.Tags)
+        </span>
+    </div>
+    
      <div class="clear">
         <div class="">
             <input type="submit" value="S'inscrire" />

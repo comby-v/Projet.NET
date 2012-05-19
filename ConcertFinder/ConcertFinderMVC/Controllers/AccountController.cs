@@ -25,22 +25,30 @@ namespace ConcertFinderMVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (BusinessManagement.T_User.validate_user(model.Pseudo, model.Password))
+                {
                     FormsAuthentication.SetAuthCookie(model.Pseudo, false);
                     var ojb = User.Identity.Name;
                     var bidon = Request.IsAuthenticated;
-                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
-                    {
-                        return Redirect(returnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Event");
-                    }
+
+                }
             }
           // If we got this far, something failed, redisplay form
-           return View(model);
+            if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
+                && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Event");
+            }
 
+        }
+
+        public ActionResult LogOut()
+        {
+            return RedirectToAction("Index", "Event");
         }
 
         public ActionResult Register()

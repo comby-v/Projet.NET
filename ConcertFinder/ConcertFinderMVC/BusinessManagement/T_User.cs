@@ -23,5 +23,10 @@ namespace ConcertFinderMVC.BusinessManagement
             };
             return DataAccess.T_User.create(user);
         }
+
+        public static Boolean validate_user(string pseudo, string password)
+        {
+            return DataAccess.T_User.validate_user(pseudo, password);
+        }
     }
 }

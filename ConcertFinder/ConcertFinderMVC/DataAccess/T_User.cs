@@ -18,6 +18,7 @@ namespace ConcertFinderMVC.DataAccess
                 }
                 catch (Exception)
                 {
+                    throw;
                     return false;
                 }
                 return (true);
@@ -125,5 +126,25 @@ namespace ConcertFinderMVC.DataAccess
                 }
             }
         }
+
+       public static Boolean validate_user(string pseudo, string password)
+       {
+           using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+           {
+               try
+               {
+                  USER user = bdd.USERs.Where(x => x.USER_LOGIN == pseudo && x.USER_PASSWORD == password).FirstOrDefault();
+                   if (user != null)
+                   {
+                       return true;
+                   }
+                   return false;
+               }
+               catch (Exception)
+               {
+                   return false;
+               }
+           }
+       }
     }
 }

@@ -1,0 +1,81 @@
+﻿@model ConcertFinderMVC.Models.RegisterModel
+
+
+@using (Html.BeginForm("Register", "Account", "POST"))
+{
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.Name)
+        </span>
+        <span class="connexion_form ">
+            @Html.TextBoxFor(m => m.Name)
+            @Html.ValidationMessageFor(m => m.Name)
+        </span>
+    </div>
+    
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.Firstname)
+        </span>
+        <span class="connexion_form ">
+            @Html.TextBoxFor(m => m.Firstname)
+            @Html.ValidationMessageFor(m => m.Firstname)
+        </span>
+    </div>
+    
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.Pseudo)
+        </span>
+        <span class="connexion_form ">
+            @Html.TextBoxFor(m => m.Pseudo)
+            @Html.ValidationMessageFor(m => m.Pseudo)
+        </span>
+    </div>
+    
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.Email)
+        </span>
+        <span class="connexion_form ">
+            @Html.TextBoxFor(m => m.Email)
+            @Html.ValidationMessageFor(m => m.Email)
+        </span>
+    </div>
+    
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.City)
+        </span>
+        <span class="connexion_form ">
+            @Html.TextBoxFor(m => m.City)
+            @Html.ValidationMessageFor(m => m.City)
+        </span>
+    </div>
+    
+    <div>
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.Password)
+        </span>
+        <span class="connexion_form ">
+            @Html.PasswordFor(m => m.Password)
+            @Html.ValidationMessageFor(m => m.Password)
+        </span>
+    </div>
+    
+    <div class="clear">
+        <span class="connexion_lbl ">
+            @Html.LabelFor(m => m.ConfirmPassword)
+        </span>
+        <span class="connexion_form ">
+            @Html.PasswordFor(m => m.ConfirmPassword)
+            @Html.ValidationMessageFor(m => m.ConfirmPassword)
+        </span>
+    </div>
+     <div class="clear">
+        <div class="">
+            <input type="submit" value="S'inscrire" />
+        </div>
+    </div>
+    <div class="clear"></div>
+}

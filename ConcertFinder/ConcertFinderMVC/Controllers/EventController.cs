@@ -76,5 +76,29 @@ namespace ConcertFinderMVC.Controllers
         {
             return View();
         }
+
+        public ActionResult CreateEvent()
+        {
+            FormEventModels form = new FormEventModels();
+            return View(form);
+        }
+
+        [HttpPost]
+        public ActionResult CreateEvent(FormEventModels form)
+        {
+            if (ModelState.IsValid)
+            {
+                if (BusinessManagement.T_Event.Create(form, null))
+                {
+                    return RedirectToAction("Detail", "Event");
+                }
+                else
+                {
+                    // TODO : Rediriger vers une page d'erreur
+                    return View("Error");
+                }
+            }
+            return View(form);
+        }
     }
 }

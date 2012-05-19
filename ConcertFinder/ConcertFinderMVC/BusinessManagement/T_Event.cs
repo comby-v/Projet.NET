@@ -26,14 +26,15 @@ namespace ConcertFinderMVC.BusinessManagement
             //ev.LOCATION = DataAccess.getMapCoord (ev.LOCATION);
             /*
              if (pas d'existant)
-             {
-                ev.LOCATION.LOCATION_PAYS = myevent.Country;
-                ev.LOCATION.LOCATION_VILLE = myevent.City;
-                ev.LOCATION.LOCATION_CP = myevent.CodePostal;
-                ev.LOCATION.LOCATION_RUE = myevent.Address;
-                ev.LOCATION.LOCATION_NAME = myevent.RoomName;
-                ev.USER = user;
-            }*/
+             {*/
+            ev.LOCATION = new LOCATION();
+            ev.LOCATION.LOCATION_PAYS = myevent.Country;
+            ev.LOCATION.LOCATION_VILLE = myevent.City;
+            ev.LOCATION.LOCATION_CP = myevent.CodePostal;
+            ev.LOCATION.LOCATION_RUE = myevent.Address;
+            ev.LOCATION.LOCATION_NAME = myevent.RoomName;
+            ev.USER = user;
+            //}*/
             return DataAccess.T_Event.Create(ev);
         }
 

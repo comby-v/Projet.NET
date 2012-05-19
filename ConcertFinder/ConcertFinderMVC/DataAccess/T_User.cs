@@ -79,5 +79,51 @@ namespace ConcertFinderMVC.DataAccess
                 }
             }
         }
+
+        public static USER getUserbylogin(String login)
+        {
+            using (ConcertFinderEntities concert = new ConcertFinderEntities())
+            {
+                try
+                {
+                    return (concert.USERs.Where(u => u.USER_LOGIN == login).FirstOrDefault());
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public static USER getUserbyemail(String email)
+        {
+            using (ConcertFinderEntities concert = new ConcertFinderEntities())
+            {
+                try
+                {
+                    return (concert.USERs.Where(u => u.USER_MAIL == email).FirstOrDefault());
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+       public static List<TAG> getTaglistfromUser(long idUser)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                try
+                {
+                    USER user = bdd.USERs.Where(x => x.USER_ID == idUser).FirstOrDefault();
+                    List<TAG> tags = user.TAGs.ToList();
+                    return tags;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
     }
 }

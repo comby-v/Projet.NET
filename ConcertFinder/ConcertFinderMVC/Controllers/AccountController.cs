@@ -55,7 +55,7 @@ namespace ConcertFinderMVC.Controllers
             {
                 if (BusinessManagement.T_User.create(form))
                 {
-                    return View("Index", "Event");
+                    return RedirectToAction("Index", "Event");
                 }
                 else
                 {

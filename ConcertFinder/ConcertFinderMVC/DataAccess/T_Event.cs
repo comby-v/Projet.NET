@@ -19,6 +19,7 @@ namespace ConcertFinderMVC.DataAccess
                 }
                 catch (Exception)
                 {
+                    throw;
                     return false;
                 }
             }

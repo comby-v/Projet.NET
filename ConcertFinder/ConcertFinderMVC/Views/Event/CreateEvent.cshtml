@@ -13,6 +13,19 @@
     </div>
     
     <div>
+        <span class="connexion_lbl">
+            @Html.LabelFor(m => m.Type)
+        </span>
+        <span class="connexion_form">
+        <select>
+            @foreach (string str in Model.Type)
+            {
+                <option>@str</option>
+            }
+        </select>
+    </div>
+    
+    <div>
         <span class="connexion_lbl ">
             @Html.LabelFor(m => m.StartDate)
         </span>
@@ -37,11 +50,10 @@
             @Html.LabelFor(m => m.Description)
         </span>
         <span class="connexion_form ">
-            @Html.TextBoxFor(m => m.Description)
+            @Html.TextAreaFor(m => m.Description)
             @Html.ValidationMessageFor(m => m.Description)
         </span>
     </div>
-    
     <div>
         <span class="connexion_lbl ">
             @Html.LabelFor(m => m.Image)
@@ -144,7 +156,7 @@
     
      <div class="clear">
         <div class="">
-            <input type="submit" value="S'inscrire" />
+            <input type="submit" value="Valider" />
         </div>
     </div>
     <div class="clear"></div>

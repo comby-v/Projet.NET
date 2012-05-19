@@ -50,6 +50,11 @@ li
     cursor:pointer;
 }
 
+#open_connect
+{
+	color:white;
+}
+
 #connect_panel
 {
    /* height:50px;*/

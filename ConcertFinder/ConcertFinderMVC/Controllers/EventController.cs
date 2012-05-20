@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ConcertFinderMVC.Models;
+using ConcertFinderMVC.DataAccess;
 
 namespace ConcertFinderMVC.Controllers
 {
@@ -87,9 +88,10 @@ namespace ConcertFinderMVC.Controllers
         [HttpPost]
         public ActionResult CreateEvent(FormEventModels form)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && User.Identity.IsAuthenticated)
             {
-                if (BusinessManagement.T_Event.Create(form, null))
+                USER user = BusinessManagement.T_User.GetUserByPseudo(User.Identity.Name);
+                if (user != null && BusinessManagement.T_Event.Create(form, user))
                 {
                     return RedirectToAction("Detail", "Event");
                 }

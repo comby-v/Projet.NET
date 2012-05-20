@@ -146,5 +146,25 @@ namespace ConcertFinderMVC.DataAccess
                }
            }
        }
+
+        public static USER GetUserByPseudo(String pseudo)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                try
+                {
+                    USER user = bdd.USERs.Where(x => x.USER_LOGIN == pseudo).FirstOrDefault();
+                    if (user != null)
+                    {
+                        return user;
+                    }
+                    return null;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
     }
 }

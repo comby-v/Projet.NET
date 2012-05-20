@@ -14,7 +14,6 @@
                     {
                         <div id="open_connect" class="float-right">se connecter</div>
                         <div id="open_connect" class="float-right">@Html.ActionLink("S'inscrire", "Register", "Account")</div>
-                        <div id="open_connect" class="float-right">@Html.ActionLink("Ajouter un événement", "CreateEvent", "Event")</div>
                         <div id="connect_panel" class="clear">
                          @Html.Partial("_logOn", new ConcertFinderMVC.Models.LogOnModel())
                          </div>
@@ -32,37 +31,15 @@
             <li>@Html.ActionLink("Concerts", "Concert", "Event")</li>
             <li>@Html.ActionLink("Spectacles", "Spectacle", "Event")</li>
             <li>@Html.ActionLink("Festivals", "Festival", "Event")</li>
+            <li>@Html.ActionLink("Ajouter un événement", "CreateEvent", "Event")</li>
         </ul>
     </header>
     <section class="page">
         @RenderBody()
     </section>
-
-
-
-   <!-- <div class="page">
-        <div id="header">
-            <div id="title">
-                <h1>My MVC Application</h1>
-            </div>
-            <div id="logindisplay">
-                @@Html.Partial("_LogOnPartial")
-            </div>
-            <div id="menucontainer">
-                <ul id="menu">
-                    <li>@@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@@Html.ActionLink("About", "About", "Home")</li>
-                </ul>
-            </div>
-        </div>
-        <div id="main">
-            @@RenderBody()
-        </div>
-        <div id="footer">
-        </div>
-    </div>-->
 </body>
 </html>
+@RenderSection("Script", false)
 <script type="text/javascript">
     $("#open_connect").click(function () {
         $("#connect_panel").toggle();

@@ -79,5 +79,23 @@ namespace ConcertFinderMVC.DataAccess
                 return location;
             }
         }
+
+        public static LOCATION GetLocationByCoord(double latitude, double longitude)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                LOCATION location;
+                try
+                {
+                    location = bdd.LOCATIONs.Include("EVENT").
+                        Where(x => x.LOCATION_LATTITUDE == latitude && x.LOCATION_LONGITUDE == longitude).FirstOrDefault();
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+                return location;
+            }
+        }
     }
 }

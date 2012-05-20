@@ -22,19 +22,35 @@ namespace ConcertFinderMVC.BusinessManagement
             ev.EVENT_SITE = myevent.Website;
             ev.EVENT_TEL = myevent.Phone;
 
+            LOCATION location = T_Location.GetLocationByCoord(myevent.Latitude, myevent.Longitude);
 
-            //ev.LOCATION = DataAccess.getMapCoord (ev.LOCATION);
-            /*
-             if (pas d'existant)
-             {*/
-            ev.LOCATION = new LOCATION();
-            ev.LOCATION.LOCATION_PAYS = myevent.Country;
-            ev.LOCATION.LOCATION_VILLE = myevent.City;
-            ev.LOCATION.LOCATION_CP = myevent.CodePostal;
-            ev.LOCATION.LOCATION_RUE = myevent.Address;
-            ev.LOCATION.LOCATION_NAME = myevent.RoomName;
+            if (location != null)
+            {
+                ev.LOCATION = location;
+            }
+            else
+            {
+                if (BusinessManagement.T_Location.Create(new LOCATION()
+                                                        {
+                                                            LOCATION_PAYS = myevent.Country,
+                                                            LOCATION_VILLE = myevent.City,
+                                                            LOCATION_CP = myevent.CodePostal,
+                                                            LOCATION_RUE = myevent.Address,
+                                                            LOCATION_NAME = myevent.RoomName,
+                                                            LOCATION_LATTITUDE = myevent.Latitude,
+                                                            LOCATION_LONGITUDE = myevent.Longitude
+                                                        }))
+                {
+                    LOCATION n_location = T_Location.GetLocationByCoord(myevent.Latitude, myevent.Longitude);
+                    ev.LOCATION = n_location;
+                }
+                else
+                {
+                    return false;
+                }
+            }
             ev.USER = user;
-            //}*/
+
             return DataAccess.T_Event.Create(ev);
         }
 
@@ -42,8 +58,6 @@ namespace ConcertFinderMVC.BusinessManagement
         {
             return DataAccess.T_Event.Delete (id);
         }
-
-
 
         static public bool Update(FormEventModels myevent, LOCATION location, USER user, long id)
         {

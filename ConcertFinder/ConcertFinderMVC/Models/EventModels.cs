@@ -18,6 +18,8 @@ namespace ConcertFinderMVC.Models
         public string Email { get; set; }
         public string Tel { get; set; }
         public string Website { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
     }
 
     public class EventsList
@@ -39,6 +41,12 @@ namespace ConcertFinderMVC.Models
 
         [Display(Name = "Type")]
         public List<string> Type { get; set; }
+
+        [Required]
+        public double Longitude { get; set; }
+
+        [Required]
+        public double Latitude { get; set; }
 
         [Required]
         [Display(Name = "Date de début")]

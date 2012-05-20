@@ -1,7 +1,10 @@
 ﻿@model ConcertFinderMVC.Models.FormEventModels
 
-@using (Html.BeginForm("CreateEvent", "Event", "POST"))
+@using (Html.BeginForm("CreateEvent", "Event", FormMethod.Post, new { id = "form"}))
 {
+    @Html.HiddenFor(x => x.Latitude);
+    @Html.HiddenFor(x => x.Longitude);
+                                    
     <div>
         <span class="connexion_lbl ">
             @Html.LabelFor(m => m.Title)
@@ -23,6 +26,7 @@
                 <option>@str</option>
             }
         </select>
+        </span>
     </div>
     
     <div>
@@ -79,7 +83,7 @@
             @Html.LabelFor(m => m.Country)
         </span>
         <span class="connexion_form ">
-            @Html.TextBoxFor(m => m.Country)
+            @Html.TextBoxFor(m => m.Country, new { id = "country" })
             @Html.ValidationMessageFor(m => m.Country)
         </span>
     </div>
@@ -89,7 +93,7 @@
             @Html.LabelFor(m => m.City)
         </span>
         <span class="connexion_form ">
-            @Html.TextBoxFor(m => m.City)
+            @Html.TextBoxFor(m => m.City, new { id = "city" })
             @Html.ValidationMessageFor(m => m.City)
         </span>
     </div>
@@ -99,7 +103,7 @@
             @Html.LabelFor(m => m.CodePostal)
         </span>
         <span class="connexion_form ">
-            @Html.TextBoxFor(m => m.CodePostal)
+            @Html.TextBoxFor(m => m.CodePostal, new { id = "code_postal" })
             @Html.ValidationMessageFor(m => m.CodePostal)
         </span>
     </div>
@@ -109,7 +113,7 @@
             @Html.LabelFor(m => m.Address)
         </span>
         <span class="connexion_form ">
-            @Html.TextBoxFor(m => m.Address)
+            @Html.TextBoxFor(m => m.Address, new { id = "address" })
             @Html.ValidationMessageFor(m => m.Address)
         </span>
     </div>
@@ -160,4 +164,39 @@
         </div>
     </div>
     <div class="clear"></div>
+}
+
+@section Script
+{
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBm8CQjlFqdYRoa3Am16rtSsAiIpdhL_nw&sensor=false" />
+    <script type="text/javascript">
+
+        $.ready(function ()
+        {
+
+            function getLatLong(address)
+            {
+                var geo = new google.maps.Geocoder;
+
+                geo.geocode({ 'address' : address }, function(results, status)
+                {
+                    if (status == google.maps.GeocoderStatus.OK)
+                    {
+                        return results[0].geometry.location;
+                    }
+                    else
+                    {
+                        alert("Geocode was not successful for the following reason: " + status);
+                    }
+                });
+            };
+
+
+            $("#form").submit(function (){
+                var address = $("#address").val() + "," + $("#city").val() + "," + $("#code_postal").val() + "," + $("#country").val()
+                var latlong = getLatLong(address);
+            });
+
+        });
+      </script>
 }

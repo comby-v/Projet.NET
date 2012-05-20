@@ -53,5 +53,10 @@ namespace ConcertFinderMVC.BusinessManagement
         {
             return DataAccess.T_User.validate_user(pseudo, password);
         }
+
+        public static USER GetUserByPseudo(String pseudo)
+        {
+            return DataAccess.T_User.GetUserByPseudo(pseudo);
+        }
     }
 }

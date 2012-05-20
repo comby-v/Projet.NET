@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="BusinessManagement\CustomMemberShip.cs" />
     <Compile Include="BusinessManagement\T_Event.cs" />
+    <Compile Include="BusinessManagement\T_Location.cs" />
     <Compile Include="BusinessManagement\T_User.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />

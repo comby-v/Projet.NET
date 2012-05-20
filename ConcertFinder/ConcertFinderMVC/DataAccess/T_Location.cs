@@ -87,7 +87,7 @@ namespace ConcertFinderMVC.DataAccess
                 LOCATION location;
                 try
                 {
-                    location = bdd.LOCATIONs.Include("EVENT").
+                    location = bdd.LOCATIONs.
                         Where(x => x.LOCATION_LATTITUDE == latitude && x.LOCATION_LONGITUDE == longitude).FirstOrDefault();
                 }
                 catch (Exception)

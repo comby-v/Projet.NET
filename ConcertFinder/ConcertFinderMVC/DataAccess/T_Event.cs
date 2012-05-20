@@ -7,13 +7,18 @@ namespace ConcertFinderMVC.DataAccess
 {
     public class T_Event
     {
-        static public bool Create(EVENT myevent)
+        static public bool Create(EVENT myevent, USER user, LOCATION location)
         {
-
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
+                    bdd.Attach(user);
+                    bdd.Attach(location);
+
+                    myevent.LOCATION = location;
+                    myevent.USER = user;
+
                     bdd.AddToEVENTs(myevent);
                     bdd.SaveChanges();
                 }

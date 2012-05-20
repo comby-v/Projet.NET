@@ -20,12 +20,14 @@ namespace ConcertFinderMVC.BusinessManagement
                 USER_MAIL = form.Email,
                 USER_VILLE = form.City,
                 USER_PASSWORD = form.Password,
-                USER_ROLE = "User"
-                
+                USER_ROLE = "User",
+                EVENTs = null,
+                NOTIFICATIONs = null,
+                TAGs = null                
             };
- 
+            DataAccess.T_User.create(user);
             string[] split = form.Tags.Split(new Char[] { ' ', ',', '.', ';'});
-            System.Data.Objects.DataClasses.EntityCollection<ConcertFinderMVC.DataAccess.TAG> listTag = new System.Data.Objects.DataClasses.EntityCollection<ConcertFinderMVC.DataAccess.TAG> ();
+            List<TAG> listTag = new List<TAG>();
             foreach (string str in split)
             {
                 if (str.Length > 2)
@@ -39,14 +41,29 @@ namespace ConcertFinderMVC.BusinessManagement
                         {
                             TAG_CONTENT = str
                         };
-                       DataAccess.T_Tag.Create (tag);
-                       listTag.Add(tag);
+                        if (DataAccess.T_Tag.Get(str) == null)
+                        {
+                            DataAccess.T_Tag.Create(tag);
+                        }
+                        using (ConcertFinderEntities concert = new ConcertFinderEntities())
+                        {
+                            tag = DataAccess.T_Tag.Get(str);
+                            concert.Attach(tag);
+                           
+                            user = GetUserByPseudo(form.Pseudo);
+                            concert.Attach(user);
+                            user.TAGs.Add(tag);    
+                        }
+                            //listTag.Add(tag);
                     }
                 } 
             }
 
-            user.TAGs = listTag;
-            return DataAccess.T_User.create(user);
+
+
+
+
+            return DataAccess.T_User.update(user);
         }
 
         public static Boolean validate_user(string pseudo, string password)

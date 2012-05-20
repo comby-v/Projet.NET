@@ -19,7 +19,7 @@ namespace ConcertFinderMVC.DataAccess
                 catch (Exception)
                 {
                     throw;
-                    return false;
+                   
                 }
                 return (true);
             }
@@ -53,14 +53,14 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    var user = new EVENT { EVENT_ID = upUser.USER_ID };
-                    concert.EVENTs.Attach(user);
-                    concert.ApplyCurrentValues("USER", upUser);
+                    var user = new USER { USER_ID = upUser.USER_ID };
+                    concert.USERs.Attach(user);
+                    concert.ApplyCurrentValues("USERs", upUser);
                     concert.SaveChanges();
                 }
                 catch (Exception)
                 {
-                    return false;
+                    throw;
                 }
                 return true;
             }
@@ -147,24 +147,25 @@ namespace ConcertFinderMVC.DataAccess
            }
        }
 
-        public static USER GetUserByPseudo(String pseudo)
-        {
-            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
-            {
-                try
-                {
-                    USER user = bdd.USERs.Where(x => x.USER_LOGIN == pseudo).FirstOrDefault();
-                    if (user != null)
-                    {
-                        return user;
-                    }
-                    return null;
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-            }
-        }
+       public static USER GetUserByPseudo(String pseudo)
+       {
+           using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+           {
+               try
+               {
+                   USER user = bdd.USERs.Where(x => x.USER_LOGIN == pseudo).FirstOrDefault();
+                   if (user != null)
+                   {
+                       return user;
+                   }
+                   return null;
+               }
+               catch (Exception)
+               {
+                   throw;
+                   return null;
+               }
+           }
+       }
     }
 }

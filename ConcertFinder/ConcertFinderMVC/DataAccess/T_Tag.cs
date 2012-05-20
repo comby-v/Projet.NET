@@ -40,6 +40,22 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
+        public static TAG Get(string tagName)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                try
+                {
+                    TAG tag = bdd.TAGs.Where(t => t.TAG_CONTENT == tagName).FirstOrDefault();
+                    return tag;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
         public static TAG GetTagbycontent(String content)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())

@@ -13,7 +13,7 @@ namespace ConcertFinderMVC.BusinessManagement
         {
             EVENT ev = new EVENT ();
             ev.EVENT_TITRE = myevent.Title;
-           // ev.EVENT_TYPE = myevent.Type;
+            ev.EVENT_TYPE = EventModel.GetEventType(myevent.Type);
             ev.EVENT_DESCRIPTION = myevent.Description;
             ev.EVENT_DATEDEBUT = myevent.StartDate;
             ev.EVENT_DATEFIN = myevent.EndDate;
@@ -23,10 +23,9 @@ namespace ConcertFinderMVC.BusinessManagement
             ev.EVENT_TEL = myevent.Phone;
 
             LOCATION location = T_Location.GetLocationByCoord(myevent.Latitude, myevent.Longitude);
-
             if (location != null)
             {
-                ev.LOCATION = location;
+                return DataAccess.T_Event.Create(ev, user, location);
             }
             else
             {
@@ -42,16 +41,13 @@ namespace ConcertFinderMVC.BusinessManagement
                                                         }))
                 {
                     LOCATION n_location = T_Location.GetLocationByCoord(myevent.Latitude, myevent.Longitude);
-                    ev.LOCATION = n_location;
+                    return DataAccess.T_Event.Create(ev, user, n_location);
                 }
                 else
                 {
                     return false;
                 }
             }
-            ev.USER = user;
-
-            return DataAccess.T_Event.Create(ev);
         }
 
         static public bool Delete(long id)
@@ -64,7 +60,7 @@ namespace ConcertFinderMVC.BusinessManagement
             EVENT ev = new EVENT ();
             ev.EVENT_ID = id;
             ev.EVENT_TITRE = myevent.Title;
-          //  ev.EVENT_TYPE = myevent.Type;
+            ev.EVENT_TYPE = EventModel.GetEventType(myevent.Type);
             ev.EVENT_DESCRIPTION = myevent.Description;
             ev.EVENT_DATEDEBUT = myevent.StartDate;
             ev.EVENT_DATEFIN = myevent.EndDate;

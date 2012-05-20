@@ -1,6 +1,6 @@
 ﻿@model ConcertFinderMVC.Models.FormEventModels
 
-@using (Html.BeginForm("CreateEvent", "Event", FormMethod.Post, new { id = "form"}))
+@using (Html.BeginForm("CreateEvent", "Event", FormMethod.Post))
 {
     @Html.HiddenFor(x => x.Latitude);
     @Html.HiddenFor(x => x.Longitude);
@@ -20,12 +20,7 @@
             @Html.LabelFor(m => m.Type)
         </span>
         <span class="connexion_form">
-        <select>
-            @foreach (string str in Model.Type)
-            {
-                <option>@str</option>
-            }
-        </select>
+        @Html.DropDownListFor(x => x.Type, Model.Types)
         </span>
     </div>
     
@@ -168,35 +163,30 @@
 
 @section Script
 {
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBm8CQjlFqdYRoa3Am16rtSsAiIpdhL_nw&sensor=false" />
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBm8CQjlFqdYRoa3Am16rtSsAiIpdhL_nw&sensor=false"></script>
     <script type="text/javascript">
+        function getLatLong(address) {
+            var geo = new google.maps.Geocoder;
 
-        $.ready(function ()
-        {
-
-            function getLatLong(address)
-            {
-                var geo = new google.maps.Geocoder;
-
-                geo.geocode({ 'address' : address }, function(results, status)
-                {
-                    if (status == google.maps.GeocoderStatus.OK)
-                    {
-                        return results[0].geometry.location;
-                    }
-                    else
-                    {
-                        alert("Geocode was not successful for the following reason: " + status);
-                    }
-                });
-            };
-
-
-            $("#form").submit(function (){
-                var address = $("#address").val() + "," + $("#city").val() + "," + $("#code_postal").val() + "," + $("#country").val()
-                var latlong = getLatLong(address);
+            geo.geocode({ 'address': address }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    var latlong = results[0].geometry.location
+                    $("input#Latitude").val((latlong.ab+"").replace(".", ","));
+                    $("input#Longitude").val((latlong.$a+"").replace(".", ","));
+                    return results[0].geometry.location;
+                }
+                else {
+                    alert("Geocode was not successful for the following reason: " + status);
+                }
             });
+        };
 
+
+        $("input#address, input#city, input#code_postal, input#country").focusout(function () {
+            if ($("input#address").val() != "" && $("input#city").val() != "" && $("input#code_postal").val() != "" && $("input#country").val() != "") {
+                var address = $("input#address").val() + "," + $("input#city").val() + "," + $("input#code_postal").val() + "," + $("input#country").val();
+                var latlong = getLatLong(address);
+            }
         });
       </script>
 }

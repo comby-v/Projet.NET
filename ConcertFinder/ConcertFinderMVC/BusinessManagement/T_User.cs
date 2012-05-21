@@ -46,11 +46,10 @@ namespace ConcertFinderMVC.BusinessManagement
                         }
 
                         tag = DataAccess.T_Tag.Get(str);
-                            listTag.Add(tag);
+                        listTag.Add(tag);
                     }
                 } 
             }
-
             return DataAccess.T_User.create(user, listTag);
         }
 

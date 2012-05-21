@@ -19,6 +19,9 @@
             </p>
             <p>@item.Description</p>
         </div>
+        <p>
+            @Html.ActionLink("voir le détail", "Detail", "Event", new { id = item.Id }, null)
+        </p>
     </div>
 }
 

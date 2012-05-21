@@ -156,8 +156,17 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    List<Event> myevent = bdd.T_Event.Include("T_Location").
-                        Where(x => x.EVENT_VALIDE == true && x.EVENT_DATEDEBUT > DateTime.Now).OrderBy(x => x.EVENT_DATEDEBUT).Take(nbr).ToList();
+                    List<Event> myevent;
+                    if (type != "")
+                    {
+                        myevent = bdd.T_Event.Include("T_Location").
+                            Where(x => x.EVENT_VALIDE == true && x.EVENT_DATEDEBUT > DateTime.Now && x.EVENT_TYPE == type).OrderBy(x => x.EVENT_DATEDEBUT).Take(nbr).ToList();
+                    }
+                    else
+                    {
+                        myevent = bdd.T_Event.Include("T_Location").
+                            Where(x => x.EVENT_VALIDE == true && x.EVENT_DATEDEBUT > DateTime.Now).OrderBy(x => x.EVENT_DATEDEBUT).Take(nbr).ToList();
+                    }
                     return (myevent);
                 }
                 catch (Exception)

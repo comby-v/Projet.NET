@@ -1,0 +1,14 @@
+﻿@model List<ConcertFinderMVC.Models.NotificationItem>
+
+@foreach (ConcertFinderMVC.Models.NotificationItem item in Model)
+{
+    <div>
+        @item.Titre
+    </div>
+    <div>
+        @item.Date
+    </div>
+    <div>
+        @item.Message
+    </div>
+}

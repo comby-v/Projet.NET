@@ -27,4 +27,12 @@ namespace ConcertFinderMVC.Models
             }
         }
     }
+
+    public class NotificationItem
+    {
+        public long Id { get; set; }
+        public String Titre { get; set; }
+        public DateTime Date { get; set; }
+        public String Message { get; set; }
+    }
 }

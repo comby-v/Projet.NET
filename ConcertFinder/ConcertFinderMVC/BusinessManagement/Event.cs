@@ -114,17 +114,20 @@ namespace ConcertFinderMVC.BusinessManagement
             List<DataAccess.Event> list_event = DataAccess.Event.GetListLastAddEvent(nbr, type);
             foreach (DataAccess.Event myevent in list_event)
             {
-                EventItem myeventitem = new EventItem();
-                myeventitem.Titre = myevent.EVENT_TITRE;
-                myeventitem.Description = myevent.EVENT_DESCRIPTION;
-                myeventitem.Type = myevent.EVENT_TYPE;
-                myeventitem.StartDate = myevent.EVENT_DATEDEBUT;
-                myeventitem.EndDate = myevent.EVENT_DATEFIN.GetValueOrDefault();
-                myeventitem.Salle = myevent.T_Location.LOCATION_NAME;
-                myeventitem.Image = myevent.EVENT_IMG_PATH;
-                myeventitem.Email = myevent.EVENT_EMAIL;
-                myeventitem.Tel = myevent.EVENT_TEL;
-                myeventitem.Website = myevent.EVENT_SITE;
+                EventItem myeventitem = new EventItem()
+                {
+                    Id = myevent.EVENT_ID,
+                    Titre = myevent.EVENT_TITRE,
+                    Description = myevent.EVENT_DESCRIPTION,
+                    Type = myevent.EVENT_TYPE,
+                    StartDate = myevent.EVENT_DATEDEBUT,
+                    EndDate = myevent.EVENT_DATEFIN.GetValueOrDefault(),
+                    Salle = myevent.T_Location.LOCATION_NAME,
+                    Image = myevent.EVENT_IMG_PATH,
+                    Email = myevent.EVENT_EMAIL,
+                    Tel = myevent.EVENT_TEL,
+                    Website = myevent.EVENT_SITE
+                };
                 list_eventItem.Add(myeventitem);
             }
             return list_eventItem;
@@ -137,17 +140,20 @@ namespace ConcertFinderMVC.BusinessManagement
             List<DataAccess.Event> list_event = DataAccess.Event.GetListEvent(nbr, type);
             foreach (DataAccess.Event myevent in list_event)
             {
-                EventItem myeventitem = new EventItem();
-                myeventitem.Titre = myevent.EVENT_TITRE;
-                myeventitem.Description = myevent.EVENT_DESCRIPTION;
-                myeventitem.Type = myevent.EVENT_TYPE;
-                myeventitem.StartDate = myevent.EVENT_DATEDEBUT;
-                myeventitem.EndDate = myevent.EVENT_DATEFIN.GetValueOrDefault();
-                myeventitem.Salle = myevent.T_Location.LOCATION_NAME;
-                myeventitem.Image = myevent.EVENT_IMG_PATH;
-                myeventitem.Email = myevent.EVENT_EMAIL;
-                myeventitem.Tel = myevent.EVENT_TEL;
-                myeventitem.Website = myevent.EVENT_SITE;
+                EventItem myeventitem = new EventItem()
+                {
+                    Id = myevent.EVENT_ID,
+                    Titre = myevent.EVENT_TITRE,
+                    Description = myevent.EVENT_DESCRIPTION,
+                    Type = myevent.EVENT_TYPE,
+                    StartDate = myevent.EVENT_DATEDEBUT,
+                    EndDate = myevent.EVENT_DATEFIN.GetValueOrDefault(),
+                    Salle = myevent.T_Location.LOCATION_NAME,
+                    Image = myevent.EVENT_IMG_PATH,
+                    Email = myevent.EVENT_EMAIL,
+                    Tel = myevent.EVENT_TEL,
+                    Website = myevent.EVENT_SITE
+                };
                 list_eventItem.Add(myeventitem);
             }
             return list_eventItem;

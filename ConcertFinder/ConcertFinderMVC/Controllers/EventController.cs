@@ -31,7 +31,7 @@ namespace ConcertFinderMVC.Controllers
             EventsList eventList = new EventsList()
             {
                 Last = BusinessManagement.Event.GetListLastAddEvent(5),
-                Events = BusinessManagement.Event.GetListEvent(10, "Concert")
+                Events = BusinessManagement.Event.GetListEvent(10, EventModel.GetEventType((int)eTypes.Concert))
             };
             return View("Index", eventList);
         }
@@ -44,7 +44,7 @@ namespace ConcertFinderMVC.Controllers
             EventsList eventList = new EventsList()
             {
                 Last = BusinessManagement.Event.GetListLastAddEvent(5),
-                Events = BusinessManagement.Event.GetListEvent(10, "Spectacle")
+                Events = BusinessManagement.Event.GetListEvent(10, EventModel.GetEventType((int)eTypes.Spectacle))
             };
             return View("Index", eventList);
         }
@@ -57,7 +57,7 @@ namespace ConcertFinderMVC.Controllers
             EventsList eventList = new EventsList()
             {
                 Last = BusinessManagement.Event.GetListLastAddEvent(5),
-                Events = BusinessManagement.Event.GetListEvent(10, "Festival")
+                Events = BusinessManagement.Event.GetListEvent(10, EventModel.GetEventType((int)eTypes.Festival))
             };
             return View("Index", eventList);
         }

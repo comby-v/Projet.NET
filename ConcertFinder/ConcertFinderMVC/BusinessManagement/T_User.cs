@@ -52,16 +52,14 @@ namespace ConcertFinderMVC.BusinessManagement
                            
                             user = GetUserByPseudo(form.Pseudo);
                             concert.Attach(user);
-                            user.TAGs.Add(tag);    
+                            user.TAGs.Add(tag);
+                            concert.Detach(user);
+                            DataAccess.T_User.update(user);
                         }
-                            //listTag.Add(tag);
+                            listTag.Add(tag);
                     }
                 } 
             }
-
-
-
-
 
             return DataAccess.T_User.update(user);
         }

@@ -10,18 +10,24 @@ namespace ConcertFinderMVC.Models
     public class EventItem
     {
         public long Id { get; set; }
-        public string Type { get; set; }
-        public string Salle { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Description { get; set; }
         public string Titre { get; set; }
+        public string Type { get; set; }
         public string Image { get; set; }
         public string Email { get; set; }
         public string Tel { get; set; }
         public string Website { get; set; }
-        public double Longitude { get; set; }
+        
+        /* Location */
+        public string Salle { get; set; }
+        public string Ville { get; set; }
+        public string Pays { get; set; }
+        public string Rue { get; set; }
+        public string CP { get; set; }
         public double Latitude { get; set; }
+        public double Longitude { get; set; }
     }
 
     public class EventsList

@@ -75,9 +75,31 @@ namespace ConcertFinderMVC.Controllers
 
         public ActionResult Detail(long id)
         {
+            DataAccess.Event myevent = BusinessManagement.Event.Get(id);
+            EventItem event_item = new EventItem()
+            {
+                Id = myevent.EVENT_ID,
+                StartDate = myevent.EVENT_DATEDEBUT,
+                EndDate = myevent.EVENT_DATEFIN.GetValueOrDefault(),
+                Description = myevent.EVENT_DESCRIPTION,
+                Titre = myevent.EVENT_TITRE,
+                Type = myevent.EVENT_TYPE,
+                Image = myevent.EVENT_IMG_PATH,
+                Email = myevent.EVENT_EMAIL,
+                Tel = myevent.EVENT_TEL,
+                Website = myevent.EVENT_SITE,
+                Salle = myevent.T_Location.LOCATION_NAME,
+                Ville = myevent.T_Location.LOCATION_VILLE,
+                Pays = myevent.T_Location.LOCATION_PAYS,
+                Rue = myevent.T_Location.LOCATION_RUE,
+                CP = myevent.T_Location.LOCATION_CP,
+                Latitude = myevent.T_Location.LOCATION_LATTITUDE.GetValueOrDefault(),
+                Longitude = myevent.T_Location.LOCATION_LONGITUDE.GetValueOrDefault()
+                
 
+            };
 
-            return View();
+            return View(event_item);
         }
 
         public ActionResult CreateEvent()

@@ -138,7 +138,7 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    List<Event> myevent = bdd.T_Event.
+                    List<Event> myevent = bdd.T_Event.Include("T_Location").
                         Where(x => x.EVENT_VALIDE == true && x.EVENT_DATEDEBUT > DateTime.Now).OrderByDescending(x => x.EVENT_ID).Take(nbr).ToList();
                     return (myevent);
                 }
@@ -156,7 +156,7 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    List<Event> myevent = bdd.T_Event.
+                    List<Event> myevent = bdd.T_Event.Include("T_Location").
                         Where(x => x.EVENT_VALIDE == true && x.EVENT_DATEDEBUT > DateTime.Now).OrderBy(x => x.EVENT_DATEDEBUT).Take(nbr).ToList();
                     return (myevent);
                 }

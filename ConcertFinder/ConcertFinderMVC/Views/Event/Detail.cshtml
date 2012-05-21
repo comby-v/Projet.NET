@@ -1,5 +1,17 @@
-﻿@{
-    ViewBag.Title = "Detail";
-}
+﻿@model ConcertFinderMVC.Models.EventItem
 
-<h2>Detail</h2>
+<div>
+    @Model.Titre
+</div>
+<div>
+    @Model.StartDate
+</div>
+<div>
+    @Model.Description
+</div>
+<div>
+    @Model.Rue, @Model.Ville, @Model.CP, @Model.Pays
+</div>
+<div>
+    @Model.Salle
+</div>

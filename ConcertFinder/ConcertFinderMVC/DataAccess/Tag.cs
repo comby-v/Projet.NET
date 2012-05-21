@@ -5,15 +5,15 @@ using System.Web;
 
 namespace ConcertFinderMVC.DataAccess
 {
-    public class T_Tag
+    public partial class Tag
     {
-        public static bool Create(TAG tag)
+        public static bool Create(Tag tag)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    bdd.AddToTAGs(tag);
+                    bdd.AddToT_Tag(tag);
                     bdd.SaveChanges();
                 }
                 catch (Exception)
@@ -24,13 +24,13 @@ namespace ConcertFinderMVC.DataAccess
             return true;
         }
 
-        public static TAG Get(long id)
+        public static Tag Get(long id)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    TAG tag = bdd.TAGs.Where(x => x.TAG_ID == id).FirstOrDefault();
+                    Tag tag = bdd.T_Tag.Where(x => x.TAG_ID == id).FirstOrDefault();
                     return tag;
                 }
                 catch (Exception)
@@ -40,13 +40,13 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        public static TAG Get(string tagName)
+        public static Tag Get(string tagName)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    TAG tag = bdd.TAGs.Where(t => t.TAG_CONTENT == tagName).FirstOrDefault();
+                    Tag tag = bdd.T_Tag.Where(t => t.TAG_CONTENT == tagName).FirstOrDefault();
                     return tag;
                 }
                 catch (Exception)
@@ -56,13 +56,13 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        public static TAG GetTagbycontent(String content)
+        public static Tag GetTagbycontent(String content)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    TAG tag = bdd.TAGs.Where(x => x.TAG_CONTENT == content).FirstOrDefault();
+                    Tag tag = bdd.T_Tag.Where(x => x.TAG_CONTENT == content).FirstOrDefault();
                     return tag;
                 }
                 catch (Exception)
@@ -72,15 +72,15 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        static public bool Update(TAG tag)
+        static public bool Update(Tag tag)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    var n_tag = new TAG { TAG_ID = tag.TAG_ID };
-                    bdd.TAGs.Attach(n_tag);
-                    bdd.ApplyCurrentValues("TAG", tag);
+                    var n_tag = new Tag { TAG_ID = tag.TAG_ID };
+                    bdd.T_Tag.Attach(n_tag);
+                    bdd.ApplyCurrentValues("T_Tag", tag);
                     bdd.SaveChanges();
                 }
                 catch (Exception)
@@ -97,7 +97,7 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    bdd.DeleteObject(bdd.TAGs.Where(x => x.TAG_ID == id).FirstOrDefault());
+                    bdd.DeleteObject(bdd.T_Tag.Where(x => x.TAG_ID == id).FirstOrDefault());
                     bdd.SaveChanges();
                 }
                 catch (Exception)
@@ -108,14 +108,14 @@ namespace ConcertFinderMVC.DataAccess
             return true;
         }
 
-       public static List<USER> getUserlistfromTag(long idTag)
+       public static List<User> getUserlistfromTag(long idTag)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    TAG tag = bdd.TAGs.Where(x => x.TAG_ID == idTag).FirstOrDefault();
-                    List<USER> users = tag.USERs.ToList();
+                    Tag tag = bdd.T_Tag.Where(x => x.TAG_ID == idTag).FirstOrDefault();
+                    List<User> users = tag.T_User.ToList();
                     return users;
                 }
                 catch (Exception)
@@ -125,14 +125,14 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-       public static List<EVENT> getEventlistfromTag(long idTag)
+       public static List<Event> getEventlistfromTag(long idTag)
        {
            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
            {
                try
                {
-                   TAG tag = bdd.TAGs.Where(x => x.TAG_ID == idTag).FirstOrDefault();
-                   List<EVENT> events = tag.EVENTs.ToList();
+                   Tag tag = bdd.T_Tag.Where(x => x.TAG_ID == idTag).FirstOrDefault();
+                   List<Event> events = tag.T_Event.ToList();
                    return events;
                }
                catch (Exception)

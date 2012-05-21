@@ -8,25 +8,25 @@ using System.Text.RegularExpressions;
 
 namespace ConcertFinderMVC.BusinessManagement
 {
-    public class T_User
+    public class User
     {
         public static Boolean create(RegisterModel form)
         {
-            USER user = new USER()
+            DataAccess.User user = new DataAccess.User()
             {
-                USER_NAME = form.Name,
-                USER_FIRSTNAME = form.Firstname,
-                USER_LOGIN = form.Pseudo,
-                USER_MAIL = form.Email,
-                USER_VILLE = form.City,
-                USER_PASSWORD = form.Password,
-                USER_ROLE = "User",
-                EVENTs = null,
-                NOTIFICATIONs = null,
-                TAGs = null                
+                Name = form.Name,
+                Firstname = form.Firstname,
+                Pseudo = form.Pseudo,
+                Mail = form.Email,
+                Ville = form.City,
+                Password = form.Password,
+                Role = "User",
+                T_Event = null,
+                T_Notification = null,
+                T_Tag = null                
             };
             string[] split = form.Tags.Split(new Char[] { ' ', ',', '.', ';'});
-            List<TAG> listTag = new List<TAG>();
+            List<DataAccess.Tag> listTag = new List<DataAccess.Tag>();
             foreach (string str in split)
             {
                 if (str.Length > 2)
@@ -36,31 +36,31 @@ namespace ConcertFinderMVC.BusinessManagement
                     if (m.Success)
                     {
                         str.ToLower();
-                        ConcertFinderMVC.DataAccess.TAG tag = new ConcertFinderMVC.DataAccess.TAG ()
+                        DataAccess.Tag tag = new DataAccess.Tag ()
                         {
                             TAG_CONTENT = str
                         };
-                        if (DataAccess.T_Tag.Get(str) == null)
+                        if (DataAccess.Tag.Get(str) == null)
                         {
-                            DataAccess.T_Tag.Create(tag);
+                            DataAccess.Tag.Create(tag);
                         }
 
-                        tag = DataAccess.T_Tag.Get(str);
+                        tag = DataAccess.Tag.Get(str);
                         listTag.Add(tag);
                     }
                 } 
             }
-            return DataAccess.T_User.create(user, listTag);
+            return DataAccess.User.create(user, listTag);
         }
 
         public static Boolean validate_user(string pseudo, string password)
         {
-            return DataAccess.T_User.validate_user(pseudo, password);
+            return DataAccess.User.validate_user(pseudo, password);
         }
 
-        public static USER GetUserByPseudo(String pseudo)
+        public static DataAccess.User GetUserByPseudo(String pseudo)
         {
-            return DataAccess.T_User.GetUserByPseudo(pseudo);
+            return DataAccess.User.GetUserByPseudo(pseudo);
         }
     }
 }

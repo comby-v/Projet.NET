@@ -26,7 +26,7 @@ namespace ConcertFinderMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (BusinessManagement.T_User.validate_user(model.Pseudo, model.Password))
+                if (BusinessManagement.User.validate_user(model.Pseudo, model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.Pseudo, false);
                 }
@@ -60,7 +60,7 @@ namespace ConcertFinderMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (BusinessManagement.T_User.create(form))
+                if (BusinessManagement.User.create(form))
                 {
                     return RedirectToAction("Index", "Event");
                 }

@@ -17,8 +17,8 @@ namespace ConcertFinderMVC.Controllers
         {
             EventsList eventList = new EventsList()
             {
-                Last = BusinessManagement.T_Event.GetListLastAddEvent(5),
-                Events = BusinessManagement.T_Event.GetListEvent(10)
+                Last = BusinessManagement.Event.GetListLastAddEvent(5),
+                Events = BusinessManagement.Event.GetListEvent(10)
             };
             return View("Index", eventList);
         }
@@ -30,8 +30,8 @@ namespace ConcertFinderMVC.Controllers
         {
             EventsList eventList = new EventsList()
             {
-                Last = BusinessManagement.T_Event.GetListLastAddEvent(5),
-                Events = BusinessManagement.T_Event.GetListEvent(10, "Concert")
+                Last = BusinessManagement.Event.GetListLastAddEvent(5),
+                Events = BusinessManagement.Event.GetListEvent(10, "Concert")
             };
             return View("Index", eventList);
         }
@@ -43,8 +43,8 @@ namespace ConcertFinderMVC.Controllers
         {
             EventsList eventList = new EventsList()
             {
-                Last = BusinessManagement.T_Event.GetListLastAddEvent(5),
-                Events = BusinessManagement.T_Event.GetListEvent(10, "Spectacle")
+                Last = BusinessManagement.Event.GetListLastAddEvent(5),
+                Events = BusinessManagement.Event.GetListEvent(10, "Spectacle")
             };
             return View("Index", eventList);
         }
@@ -56,8 +56,8 @@ namespace ConcertFinderMVC.Controllers
         {
             EventsList eventList = new EventsList()
             {
-                Last = BusinessManagement.T_Event.GetListLastAddEvent(5),
-                Events = BusinessManagement.T_Event.GetListEvent(10, "Festival")
+                Last = BusinessManagement.Event.GetListLastAddEvent(5),
+                Events = BusinessManagement.Event.GetListEvent(10, "Festival")
             };
             return View("Index", eventList);
         }
@@ -86,16 +86,17 @@ namespace ConcertFinderMVC.Controllers
             return View(form);
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult CreateEvent(FormEventModels form)
         {
             if (ModelState.IsValid && User.Identity.IsAuthenticated)
             {
-                USER user = BusinessManagement.T_User.GetUserByPseudo(User.Identity.Name);
-                if (user != null && BusinessManagement.T_Event.Create(form, user))
+                DataAccess.User user = BusinessManagement.User.GetUserByPseudo(User.Identity.Name);
+                if (user != null && BusinessManagement.Event.Create(form, user))
                 {
-                    EVENT bdd_event = BusinessManagement.T_Event.Get(form.Title);
-                    BusinessManagement.T_Notification.Create(user, bdd_event);
+                    DataAccess.Event bdd_event = BusinessManagement.Event.Get(form.Title, true);
+                    BusinessManagement.Notification.Create(user, bdd_event);
                     return RedirectToAction("Detail", "Event", new { id = bdd_event.EVENT_ID });
                 }
                 else

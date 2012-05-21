@@ -5,21 +5,21 @@ using System.Web;
 
 namespace ConcertFinderMVC.DataAccess
 {
-    public class T_User
+    public partial class User
     {
-        public static Boolean create(USER user, List<TAG> tags)
+        public static Boolean create(User user, List<Tag> tags)
         {
-            using (ConcertFinderEntities concert = new ConcertFinderEntities())
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    foreach (TAG tag in tags)
+                    foreach (Tag tag in tags)
                     {
-                        concert.Attach(tag);
-                        user.TAGs.Add(tag);
+                        bdd.Attach(tag);
+                        user.T_Tag.Add(tag);
                     }
-                    concert.AddToUSERs(user);
-                    concert.SaveChanges();
+                    bdd.AddToT_User(user);
+                    bdd.SaveChanges();
                 }
                 catch (Exception)
                 {
@@ -32,16 +32,16 @@ namespace ConcertFinderMVC.DataAccess
 
         public static Boolean delete(long idUser)
         {
-            using (ConcertFinderEntities concert = new ConcertFinderEntities())
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    USER user = concert.USERs.Where(u => u.USER_ID == idUser).FirstOrDefault();
+                    User user = bdd.T_User.Where(u => u.Id == idUser).FirstOrDefault();
 
-                    user.USER_ROLE = "deactivated";
+                    user.Role = "deactivated";
 
-                    concert.AddToUSERs(user);
-                    concert.SaveChanges();
+                    bdd.AddToT_User(user);
+                    bdd.SaveChanges();
                 }
                 catch (Exception)
                 {
@@ -52,16 +52,16 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        public static Boolean update(USER upUser)
+        public static Boolean update(User upUser)
         {
-            using (ConcertFinderEntities concert = new ConcertFinderEntities ())
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities ())
             {
                 try
                 {
-                    var user = new USER { USER_ID = upUser.USER_ID };
-                    concert.USERs.Attach(user);
-                    concert.ApplyCurrentValues("USERs", upUser);
-                    concert.SaveChanges();
+                    var user = new User { Id = upUser.Id };
+                    bdd.T_User.Attach(user);
+                    bdd.ApplyCurrentValues("T_User", upUser);
+                    bdd.SaveChanges();
                 }
                 catch (Exception)
                 {
@@ -71,58 +71,58 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        public static USER get(long idUser)
-        {
-            using (ConcertFinderEntities concert = new ConcertFinderEntities())
-            {
-                try
-                {
-                    return (concert.USERs.Where(u => u.USER_ID == idUser).FirstOrDefault());
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-            }
-        }
-
-        public static USER getUserbylogin(String login)
-        {
-            using (ConcertFinderEntities concert = new ConcertFinderEntities())
-            {
-                try
-                {
-                    return (concert.USERs.Where(u => u.USER_LOGIN == login).FirstOrDefault());
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-            }
-        }
-
-        public static USER getUserbyemail(String email)
-        {
-            using (ConcertFinderEntities concert = new ConcertFinderEntities())
-            {
-                try
-                {
-                    return (concert.USERs.Where(u => u.USER_MAIL == email).FirstOrDefault());
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-            }
-        }
-       public static List<TAG> getTaglistfromUser(long idUser)
+        public static User get(long idUser)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    USER user = bdd.USERs.Where(x => x.USER_ID == idUser).FirstOrDefault();
-                    List<TAG> tags = user.TAGs.ToList();
+                    return (bdd.T_User.Where(u => u.Id == idUser).FirstOrDefault());
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public static User getUserbylogin(String pseudo)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                try
+                {
+                    return (bdd.T_User.Where(u => u.Pseudo == pseudo).FirstOrDefault());
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public static User getUserbyemail(String email)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                try
+                {
+                    return (bdd.T_User.Where(u => u.Mail == email).FirstOrDefault());
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+       public static List<Tag> getTaglistfromUser(long idUser)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                try
+                {
+                    User user = bdd.T_User.Where(x => x.Id == idUser).FirstOrDefault();
+                    List<Tag> tags = user.T_Tag.ToList();
                     return tags;
                 }
                 catch (Exception)
@@ -138,7 +138,7 @@ namespace ConcertFinderMVC.DataAccess
            {
                try
                {
-                  USER user = bdd.USERs.Where(x => x.USER_LOGIN == pseudo && x.USER_PASSWORD == password).FirstOrDefault();
+                   User user = bdd.T_User.Where(x => x.Pseudo == pseudo && x.Password == password).FirstOrDefault();
                    if (user != null)
                    {
                        return true;
@@ -152,13 +152,13 @@ namespace ConcertFinderMVC.DataAccess
            }
        }
 
-       public static USER GetUserByPseudo(String pseudo)
+       public static User GetUserByPseudo(String pseudo)
        {
            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
            {
                try
                {
-                   USER user = bdd.USERs.Include("TAGs").Where(x => x.USER_LOGIN == pseudo).FirstOrDefault();
+                   User user = bdd.T_User.Include("T_Tag").Where(x => x.Pseudo == pseudo).FirstOrDefault();
                    if (user != null)
                    {
                        return user;

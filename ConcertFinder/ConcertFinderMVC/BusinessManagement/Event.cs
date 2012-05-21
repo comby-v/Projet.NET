@@ -8,11 +8,11 @@ using System.Text.RegularExpressions;
 
 namespace ConcertFinderMVC.BusinessManagement
 {
-    public class T_Event
+    public class Event
     {
-        static public bool Create(FormEventModels myevent, USER user)
+        static public bool Create(FormEventModels myevent, DataAccess.User user)
         {
-            EVENT ev = new EVENT ();
+            DataAccess.Event ev = new DataAccess.Event ();
             ev.EVENT_TITRE = myevent.Title;
             ev.EVENT_TYPE = EventModel.GetEventType(myevent.Type);
             ev.EVENT_DESCRIPTION = myevent.Description;
@@ -23,7 +23,7 @@ namespace ConcertFinderMVC.BusinessManagement
             ev.EVENT_SITE = myevent.Website;
             ev.EVENT_TEL = myevent.Phone;
 
-            List<TAG> list_tag = new List<TAG>();
+            List<DataAccess.Tag> list_tag = new List<DataAccess.Tag>();
             List<String> tags = myevent.Tags.Split(new Char[] { ' ', ',', '.', ';'}).ToList();
             foreach (String tag in tags)
             {
@@ -31,28 +31,28 @@ namespace ConcertFinderMVC.BusinessManagement
                 if (tag.Length > 2 && regx.Match(tag).Success)
                 {
                     tag.ToLower();
-                    TAG bdd_tag = BusinessManagement.T_Tag.Get(tag);
+                    DataAccess.Tag bdd_tag = BusinessManagement.Tag.Get(tag);
                     if (bdd_tag != null)
                     {
                         list_tag.Add(bdd_tag);
                     }
                     else
                     {
-                        BusinessManagement.T_Tag.Create(tag);
-                        bdd_tag = BusinessManagement.T_Tag.Get(tag);
+                        BusinessManagement.Tag.Create(tag);
+                        bdd_tag = BusinessManagement.Tag.Get(tag);
                         list_tag.Add(bdd_tag);
                     }
                 }
             }
 
-            LOCATION location = T_Location.GetLocationByCoord(myevent.Latitude, myevent.Longitude);
+            DataAccess.Location location = Location.GetLocationByCoord(myevent.Latitude, myevent.Longitude);
             if (location != null)
             {
-                return DataAccess.T_Event.Create(ev, user, location, list_tag);
+                return DataAccess.Event.Create(ev, user, location, list_tag);
             }
             else
             {
-                if (BusinessManagement.T_Location.Create(new LOCATION()
+                if (BusinessManagement.Location.Create(new DataAccess.Location()
                                                         {
                                                             LOCATION_PAYS = myevent.Country,
                                                             LOCATION_VILLE = myevent.City,
@@ -63,8 +63,8 @@ namespace ConcertFinderMVC.BusinessManagement
                                                             LOCATION_LONGITUDE = myevent.Longitude
                                                         }))
                 {
-                    LOCATION n_location = T_Location.GetLocationByCoord(myevent.Latitude, myevent.Longitude);
-                    return DataAccess.T_Event.Create(ev, user, n_location, list_tag);
+                    DataAccess.Location n_location = Location.GetLocationByCoord(myevent.Latitude, myevent.Longitude);
+                    return DataAccess.Event.Create(ev, user, n_location, list_tag);
                 }
                 else
                 {
@@ -75,13 +75,13 @@ namespace ConcertFinderMVC.BusinessManagement
 
         static public bool Delete(long id)
         {
-            return DataAccess.T_Event.Delete (id);
+            return DataAccess.Event.Delete (id);
         }
 
 
-        static public bool Update(FormEventModels myevent, LOCATION location, USER user, long id)
+        static public bool Update(FormEventModels myevent, DataAccess.Location location, DataAccess.User user, long id)
         {
-            EVENT ev = new EVENT ();
+            DataAccess.Event ev = new DataAccess.Event();
             ev.EVENT_ID = id;
             ev.EVENT_TITRE = myevent.Title;
             ev.EVENT_TYPE = EventModel.GetEventType(myevent.Type);
@@ -92,26 +92,27 @@ namespace ConcertFinderMVC.BusinessManagement
             ev.EVENT_EMAIL = myevent.Email;
             ev.EVENT_SITE = myevent.Website;
             ev.EVENT_TEL = myevent.Phone;
-            ev.LOCATION = location;
-            ev.USER = user;
-            return DataAccess.T_Event.Update(ev);
+            ev.T_Location = location;
+            ev.T_User = user;
+
+            return DataAccess.Event.Update(ev);
         }
 
-        static public EVENT Get(long id)
+        static public DataAccess.Event Get(long id)
         {
-            return DataAccess.T_Event.Get(id);
+            return DataAccess.Event.Get(id);
         }
 
-        static public EVENT Get(string title)
+        static public DataAccess.Event Get(string title, bool creation = false)
         {
-            return DataAccess.T_Event.Get(title);
+            return DataAccess.Event.Get(title, creation);
         }
 
         static public List<EventItem> GetListLastAddEvent(int nbr, string type = "")
         {
             List<EventItem> list_eventItem = new List<EventItem>();
-            List<EVENT> list_event= DataAccess.T_Event.GetListLastAddEvent(nbr, type);
-            foreach (EVENT myevent in list_event)
+            List<DataAccess.Event> list_event = DataAccess.Event.GetListLastAddEvent(nbr, type);
+            foreach (DataAccess.Event myevent in list_event)
             {
                 EventItem myeventitem = new EventItem();
                 myeventitem.Titre = myevent.EVENT_TITRE;
@@ -119,7 +120,7 @@ namespace ConcertFinderMVC.BusinessManagement
                 myeventitem.Type = myevent.EVENT_TYPE;
                 myeventitem.StartDate = myevent.EVENT_DATEDEBUT;
                 myeventitem.EndDate = myevent.EVENT_DATEFIN.GetValueOrDefault();
-                myeventitem.Salle = myevent.LOCATION.LOCATION_NAME;
+                myeventitem.Salle = myevent.T_Location.LOCATION_NAME;
                 myeventitem.Image = myevent.EVENT_IMG_PATH;
                 myeventitem.Email = myevent.EVENT_EMAIL;
                 myeventitem.Tel = myevent.EVENT_TEL;
@@ -133,8 +134,8 @@ namespace ConcertFinderMVC.BusinessManagement
         static public List<EventItem> GetListEvent(int nbr, string type = "")
         {
             List<EventItem> list_eventItem = new List<EventItem>();
-            List<EVENT> list_event = DataAccess.T_Event.GetListEvent(nbr, type);
-            foreach (EVENT myevent in list_event)
+            List<DataAccess.Event> list_event = DataAccess.Event.GetListEvent(nbr, type);
+            foreach (DataAccess.Event myevent in list_event)
             {
                 EventItem myeventitem = new EventItem();
                 myeventitem.Titre = myevent.EVENT_TITRE;
@@ -142,7 +143,7 @@ namespace ConcertFinderMVC.BusinessManagement
                 myeventitem.Type = myevent.EVENT_TYPE;
                 myeventitem.StartDate = myevent.EVENT_DATEDEBUT;
                 myeventitem.EndDate = myevent.EVENT_DATEFIN.GetValueOrDefault();
-                myeventitem.Salle = myevent.LOCATION.LOCATION_NAME;
+                myeventitem.Salle = myevent.T_Location.LOCATION_NAME;
                 myeventitem.Image = myevent.EVENT_IMG_PATH;
                 myeventitem.Email = myevent.EVENT_EMAIL;
                 myeventitem.Tel = myevent.EVENT_TEL;

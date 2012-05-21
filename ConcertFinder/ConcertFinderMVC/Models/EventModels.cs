@@ -80,7 +80,7 @@ namespace ConcertFinderMVC.Models
         {
             var types = EventModel.GetTypesDic(new List<eTypes>());
             Types = new SelectList(types, "Key", "Value", eTypes.Concert);
-            StartDate = DateTime.Now;
+            StartDate = DateTime.Now.AddDays(1);
             EndDate = DateTime.Now;
         }
 

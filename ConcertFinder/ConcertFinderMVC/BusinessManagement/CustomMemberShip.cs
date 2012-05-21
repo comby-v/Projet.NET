@@ -148,7 +148,7 @@ namespace ConcertFinderMVC.BusinessManagement
 
         public override bool ValidateUser(string username, string password)
         {
-            return BusinessManagement.T_User.validate_user(username, password);
+            return BusinessManagement.User.validate_user(username, password);
         }
     }
 }

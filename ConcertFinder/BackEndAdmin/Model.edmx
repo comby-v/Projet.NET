@@ -4,59 +4,59 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ConcertFinderModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="ConcertFinderModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ConcertFinderModelStoreContainer">
-          <EntitySet Name="EVENT" EntityType="ConcertFinderModel.Store.EVENT" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="HAS_NOTIFICATION" EntityType="ConcertFinderModel.Store.HAS_NOTIFICATION" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="HAS_TAGS" EntityType="ConcertFinderModel.Store.HAS_TAGS" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="LOCATION" EntityType="ConcertFinderModel.Store.LOCATION" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="NOTIFICATION" EntityType="ConcertFinderModel.Store.NOTIFICATION" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="NOTIFIED" EntityType="ConcertFinderModel.Store.NOTIFIED" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PREFERS" EntityType="ConcertFinderModel.Store.PREFERS" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TAG" EntityType="ConcertFinderModel.Store.TAG" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="USER" EntityType="ConcertFinderModel.Store.USER" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_Event" EntityType="ConcertFinderModel.Store.T_Event" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_HasNotification" EntityType="ConcertFinderModel.Store.T_HasNotification" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_HasTags" EntityType="ConcertFinderModel.Store.T_HasTags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_Location" EntityType="ConcertFinderModel.Store.T_Location" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_Notification" EntityType="ConcertFinderModel.Store.T_Notification" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_Notified" EntityType="ConcertFinderModel.Store.T_Notified" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_Prefer" EntityType="ConcertFinderModel.Store.T_Prefer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_Tag" EntityType="ConcertFinderModel.Store.T_Tag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_User" EntityType="ConcertFinderModel.Store.T_User" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_EVENT_LOCATION" Association="ConcertFinderModel.Store.FK_EVENT_LOCATION">
-            <End Role="LOCATION" EntitySet="LOCATION" />
-            <End Role="EVENT" EntitySet="EVENT" />
+            <End Role="T_Location" EntitySet="T_Location" />
+            <End Role="T_Event" EntitySet="T_Event" />
           </AssociationSet>
           <AssociationSet Name="FK_EVENT_USER" Association="ConcertFinderModel.Store.FK_EVENT_USER">
-            <End Role="USER" EntitySet="USER" />
-            <End Role="EVENT" EntitySet="EVENT" />
+            <End Role="T_User" EntitySet="T_User" />
+            <End Role="T_Event" EntitySet="T_Event" />
           </AssociationSet>
           <AssociationSet Name="FK_HAS_NOTIFICATION_EVENT" Association="ConcertFinderModel.Store.FK_HAS_NOTIFICATION_EVENT">
-            <End Role="EVENT" EntitySet="EVENT" />
-            <End Role="HAS_NOTIFICATION" EntitySet="HAS_NOTIFICATION" />
+            <End Role="T_Event" EntitySet="T_Event" />
+            <End Role="T_HasNotification" EntitySet="T_HasNotification" />
           </AssociationSet>
           <AssociationSet Name="FK_HAS_NOTIFICATION_NOTIFICATION" Association="ConcertFinderModel.Store.FK_HAS_NOTIFICATION_NOTIFICATION">
-            <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
-            <End Role="HAS_NOTIFICATION" EntitySet="HAS_NOTIFICATION" />
+            <End Role="T_Notification" EntitySet="T_Notification" />
+            <End Role="T_HasNotification" EntitySet="T_HasNotification" />
           </AssociationSet>
           <AssociationSet Name="FK_HAS_TAGS_EVENT" Association="ConcertFinderModel.Store.FK_HAS_TAGS_EVENT">
-            <End Role="EVENT" EntitySet="EVENT" />
-            <End Role="HAS_TAGS" EntitySet="HAS_TAGS" />
+            <End Role="T_Event" EntitySet="T_Event" />
+            <End Role="T_HasTags" EntitySet="T_HasTags" />
           </AssociationSet>
           <AssociationSet Name="FK_HAS_TAGS_TAG" Association="ConcertFinderModel.Store.FK_HAS_TAGS_TAG">
-            <End Role="TAG" EntitySet="TAG" />
-            <End Role="HAS_TAGS" EntitySet="HAS_TAGS" />
+            <End Role="T_Tag" EntitySet="T_Tag" />
+            <End Role="T_HasTags" EntitySet="T_HasTags" />
           </AssociationSet>
           <AssociationSet Name="FK_NOTIFIED_NOTIFICATION" Association="ConcertFinderModel.Store.FK_NOTIFIED_NOTIFICATION">
-            <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
-            <End Role="NOTIFIED" EntitySet="NOTIFIED" />
+            <End Role="T_Notification" EntitySet="T_Notification" />
+            <End Role="T_Notified" EntitySet="T_Notified" />
           </AssociationSet>
           <AssociationSet Name="FK_NOTIFIED_USER" Association="ConcertFinderModel.Store.FK_NOTIFIED_USER">
-            <End Role="USER" EntitySet="USER" />
-            <End Role="NOTIFIED" EntitySet="NOTIFIED" />
+            <End Role="T_User" EntitySet="T_User" />
+            <End Role="T_Notified" EntitySet="T_Notified" />
           </AssociationSet>
           <AssociationSet Name="FK_PREFERS_TAG" Association="ConcertFinderModel.Store.FK_PREFERS_TAG">
-            <End Role="TAG" EntitySet="TAG" />
-            <End Role="PREFERS" EntitySet="PREFERS" />
+            <End Role="T_Tag" EntitySet="T_Tag" />
+            <End Role="T_Prefer" EntitySet="T_Prefer" />
           </AssociationSet>
           <AssociationSet Name="FK_PREFERS_USER" Association="ConcertFinderModel.Store.FK_PREFERS_USER">
-            <End Role="USER" EntitySet="USER" />
-            <End Role="PREFERS" EntitySet="PREFERS" />
+            <End Role="T_User" EntitySet="T_User" />
+            <End Role="T_Prefer" EntitySet="T_Prefer" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="EVENT">
+        <EntityType Name="T_Event">
           <Key>
             <PropertyRef Name="EVENT_ID" />
           </Key>
@@ -73,8 +73,9 @@
           <Property Name="EVENT_EMAIL" Type="varchar" MaxLength="50" />
           <Property Name="EVENT_TEL" Type="varchar" MaxLength="10" />
           <Property Name="EVENT_SITE" Type="varchar" MaxLength="255" />
+          <Property Name="Event_DateCreation" Type="datetime" />
         </EntityType>
-        <EntityType Name="HAS_NOTIFICATION">
+        <EntityType Name="T_HasNotification">
           <Key>
             <PropertyRef Name="EVENT_ID" />
             <PropertyRef Name="NOTIF_ID" />
@@ -82,7 +83,7 @@
           <Property Name="EVENT_ID" Type="bigint" Nullable="false" />
           <Property Name="NOTIF_ID" Type="bigint" Nullable="false" />
         </EntityType>
-        <EntityType Name="HAS_TAGS">
+        <EntityType Name="T_HasTags">
           <Key>
             <PropertyRef Name="EVENT_ID" />
             <PropertyRef Name="TAG_ID" />
@@ -90,7 +91,7 @@
           <Property Name="EVENT_ID" Type="bigint" Nullable="false" />
           <Property Name="TAG_ID" Type="bigint" Nullable="false" />
         </EntityType>
-        <EntityType Name="LOCATION">
+        <EntityType Name="T_Location">
           <Key>
             <PropertyRef Name="LOCATION_ID" />
           </Key>
@@ -103,300 +104,302 @@
           <Property Name="LOCATION_LATTITUDE" Type="float" />
           <Property Name="LOCATION_LONGITUDE" Type="float" />
         </EntityType>
-        <EntityType Name="NOTIFICATION">
+        <EntityType Name="T_Notification">
           <Key>
-            <PropertyRef Name="NOTIF_ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="NOTIF_ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="NOTIF_TITRE" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="NOTIF_DATE" Type="datetime" Nullable="false" />
-          <Property Name="NOTIF_MESSAGE" Type="text" Nullable="false" />
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Titre" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Message" Type="text" Nullable="false" />
         </EntityType>
-        <EntityType Name="NOTIFIED">
+        <EntityType Name="T_Notified">
           <Key>
-            <PropertyRef Name="USER_ID" />
-            <PropertyRef Name="NOTIF_ID" />
+            <PropertyRef Name="User_Id" />
+            <PropertyRef Name="Notif_Id" />
           </Key>
-          <Property Name="USER_ID" Type="bigint" Nullable="false" />
-          <Property Name="NOTIF_ID" Type="bigint" Nullable="false" />
+          <Property Name="User_Id" Type="bigint" Nullable="false" />
+          <Property Name="Notif_Id" Type="bigint" Nullable="false" />
         </EntityType>
-        <EntityType Name="PREFERS">
+        <EntityType Name="T_Prefer">
           <Key>
-            <PropertyRef Name="USER_ID" />
-            <PropertyRef Name="TAG_ID" />
+            <PropertyRef Name="User_Id" />
+            <PropertyRef Name="Tag_Id" />
           </Key>
-          <Property Name="USER_ID" Type="bigint" Nullable="false" />
-          <Property Name="TAG_ID" Type="bigint" Nullable="false" />
+          <Property Name="User_Id" Type="bigint" Nullable="false" />
+          <Property Name="Tag_Id" Type="bigint" Nullable="false" />
         </EntityType>
-        <EntityType Name="TAG">
+        <EntityType Name="T_Tag">
           <Key>
             <PropertyRef Name="TAG_ID" />
           </Key>
           <Property Name="TAG_ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="TAG_CONTENT" Type="varchar" Nullable="false" MaxLength="20" />
         </EntityType>
-        <EntityType Name="USER">
+        <EntityType Name="T_User">
           <Key>
-            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="USER_ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="USER_NAME" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="USER_FIRSTNAME" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="USER_MAIL" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="USER_LOGIN" Type="varchar" Nullable="false" MaxLength="25" />
-          <Property Name="USER_PASSWORD" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="USER_ROLE" Type="varchar" Nullable="false" MaxLength="15" />
-          <Property Name="USER_VILLE" Type="varchar" MaxLength="50" />
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Firstname" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Mail" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Pseudo" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Role" Type="varchar" Nullable="false" MaxLength="15" />
+          <Property Name="Ville" Type="varchar" MaxLength="50" />
+          <Property Name="Deleted" Type="binary" MaxLength="50" />
         </EntityType>
         <Association Name="FK_EVENT_LOCATION">
-          <End Role="LOCATION" Type="ConcertFinderModel.Store.LOCATION" Multiplicity="1" />
-          <End Role="EVENT" Type="ConcertFinderModel.Store.EVENT" Multiplicity="*" />
+          <End Role="T_Location" Type="ConcertFinderModel.Store.T_Location" Multiplicity="1" />
+          <End Role="T_Event" Type="ConcertFinderModel.Store.T_Event" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="LOCATION">
+            <Principal Role="T_Location">
               <PropertyRef Name="LOCATION_ID" />
             </Principal>
-            <Dependent Role="EVENT">
+            <Dependent Role="T_Event">
               <PropertyRef Name="LOCATION_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EVENT_USER">
-          <End Role="USER" Type="ConcertFinderModel.Store.USER" Multiplicity="1" />
-          <End Role="EVENT" Type="ConcertFinderModel.Store.EVENT" Multiplicity="*" />
+          <End Role="T_User" Type="ConcertFinderModel.Store.T_User" Multiplicity="1" />
+          <End Role="T_Event" Type="ConcertFinderModel.Store.T_Event" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="USER">
-              <PropertyRef Name="USER_ID" />
+            <Principal Role="T_User">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="EVENT">
+            <Dependent Role="T_Event">
               <PropertyRef Name="USER_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_HAS_NOTIFICATION_EVENT">
-          <End Role="EVENT" Type="ConcertFinderModel.Store.EVENT" Multiplicity="1" />
-          <End Role="HAS_NOTIFICATION" Type="ConcertFinderModel.Store.HAS_NOTIFICATION" Multiplicity="*" />
+          <End Role="T_Event" Type="ConcertFinderModel.Store.T_Event" Multiplicity="1" />
+          <End Role="T_HasNotification" Type="ConcertFinderModel.Store.T_HasNotification" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="EVENT">
+            <Principal Role="T_Event">
               <PropertyRef Name="EVENT_ID" />
             </Principal>
-            <Dependent Role="HAS_NOTIFICATION">
+            <Dependent Role="T_HasNotification">
               <PropertyRef Name="EVENT_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_HAS_NOTIFICATION_NOTIFICATION">
-          <End Role="NOTIFICATION" Type="ConcertFinderModel.Store.NOTIFICATION" Multiplicity="1" />
-          <End Role="HAS_NOTIFICATION" Type="ConcertFinderModel.Store.HAS_NOTIFICATION" Multiplicity="*" />
+          <End Role="T_Notification" Type="ConcertFinderModel.Store.T_Notification" Multiplicity="1" />
+          <End Role="T_HasNotification" Type="ConcertFinderModel.Store.T_HasNotification" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="NOTIFICATION">
-              <PropertyRef Name="NOTIF_ID" />
+            <Principal Role="T_Notification">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="HAS_NOTIFICATION">
+            <Dependent Role="T_HasNotification">
               <PropertyRef Name="NOTIF_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_HAS_TAGS_EVENT">
-          <End Role="EVENT" Type="ConcertFinderModel.Store.EVENT" Multiplicity="1" />
-          <End Role="HAS_TAGS" Type="ConcertFinderModel.Store.HAS_TAGS" Multiplicity="*" />
+          <End Role="T_Event" Type="ConcertFinderModel.Store.T_Event" Multiplicity="1" />
+          <End Role="T_HasTags" Type="ConcertFinderModel.Store.T_HasTags" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="EVENT">
+            <Principal Role="T_Event">
               <PropertyRef Name="EVENT_ID" />
             </Principal>
-            <Dependent Role="HAS_TAGS">
+            <Dependent Role="T_HasTags">
               <PropertyRef Name="EVENT_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_HAS_TAGS_TAG">
-          <End Role="TAG" Type="ConcertFinderModel.Store.TAG" Multiplicity="1" />
-          <End Role="HAS_TAGS" Type="ConcertFinderModel.Store.HAS_TAGS" Multiplicity="*" />
+          <End Role="T_Tag" Type="ConcertFinderModel.Store.T_Tag" Multiplicity="1" />
+          <End Role="T_HasTags" Type="ConcertFinderModel.Store.T_HasTags" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TAG">
+            <Principal Role="T_Tag">
               <PropertyRef Name="TAG_ID" />
             </Principal>
-            <Dependent Role="HAS_TAGS">
+            <Dependent Role="T_HasTags">
               <PropertyRef Name="TAG_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_NOTIFIED_NOTIFICATION">
-          <End Role="NOTIFICATION" Type="ConcertFinderModel.Store.NOTIFICATION" Multiplicity="1" />
-          <End Role="NOTIFIED" Type="ConcertFinderModel.Store.NOTIFIED" Multiplicity="*" />
+          <End Role="T_Notification" Type="ConcertFinderModel.Store.T_Notification" Multiplicity="1" />
+          <End Role="T_Notified" Type="ConcertFinderModel.Store.T_Notified" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="NOTIFICATION">
-              <PropertyRef Name="NOTIF_ID" />
+            <Principal Role="T_Notification">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="NOTIFIED">
-              <PropertyRef Name="NOTIF_ID" />
+            <Dependent Role="T_Notified">
+              <PropertyRef Name="Notif_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_NOTIFIED_USER">
-          <End Role="USER" Type="ConcertFinderModel.Store.USER" Multiplicity="1" />
-          <End Role="NOTIFIED" Type="ConcertFinderModel.Store.NOTIFIED" Multiplicity="*" />
+          <End Role="T_User" Type="ConcertFinderModel.Store.T_User" Multiplicity="1" />
+          <End Role="T_Notified" Type="ConcertFinderModel.Store.T_Notified" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="USER">
-              <PropertyRef Name="USER_ID" />
+            <Principal Role="T_User">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="NOTIFIED">
-              <PropertyRef Name="USER_ID" />
+            <Dependent Role="T_Notified">
+              <PropertyRef Name="User_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PREFERS_TAG">
-          <End Role="TAG" Type="ConcertFinderModel.Store.TAG" Multiplicity="1" />
-          <End Role="PREFERS" Type="ConcertFinderModel.Store.PREFERS" Multiplicity="*" />
+          <End Role="T_Tag" Type="ConcertFinderModel.Store.T_Tag" Multiplicity="1" />
+          <End Role="T_Prefer" Type="ConcertFinderModel.Store.T_Prefer" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TAG">
+            <Principal Role="T_Tag">
               <PropertyRef Name="TAG_ID" />
             </Principal>
-            <Dependent Role="PREFERS">
-              <PropertyRef Name="TAG_ID" />
+            <Dependent Role="T_Prefer">
+              <PropertyRef Name="Tag_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PREFERS_USER">
-          <End Role="USER" Type="ConcertFinderModel.Store.USER" Multiplicity="1" />
-          <End Role="PREFERS" Type="ConcertFinderModel.Store.PREFERS" Multiplicity="*" />
+          <End Role="T_User" Type="ConcertFinderModel.Store.T_User" Multiplicity="1" />
+          <End Role="T_Prefer" Type="ConcertFinderModel.Store.T_Prefer" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="USER">
-              <PropertyRef Name="USER_ID" />
+            <Principal Role="T_User">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PREFERS">
-              <PropertyRef Name="USER_ID" />
+            <Dependent Role="T_Prefer">
+              <PropertyRef Name="User_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ConcertFinderModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="ConcertFinderEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="EVENT" EntityType="ConcertFinderModel.EVENT" />
-          <EntitySet Name="LOCATION" EntityType="ConcertFinderModel.LOCATION" />
-          <EntitySet Name="NOTIFICATION" EntityType="ConcertFinderModel.NOTIFICATION" />
-          <EntitySet Name="TAG" EntityType="ConcertFinderModel.TAG" />
-          <EntitySet Name="USER" EntityType="ConcertFinderModel.USER" />
-          <AssociationSet Name="FK_EVENT_LOCATION" Association="ConcertFinderModel.FK_EVENT_LOCATION">
-            <End Role="LOCATION" EntitySet="LOCATION" />
-            <End Role="EVENT" EntitySet="EVENT" />
+          <EntitySet Name="T_Event" EntityType="ConcertFinderModel.T_Event" />
+          <EntitySet Name="T_Location" EntityType="ConcertFinderModel.T_Location" />
+          <EntitySet Name="T_Notification" EntityType="ConcertFinderModel.T_Notification" />
+          <EntitySet Name="T_Tag" EntityType="ConcertFinderModel.T_Tag" />
+          <EntitySet Name="T_User" EntityType="ConcertFinderModel.T_User" />
+          <AssociationSet Name="FK_EVENT_LOCATION1" Association="ConcertFinderModel.FK_EVENT_LOCATION1">
+            <End Role="T_Location" EntitySet="T_Location" />
+            <End Role="T_Event" EntitySet="T_Event" />
           </AssociationSet>
-          <AssociationSet Name="FK_EVENT_USER" Association="ConcertFinderModel.FK_EVENT_USER">
-            <End Role="USER" EntitySet="USER" />
-            <End Role="EVENT" EntitySet="EVENT" />
+          <AssociationSet Name="FK_EVENT_USER1" Association="ConcertFinderModel.FK_EVENT_USER1">
+            <End Role="T_User" EntitySet="T_User" />
+            <End Role="T_Event" EntitySet="T_Event" />
           </AssociationSet>
-          <AssociationSet Name="HAS_NOTIFICATION" Association="ConcertFinderModel.HAS_NOTIFICATION">
-            <End Role="EVENT" EntitySet="EVENT" />
-            <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
+          <AssociationSet Name="T_HasNotification" Association="ConcertFinderModel.T_HasNotification">
+            <End Role="T_Event" EntitySet="T_Event" />
+            <End Role="T_Notification" EntitySet="T_Notification" />
           </AssociationSet>
-          <AssociationSet Name="HAS_TAGS" Association="ConcertFinderModel.HAS_TAGS">
-            <End Role="EVENT" EntitySet="EVENT" />
-            <End Role="TAG" EntitySet="TAG" />
+          <AssociationSet Name="T_HasTags" Association="ConcertFinderModel.T_HasTags">
+            <End Role="T_Event" EntitySet="T_Event" />
+            <End Role="T_Tag" EntitySet="T_Tag" />
           </AssociationSet>
-          <AssociationSet Name="NOTIFIED" Association="ConcertFinderModel.NOTIFIED">
-            <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
-            <End Role="USER" EntitySet="USER" />
+          <AssociationSet Name="T_Notified" Association="ConcertFinderModel.T_Notified">
+            <End Role="T_Notification" EntitySet="T_Notification" />
+            <End Role="T_User" EntitySet="T_User" />
           </AssociationSet>
-          <AssociationSet Name="PREFERS" Association="ConcertFinderModel.PREFERS">
-            <End Role="TAG" EntitySet="TAG" />
-            <End Role="USER" EntitySet="USER" />
+          <AssociationSet Name="T_Prefer" Association="ConcertFinderModel.T_Prefer">
+            <End Role="T_Tag" EntitySet="T_Tag" />
+            <End Role="T_User" EntitySet="T_User" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="EVENT">
+        <EntityType Name="T_Event">
           <Key>
             <PropertyRef Name="EVENT_ID" />
           </Key>
-          <Property Name="EVENT_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EVENT_DATEDEBUT" Type="DateTime" Nullable="false" />
-          <Property Name="EVENT_DATEFIN" Type="DateTime" />
-          <Property Name="EVENT_DESCRIPTION" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="EVENT_TITRE" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="EVENT_TYPE" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="EVENT_IMG_PATH" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="EVENT_VALIDE" Type="Boolean" />
-          <Property Name="EVENT_EMAIL" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="EVENT_TEL" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="EVENT_SITE" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="LOCATION" Relationship="ConcertFinderModel.FK_EVENT_LOCATION" FromRole="EVENT" ToRole="LOCATION" />
-          <NavigationProperty Name="USER" Relationship="ConcertFinderModel.FK_EVENT_USER" FromRole="EVENT" ToRole="USER" />
-          <NavigationProperty Name="NOTIFICATION" Relationship="ConcertFinderModel.HAS_NOTIFICATION" FromRole="EVENT" ToRole="NOTIFICATION" />
-          <NavigationProperty Name="TAG" Relationship="ConcertFinderModel.HAS_TAGS" FromRole="EVENT" ToRole="TAG" />
+          <Property Type="Int64" Name="EVENT_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="EVENT_DATEDEBUT" Nullable="false" />
+          <Property Type="DateTime" Name="EVENT_DATEFIN" />
+          <Property Type="String" Name="EVENT_DESCRIPTION" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EVENT_TITRE" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EVENT_TYPE" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EVENT_IMG_PATH" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="EVENT_VALIDE" />
+          <Property Type="String" Name="EVENT_EMAIL" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EVENT_TEL" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EVENT_SITE" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Event_DateCreation" />
+          <NavigationProperty Name="T_Location" Relationship="ConcertFinderModel.FK_EVENT_LOCATION1" FromRole="T_Event" ToRole="T_Location" />
+          <NavigationProperty Name="T_User" Relationship="ConcertFinderModel.FK_EVENT_USER1" FromRole="T_Event" ToRole="T_User" />
+          <NavigationProperty Name="T_Notification" Relationship="ConcertFinderModel.T_HasNotification" FromRole="T_Event" ToRole="T_Notification" />
+          <NavigationProperty Name="T_Tag" Relationship="ConcertFinderModel.T_HasTags" FromRole="T_Event" ToRole="T_Tag" />
         </EntityType>
-        <EntityType Name="LOCATION">
+        <EntityType Name="T_Location">
           <Key>
             <PropertyRef Name="LOCATION_ID" />
           </Key>
-          <Property Name="LOCATION_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LOCATION_NAME" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="LOCATION_VILLE" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="LOCATION_PAYS" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="LOCATION_RUE" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="LOCATION_CP" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="LOCATION_LATTITUDE" Type="Double" />
-          <Property Name="LOCATION_LONGITUDE" Type="Double" />
-          <NavigationProperty Name="EVENT" Relationship="ConcertFinderModel.FK_EVENT_LOCATION" FromRole="LOCATION" ToRole="EVENT" />
+          <Property Type="Int64" Name="LOCATION_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="LOCATION_NAME" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LOCATION_VILLE" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LOCATION_PAYS" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LOCATION_RUE" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LOCATION_CP" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="LOCATION_LATTITUDE" />
+          <Property Type="Double" Name="LOCATION_LONGITUDE" />
+          <NavigationProperty Name="T_Event" Relationship="ConcertFinderModel.FK_EVENT_LOCATION1" FromRole="T_Location" ToRole="T_Event" />
         </EntityType>
-        <EntityType Name="NOTIFICATION">
+        <EntityType Name="T_Notification">
           <Key>
-            <PropertyRef Name="NOTIF_ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="NOTIF_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NOTIF_TITRE" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="NOTIF_DATE" Type="DateTime" Nullable="false" />
-          <Property Name="NOTIF_MESSAGE" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="EVENT" Relationship="ConcertFinderModel.HAS_NOTIFICATION" FromRole="NOTIFICATION" ToRole="EVENT" />
-          <NavigationProperty Name="USER" Relationship="ConcertFinderModel.NOTIFIED" FromRole="NOTIFICATION" ToRole="USER" />
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Titre" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="String" Name="Message" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_Event" Relationship="ConcertFinderModel.T_HasNotification" FromRole="T_Notification" ToRole="T_Event" />
+          <NavigationProperty Name="T_User" Relationship="ConcertFinderModel.T_Notified" FromRole="T_Notification" ToRole="T_User" />
         </EntityType>
-        <EntityType Name="TAG">
+        <EntityType Name="T_Tag">
           <Key>
             <PropertyRef Name="TAG_ID" />
           </Key>
-          <Property Name="TAG_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TAG_CONTENT" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="EVENT" Relationship="ConcertFinderModel.HAS_TAGS" FromRole="TAG" ToRole="EVENT" />
-          <NavigationProperty Name="USER" Relationship="ConcertFinderModel.PREFERS" FromRole="TAG" ToRole="USER" />
+          <Property Type="Int64" Name="TAG_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TAG_CONTENT" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_Event" Relationship="ConcertFinderModel.T_HasTags" FromRole="T_Tag" ToRole="T_Event" />
+          <NavigationProperty Name="T_User" Relationship="ConcertFinderModel.T_Prefer" FromRole="T_Tag" ToRole="T_User" />
         </EntityType>
-        <EntityType Name="USER">
+        <EntityType Name="T_User">
           <Key>
-            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="USER_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="USER_NAME" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="USER_FIRSTNAME" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="USER_MAIL" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="USER_LOGIN" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
-          <Property Name="USER_PASSWORD" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="USER_ROLE" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
-          <Property Name="USER_VILLE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="EVENT" Relationship="ConcertFinderModel.FK_EVENT_USER" FromRole="USER" ToRole="EVENT" />
-          <NavigationProperty Name="NOTIFICATION" Relationship="ConcertFinderModel.NOTIFIED" FromRole="USER" ToRole="NOTIFICATION" />
-          <NavigationProperty Name="TAG" Relationship="ConcertFinderModel.PREFERS" FromRole="USER" ToRole="TAG" />
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Firstname" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Mail" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Pseudo" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Role" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Ville" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Binary" Name="Deleted" MaxLength="50" FixedLength="true" />
+          <NavigationProperty Name="T_Event" Relationship="ConcertFinderModel.FK_EVENT_USER1" FromRole="T_User" ToRole="T_Event" />
+          <NavigationProperty Name="T_Notification" Relationship="ConcertFinderModel.T_Notified" FromRole="T_User" ToRole="T_Notification" />
+          <NavigationProperty Name="T_Tag" Relationship="ConcertFinderModel.T_Prefer" FromRole="T_User" ToRole="T_Tag" />
         </EntityType>
-        <Association Name="FK_EVENT_LOCATION">
-          <End Role="LOCATION" Type="ConcertFinderModel.LOCATION" Multiplicity="1" />
-          <End Role="EVENT" Type="ConcertFinderModel.EVENT" Multiplicity="*" />
+        <Association Name="FK_EVENT_LOCATION1">
+          <End Type="ConcertFinderModel.T_Location" Role="T_Location" Multiplicity="1" />
+          <End Type="ConcertFinderModel.T_Event" Role="T_Event" Multiplicity="*" />
         </Association>
-        <Association Name="FK_EVENT_USER">
-          <End Role="USER" Type="ConcertFinderModel.USER" Multiplicity="1" />
-          <End Role="EVENT" Type="ConcertFinderModel.EVENT" Multiplicity="*" />
+        <Association Name="FK_EVENT_USER1">
+          <End Type="ConcertFinderModel.T_User" Role="T_User" Multiplicity="1" />
+          <End Type="ConcertFinderModel.T_Event" Role="T_Event" Multiplicity="*" />
         </Association>
-        <Association Name="HAS_NOTIFICATION">
-          <End Role="EVENT" Type="ConcertFinderModel.EVENT" Multiplicity="*" />
-          <End Role="NOTIFICATION" Type="ConcertFinderModel.NOTIFICATION" Multiplicity="*" />
+        <Association Name="T_HasNotification">
+          <End Type="ConcertFinderModel.T_Event" Role="T_Event" Multiplicity="*" />
+          <End Type="ConcertFinderModel.T_Notification" Role="T_Notification" Multiplicity="*" />
         </Association>
-        <Association Name="HAS_TAGS">
-          <End Role="EVENT" Type="ConcertFinderModel.EVENT" Multiplicity="*" />
-          <End Role="TAG" Type="ConcertFinderModel.TAG" Multiplicity="*" />
+        <Association Name="T_HasTags">
+          <End Type="ConcertFinderModel.T_Event" Role="T_Event" Multiplicity="*" />
+          <End Type="ConcertFinderModel.T_Tag" Role="T_Tag" Multiplicity="*" />
         </Association>
-        <Association Name="NOTIFIED">
-          <End Role="NOTIFICATION" Type="ConcertFinderModel.NOTIFICATION" Multiplicity="*" />
-          <End Role="USER" Type="ConcertFinderModel.USER" Multiplicity="*" />
+        <Association Name="T_Notified">
+          <End Type="ConcertFinderModel.T_Notification" Role="T_Notification" Multiplicity="*" />
+          <End Type="ConcertFinderModel.T_User" Role="T_User" Multiplicity="*" />
         </Association>
-        <Association Name="PREFERS">
-          <End Role="TAG" Type="ConcertFinderModel.TAG" Multiplicity="*" />
-          <End Role="USER" Type="ConcertFinderModel.USER" Multiplicity="*" />
+        <Association Name="T_Prefer">
+          <End Type="ConcertFinderModel.T_Tag" Role="T_Tag" Multiplicity="*" />
+          <End Type="ConcertFinderModel.T_User" Role="T_User" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -404,95 +407,117 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ConcertFinderModelStoreContainer" CdmEntityContainer="ConcertFinderEntities">
-          <EntitySetMapping Name="EVENT"><EntityTypeMapping TypeName="ConcertFinderModel.EVENT"><MappingFragment StoreEntitySet="EVENT">
-            <ScalarProperty Name="EVENT_ID" ColumnName="EVENT_ID" />
-            <ScalarProperty Name="EVENT_DATEDEBUT" ColumnName="EVENT_DATEDEBUT" />
-            <ScalarProperty Name="EVENT_DATEFIN" ColumnName="EVENT_DATEFIN" />
-            <ScalarProperty Name="EVENT_DESCRIPTION" ColumnName="EVENT_DESCRIPTION" />
-            <ScalarProperty Name="EVENT_TITRE" ColumnName="EVENT_TITRE" />
-            <ScalarProperty Name="EVENT_TYPE" ColumnName="EVENT_TYPE" />
-            <ScalarProperty Name="EVENT_IMG_PATH" ColumnName="EVENT_IMG_PATH" />
-            <ScalarProperty Name="EVENT_VALIDE" ColumnName="EVENT_VALIDE" />
-            <ScalarProperty Name="EVENT_EMAIL" ColumnName="EVENT_EMAIL" />
-            <ScalarProperty Name="EVENT_TEL" ColumnName="EVENT_TEL" />
-            <ScalarProperty Name="EVENT_SITE" ColumnName="EVENT_SITE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="LOCATION"><EntityTypeMapping TypeName="ConcertFinderModel.LOCATION"><MappingFragment StoreEntitySet="LOCATION">
-            <ScalarProperty Name="LOCATION_ID" ColumnName="LOCATION_ID" />
-            <ScalarProperty Name="LOCATION_NAME" ColumnName="LOCATION_NAME" />
-            <ScalarProperty Name="LOCATION_VILLE" ColumnName="LOCATION_VILLE" />
-            <ScalarProperty Name="LOCATION_PAYS" ColumnName="LOCATION_PAYS" />
-            <ScalarProperty Name="LOCATION_RUE" ColumnName="LOCATION_RUE" />
-            <ScalarProperty Name="LOCATION_CP" ColumnName="LOCATION_CP" />
-            <ScalarProperty Name="LOCATION_LATTITUDE" ColumnName="LOCATION_LATTITUDE" />
-            <ScalarProperty Name="LOCATION_LONGITUDE" ColumnName="LOCATION_LONGITUDE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="NOTIFICATION"><EntityTypeMapping TypeName="ConcertFinderModel.NOTIFICATION"><MappingFragment StoreEntitySet="NOTIFICATION">
-            <ScalarProperty Name="NOTIF_ID" ColumnName="NOTIF_ID" />
-            <ScalarProperty Name="NOTIF_TITRE" ColumnName="NOTIF_TITRE" />
-            <ScalarProperty Name="NOTIF_DATE" ColumnName="NOTIF_DATE" />
-            <ScalarProperty Name="NOTIF_MESSAGE" ColumnName="NOTIF_MESSAGE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TAG"><EntityTypeMapping TypeName="ConcertFinderModel.TAG"><MappingFragment StoreEntitySet="TAG">
-            <ScalarProperty Name="TAG_ID" ColumnName="TAG_ID" />
-            <ScalarProperty Name="TAG_CONTENT" ColumnName="TAG_CONTENT" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="USER"><EntityTypeMapping TypeName="ConcertFinderModel.USER"><MappingFragment StoreEntitySet="USER">
-            <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-            <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
-            <ScalarProperty Name="USER_FIRSTNAME" ColumnName="USER_FIRSTNAME" />
-            <ScalarProperty Name="USER_MAIL" ColumnName="USER_MAIL" />
-            <ScalarProperty Name="USER_LOGIN" ColumnName="USER_LOGIN" />
-            <ScalarProperty Name="USER_PASSWORD" ColumnName="USER_PASSWORD" />
-            <ScalarProperty Name="USER_ROLE" ColumnName="USER_ROLE" />
-            <ScalarProperty Name="USER_VILLE" ColumnName="USER_VILLE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <AssociationSetMapping Name="FK_EVENT_LOCATION" TypeName="ConcertFinderModel.FK_EVENT_LOCATION" StoreEntitySet="EVENT">
-            <EndProperty Name="LOCATION">
+          <EntitySetMapping Name="T_Event">
+            <EntityTypeMapping TypeName="ConcertFinderModel.T_Event">
+              <MappingFragment StoreEntitySet="T_Event">
+                <ScalarProperty Name="Event_DateCreation" ColumnName="Event_DateCreation" />
+                <ScalarProperty Name="EVENT_SITE" ColumnName="EVENT_SITE" />
+                <ScalarProperty Name="EVENT_TEL" ColumnName="EVENT_TEL" />
+                <ScalarProperty Name="EVENT_EMAIL" ColumnName="EVENT_EMAIL" />
+                <ScalarProperty Name="EVENT_VALIDE" ColumnName="EVENT_VALIDE" />
+                <ScalarProperty Name="EVENT_IMG_PATH" ColumnName="EVENT_IMG_PATH" />
+                <ScalarProperty Name="EVENT_TYPE" ColumnName="EVENT_TYPE" />
+                <ScalarProperty Name="EVENT_TITRE" ColumnName="EVENT_TITRE" />
+                <ScalarProperty Name="EVENT_DESCRIPTION" ColumnName="EVENT_DESCRIPTION" />
+                <ScalarProperty Name="EVENT_DATEFIN" ColumnName="EVENT_DATEFIN" />
+                <ScalarProperty Name="EVENT_DATEDEBUT" ColumnName="EVENT_DATEDEBUT" />
+                <ScalarProperty Name="EVENT_ID" ColumnName="EVENT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Location">
+            <EntityTypeMapping TypeName="ConcertFinderModel.T_Location">
+              <MappingFragment StoreEntitySet="T_Location">
+                <ScalarProperty Name="LOCATION_LONGITUDE" ColumnName="LOCATION_LONGITUDE" />
+                <ScalarProperty Name="LOCATION_LATTITUDE" ColumnName="LOCATION_LATTITUDE" />
+                <ScalarProperty Name="LOCATION_CP" ColumnName="LOCATION_CP" />
+                <ScalarProperty Name="LOCATION_RUE" ColumnName="LOCATION_RUE" />
+                <ScalarProperty Name="LOCATION_PAYS" ColumnName="LOCATION_PAYS" />
+                <ScalarProperty Name="LOCATION_VILLE" ColumnName="LOCATION_VILLE" />
+                <ScalarProperty Name="LOCATION_NAME" ColumnName="LOCATION_NAME" />
+                <ScalarProperty Name="LOCATION_ID" ColumnName="LOCATION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Notification">
+            <EntityTypeMapping TypeName="ConcertFinderModel.T_Notification">
+              <MappingFragment StoreEntitySet="T_Notification">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Titre" ColumnName="Titre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Tag">
+            <EntityTypeMapping TypeName="ConcertFinderModel.T_Tag">
+              <MappingFragment StoreEntitySet="T_Tag">
+                <ScalarProperty Name="TAG_CONTENT" ColumnName="TAG_CONTENT" />
+                <ScalarProperty Name="TAG_ID" ColumnName="TAG_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_User">
+            <EntityTypeMapping TypeName="ConcertFinderModel.T_User">
+              <MappingFragment StoreEntitySet="T_User">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Pseudo" ColumnName="Pseudo" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_EVENT_LOCATION1" TypeName="ConcertFinderModel.FK_EVENT_LOCATION1" StoreEntitySet="T_Event">
+            <EndProperty Name="T_Event">
+              <ScalarProperty Name="EVENT_ID" ColumnName="EVENT_ID" />
+            </EndProperty>
+            <EndProperty Name="T_Location">
               <ScalarProperty Name="LOCATION_ID" ColumnName="LOCATION_ID" />
             </EndProperty>
-            <EndProperty Name="EVENT">
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_EVENT_USER1" TypeName="ConcertFinderModel.FK_EVENT_USER1" StoreEntitySet="T_Event">
+            <EndProperty Name="T_Event">
+              <ScalarProperty Name="EVENT_ID" ColumnName="EVENT_ID" />
+            </EndProperty>
+            <EndProperty Name="T_User">
+              <ScalarProperty Name="Id" ColumnName="USER_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="T_HasNotification" TypeName="ConcertFinderModel.T_HasNotification" StoreEntitySet="T_HasNotification">
+            <EndProperty Name="T_Notification">
+              <ScalarProperty Name="Id" ColumnName="NOTIF_ID" />
+            </EndProperty>
+            <EndProperty Name="T_Event">
               <ScalarProperty Name="EVENT_ID" ColumnName="EVENT_ID" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_EVENT_USER" TypeName="ConcertFinderModel.FK_EVENT_USER" StoreEntitySet="EVENT">
-            <EndProperty Name="USER">
-              <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-            </EndProperty>
-            <EndProperty Name="EVENT">
-              <ScalarProperty Name="EVENT_ID" ColumnName="EVENT_ID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="HAS_NOTIFICATION" TypeName="ConcertFinderModel.HAS_NOTIFICATION" StoreEntitySet="HAS_NOTIFICATION">
-            <EndProperty Name="EVENT">
-              <ScalarProperty Name="EVENT_ID" ColumnName="EVENT_ID" />
-            </EndProperty>
-            <EndProperty Name="NOTIFICATION">
-              <ScalarProperty Name="NOTIF_ID" ColumnName="NOTIF_ID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="HAS_TAGS" TypeName="ConcertFinderModel.HAS_TAGS" StoreEntitySet="HAS_TAGS">
-            <EndProperty Name="EVENT">
-              <ScalarProperty Name="EVENT_ID" ColumnName="EVENT_ID" />
-            </EndProperty>
-            <EndProperty Name="TAG">
+          <AssociationSetMapping Name="T_HasTags" TypeName="ConcertFinderModel.T_HasTags" StoreEntitySet="T_HasTags">
+            <EndProperty Name="T_Tag">
               <ScalarProperty Name="TAG_ID" ColumnName="TAG_ID" />
             </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="NOTIFIED" TypeName="ConcertFinderModel.NOTIFIED" StoreEntitySet="NOTIFIED">
-            <EndProperty Name="NOTIFICATION">
-              <ScalarProperty Name="NOTIF_ID" ColumnName="NOTIF_ID" />
-            </EndProperty>
-            <EndProperty Name="USER">
-              <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+            <EndProperty Name="T_Event">
+              <ScalarProperty Name="EVENT_ID" ColumnName="EVENT_ID" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="PREFERS" TypeName="ConcertFinderModel.PREFERS" StoreEntitySet="PREFERS">
-            <EndProperty Name="TAG">
-              <ScalarProperty Name="TAG_ID" ColumnName="TAG_ID" />
+          <AssociationSetMapping Name="T_Notified" TypeName="ConcertFinderModel.T_Notified" StoreEntitySet="T_Notified">
+            <EndProperty Name="T_User">
+              <ScalarProperty Name="Id" ColumnName="User_Id" />
             </EndProperty>
-            <EndProperty Name="USER">
-              <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+            <EndProperty Name="T_Notification">
+              <ScalarProperty Name="Id" ColumnName="Notif_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="T_Prefer" TypeName="ConcertFinderModel.T_Prefer" StoreEntitySet="T_Prefer">
+            <EndProperty Name="T_User">
+              <ScalarProperty Name="Id" ColumnName="User_Id" />
+            </EndProperty>
+            <EndProperty Name="T_Tag">
+              <ScalarProperty Name="TAG_ID" ColumnName="Tag_Id" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>
@@ -509,41 +534,41 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Model">
-        <EntityTypeShape EntityType="ConcertFinderModel.EVENT" Width="1.5" PointX="3" PointY="2" Height="3.9033007812499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConcertFinderModel.LOCATION" Width="1.5" PointX="0.75" PointY="2.625" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConcertFinderModel.NOTIFICATION" Width="1.5" PointX="5.25" PointY="1.625" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConcertFinderModel.TAG" Width="1.5" PointX="5.25" PointY="4.5" Height="1.7879850260416657" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConcertFinderModel.USER" Width="1.5" PointX="7.5" PointY="2.375" Height="3.1340950520833335" IsExpanded="true" />
-        <AssociationConnector Association="ConcertFinderModel.FK_EVENT_LOCATION" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="3.99974609375" />
-          <ConnectorPoint PointX="3" PointY="3.99974609375" />
+        <EntityTypeShape EntityType="ConcertFinderModel.T_Event" Width="1.5" PointX="3" PointY="9" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="ConcertFinderModel.T_Location" Width="1.5" PointX="0.75" PointY="9.625" Height="2.7494921874999996" />
+        <EntityTypeShape EntityType="ConcertFinderModel.T_Notification" Width="1.5" PointX="5.25" PointY="8.75" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="ConcertFinderModel.T_Tag" Width="1.5" PointX="5.25" PointY="11.625" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="ConcertFinderModel.T_User" Width="1.5" PointX="7.5" PointY="9.375" Height="3.3263964843750031" />
+        <AssociationConnector Association="ConcertFinderModel.FK_EVENT_LOCATION1" >
+          <ConnectorPoint PointX="2.25" PointY="10.99974609375" />
+          <ConnectorPoint PointX="3" PointY="10.99974609375" />
         </AssociationConnector>
-        <AssociationConnector Association="ConcertFinderModel.FK_EVENT_USER" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.5" PointY="4.1487939453125" />
-          <ConnectorPoint PointX="4.5" PointY="4.1487939453125" />
+        <AssociationConnector Association="ConcertFinderModel.FK_EVENT_USER1" >
+          <ConnectorPoint PointX="7.5" PointY="11.2737939453125" />
+          <ConnectorPoint PointX="4.5" PointY="11.2737939453125" />
         </AssociationConnector>
-        <AssociationConnector Association="ConcertFinderModel.HAS_NOTIFICATION" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="2.8987939453125" />
-          <ConnectorPoint PointX="5.25" PointY="2.8987939453125" />
+        <AssociationConnector Association="ConcertFinderModel.T_HasNotification" >
+          <ConnectorPoint PointX="4.5" PointY="9.9612939453125" />
+          <ConnectorPoint PointX="5.25" PointY="9.9612939453125" />
         </AssociationConnector>
-        <AssociationConnector Association="ConcertFinderModel.HAS_TAGS" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="5.201650390625" />
-          <ConnectorPoint PointX="5.25" PointY="5.201650390625" />
+        <AssociationConnector Association="ConcertFinderModel.T_HasTags" >
+          <ConnectorPoint PointX="4.5" PointY="12.360301106770834" />
+          <ConnectorPoint PointX="5.25" PointY="12.360301106770834" />
         </AssociationConnector>
-        <AssociationConnector Association="ConcertFinderModel.NOTIFIED" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="3.0862939453125" />
-          <ConnectorPoint PointX="7.5" PointY="3.0862939453125" />
+        <AssociationConnector Association="ConcertFinderModel.T_Notified" >
+          <ConnectorPoint PointX="6.75" PointY="10.1487939453125" />
+          <ConnectorPoint PointX="7.5" PointY="10.1487939453125" />
         </AssociationConnector>
-        <AssociationConnector Association="ConcertFinderModel.PREFERS" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="5.0045475260416667" />
-          <ConnectorPoint PointX="7.5" PointY="5.0045475260416667" />
+        <AssociationConnector Association="ConcertFinderModel.T_Prefer" >
+          <ConnectorPoint PointX="6.75" PointY="12.163198242187502" />
+          <ConnectorPoint PointX="7.5" PointY="12.163198242187502" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

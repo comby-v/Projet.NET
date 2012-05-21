@@ -6,18 +6,18 @@ using ConcertFinderMVC.DataAccess;
 
 namespace ConcertFinderMVC.BusinessManagement
 {
-    public class T_Tag
+    public class Tag
     {
         public static bool Create(string tagname)
         {
-            TAG tag = new TAG() { TAG_CONTENT = tagname};
+            DataAccess.Tag tag = new DataAccess.Tag() { TAG_CONTENT = tagname };
 
-            return DataAccess.T_Tag.Create(tag);
+            return DataAccess.Tag.Create(tag);
         }
 
-        public static TAG Get(string tagName)
+        public static DataAccess.Tag Get(string tagName)
         {
-            return DataAccess.T_Tag.Get(tagName);
+            return DataAccess.Tag.Get(tagName);
         }
     }
 }

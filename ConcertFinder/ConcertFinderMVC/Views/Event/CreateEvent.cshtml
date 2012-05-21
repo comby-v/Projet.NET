@@ -2,6 +2,8 @@
 
 @using (Html.BeginForm("CreateEvent", "Event", FormMethod.Post))
 {
+    @Html.AntiForgeryToken()
+    
     @Html.HiddenFor(x => x.Latitude);
     @Html.HiddenFor(x => x.Longitude);
                                     

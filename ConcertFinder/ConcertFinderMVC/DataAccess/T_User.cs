@@ -7,12 +7,17 @@ namespace ConcertFinderMVC.DataAccess
 {
     public class T_User
     {
-        public static Boolean create(USER user)
+        public static Boolean create(USER user, List<TAG> tags)
         {
             using (ConcertFinderEntities concert = new ConcertFinderEntities())
             {
                 try
                 {
+                    foreach (TAG tag in tags)
+                    {
+                        concert.Attach(tag);
+                        user.TAGs.Add(tag);
+                    }
                     concert.AddToUSERs(user);
                     concert.SaveChanges();
                 }

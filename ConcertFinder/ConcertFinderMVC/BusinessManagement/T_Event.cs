@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using ConcertFinderMVC.Models;
 using ConcertFinderMVC.DataAccess;
+using System.Text.RegularExpressions;
 
 namespace ConcertFinderMVC.BusinessManagement
 {
@@ -22,10 +23,32 @@ namespace ConcertFinderMVC.BusinessManagement
             ev.EVENT_SITE = myevent.Website;
             ev.EVENT_TEL = myevent.Phone;
 
+            List<TAG> list_tag = new List<TAG>();
+            List<String> tags = myevent.Tags.Split(new Char[] { ' ', ',', '.', ';'}).ToList();
+            foreach (String tag in tags)
+            {
+                Regex regx = new Regex("[a-z1-9*]");
+                if (tag.Length > 2 && regx.Match(tag).Success)
+                {
+                    tag.ToLower();
+                    TAG bdd_tag = BusinessManagement.T_Tag.Get(tag);
+                    if (bdd_tag != null)
+                    {
+                        list_tag.Add(bdd_tag);
+                    }
+                    else
+                    {
+                        BusinessManagement.T_Tag.Create(tag);
+                        bdd_tag = BusinessManagement.T_Tag.Get(tag);
+                        list_tag.Add(bdd_tag);
+                    }
+                }
+            }
+
             LOCATION location = T_Location.GetLocationByCoord(myevent.Latitude, myevent.Longitude);
             if (location != null)
             {
-                return DataAccess.T_Event.Create(ev, user, location);
+                return DataAccess.T_Event.Create(ev, user, location, list_tag);
             }
             else
             {
@@ -41,7 +64,7 @@ namespace ConcertFinderMVC.BusinessManagement
                                                         }))
                 {
                     LOCATION n_location = T_Location.GetLocationByCoord(myevent.Latitude, myevent.Longitude);
-                    return DataAccess.T_Event.Create(ev, user, n_location);
+                    return DataAccess.T_Event.Create(ev, user, n_location, list_tag);
                 }
                 else
                 {
@@ -73,9 +96,14 @@ namespace ConcertFinderMVC.BusinessManagement
             return DataAccess.T_Event.Update(ev);
         }
 
-        static public EventItem Get(long id)
+        static public EVENT Get(long id)
         {
-            return null;
+            return DataAccess.T_Event.Get(id);
+        }
+
+        static public EVENT Get(string title)
+        {
+            return DataAccess.T_Event.Get(title);
         }
 
         static public List<EventItem> GetListEvent(int nbr, string type = "")

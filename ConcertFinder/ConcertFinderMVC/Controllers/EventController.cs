@@ -93,6 +93,8 @@ namespace ConcertFinderMVC.Controllers
                 USER user = BusinessManagement.T_User.GetUserByPseudo(User.Identity.Name);
                 if (user != null && BusinessManagement.T_Event.Create(form, user))
                 {
+                    EVENT bdd_event = BusinessManagement.T_Event.Get(form.Title);
+                    BusinessManagement.T_Notification.Create(user, bdd_event);
                     return RedirectToAction("Detail", "Event");
                 }
                 else

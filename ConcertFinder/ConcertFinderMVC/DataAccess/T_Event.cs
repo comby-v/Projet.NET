@@ -7,7 +7,7 @@ namespace ConcertFinderMVC.DataAccess
 {
     public class T_Event
     {
-        static public bool Create(EVENT myevent, USER user, LOCATION location)
+        static public bool Create(EVENT myevent, USER user, LOCATION location, List<TAG> tags)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
@@ -15,6 +15,11 @@ namespace ConcertFinderMVC.DataAccess
                 {
                     bdd.Attach(user);
                     bdd.Attach(location);
+                    foreach (TAG tag in tags)
+                    {
+                        bdd.Attach(tag);
+                        myevent.TAGs.Add(tag);
+                    }
 
                     myevent.LOCATION = location;
                     myevent.USER = user;
@@ -76,8 +81,25 @@ namespace ConcertFinderMVC.DataAccess
                 EVENT myevent;
                 try
                 {
-                    myevent = bdd.EVENTs.Include("TAG").Include("LOCATION").Include("USER").Include("NOTIFICATION").
+                    myevent = bdd.EVENTs.Include("TAGs").Include("LOCATIONs").Include("USERs").Include("NOTIFICATIONs").
                         Where(x => x.EVENT_ID == id).FirstOrDefault();
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+                return myevent;
+            }
+        }
+
+        static public EVENT Get(string title)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                EVENT myevent;
+                try
+                {
+                    myevent = bdd.EVENTs.Where(x => x.EVENT_TITRE == title).FirstOrDefault();
                 }
                 catch (Exception)
                 {

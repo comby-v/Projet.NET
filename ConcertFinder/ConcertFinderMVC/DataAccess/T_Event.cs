@@ -125,5 +125,21 @@ namespace ConcertFinderMVC.DataAccess
                 }
             }
         }
+
+        static public List<EVENT> GetListLastAddEvent(int nbr, string type = "")
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                try
+                {
+                    EVENT myevent = bdd.EVENTs.Include("TAGs").Include("LOCATIONs").Include("USERs").Include("NOTIFICATIONs").
+                        Where(x => x.EVENT_VALIDE == true && x.EVENT_DATEDEBUT > DateTime.Now).OrderByDescending(x => x.EVENT_ID).Take(nbr).ToList();
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
     }
 }

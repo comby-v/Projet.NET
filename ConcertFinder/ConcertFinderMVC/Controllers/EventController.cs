@@ -20,7 +20,6 @@ namespace ConcertFinderMVC.Controllers
                 Last = BusinessManagement.T_Event.GetListLastAddEvent(5),
                 Events = BusinessManagement.T_Event.GetListEvent(10)
             };
-            var ojb = User.Identity.Name;
             return View("Index", eventList);
         }
 

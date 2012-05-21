@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="BusinessManagement\CustomMemberShip.cs" />
     <Compile Include="BusinessManagement\T_Event.cs" />
+    <Compile Include="BusinessManagement\T_Location.cs" />
     <Compile Include="BusinessManagement\T_User.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -166,6 +167,7 @@
     </Content>
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
+    <Content Include="Scripts\jquery-1.7.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace ConcertFinderMVC.Models
 {
@@ -18,6 +19,8 @@ namespace ConcertFinderMVC.Models
         public string Email { get; set; }
         public string Tel { get; set; }
         public string Website { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
     }
 
     public class EventsList
@@ -26,11 +29,58 @@ namespace ConcertFinderMVC.Models
         public List<EventItem> Last { get; set; }
     }
 
+    public enum eTypes
+    {
+        Spectacle = 0,
+        Concert,
+        Festival
+    }
+
+    public class EventModel
+    {
+        public static List<int> EventTypes = new List<int>()
+        {
+            (int)eTypes.Spectacle,
+            (int)eTypes.Concert,
+            (int)eTypes.Festival,
+        };
+
+        public static string GetEventType(int type)
+        {
+            var enumType = (eTypes)type;
+            switch (enumType)
+            {
+                case eTypes.Spectacle:
+                    return "Spectacle";
+                case eTypes.Concert:
+                    return "Concert";
+                case eTypes.Festival:
+                    return "Festival";
+                default:
+                    return string.Empty;
+            }
+        }
+
+        public static Dictionary<int, string> GetEventTypes()
+        {
+            return EventTypes.ToDictionary(o => o, o => GetEventType(o));
+        }
+
+        public static Dictionary<int, string> GetTypesDic(IEnumerable<eTypes> except)
+        {
+            var toRet = (from item in GetEventTypes() where !except.Contains((eTypes)item.Key) select item).ToDictionary(k => k.Key, k => k.Value);
+            return toRet;
+        }
+    }
+
     public class FormEventModels
     {
         public FormEventModels()
         {
-            Type = new List<string>() { "Spectacle", "Concert", "Festival" };
+            var types = EventModel.GetTypesDic(new List<eTypes>());
+            Types = new SelectList(types, "Key", "Value", eTypes.Concert);
+            StartDate = DateTime.Now;
+            EndDate = DateTime.Now;
         }
 
         [Required]
@@ -38,7 +88,15 @@ namespace ConcertFinderMVC.Models
         public string Title { get; set; }
 
         [Display(Name = "Type")]
-        public List<string> Type { get; set; }
+        public SelectList Types { get; set; }
+
+        public int Type { get; set; }
+
+        [Required]
+        public double Longitude { get; set; }
+
+        [Required]
+        public double Latitude { get; set; }
 
         [Required]
         [Display(Name = "Date de début")]

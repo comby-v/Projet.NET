@@ -13,14 +13,18 @@
                     @if (!Request.IsAuthenticated)
                     {
                         <div id="open_connect" class="float-right">se connecter</div>
-                        <div id="open_connect" class="float-right">@Html.ActionLink("S'inscrire", "Register", "Account")</div>
+                        <div id="open_connect" class="float-right">@Html.ActionLink("Ajouter un événement", "CreateEvent", "Event")</div>
+
                         <div id="connect_panel" class="clear">
                          @Html.Partial("_logOn", new ConcertFinderMVC.Models.LogOnModel())
-                         </div>
+                        </div>
                      }
                      else
                      {
-                        <span >@User.Identity.Name</span>
+                         <div id="connect_panel" class="clear">
+                            @Html.Partial("_accountPanel", new ConcertFinderMVC.Models.LogOnModel())
+                        </div>
+                        
                      }
                     <div class="clear"></div>
 

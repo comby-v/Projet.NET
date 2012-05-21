@@ -78,6 +78,7 @@ namespace ConcertFinderMVC.BusinessManagement
             return DataAccess.T_Event.Delete (id);
         }
 
+
         static public bool Update(FormEventModels myevent, LOCATION location, USER user, long id)
         {
             EVENT ev = new EVENT ();

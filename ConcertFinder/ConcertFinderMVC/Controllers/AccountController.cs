@@ -72,5 +72,12 @@ namespace ConcertFinderMVC.Controllers
             }
             return View(form);
         }
+
+
+
+        public ActionResult Notifications()
+        {
+            return View();
+        }
     }
 }

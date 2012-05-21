@@ -25,7 +25,6 @@ namespace ConcertFinderMVC.BusinessManagement
                 NOTIFICATIONs = null,
                 TAGs = null                
             };
-            DataAccess.T_User.create(user);
             string[] split = form.Tags.Split(new Char[] { ' ', ',', '.', ';'});
             List<TAG> listTag = new List<TAG>();
             foreach (string str in split)
@@ -45,25 +44,14 @@ namespace ConcertFinderMVC.BusinessManagement
                         {
                             DataAccess.T_Tag.Create(tag);
                         }
-                        using (ConcertFinderEntities concert = new ConcertFinderEntities())
-                        {
-                            tag = DataAccess.T_Tag.Get(str);
-                            concert.Attach(tag);
-                           
-                            user = GetUserByPseudo(form.Pseudo);
-                            concert.Attach(user);
-                            user.TAGs.Add(tag);    
-                        }
-                            //listTag.Add(tag);
+
+                        tag = DataAccess.T_Tag.Get(str);
+                            listTag.Add(tag);
                     }
                 } 
             }
 
-
-
-
-
-            return DataAccess.T_User.update(user);
+            return DataAccess.T_User.create(user, listTag);
         }
 
         public static Boolean validate_user(string pseudo, string password)

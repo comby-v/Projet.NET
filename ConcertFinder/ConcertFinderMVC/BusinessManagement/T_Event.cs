@@ -78,6 +78,7 @@ namespace ConcertFinderMVC.BusinessManagement
             return DataAccess.T_Event.Delete (id);
         }
 
+
         static public bool Update(FormEventModels myevent, LOCATION location, USER user, long id)
         {
             EVENT ev = new EVENT ();
@@ -106,18 +107,50 @@ namespace ConcertFinderMVC.BusinessManagement
             return DataAccess.T_Event.Get(title);
         }
 
-        static public List<EventItem> GetListEvent(int nbr, string type = "")
-        {
-            List<EventItem> listevent = new List<EventItem>();
-            /*DataAccess.T_Event*/
-            return listevent;
-        }
-
         static public List<EventItem> GetListLastAddEvent(int nbr, string type = "")
         {
-            List<EventItem> listevent = new List<EventItem>();
-            /*DataAccess.T_Event*/
-            return listevent;
+            List<EventItem> list_eventItem = new List<EventItem>();
+            List<EVENT> list_event= DataAccess.T_Event.GetListLastAddEvent(nbr, type);
+            foreach (EVENT myevent in list_event)
+            {
+                EventItem myeventitem = new EventItem();
+                myeventitem.Titre = myevent.EVENT_TITRE;
+                myeventitem.Description = myevent.EVENT_DESCRIPTION;
+                myeventitem.Type = myevent.EVENT_TYPE;
+                myeventitem.StartDate = myevent.EVENT_DATEDEBUT;
+                myeventitem.EndDate = myevent.EVENT_DATEFIN.GetValueOrDefault();
+                myeventitem.Salle = myevent.LOCATION.LOCATION_NAME;
+                myeventitem.Image = myevent.EVENT_IMG_PATH;
+                myeventitem.Email = myevent.EVENT_EMAIL;
+                myeventitem.Tel = myevent.EVENT_TEL;
+                myeventitem.Website = myevent.EVENT_SITE;
+                list_eventItem.Add(myeventitem);
+            }
+            return list_eventItem;
         }
+
+
+        static public List<EventItem> GetListEvent(int nbr, string type = "")
+        {
+            List<EventItem> list_eventItem = new List<EventItem>();
+            List<EVENT> list_event = DataAccess.T_Event.GetListEvent(nbr, type);
+            foreach (EVENT myevent in list_event)
+            {
+                EventItem myeventitem = new EventItem();
+                myeventitem.Titre = myevent.EVENT_TITRE;
+                myeventitem.Description = myevent.EVENT_DESCRIPTION;
+                myeventitem.Type = myevent.EVENT_TYPE;
+                myeventitem.StartDate = myevent.EVENT_DATEDEBUT;
+                myeventitem.EndDate = myevent.EVENT_DATEFIN.GetValueOrDefault();
+                myeventitem.Salle = myevent.LOCATION.LOCATION_NAME;
+                myeventitem.Image = myevent.EVENT_IMG_PATH;
+                myeventitem.Email = myevent.EVENT_EMAIL;
+                myeventitem.Tel = myevent.EVENT_TEL;
+                myeventitem.Website = myevent.EVENT_SITE;
+                list_eventItem.Add(myeventitem);
+            }
+            return list_eventItem;
+        }
+
     }
 }

@@ -82,7 +82,7 @@ namespace ConcertFinderMVC.DataAccess
                 try
                 {
                     myevent = bdd.EVENTs.Include("TAGs").Include("LOCATIONs").Include("USERs").Include("NOTIFICATIONs").
-                        Where(x => x.EVENT_ID == id).FirstOrDefault();
+                        Where(x => x.EVENT_VALIDE == true && x.EVENT_DATEDEBUT > DateTime.Now && x.EVENT_ID == id).FirstOrDefault();
                 }
                 catch (Exception)
                 {
@@ -99,7 +99,7 @@ namespace ConcertFinderMVC.DataAccess
                 EVENT myevent;
                 try
                 {
-                    myevent = bdd.EVENTs.Where(x => x.EVENT_TITRE == title).FirstOrDefault();
+                    myevent = bdd.EVENTs.Where(x => x.EVENT_VALIDE == true && x.EVENT_DATEDEBUT > DateTime.Now && x.EVENT_TITRE == title).FirstOrDefault();
                 }
                 catch (Exception)
                 {
@@ -132,11 +132,31 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    EVENT myevent = bdd.EVENTs.Include("TAGs").Include("LOCATIONs").Include("USERs").Include("NOTIFICATIONs").
+                    List<EVENT> myevent = bdd.EVENTs.
                         Where(x => x.EVENT_VALIDE == true && x.EVENT_DATEDEBUT > DateTime.Now).OrderByDescending(x => x.EVENT_ID).Take(nbr).ToList();
+                    return (myevent);
                 }
                 catch (Exception)
                 {
+                    throw;
+                    return null;
+                }
+            }
+        }
+
+        static public List<EVENT> GetListEvent(int nbr, string type = "")
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                try
+                {
+                    List<EVENT> myevent = bdd.EVENTs.
+                        Where(x => x.EVENT_VALIDE == true && x.EVENT_DATEDEBUT > DateTime.Now).OrderBy(x => x.EVENT_DATEDEBUT).Take(nbr).ToList();
+                    return (myevent);
+                }
+                catch (Exception)
+                {
+                    throw;
                     return null;
                 }
             }

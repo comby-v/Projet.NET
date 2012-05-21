@@ -20,6 +20,7 @@ namespace ConcertFinderMVC.Controllers
 
         // POST: /Account/LogOn
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult LogOn(Models.LogOnModel model, string returnUrl)
         {
@@ -28,9 +29,6 @@ namespace ConcertFinderMVC.Controllers
                 if (BusinessManagement.T_User.validate_user(model.Pseudo, model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.Pseudo, false);
-                    var ojb = User.Identity.Name;
-                    var bidon = Request.IsAuthenticated;
-
                 }
             }
           // If we got this far, something failed, redisplay form

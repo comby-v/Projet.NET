@@ -74,8 +74,10 @@ namespace ConcertFinderMVC.Controllers
         //
         // GET : /Event/Detail/Id
 
-        public ActionResult Detail()
+        public ActionResult Detail(long id)
         {
+
+
             return View();
         }
 
@@ -95,7 +97,7 @@ namespace ConcertFinderMVC.Controllers
                 {
                     EVENT bdd_event = BusinessManagement.T_Event.Get(form.Title);
                     BusinessManagement.T_Notification.Create(user, bdd_event);
-                    return RedirectToAction("Detail", "Event");
+                    return RedirectToAction("Detail", "Event", new { id = bdd_event.EVENT_ID });
                 }
                 else
                 {

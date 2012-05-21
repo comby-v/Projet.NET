@@ -9,6 +9,7 @@ namespace ConcertFinderMVC.Models
 {
     public class EventItem
     {
+        public long Id { get; set; }
         public string Type { get; set; }
         public string Salle { get; set; }
         public DateTime StartDate { get; set; }

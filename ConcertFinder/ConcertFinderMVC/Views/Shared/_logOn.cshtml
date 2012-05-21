@@ -1,37 +1,46 @@
 ﻿@model ConcertFinderMVC.Models.LogOnModel
 
-
 @using (Html.BeginForm("LogOn", "Account","POST"))
 {
+    @Html.AntiForgeryToken()
     <div>
-            <span class="connexion_lbl float-left">
-                @Html.LabelFor(m => m.Pseudo)
-            </span>
-            <span class="connexion_form float-right">
-                @Html.TextBoxFor(m => m.Pseudo)
-                @Html.ValidationMessageFor(m => m.Pseudo)
-            </span>
+        <span class="connexion_lbl float-left">
+            @Html.LabelFor(m => m.Pseudo)
+        </span>
+        <span class="connexion_form float-right">
+            @Html.TextBoxFor(m => m.Pseudo)
+            @Html.ValidationMessageFor(m => m.Pseudo)
+        </span>
     </div>
     
     <div class="clear">
-            <span class="connexion_lbl float-left">
-                @Html.LabelFor(m => m.Password)
-            </span>
-            <span class="connexion_form float-right">
-                @Html.PasswordFor(m => m.Password)
-                @Html.ValidationMessageFor(m => m.Password)
-            </span>
+        <span class="connexion_lbl float-left">
+            @Html.LabelFor(m => m.Password)
+        </span>
+        <span class="connexion_form float-right">
+            @Html.PasswordFor(m => m.Password)
+            @Html.ValidationMessageFor(m => m.Password)
+        </span>
     </div>
      <div class="clear">
-            <div class="float-left">
-                @Html.ActionLink("Mot de passe oublié", "Register", "Account")
-            </div>
-            <div class="float-right">
-                <input type="submit" value="Connexion" />
-            </div>
-            <div class="clear">
-                @Html.ActionLink("S'inscrire", "Register", "Account")
-            </div>
+        <div class="float-left">
+            @Html.ActionLink("Mot de passe oublié", "Register", "Account")
+        </div>
+        <div class="float-right">
+            <input type="submit" value="Connexion" />
+        </div>
+        <div class="clear">
+            @Html.ActionLink("S'inscrire", "Register", "Account")
+        </div>
     </div>
     
-    }
+}
+
+@section Script
+{
+    <script type="text/javascript">
+        $("#open_connect").click(function () {
+            $("#connect_panel").toggle();
+        });
+    </script>
+}

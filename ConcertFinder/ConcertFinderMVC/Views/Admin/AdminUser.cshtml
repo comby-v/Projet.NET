@@ -1,0 +1,54 @@
+﻿@model ConcertFinderMVC.Models.AdminModels
+
+<h2>Administration</h2>
+
+<ul>
+            <li>@Html.ActionLink("Gerer les événements", "ManageEvent", "Admin")</li>
+</ul>
+
+<section>
+    <h3>List des utilisateurs</h3>
+    <table>
+        <thead>
+            <tr>
+                <td>Nom</td>
+                <td>Prenom</td>
+                <td>Pseudo</td>
+                <td>Email</td>
+                <td>Ville</td>
+                <td>Statut</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.listUser)
+            {
+                if (!user.Deleted)
+                {
+                    <tr>
+                        <td>@user.Name</td>
+                        <td>@user.FirstName</td>
+                        <td>@user.Login</td>
+                        <td>@user.Mail</td>
+                        <td>@user.City</td>
+                        <td>
+                            <select>
+                                <option>
+                                    @user.Role
+                                </option>
+                                @foreach (string post in Model.listPost)
+                                {
+                                    if (!user.Role.Equals(post))
+                                    {
+                                        <option>@post</option>
+                                    }
+                                }                            
+                            </select>
+                        </td>
+                        <td>@Html.ActionLink("Supprimer", "BlockUser", "Admin", new {Id = user.Id}, null)</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</section>

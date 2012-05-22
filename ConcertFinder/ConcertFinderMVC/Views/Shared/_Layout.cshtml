@@ -36,6 +36,10 @@
             <li>@Html.ActionLink("Spectacles", "Spectacle", "Event")</li>
             <li>@Html.ActionLink("Festivals", "Festival", "Event")</li>
             <li>@Html.ActionLink("Ajouter un événement", "CreateEvent", "Event")</li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li>@Html.ActionLink("Administration utilisateur", "ManageUser", "Admin")</li>
+            }
         </ul>
     </header>
     <section class="page">

@@ -94,6 +94,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\footer-bg.png" />
+    <Content Include="Content\Images\footer-left.png" />
+    <Content Include="Content\Images\footer-right.png" />
+    <Content Include="Content\Images\gradient.gif" />
+    <Content Include="Content\Images\header.png" />
+    <Content Include="Content\Images\headerv2.png" />
+    <Content Include="Content\Images\nav-bg.png" />
+    <Content Include="Content\Images\nav-left.png" />
+    <Content Include="Content\Images\nav-right.png" />
+    <Content Include="Content\Images\nav.png" />
+    <Content Include="Content\Images\no_avatar.gif" />
+    <Content Include="Content\Index.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />

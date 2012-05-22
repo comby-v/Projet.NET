@@ -46,6 +46,7 @@ namespace ConcertFinderMVC.Controllers
 
         public ActionResult LogOut()
         {
+            FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Event");
         }
 

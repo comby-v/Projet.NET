@@ -1,28 +1,34 @@
 ﻿@model ConcertFinderMVC.Models.EventsList
+<h2 class="page_title">Tous les événements :</h2>
 
-<h2>Tous les événements :</h2>
-
-@foreach (ConcertFinderMVC.Models.EventItem item in Model.Events)
-{
-    <div class="item">
-        <div class="picture">
+<div class="main float-left">
+    @foreach (ConcertFinderMVC.Models.EventItem item in Model.Events)
+    {
+        <div class="item">
+           <div class="info2">
+                <strong class="item_titre">@item.Titre</strong>
+                <strong class="item_date">@item.StartDate.</strong>
+           </div>
+           <div class="item_content">
+             <img src="@Url.Content("~/Content/Images/no_avatar.gif")" width="130" height="160" alt="flyers" class="float-left" />
+             <div class="infos float-left">
+                <div class="info1">
+                    <span class="item_type">@item.Type</span>
+                    <span class="item_salle">@item.Salle</span>
+                    <em class="item_adresse">@item.Ville , @item.CP , @item.Rue</em>
+                </div>
+                <p class="item_descr">
+                    @item.Description
+                </p>
+                <div class="clear">
+                    @Html.ActionLink("voir le détail", "Detail", "Event", new { id = item.Id }, null)
+                </div>
+             </div>   
+            </div>
         </div>
-        <div class="content">
-            <p>
-                <span>@item.Type</span>
-                <span>@item.Salle</span>
-                <span>Adresse</span>
-            </p>
-            <p>
-                <span>@item.Titre</span>
-                <span>@item.StartDate</span>
-            </p>
-            <p>@item.Description</p>
-        </div>
-        <p>
-            @Html.ActionLink("voir le détail", "Detail", "Event", new { id = item.Id }, null)
-        </p>
-    </div>
-}
-
-@Html.Partial("_LastAdded", Model.Last)
+    }
+</div>
+<div class="float-right">
+        @Html.Partial("_LastAdded", Model.Last)
+</div>
+<div class="clear"></div>

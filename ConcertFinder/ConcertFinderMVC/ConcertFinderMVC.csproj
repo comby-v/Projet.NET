@@ -215,12 +215,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="DataAccess\ConcertFinderModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ConcertFinderModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Event\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -243,6 +237,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\Notifications.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="DataAccess\ConcertFinderModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ConcertFinderModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

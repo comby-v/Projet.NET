@@ -73,28 +73,28 @@ namespace ConcertFinderMVC.Controllers
         //
         // GET : /Event/Detail/Id
 
-        public ActionResult Detail(long id)
+        public ActionResult Detail(long id, bool creation = false)
         {
-            DataAccess.Event myevent = BusinessManagement.Event.Get(id);
+            DataAccess.T_Event myevent = BusinessManagement.Event.Get(id, creation);
             EventItem event_item = new EventItem()
             {
-                Id = myevent.EVENT_ID,
-                StartDate = myevent.EVENT_DATEDEBUT,
-                EndDate = myevent.EVENT_DATEFIN.GetValueOrDefault(),
-                Description = myevent.EVENT_DESCRIPTION,
-                Titre = myevent.EVENT_TITRE,
-                Type = myevent.EVENT_TYPE,
-                Image = myevent.EVENT_IMG_PATH,
-                Email = myevent.EVENT_EMAIL,
-                Tel = myevent.EVENT_TEL,
-                Website = myevent.EVENT_SITE,
-                Salle = myevent.T_Location.LOCATION_NAME,
-                Ville = myevent.T_Location.LOCATION_VILLE,
-                Pays = myevent.T_Location.LOCATION_PAYS,
-                Rue = myevent.T_Location.LOCATION_RUE,
-                CP = myevent.T_Location.LOCATION_CP,
-                Latitude = myevent.T_Location.LOCATION_LATTITUDE.GetValueOrDefault(),
-                Longitude = myevent.T_Location.LOCATION_LONGITUDE.GetValueOrDefault()
+                Id = myevent.Id,
+                StartDate = myevent.DateDebut,
+                EndDate = myevent.DateFin.GetValueOrDefault(),
+                Description = myevent.Description,
+                Titre = myevent.Titre,
+                Type = myevent.Type,
+                Image = myevent.Image,
+                Email = myevent.Email,
+                Tel = myevent.Tel,
+                Website = myevent.WebSite,
+                Salle = myevent.T_Location.Name,
+                Ville = myevent.T_Location.Ville,
+                Pays = myevent.T_Location.Pays,
+                Rue = myevent.T_Location.Rue,
+                CP = myevent.T_Location.CP,
+                Latitude = myevent.T_Location.Latitude,
+                Longitude = myevent.T_Location.Longitude,
                 
 
             };
@@ -114,12 +114,12 @@ namespace ConcertFinderMVC.Controllers
         {
             if (ModelState.IsValid && User.Identity.IsAuthenticated)
             {
-                DataAccess.User user = BusinessManagement.User.GetUserByPseudo(User.Identity.Name);
+                DataAccess.T_User user = BusinessManagement.User.GetUserByPseudo(User.Identity.Name);
                 if (user != null && BusinessManagement.Event.Create(form, user))
                 {
-                    DataAccess.Event bdd_event = BusinessManagement.Event.Get(form.Title, true);
+                    DataAccess.T_Event bdd_event = BusinessManagement.Event.Get(form.Title, true);
                     BusinessManagement.Notification.Create(user, bdd_event);
-                    return RedirectToAction("Detail", "Event", new { id = bdd_event.EVENT_ID });
+                    return RedirectToAction("Detail", "Event", new { id = bdd_event.Id, creation = true });
                 }
                 else
                 {

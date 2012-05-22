@@ -7,7 +7,7 @@ namespace ConcertFinderMVC.DataAccess
 {
     public partial class Location
     {
-        static public bool Create(Location location)
+        static public bool Create(T_Location location)
         {
 
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
@@ -31,7 +31,7 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    bdd.DeleteObject(bdd.T_Location.Where(x => x.LOCATION_ID == id).FirstOrDefault());
+                    bdd.DeleteObject(bdd.T_Location.Where(x => x.Id == id).FirstOrDefault());
                     bdd.SaveChanges();
                 }
                 catch (Exception)
@@ -43,13 +43,13 @@ namespace ConcertFinderMVC.DataAccess
         }
 
 
-        static public bool Update(Location location)
+        static public bool Update(T_Location location)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    var n_location = new Location { LOCATION_ID = location.LOCATION_ID };
+                    var n_location = new T_Location { Id = location.Id };
                     bdd.T_Location.Attach(n_location);
                     bdd.ApplyCurrentValues("T_Location", location);
                     bdd.SaveChanges();
@@ -62,15 +62,15 @@ namespace ConcertFinderMVC.DataAccess
             return true;
         }
 
-        static public Location Get(long id)
+        static public T_Location Get(long id)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
-                Location location;
+                T_Location location;
                 try
                 {
                     location = bdd.T_Location.Include("T_Event").
-                        Where(x => x.LOCATION_ID == id).FirstOrDefault();
+                        Where(x => x.Id == id).FirstOrDefault();
                 }
                 catch (Exception)
                 {
@@ -80,15 +80,15 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        public static Location GetLocationByCoord(double latitude, double longitude)
+        public static T_Location GetLocationByCoord(double latitude, double longitude)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
-                Location location;
+                T_Location location;
                 try
                 {
                     location = bdd.T_Location.
-                        Where(x => x.LOCATION_LATTITUDE == latitude && x.LOCATION_LONGITUDE == longitude).FirstOrDefault();
+                        Where(x => x.Latitude == latitude && x.Longitude == longitude).FirstOrDefault();
                 }
                 catch (Exception)
                 {

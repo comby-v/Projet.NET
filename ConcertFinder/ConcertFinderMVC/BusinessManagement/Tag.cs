@@ -10,12 +10,12 @@ namespace ConcertFinderMVC.BusinessManagement
     {
         public static bool Create(string tagname)
         {
-            DataAccess.Tag tag = new DataAccess.Tag() { TAG_CONTENT = tagname };
+            DataAccess.T_Tag tag = new DataAccess.T_Tag() { Name = tagname };
 
             return DataAccess.Tag.Create(tag);
         }
 
-        public static DataAccess.Tag Get(string tagName)
+        public static DataAccess.T_Tag Get(string tagName)
         {
             return DataAccess.Tag.Get(tagName);
         }

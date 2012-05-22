@@ -7,7 +7,7 @@ namespace ConcertFinderMVC.DataAccess
 {
     public partial class Event
     {
-        static public bool Create(Event myevent, User user, Location location, List<Tag> tags)
+        static public bool Create(T_Event myevent, T_User user, T_Location location, List<T_Tag> tags)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
@@ -15,7 +15,7 @@ namespace ConcertFinderMVC.DataAccess
                 {
                     bdd.Attach(user);
                     bdd.Attach(location);
-                    foreach (Tag tag in tags)
+                    foreach (T_Tag tag in tags)
                     {
                         bdd.Attach(tag);
                         myevent.T_Tag.Add(tag);
@@ -41,7 +41,7 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    bdd.DeleteObject(bdd.T_Event.Where(x => x.EVENT_ID == id).FirstOrDefault());
+                    bdd.DeleteObject(bdd.T_Event.Where(x => x.Id == id).FirstOrDefault());
                     bdd.SaveChanges();
                 }
                 catch (Exception)
@@ -54,13 +54,13 @@ namespace ConcertFinderMVC.DataAccess
 
 
 
-        static public bool Update(Event myevent)
+        static public bool Update(T_Event myevent)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    var n_event = new Event { EVENT_ID = myevent.EVENT_ID };
+                    var n_event = new T_Event { Id = myevent.Id };
                     bdd.T_Event.Attach(n_event);
                     bdd.ApplyCurrentValues("T_EVENT", myevent);
                     bdd.SaveChanges();
@@ -73,38 +73,22 @@ namespace ConcertFinderMVC.DataAccess
             return true;
         }
 
-        static public Event Get(long id)
+        static public T_Event Get(long id, bool creation = false)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
-                Event myevent;
-                try
-                {
-                    myevent = bdd.T_Event.Include("T_Tag").Include("T_Location").Include("T_User").Include("T_Notification").
-                        Where(x => x.EVENT_VALIDE == true && x.EVENT_DATEDEBUT > DateTime.Now && x.EVENT_ID == id).FirstOrDefault();
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-                return myevent;
-            }
-        }
-
-        static public Event Get(string title, bool creation = false)
-        {
-            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
-            {
-                Event myevent;
+                T_Event myevent;
                 try
                 {
                     if (!creation)
                     {
-                        myevent = bdd.T_Event.Where(x => x.EVENT_VALIDE == true && x.EVENT_DATEDEBUT > DateTime.Now && x.EVENT_TITRE == title).FirstOrDefault();
+                        myevent = bdd.T_Event.Include("T_Tag").Include("T_Location").Include("T_User").Include("T_Notification").
+                            Where(x => x.Valide == true && x.DateDebut > DateTime.Now && x.Id == id).FirstOrDefault();
                     }
                     else
                     {
-                        myevent = bdd.T_Event.Where(x => x.EVENT_TITRE == title).FirstOrDefault();
+                        myevent = bdd.T_Event.Include("T_Tag").Include("T_Location").Include("T_User").Include("T_Notification").
+                            Where(x => x.Id == id).FirstOrDefault();
                     }
                 }
                 catch (Exception)
@@ -115,14 +99,38 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        public static List<Tag> getTaglistfromEvent(long idEvent)
+        static public T_Event Get(string title, bool creation = false)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                T_Event myevent;
+                try
+                {
+                    if (!creation)
+                    {
+                        myevent = bdd.T_Event.Where(x => x.Valide == true && x.DateDebut > DateTime.Now && x.Titre == title).FirstOrDefault();
+                    }
+                    else
+                    {
+                        myevent = bdd.T_Event.Where(x => x.Titre == title).FirstOrDefault();
+                    }
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+                return myevent;
+            }
+        }
+
+        public static List<T_Tag> getTaglistfromEvent(long idEvent)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    Event eve = bdd.T_Event.Where(x => x.EVENT_ID == idEvent).FirstOrDefault();
-                    List<Tag> tags = eve.T_Tag.ToList();
+                    T_Event eve = bdd.T_Event.Where(x => x.Id == idEvent).FirstOrDefault();
+                    List<T_Tag> tags = eve.T_Tag.ToList();
                     return tags;
                 }
                 catch (Exception)
@@ -132,14 +140,14 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        static public List<Event> GetListLastAddEvent(int nbr, string type = "")
+        static public List<T_Event> GetListLastAddEvent(int nbr, string type = "")
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    List<Event> myevent = bdd.T_Event.Include("T_Location").
-                        Where(x => x.EVENT_VALIDE == true && x.EVENT_DATEDEBUT > DateTime.Now).OrderByDescending(x => x.EVENT_ID).Take(nbr).ToList();
+                    List<T_Event> myevent = bdd.T_Event.Include("T_Location").
+                        Where(x => x.Valide == true && x.DateDebut > DateTime.Now).OrderByDescending(x => x.Id).Take(nbr).ToList();
                     return (myevent);
                 }
                 catch (Exception)
@@ -150,22 +158,22 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        static public List<Event> GetListEvent(int nbr, string type = "")
+        static public List<T_Event> GetListEvent(int nbr, string type = "")
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    List<Event> myevent;
+                    List<T_Event> myevent;
                     if (type != "")
                     {
                         myevent = bdd.T_Event.Include("T_Location").
-                            Where(x => x.EVENT_VALIDE == true && x.EVENT_DATEDEBUT > DateTime.Now && x.EVENT_TYPE == type).OrderBy(x => x.EVENT_DATEDEBUT).Take(nbr).ToList();
+                            Where(x => x.Valide == true && x.DateDebut > DateTime.Now && x.Type == type).OrderBy(x => x.DateDebut).Take(nbr).ToList();
                     }
                     else
                     {
                         myevent = bdd.T_Event.Include("T_Location").
-                            Where(x => x.EVENT_VALIDE == true && x.EVENT_DATEDEBUT > DateTime.Now).OrderBy(x => x.EVENT_DATEDEBUT).Take(nbr).ToList();
+                            Where(x => x.Valide == true && x.DateDebut > DateTime.Now).OrderBy(x => x.DateDebut).Take(nbr).ToList();
                     }
                     return (myevent);
                 }

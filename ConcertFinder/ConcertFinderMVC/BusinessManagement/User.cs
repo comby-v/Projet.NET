@@ -12,7 +12,7 @@ namespace ConcertFinderMVC.BusinessManagement
     {
         public static Boolean create(RegisterModel form)
         {
-            DataAccess.User user = new DataAccess.User()
+            DataAccess.T_User user = new DataAccess.T_User()
             {
                 Name = form.Name,
                 Firstname = form.Firstname,
@@ -20,35 +20,39 @@ namespace ConcertFinderMVC.BusinessManagement
                 Mail = form.Email,
                 Ville = form.City,
                 Password = form.Password,
-                Role = "User",
+                Role = UserModel.GetRoleType((int)eRole.User),
+                Deleted = false,
                 T_Event = null,
                 T_Notification = null,
-                T_Tag = null                
+                T_Tag = null
             };
-            string[] split = form.Tags.Split(new Char[] { ' ', ',', '.', ';'});
-            List<DataAccess.Tag> listTag = new List<DataAccess.Tag>();
-            foreach (string str in split)
+            List<DataAccess.T_Tag> listTag = new List<DataAccess.T_Tag>();
+            if (form.Tags != null && form.Tags != "")
             {
-                if (str.Length > 2)
+                string[] split = form.Tags.Split(new Char[] { ' ', ',', '.', ';' });
+                foreach (string str in split)
                 {
-                    Regex r = new Regex("[a-z1-9*]");
-                    Match m = r.Match(str);
-                    if (m.Success)
+                    if (str.Length > 2)
                     {
-                        str.ToLower();
-                        DataAccess.Tag tag = new DataAccess.Tag ()
+                        Regex r = new Regex("[a-z1-9*]");
+                        Match m = r.Match(str);
+                        if (m.Success)
                         {
-                            TAG_CONTENT = str
-                        };
-                        if (DataAccess.Tag.Get(str) == null)
-                        {
-                            DataAccess.Tag.Create(tag);
-                        }
+                            str.ToLower();
+                            DataAccess.T_Tag tag = new DataAccess.T_Tag()
+                            {
+                                Name = str
+                            };
+                            if (DataAccess.Tag.Get(str) == null)
+                            {
+                                DataAccess.Tag.Create(tag);
+                            }
 
-                        tag = DataAccess.Tag.Get(str);
-                        listTag.Add(tag);
+                            tag = DataAccess.Tag.Get(str);
+                            listTag.Add(tag);
+                        }
                     }
-                } 
+                }
             }
             return DataAccess.User.create(user, listTag);
         }
@@ -58,7 +62,7 @@ namespace ConcertFinderMVC.BusinessManagement
             return DataAccess.User.validate_user(pseudo, password);
         }
 
-        public static DataAccess.User GetUserByPseudo(String pseudo)
+        public static DataAccess.T_User GetUserByPseudo(String pseudo)
         {
             return DataAccess.User.GetUserByPseudo(pseudo);
         }

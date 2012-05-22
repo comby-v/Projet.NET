@@ -18,12 +18,12 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("ConcertFinderModel", "FK_EVENT_LOCATION1", "T_Location", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ConcertFinderMVC.DataAccess.Location), "T_Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.Event))]
-[assembly: EdmRelationshipAttribute("ConcertFinderModel", "FK_EVENT_USER1", "T_User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ConcertFinderMVC.DataAccess.User), "T_Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.Event))]
-[assembly: EdmRelationshipAttribute("ConcertFinderModel", "T_HasNotification", "T_Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.Event), "T_Notification", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.Notification))]
-[assembly: EdmRelationshipAttribute("ConcertFinderModel", "T_HasTags", "T_Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.Event), "T_Tag", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.Tag))]
-[assembly: EdmRelationshipAttribute("ConcertFinderModel", "T_Notified", "T_Notification", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.Notification), "T_User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.User))]
-[assembly: EdmRelationshipAttribute("ConcertFinderModel", "T_Prefer", "T_Tag", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.Tag), "T_User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.User))]
+[assembly: EdmRelationshipAttribute("ConcertFinderModel", "FK_EVENT_LOCATION", "T_Location", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ConcertFinderMVC.DataAccess.T_Location), "T_Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.T_Event))]
+[assembly: EdmRelationshipAttribute("ConcertFinderModel", "FK_EVENT_USER", "T_User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ConcertFinderMVC.DataAccess.T_User), "T_Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.T_Event))]
+[assembly: EdmRelationshipAttribute("ConcertFinderModel", "T_HasNotification", "T_Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.T_Event), "T_Notification", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.T_Notification))]
+[assembly: EdmRelationshipAttribute("ConcertFinderModel", "T_HasTags", "T_Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.T_Event), "T_Tag", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.T_Tag))]
+[assembly: EdmRelationshipAttribute("ConcertFinderModel", "T_Notified", "T_Notification", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.T_Notification), "T_User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.T_User))]
+[assembly: EdmRelationshipAttribute("ConcertFinderModel", "T_Prefer", "T_Tag", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.T_Tag), "T_User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ConcertFinderMVC.DataAccess.T_User))]
 
 #endregion
 
@@ -78,82 +78,82 @@ namespace ConcertFinderMVC.DataAccess
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Event> T_Event
+        public ObjectSet<T_Event> T_Event
         {
             get
             {
                 if ((_T_Event == null))
                 {
-                    _T_Event = base.CreateObjectSet<Event>("T_Event");
+                    _T_Event = base.CreateObjectSet<T_Event>("T_Event");
                 }
                 return _T_Event;
             }
         }
-        private ObjectSet<Event> _T_Event;
+        private ObjectSet<T_Event> _T_Event;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Location> T_Location
+        public ObjectSet<T_Location> T_Location
         {
             get
             {
                 if ((_T_Location == null))
                 {
-                    _T_Location = base.CreateObjectSet<Location>("T_Location");
+                    _T_Location = base.CreateObjectSet<T_Location>("T_Location");
                 }
                 return _T_Location;
             }
         }
-        private ObjectSet<Location> _T_Location;
+        private ObjectSet<T_Location> _T_Location;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Notification> T_Notification
+        public ObjectSet<T_Notification> T_Notification
         {
             get
             {
                 if ((_T_Notification == null))
                 {
-                    _T_Notification = base.CreateObjectSet<Notification>("T_Notification");
+                    _T_Notification = base.CreateObjectSet<T_Notification>("T_Notification");
                 }
                 return _T_Notification;
             }
         }
-        private ObjectSet<Notification> _T_Notification;
+        private ObjectSet<T_Notification> _T_Notification;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Tag> T_Tag
+        public ObjectSet<T_Tag> T_Tag
         {
             get
             {
                 if ((_T_Tag == null))
                 {
-                    _T_Tag = base.CreateObjectSet<Tag>("T_Tag");
+                    _T_Tag = base.CreateObjectSet<T_Tag>("T_Tag");
                 }
                 return _T_Tag;
             }
         }
-        private ObjectSet<Tag> _T_Tag;
+        private ObjectSet<T_Tag> _T_Tag;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<User> T_User
+        public ObjectSet<T_User> T_User
         {
             get
             {
                 if ((_T_User == null))
                 {
-                    _T_User = base.CreateObjectSet<User>("T_User");
+                    _T_User = base.CreateObjectSet<T_User>("T_User");
                 }
                 return _T_User;
             }
         }
-        private ObjectSet<User> _T_User;
+        private ObjectSet<T_User> _T_User;
 
         #endregion
         #region AddTo Methods
@@ -161,7 +161,7 @@ namespace ConcertFinderMVC.DataAccess
         /// <summary>
         /// Deprecated Method for adding a new object to the T_Event EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToT_Event(Event t_Event)
+        public void AddToT_Event(T_Event t_Event)
         {
             base.AddObject("T_Event", t_Event);
         }
@@ -169,7 +169,7 @@ namespace ConcertFinderMVC.DataAccess
         /// <summary>
         /// Deprecated Method for adding a new object to the T_Location EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToT_Location(Location t_Location)
+        public void AddToT_Location(T_Location t_Location)
         {
             base.AddObject("T_Location", t_Location);
         }
@@ -177,7 +177,7 @@ namespace ConcertFinderMVC.DataAccess
         /// <summary>
         /// Deprecated Method for adding a new object to the T_Notification EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToT_Notification(Notification t_Notification)
+        public void AddToT_Notification(T_Notification t_Notification)
         {
             base.AddObject("T_Notification", t_Notification);
         }
@@ -185,7 +185,7 @@ namespace ConcertFinderMVC.DataAccess
         /// <summary>
         /// Deprecated Method for adding a new object to the T_Tag EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToT_Tag(Tag t_Tag)
+        public void AddToT_Tag(T_Tag t_Tag)
         {
             base.AddObject("T_Tag", t_Tag);
         }
@@ -193,7 +193,7 @@ namespace ConcertFinderMVC.DataAccess
         /// <summary>
         /// Deprecated Method for adding a new object to the T_User EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToT_User(User t_User)
+        public void AddToT_User(T_User t_User)
         {
             base.AddObject("T_User", t_User);
         }
@@ -212,26 +212,26 @@ namespace ConcertFinderMVC.DataAccess
     [EdmEntityTypeAttribute(NamespaceName="ConcertFinderModel", Name="T_Event")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Event : EntityObject
+    public partial class T_Event : EntityObject
     {
         #region Factory Method
     
         /// <summary>
         /// Create a new T_Event object.
         /// </summary>
-        /// <param name="eVENT_ID">Initial value of the EVENT_ID property.</param>
-        /// <param name="eVENT_DATEDEBUT">Initial value of the EVENT_DATEDEBUT property.</param>
-        /// <param name="eVENT_DESCRIPTION">Initial value of the EVENT_DESCRIPTION property.</param>
-        /// <param name="eVENT_TITRE">Initial value of the EVENT_TITRE property.</param>
-        /// <param name="eVENT_TYPE">Initial value of the EVENT_TYPE property.</param>
-        public static Event CreateT_Event(global::System.Int64 eVENT_ID, global::System.DateTime eVENT_DATEDEBUT, global::System.String eVENT_DESCRIPTION, global::System.String eVENT_TITRE, global::System.String eVENT_TYPE)
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="dateDebut">Initial value of the DateDebut property.</param>
+        /// <param name="description">Initial value of the Description property.</param>
+        /// <param name="titre">Initial value of the Titre property.</param>
+        /// <param name="type">Initial value of the Type property.</param>
+        public static T_Event CreateT_Event(global::System.Int64 id, global::System.DateTime dateDebut, global::System.String description, global::System.String titre, global::System.String type)
         {
-            Event t_Event = new Event();
-            t_Event.EVENT_ID = eVENT_ID;
-            t_Event.EVENT_DATEDEBUT = eVENT_DATEDEBUT;
-            t_Event.EVENT_DESCRIPTION = eVENT_DESCRIPTION;
-            t_Event.EVENT_TITRE = eVENT_TITRE;
-            t_Event.EVENT_TYPE = eVENT_TYPE;
+            T_Event t_Event = new T_Event();
+            t_Event.Id = id;
+            t_Event.DateDebut = dateDebut;
+            t_Event.Description = description;
+            t_Event.Titre = titre;
+            t_Event.Type = type;
             return t_Event;
         }
 
@@ -243,291 +243,291 @@ namespace ConcertFinderMVC.DataAccess
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 EVENT_ID
+        public global::System.Int64 Id
         {
             get
             {
-                return _EVENT_ID;
+                return _Id;
             }
             set
             {
-                if (_EVENT_ID != value)
+                if (_Id != value)
                 {
-                    OnEVENT_IDChanging(value);
-                    ReportPropertyChanging("EVENT_ID");
-                    _EVENT_ID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("EVENT_ID");
-                    OnEVENT_IDChanged();
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
                 }
             }
         }
-        private global::System.Int64 _EVENT_ID;
-        partial void OnEVENT_IDChanging(global::System.Int64 value);
-        partial void OnEVENT_IDChanged();
+        private global::System.Int64 _Id;
+        partial void OnIdChanging(global::System.Int64 value);
+        partial void OnIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.DateTime EVENT_DATEDEBUT
+        public global::System.DateTime DateDebut
         {
             get
             {
-                return _EVENT_DATEDEBUT;
+                return _DateDebut;
             }
             set
             {
-                OnEVENT_DATEDEBUTChanging(value);
-                ReportPropertyChanging("EVENT_DATEDEBUT");
-                _EVENT_DATEDEBUT = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("EVENT_DATEDEBUT");
-                OnEVENT_DATEDEBUTChanged();
+                OnDateDebutChanging(value);
+                ReportPropertyChanging("DateDebut");
+                _DateDebut = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateDebut");
+                OnDateDebutChanged();
             }
         }
-        private global::System.DateTime _EVENT_DATEDEBUT;
-        partial void OnEVENT_DATEDEBUTChanging(global::System.DateTime value);
-        partial void OnEVENT_DATEDEBUTChanged();
+        private global::System.DateTime _DateDebut;
+        partial void OnDateDebutChanging(global::System.DateTime value);
+        partial void OnDateDebutChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> EVENT_DATEFIN
+        public Nullable<global::System.DateTime> DateFin
         {
             get
             {
-                return _EVENT_DATEFIN;
+                return _DateFin;
             }
             set
             {
-                OnEVENT_DATEFINChanging(value);
-                ReportPropertyChanging("EVENT_DATEFIN");
-                _EVENT_DATEFIN = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("EVENT_DATEFIN");
-                OnEVENT_DATEFINChanged();
+                OnDateFinChanging(value);
+                ReportPropertyChanging("DateFin");
+                _DateFin = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateFin");
+                OnDateFinChanged();
             }
         }
-        private Nullable<global::System.DateTime> _EVENT_DATEFIN;
-        partial void OnEVENT_DATEFINChanging(Nullable<global::System.DateTime> value);
-        partial void OnEVENT_DATEFINChanged();
+        private Nullable<global::System.DateTime> _DateFin;
+        partial void OnDateFinChanging(Nullable<global::System.DateTime> value);
+        partial void OnDateFinChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String EVENT_DESCRIPTION
+        public global::System.String Description
         {
             get
             {
-                return _EVENT_DESCRIPTION;
+                return _Description;
             }
             set
             {
-                OnEVENT_DESCRIPTIONChanging(value);
-                ReportPropertyChanging("EVENT_DESCRIPTION");
-                _EVENT_DESCRIPTION = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("EVENT_DESCRIPTION");
-                OnEVENT_DESCRIPTIONChanged();
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
             }
         }
-        private global::System.String _EVENT_DESCRIPTION;
-        partial void OnEVENT_DESCRIPTIONChanging(global::System.String value);
-        partial void OnEVENT_DESCRIPTIONChanged();
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String EVENT_TITRE
+        public global::System.String Titre
         {
             get
             {
-                return _EVENT_TITRE;
+                return _Titre;
             }
             set
             {
-                OnEVENT_TITREChanging(value);
-                ReportPropertyChanging("EVENT_TITRE");
-                _EVENT_TITRE = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("EVENT_TITRE");
-                OnEVENT_TITREChanged();
+                OnTitreChanging(value);
+                ReportPropertyChanging("Titre");
+                _Titre = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Titre");
+                OnTitreChanged();
             }
         }
-        private global::System.String _EVENT_TITRE;
-        partial void OnEVENT_TITREChanging(global::System.String value);
-        partial void OnEVENT_TITREChanged();
+        private global::System.String _Titre;
+        partial void OnTitreChanging(global::System.String value);
+        partial void OnTitreChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String EVENT_TYPE
+        public global::System.String Type
         {
             get
             {
-                return _EVENT_TYPE;
+                return _Type;
             }
             set
             {
-                OnEVENT_TYPEChanging(value);
-                ReportPropertyChanging("EVENT_TYPE");
-                _EVENT_TYPE = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("EVENT_TYPE");
-                OnEVENT_TYPEChanged();
+                OnTypeChanging(value);
+                ReportPropertyChanging("Type");
+                _Type = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Type");
+                OnTypeChanged();
             }
         }
-        private global::System.String _EVENT_TYPE;
-        partial void OnEVENT_TYPEChanging(global::System.String value);
-        partial void OnEVENT_TYPEChanged();
+        private global::System.String _Type;
+        partial void OnTypeChanging(global::System.String value);
+        partial void OnTypeChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String EVENT_IMG_PATH
+        public global::System.String Image
         {
             get
             {
-                return _EVENT_IMG_PATH;
+                return _Image;
             }
             set
             {
-                OnEVENT_IMG_PATHChanging(value);
-                ReportPropertyChanging("EVENT_IMG_PATH");
-                _EVENT_IMG_PATH = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("EVENT_IMG_PATH");
-                OnEVENT_IMG_PATHChanged();
+                OnImageChanging(value);
+                ReportPropertyChanging("Image");
+                _Image = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Image");
+                OnImageChanged();
             }
         }
-        private global::System.String _EVENT_IMG_PATH;
-        partial void OnEVENT_IMG_PATHChanging(global::System.String value);
-        partial void OnEVENT_IMG_PATHChanged();
+        private global::System.String _Image;
+        partial void OnImageChanging(global::System.String value);
+        partial void OnImageChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> EVENT_VALIDE
+        public Nullable<global::System.Boolean> Valide
         {
             get
             {
-                return _EVENT_VALIDE;
+                return _Valide;
             }
             set
             {
-                OnEVENT_VALIDEChanging(value);
-                ReportPropertyChanging("EVENT_VALIDE");
-                _EVENT_VALIDE = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("EVENT_VALIDE");
-                OnEVENT_VALIDEChanged();
+                OnValideChanging(value);
+                ReportPropertyChanging("Valide");
+                _Valide = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Valide");
+                OnValideChanged();
             }
         }
-        private Nullable<global::System.Boolean> _EVENT_VALIDE;
-        partial void OnEVENT_VALIDEChanging(Nullable<global::System.Boolean> value);
-        partial void OnEVENT_VALIDEChanged();
+        private Nullable<global::System.Boolean> _Valide;
+        partial void OnValideChanging(Nullable<global::System.Boolean> value);
+        partial void OnValideChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String EVENT_EMAIL
+        public global::System.String Email
         {
             get
             {
-                return _EVENT_EMAIL;
+                return _Email;
             }
             set
             {
-                OnEVENT_EMAILChanging(value);
-                ReportPropertyChanging("EVENT_EMAIL");
-                _EVENT_EMAIL = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("EVENT_EMAIL");
-                OnEVENT_EMAILChanged();
+                OnEmailChanging(value);
+                ReportPropertyChanging("Email");
+                _Email = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Email");
+                OnEmailChanged();
             }
         }
-        private global::System.String _EVENT_EMAIL;
-        partial void OnEVENT_EMAILChanging(global::System.String value);
-        partial void OnEVENT_EMAILChanged();
+        private global::System.String _Email;
+        partial void OnEmailChanging(global::System.String value);
+        partial void OnEmailChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String EVENT_TEL
+        public global::System.String Tel
         {
             get
             {
-                return _EVENT_TEL;
+                return _Tel;
             }
             set
             {
-                OnEVENT_TELChanging(value);
-                ReportPropertyChanging("EVENT_TEL");
-                _EVENT_TEL = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("EVENT_TEL");
-                OnEVENT_TELChanged();
+                OnTelChanging(value);
+                ReportPropertyChanging("Tel");
+                _Tel = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Tel");
+                OnTelChanged();
             }
         }
-        private global::System.String _EVENT_TEL;
-        partial void OnEVENT_TELChanging(global::System.String value);
-        partial void OnEVENT_TELChanged();
+        private global::System.String _Tel;
+        partial void OnTelChanging(global::System.String value);
+        partial void OnTelChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String EVENT_SITE
+        public global::System.String WebSite
         {
             get
             {
-                return _EVENT_SITE;
+                return _WebSite;
             }
             set
             {
-                OnEVENT_SITEChanging(value);
-                ReportPropertyChanging("EVENT_SITE");
-                _EVENT_SITE = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("EVENT_SITE");
-                OnEVENT_SITEChanged();
+                OnWebSiteChanging(value);
+                ReportPropertyChanging("WebSite");
+                _WebSite = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("WebSite");
+                OnWebSiteChanged();
             }
         }
-        private global::System.String _EVENT_SITE;
-        partial void OnEVENT_SITEChanging(global::System.String value);
-        partial void OnEVENT_SITEChanged();
+        private global::System.String _WebSite;
+        partial void OnWebSiteChanging(global::System.String value);
+        partial void OnWebSiteChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> Event_DateCreation
+        public Nullable<global::System.DateTime> DateCreation
         {
             get
             {
-                return _Event_DateCreation;
+                return _DateCreation;
             }
             set
             {
-                OnEvent_DateCreationChanging(value);
-                ReportPropertyChanging("Event_DateCreation");
-                _Event_DateCreation = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Event_DateCreation");
-                OnEvent_DateCreationChanged();
+                OnDateCreationChanging(value);
+                ReportPropertyChanging("DateCreation");
+                _DateCreation = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateCreation");
+                OnDateCreationChanged();
             }
         }
-        private Nullable<global::System.DateTime> _Event_DateCreation;
-        partial void OnEvent_DateCreationChanging(Nullable<global::System.DateTime> value);
-        partial void OnEvent_DateCreationChanged();
+        private Nullable<global::System.DateTime> _DateCreation;
+        partial void OnDateCreationChanging(Nullable<global::System.DateTime> value);
+        partial void OnDateCreationChanged();
 
         #endregion
     
@@ -539,16 +539,16 @@ namespace ConcertFinderMVC.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ConcertFinderModel", "FK_EVENT_LOCATION1", "T_Location")]
-        public Location T_Location
+        [EdmRelationshipNavigationPropertyAttribute("ConcertFinderModel", "FK_EVENT_LOCATION", "T_Location")]
+        public T_Location T_Location
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Location>("ConcertFinderModel.FK_EVENT_LOCATION1", "T_Location").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<T_Location>("ConcertFinderModel.FK_EVENT_LOCATION", "T_Location").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Location>("ConcertFinderModel.FK_EVENT_LOCATION1", "T_Location").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<T_Location>("ConcertFinderModel.FK_EVENT_LOCATION", "T_Location").Value = value;
             }
         }
         /// <summary>
@@ -556,17 +556,17 @@ namespace ConcertFinderMVC.DataAccess
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Location> T_LocationReference
+        public EntityReference<T_Location> T_LocationReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Location>("ConcertFinderModel.FK_EVENT_LOCATION1", "T_Location");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<T_Location>("ConcertFinderModel.FK_EVENT_LOCATION", "T_Location");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Location>("ConcertFinderModel.FK_EVENT_LOCATION1", "T_Location", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<T_Location>("ConcertFinderModel.FK_EVENT_LOCATION", "T_Location", value);
                 }
             }
         }
@@ -577,16 +577,16 @@ namespace ConcertFinderMVC.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ConcertFinderModel", "FK_EVENT_USER1", "T_User")]
-        public User T_User
+        [EdmRelationshipNavigationPropertyAttribute("ConcertFinderModel", "FK_EVENT_USER", "T_User")]
+        public T_User T_User
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("ConcertFinderModel.FK_EVENT_USER1", "T_User").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<T_User>("ConcertFinderModel.FK_EVENT_USER", "T_User").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("ConcertFinderModel.FK_EVENT_USER1", "T_User").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<T_User>("ConcertFinderModel.FK_EVENT_USER", "T_User").Value = value;
             }
         }
         /// <summary>
@@ -594,17 +594,17 @@ namespace ConcertFinderMVC.DataAccess
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<User> T_UserReference
+        public EntityReference<T_User> T_UserReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("ConcertFinderModel.FK_EVENT_USER1", "T_User");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<T_User>("ConcertFinderModel.FK_EVENT_USER", "T_User");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("ConcertFinderModel.FK_EVENT_USER1", "T_User", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<T_User>("ConcertFinderModel.FK_EVENT_USER", "T_User", value);
                 }
             }
         }
@@ -616,17 +616,17 @@ namespace ConcertFinderMVC.DataAccess
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("ConcertFinderModel", "T_HasNotification", "T_Notification")]
-        public EntityCollection<Notification> T_Notification
+        public EntityCollection<T_Notification> T_Notification
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Notification>("ConcertFinderModel.T_HasNotification", "T_Notification");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<T_Notification>("ConcertFinderModel.T_HasNotification", "T_Notification");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Notification>("ConcertFinderModel.T_HasNotification", "T_Notification", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<T_Notification>("ConcertFinderModel.T_HasNotification", "T_Notification", value);
                 }
             }
         }
@@ -638,17 +638,17 @@ namespace ConcertFinderMVC.DataAccess
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("ConcertFinderModel", "T_HasTags", "T_Tag")]
-        public EntityCollection<Tag> T_Tag
+        public EntityCollection<T_Tag> T_Tag
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Tag>("ConcertFinderModel.T_HasTags", "T_Tag");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<T_Tag>("ConcertFinderModel.T_HasTags", "T_Tag");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Tag>("ConcertFinderModel.T_HasTags", "T_Tag", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<T_Tag>("ConcertFinderModel.T_HasTags", "T_Tag", value);
                 }
             }
         }
@@ -662,28 +662,32 @@ namespace ConcertFinderMVC.DataAccess
     [EdmEntityTypeAttribute(NamespaceName="ConcertFinderModel", Name="T_Location")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Location : EntityObject
+    public partial class T_Location : EntityObject
     {
         #region Factory Method
     
         /// <summary>
         /// Create a new T_Location object.
         /// </summary>
-        /// <param name="lOCATION_ID">Initial value of the LOCATION_ID property.</param>
-        /// <param name="lOCATION_NAME">Initial value of the LOCATION_NAME property.</param>
-        /// <param name="lOCATION_VILLE">Initial value of the LOCATION_VILLE property.</param>
-        /// <param name="lOCATION_PAYS">Initial value of the LOCATION_PAYS property.</param>
-        /// <param name="lOCATION_RUE">Initial value of the LOCATION_RUE property.</param>
-        /// <param name="lOCATION_CP">Initial value of the LOCATION_CP property.</param>
-        public static Location CreateT_Location(global::System.Int64 lOCATION_ID, global::System.String lOCATION_NAME, global::System.String lOCATION_VILLE, global::System.String lOCATION_PAYS, global::System.String lOCATION_RUE, global::System.String lOCATION_CP)
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="ville">Initial value of the Ville property.</param>
+        /// <param name="pays">Initial value of the Pays property.</param>
+        /// <param name="rue">Initial value of the Rue property.</param>
+        /// <param name="cP">Initial value of the CP property.</param>
+        /// <param name="latitude">Initial value of the Latitude property.</param>
+        /// <param name="longitude">Initial value of the Longitude property.</param>
+        public static T_Location CreateT_Location(global::System.Int64 id, global::System.String name, global::System.String ville, global::System.String pays, global::System.String rue, global::System.String cP, global::System.Double latitude, global::System.Double longitude)
         {
-            Location t_Location = new Location();
-            t_Location.LOCATION_ID = lOCATION_ID;
-            t_Location.LOCATION_NAME = lOCATION_NAME;
-            t_Location.LOCATION_VILLE = lOCATION_VILLE;
-            t_Location.LOCATION_PAYS = lOCATION_PAYS;
-            t_Location.LOCATION_RUE = lOCATION_RUE;
-            t_Location.LOCATION_CP = lOCATION_CP;
+            T_Location t_Location = new T_Location();
+            t_Location.Id = id;
+            t_Location.Name = name;
+            t_Location.Ville = ville;
+            t_Location.Pays = pays;
+            t_Location.Rue = rue;
+            t_Location.CP = cP;
+            t_Location.Latitude = latitude;
+            t_Location.Longitude = longitude;
             return t_Location;
         }
 
@@ -695,195 +699,195 @@ namespace ConcertFinderMVC.DataAccess
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 LOCATION_ID
+        public global::System.Int64 Id
         {
             get
             {
-                return _LOCATION_ID;
+                return _Id;
             }
             set
             {
-                if (_LOCATION_ID != value)
+                if (_Id != value)
                 {
-                    OnLOCATION_IDChanging(value);
-                    ReportPropertyChanging("LOCATION_ID");
-                    _LOCATION_ID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("LOCATION_ID");
-                    OnLOCATION_IDChanged();
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
                 }
             }
         }
-        private global::System.Int64 _LOCATION_ID;
-        partial void OnLOCATION_IDChanging(global::System.Int64 value);
-        partial void OnLOCATION_IDChanged();
+        private global::System.Int64 _Id;
+        partial void OnIdChanging(global::System.Int64 value);
+        partial void OnIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String LOCATION_NAME
+        public global::System.String Name
         {
             get
             {
-                return _LOCATION_NAME;
+                return _Name;
             }
             set
             {
-                OnLOCATION_NAMEChanging(value);
-                ReportPropertyChanging("LOCATION_NAME");
-                _LOCATION_NAME = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("LOCATION_NAME");
-                OnLOCATION_NAMEChanged();
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
             }
         }
-        private global::System.String _LOCATION_NAME;
-        partial void OnLOCATION_NAMEChanging(global::System.String value);
-        partial void OnLOCATION_NAMEChanged();
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String LOCATION_VILLE
+        public global::System.String Ville
         {
             get
             {
-                return _LOCATION_VILLE;
+                return _Ville;
             }
             set
             {
-                OnLOCATION_VILLEChanging(value);
-                ReportPropertyChanging("LOCATION_VILLE");
-                _LOCATION_VILLE = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("LOCATION_VILLE");
-                OnLOCATION_VILLEChanged();
+                OnVilleChanging(value);
+                ReportPropertyChanging("Ville");
+                _Ville = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Ville");
+                OnVilleChanged();
             }
         }
-        private global::System.String _LOCATION_VILLE;
-        partial void OnLOCATION_VILLEChanging(global::System.String value);
-        partial void OnLOCATION_VILLEChanged();
+        private global::System.String _Ville;
+        partial void OnVilleChanging(global::System.String value);
+        partial void OnVilleChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String LOCATION_PAYS
+        public global::System.String Pays
         {
             get
             {
-                return _LOCATION_PAYS;
+                return _Pays;
             }
             set
             {
-                OnLOCATION_PAYSChanging(value);
-                ReportPropertyChanging("LOCATION_PAYS");
-                _LOCATION_PAYS = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("LOCATION_PAYS");
-                OnLOCATION_PAYSChanged();
+                OnPaysChanging(value);
+                ReportPropertyChanging("Pays");
+                _Pays = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Pays");
+                OnPaysChanged();
             }
         }
-        private global::System.String _LOCATION_PAYS;
-        partial void OnLOCATION_PAYSChanging(global::System.String value);
-        partial void OnLOCATION_PAYSChanged();
+        private global::System.String _Pays;
+        partial void OnPaysChanging(global::System.String value);
+        partial void OnPaysChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String LOCATION_RUE
+        public global::System.String Rue
         {
             get
             {
-                return _LOCATION_RUE;
+                return _Rue;
             }
             set
             {
-                OnLOCATION_RUEChanging(value);
-                ReportPropertyChanging("LOCATION_RUE");
-                _LOCATION_RUE = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("LOCATION_RUE");
-                OnLOCATION_RUEChanged();
+                OnRueChanging(value);
+                ReportPropertyChanging("Rue");
+                _Rue = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Rue");
+                OnRueChanged();
             }
         }
-        private global::System.String _LOCATION_RUE;
-        partial void OnLOCATION_RUEChanging(global::System.String value);
-        partial void OnLOCATION_RUEChanged();
+        private global::System.String _Rue;
+        partial void OnRueChanging(global::System.String value);
+        partial void OnRueChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String LOCATION_CP
+        public global::System.String CP
         {
             get
             {
-                return _LOCATION_CP;
+                return _CP;
             }
             set
             {
-                OnLOCATION_CPChanging(value);
-                ReportPropertyChanging("LOCATION_CP");
-                _LOCATION_CP = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("LOCATION_CP");
-                OnLOCATION_CPChanged();
+                OnCPChanging(value);
+                ReportPropertyChanging("CP");
+                _CP = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CP");
+                OnCPChanged();
             }
         }
-        private global::System.String _LOCATION_CP;
-        partial void OnLOCATION_CPChanging(global::System.String value);
-        partial void OnLOCATION_CPChanged();
+        private global::System.String _CP;
+        partial void OnCPChanging(global::System.String value);
+        partial void OnCPChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Double> LOCATION_LATTITUDE
+        public global::System.Double Latitude
         {
             get
             {
-                return _LOCATION_LATTITUDE;
+                return _Latitude;
             }
             set
             {
-                OnLOCATION_LATTITUDEChanging(value);
-                ReportPropertyChanging("LOCATION_LATTITUDE");
-                _LOCATION_LATTITUDE = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("LOCATION_LATTITUDE");
-                OnLOCATION_LATTITUDEChanged();
+                OnLatitudeChanging(value);
+                ReportPropertyChanging("Latitude");
+                _Latitude = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Latitude");
+                OnLatitudeChanged();
             }
         }
-        private Nullable<global::System.Double> _LOCATION_LATTITUDE;
-        partial void OnLOCATION_LATTITUDEChanging(Nullable<global::System.Double> value);
-        partial void OnLOCATION_LATTITUDEChanged();
+        private global::System.Double _Latitude;
+        partial void OnLatitudeChanging(global::System.Double value);
+        partial void OnLatitudeChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Double> LOCATION_LONGITUDE
+        public global::System.Double Longitude
         {
             get
             {
-                return _LOCATION_LONGITUDE;
+                return _Longitude;
             }
             set
             {
-                OnLOCATION_LONGITUDEChanging(value);
-                ReportPropertyChanging("LOCATION_LONGITUDE");
-                _LOCATION_LONGITUDE = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("LOCATION_LONGITUDE");
-                OnLOCATION_LONGITUDEChanged();
+                OnLongitudeChanging(value);
+                ReportPropertyChanging("Longitude");
+                _Longitude = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Longitude");
+                OnLongitudeChanged();
             }
         }
-        private Nullable<global::System.Double> _LOCATION_LONGITUDE;
-        partial void OnLOCATION_LONGITUDEChanging(Nullable<global::System.Double> value);
-        partial void OnLOCATION_LONGITUDEChanged();
+        private global::System.Double _Longitude;
+        partial void OnLongitudeChanging(global::System.Double value);
+        partial void OnLongitudeChanged();
 
         #endregion
     
@@ -895,18 +899,18 @@ namespace ConcertFinderMVC.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ConcertFinderModel", "FK_EVENT_LOCATION1", "T_Event")]
-        public EntityCollection<Event> T_Event
+        [EdmRelationshipNavigationPropertyAttribute("ConcertFinderModel", "FK_EVENT_LOCATION", "T_Event")]
+        public EntityCollection<T_Event> T_Event
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Event>("ConcertFinderModel.FK_EVENT_LOCATION1", "T_Event");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<T_Event>("ConcertFinderModel.FK_EVENT_LOCATION", "T_Event");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Event>("ConcertFinderModel.FK_EVENT_LOCATION1", "T_Event", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<T_Event>("ConcertFinderModel.FK_EVENT_LOCATION", "T_Event", value);
                 }
             }
         }
@@ -920,7 +924,7 @@ namespace ConcertFinderMVC.DataAccess
     [EdmEntityTypeAttribute(NamespaceName="ConcertFinderModel", Name="T_Notification")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Notification : EntityObject
+    public partial class T_Notification : EntityObject
     {
         #region Factory Method
     
@@ -931,9 +935,9 @@ namespace ConcertFinderMVC.DataAccess
         /// <param name="titre">Initial value of the Titre property.</param>
         /// <param name="date">Initial value of the Date property.</param>
         /// <param name="message">Initial value of the Message property.</param>
-        public static Notification CreateT_Notification(global::System.Int64 id, global::System.String titre, global::System.DateTime date, global::System.String message)
+        public static T_Notification CreateT_Notification(global::System.Int64 id, global::System.String titre, global::System.DateTime date, global::System.String message)
         {
-            Notification t_Notification = new Notification();
+            T_Notification t_Notification = new T_Notification();
             t_Notification.Id = id;
             t_Notification.Titre = titre;
             t_Notification.Date = date;
@@ -1054,17 +1058,17 @@ namespace ConcertFinderMVC.DataAccess
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("ConcertFinderModel", "T_HasNotification", "T_Event")]
-        public EntityCollection<Event> T_Event
+        public EntityCollection<T_Event> T_Event
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Event>("ConcertFinderModel.T_HasNotification", "T_Event");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<T_Event>("ConcertFinderModel.T_HasNotification", "T_Event");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Event>("ConcertFinderModel.T_HasNotification", "T_Event", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<T_Event>("ConcertFinderModel.T_HasNotification", "T_Event", value);
                 }
             }
         }
@@ -1076,17 +1080,17 @@ namespace ConcertFinderMVC.DataAccess
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("ConcertFinderModel", "T_Notified", "T_User")]
-        public EntityCollection<User> T_User
+        public EntityCollection<T_User> T_User
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<User>("ConcertFinderModel.T_Notified", "T_User");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<T_User>("ConcertFinderModel.T_Notified", "T_User");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User>("ConcertFinderModel.T_Notified", "T_User", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<T_User>("ConcertFinderModel.T_Notified", "T_User", value);
                 }
             }
         }
@@ -1100,20 +1104,20 @@ namespace ConcertFinderMVC.DataAccess
     [EdmEntityTypeAttribute(NamespaceName="ConcertFinderModel", Name="T_Tag")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Tag : EntityObject
+    public partial class T_Tag : EntityObject
     {
         #region Factory Method
     
         /// <summary>
         /// Create a new T_Tag object.
         /// </summary>
-        /// <param name="tAG_ID">Initial value of the TAG_ID property.</param>
-        /// <param name="tAG_CONTENT">Initial value of the TAG_CONTENT property.</param>
-        public static Tag CreateT_Tag(global::System.Int64 tAG_ID, global::System.String tAG_CONTENT)
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static T_Tag CreateT_Tag(global::System.Int64 id, global::System.String name)
         {
-            Tag t_Tag = new Tag();
-            t_Tag.TAG_ID = tAG_ID;
-            t_Tag.TAG_CONTENT = tAG_CONTENT;
+            T_Tag t_Tag = new T_Tag();
+            t_Tag.Id = id;
+            t_Tag.Name = name;
             return t_Tag;
         }
 
@@ -1125,51 +1129,51 @@ namespace ConcertFinderMVC.DataAccess
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 TAG_ID
+        public global::System.Int64 Id
         {
             get
             {
-                return _TAG_ID;
+                return _Id;
             }
             set
             {
-                if (_TAG_ID != value)
+                if (_Id != value)
                 {
-                    OnTAG_IDChanging(value);
-                    ReportPropertyChanging("TAG_ID");
-                    _TAG_ID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("TAG_ID");
-                    OnTAG_IDChanged();
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
                 }
             }
         }
-        private global::System.Int64 _TAG_ID;
-        partial void OnTAG_IDChanging(global::System.Int64 value);
-        partial void OnTAG_IDChanged();
+        private global::System.Int64 _Id;
+        partial void OnIdChanging(global::System.Int64 value);
+        partial void OnIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String TAG_CONTENT
+        public global::System.String Name
         {
             get
             {
-                return _TAG_CONTENT;
+                return _Name;
             }
             set
             {
-                OnTAG_CONTENTChanging(value);
-                ReportPropertyChanging("TAG_CONTENT");
-                _TAG_CONTENT = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("TAG_CONTENT");
-                OnTAG_CONTENTChanged();
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
             }
         }
-        private global::System.String _TAG_CONTENT;
-        partial void OnTAG_CONTENTChanging(global::System.String value);
-        partial void OnTAG_CONTENTChanged();
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
 
         #endregion
     
@@ -1182,17 +1186,17 @@ namespace ConcertFinderMVC.DataAccess
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("ConcertFinderModel", "T_HasTags", "T_Event")]
-        public EntityCollection<Event> T_Event
+        public EntityCollection<T_Event> T_Event
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Event>("ConcertFinderModel.T_HasTags", "T_Event");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<T_Event>("ConcertFinderModel.T_HasTags", "T_Event");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Event>("ConcertFinderModel.T_HasTags", "T_Event", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<T_Event>("ConcertFinderModel.T_HasTags", "T_Event", value);
                 }
             }
         }
@@ -1204,17 +1208,17 @@ namespace ConcertFinderMVC.DataAccess
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("ConcertFinderModel", "T_Prefer", "T_User")]
-        public EntityCollection<User> T_User
+        public EntityCollection<T_User> T_User
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<User>("ConcertFinderModel.T_Prefer", "T_User");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<T_User>("ConcertFinderModel.T_Prefer", "T_User");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User>("ConcertFinderModel.T_Prefer", "T_User", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<T_User>("ConcertFinderModel.T_Prefer", "T_User", value);
                 }
             }
         }
@@ -1228,7 +1232,7 @@ namespace ConcertFinderMVC.DataAccess
     [EdmEntityTypeAttribute(NamespaceName="ConcertFinderModel", Name="T_User")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class User : EntityObject
+    public partial class T_User : EntityObject
     {
         #region Factory Method
     
@@ -1242,9 +1246,10 @@ namespace ConcertFinderMVC.DataAccess
         /// <param name="pseudo">Initial value of the Pseudo property.</param>
         /// <param name="password">Initial value of the Password property.</param>
         /// <param name="role">Initial value of the Role property.</param>
-        public static User CreateT_User(global::System.Int64 id, global::System.String name, global::System.String firstname, global::System.String mail, global::System.String pseudo, global::System.String password, global::System.String role)
+        /// <param name="deleted">Initial value of the Deleted property.</param>
+        public static T_User CreateT_User(global::System.Int64 id, global::System.String name, global::System.String firstname, global::System.String mail, global::System.String pseudo, global::System.String password, global::System.String role, global::System.Boolean deleted)
         {
-            User t_User = new User();
+            T_User t_User = new T_User();
             t_User.Id = id;
             t_User.Name = name;
             t_User.Firstname = firstname;
@@ -1252,6 +1257,7 @@ namespace ConcertFinderMVC.DataAccess
             t_User.Pseudo = pseudo;
             t_User.Password = password;
             t_User.Role = role;
+            t_User.Deleted = deleted;
             return t_User;
         }
 
@@ -1456,25 +1462,25 @@ namespace ConcertFinderMVC.DataAccess
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Byte[] Deleted
+        public global::System.Boolean Deleted
         {
             get
             {
-                return StructuralObject.GetValidValue(_Deleted);
+                return _Deleted;
             }
             set
             {
                 OnDeletedChanging(value);
                 ReportPropertyChanging("Deleted");
-                _Deleted = StructuralObject.SetValidValue(value, true);
+                _Deleted = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("Deleted");
                 OnDeletedChanged();
             }
         }
-        private global::System.Byte[] _Deleted;
-        partial void OnDeletedChanging(global::System.Byte[] value);
+        private global::System.Boolean _Deleted;
+        partial void OnDeletedChanging(global::System.Boolean value);
         partial void OnDeletedChanged();
 
         #endregion
@@ -1487,18 +1493,18 @@ namespace ConcertFinderMVC.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ConcertFinderModel", "FK_EVENT_USER1", "T_Event")]
-        public EntityCollection<Event> T_Event
+        [EdmRelationshipNavigationPropertyAttribute("ConcertFinderModel", "FK_EVENT_USER", "T_Event")]
+        public EntityCollection<T_Event> T_Event
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Event>("ConcertFinderModel.FK_EVENT_USER1", "T_Event");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<T_Event>("ConcertFinderModel.FK_EVENT_USER", "T_Event");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Event>("ConcertFinderModel.FK_EVENT_USER1", "T_Event", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<T_Event>("ConcertFinderModel.FK_EVENT_USER", "T_Event", value);
                 }
             }
         }
@@ -1510,17 +1516,17 @@ namespace ConcertFinderMVC.DataAccess
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("ConcertFinderModel", "T_Notified", "T_Notification")]
-        public EntityCollection<Notification> T_Notification
+        public EntityCollection<T_Notification> T_Notification
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Notification>("ConcertFinderModel.T_Notified", "T_Notification");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<T_Notification>("ConcertFinderModel.T_Notified", "T_Notification");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Notification>("ConcertFinderModel.T_Notified", "T_Notification", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<T_Notification>("ConcertFinderModel.T_Notified", "T_Notification", value);
                 }
             }
         }
@@ -1532,17 +1538,17 @@ namespace ConcertFinderMVC.DataAccess
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("ConcertFinderModel", "T_Prefer", "T_Tag")]
-        public EntityCollection<Tag> T_Tag
+        public EntityCollection<T_Tag> T_Tag
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Tag>("ConcertFinderModel.T_Prefer", "T_Tag");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<T_Tag>("ConcertFinderModel.T_Prefer", "T_Tag");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Tag>("ConcertFinderModel.T_Prefer", "T_Tag", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<T_Tag>("ConcertFinderModel.T_Prefer", "T_Tag", value);
                 }
             }
         }

@@ -1,5 +1,10 @@
 ﻿@model ConcertFinderMVC.Models.EventItem
 
+@section Header
+{
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBm8CQjlFqdYRoa3Am16rtSsAiIpdhL_nw&sensor=false"></script>
+}
+
 <div>
     @Model.Titre
 </div>
@@ -21,7 +26,6 @@
 
 @section Script
 {
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBm8CQjlFqdYRoa3Am16rtSsAiIpdhL_nw&sensor=false"></script>
     <script type="text/javascript">
 
         function initialize() {

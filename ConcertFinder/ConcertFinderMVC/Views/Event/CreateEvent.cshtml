@@ -1,5 +1,10 @@
 ﻿@model ConcertFinderMVC.Models.FormEventModels
 
+@section Header
+{
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBm8CQjlFqdYRoa3Am16rtSsAiIpdhL_nw&sensor=false"></script>
+}
+
 @using (Html.BeginForm("CreateEvent", "Event", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -165,7 +170,6 @@
 
 @section Script
 {
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBm8CQjlFqdYRoa3Am16rtSsAiIpdhL_nw&sensor=false"></script>
     <script type="text/javascript">
         function getLatLong(address) {
             var geo = new google.maps.Geocoder;

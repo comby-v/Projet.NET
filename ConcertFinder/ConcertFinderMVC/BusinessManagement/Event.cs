@@ -160,5 +160,62 @@ namespace ConcertFinderMVC.BusinessManagement
             return list_eventItem;
         }
 
+        static public List<EventItem> GetListNonValid ()
+        {
+            List<EventItem> list = new List<EventItem>();
+            List<T_Event> listEvent = DataAccess.Event.GetListNonValid();
+
+            foreach (T_Event even in listEvent)
+            {
+                EventItem myeventitem = new EventItem()
+                {
+                    Id = even.Id,
+                    Titre = even.Titre,
+                    Description = even.Description,
+                    Type = even.Type,
+                    StartDate = even.DateDebut,
+                    EndDate = even.DateFin.GetValueOrDefault(),
+                    Salle = even.T_Location.Name,
+                    Image = even.Image,
+                    Email = even.Email,
+                    Tel = even.Tel,
+                    Website = even.WebSite
+                };
+                list.Add(myeventitem);    
+            }
+            return list;
+
+
+        }
+
+        static public List<EventItem> GetListValid()
+        {
+            List<EventItem> list = new List<EventItem>();
+            List<T_Event> listEvent = DataAccess.Event.GetListValid();
+
+            foreach (T_Event even in listEvent)
+            {
+                EventItem myeventitem = new EventItem()
+                {
+                    Id = even.Id,
+                    Titre = even.Titre,
+                    Description = even.Description,
+                    Type = even.Type,
+                    StartDate = even.DateDebut,
+                    EndDate = even.DateFin.GetValueOrDefault(),
+                    Salle = even.T_Location.Name,
+                    Image = even.Image,
+                    Email = even.Email,
+                    Tel = even.Tel,
+                    Website = even.WebSite
+                };
+                list.Add(myeventitem);
+            }
+            return list;
+
+
+        }
+
+
     }
 }

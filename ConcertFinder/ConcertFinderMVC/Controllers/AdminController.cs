@@ -28,7 +28,7 @@ namespace ConcertFinderMVC.Controllers
             }
             else
             {
-                return View("Index");
+                return RedirectToAction("Index", "Event");
             }
         }
 
@@ -38,9 +38,18 @@ namespace ConcertFinderMVC.Controllers
             return RedirectToAction("ManageUser");
         }
 
-        public ActionResult ManageEvent()
+        public ActionResult NotValidEvent()
         {
-            return View("AdminEvent");
+            AdminModels admin = new AdminModels();
+            admin.listEvent = BusinessManagement.Event.GetListNonValid();
+            return View("AdminEvent", admin);
+        }
+
+        public ActionResult ValidEvent()
+        {
+            AdminModels admin = new AdminModels();
+            admin.listEvent = BusinessManagement.Event.GetListValid();
+            return View("AdminEvent", admin);
         }
     }
 

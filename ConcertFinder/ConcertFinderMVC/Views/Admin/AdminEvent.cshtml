@@ -8,3 +8,30 @@
 <ul>
             <li>@Html.ActionLink("Gerer les utlisateurs", "ManageUser", "Admin")</li>
 </ul>
+
+<section>
+    <ul id="onglet">
+        <li>@Html.ActionLink("Evenement valide", "ValidEvent", "Admin")</li>
+        <li>@Html.ActionLink("Evenement en attente", "NotValidEvent", "Admin")</li>
+    </ul>
+
+    <ul id="content_list">
+        @foreach (ConcertFinderMVC.Models.EventItem eve in Model.listEvent)
+        {
+            <li>
+                <img src="@eve.Image" alt="Image descriptive"/>
+                <span>@eve.Type</span>
+                <span>Salle :<strong>@eve.Salle</strong></span>
+                <em>@eve.Ville, @eve.CP, @eve.Rue</em>
+                <strong>@eve.Titre</strong>
+                <strong>@eve.StartDate</strong>
+                <span>@eve.Description</span>
+                <br />
+                <span>@eve.Website</span>
+                
+                <a href="#">@eve.Website</a>
+                <a href="#">Editer</a>
+            </li>
+        }
+    <ul>
+</section>

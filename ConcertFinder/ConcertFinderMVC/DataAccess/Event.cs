@@ -53,8 +53,6 @@ namespace ConcertFinderMVC.DataAccess
             return true;
         }
 
-
-
         static public bool Update(T_Event myevent)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
@@ -182,6 +180,36 @@ namespace ConcertFinderMVC.DataAccess
                 {
                     throw;
                    
+                }
+            }
+        }
+
+        static public List<T_Event> GetListNonValid()
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                try
+                {
+                    return (bdd.T_Event.Include("T_Location").Where(ev => (ev.Valide == false || ev.Valide == null)).ToList());
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        static public List<T_Event> GetListValid()
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                try
+                {
+                    return (bdd.T_Event.Include("T_Location").Where(ev => (ev.Valide == true)).ToList());
+                }
+                catch (Exception)
+                {
+                    return null;
                 }
             }
         }

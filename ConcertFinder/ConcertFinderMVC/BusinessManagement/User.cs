@@ -16,7 +16,7 @@ namespace ConcertFinderMVC.BusinessManagement
 
             if (form.Pseudo.Equals("superadmin"))
             {
-                role = "Administrateur";
+                role = UserModel.GetRoleType((int)eRole.Admin);
             }
             else
             {

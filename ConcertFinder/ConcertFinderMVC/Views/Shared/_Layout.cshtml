@@ -5,6 +5,7 @@
     <title>Concert Finder</title>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Index.css")" rel="stylesheet" type="text/css" />
     <script src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
 </head>
 <body>
@@ -31,17 +32,25 @@
 
                </div>
         </div>
-        <ul id="menu">
-            <li>@Html.ActionLink("Tous les événements", "Index", "Event")</li>
-            <li>@Html.ActionLink("Concerts", "Concert", "Event")</li>
-            <li>@Html.ActionLink("Spectacles", "Spectacle", "Event")</li>
-            <li>@Html.ActionLink("Festivals", "Festival", "Event")</li>
-            <li>@Html.ActionLink("Ajouter un événement", "CreateEvent", "Event")</li>
-            @if (User.Identity.IsAuthenticated)
-            {
-                <li>@Html.ActionLink("Administration utilisateur", "ManageUser", "Admin")</li>
-            }
-        </ul>
+        <div id="menu">
+            <div id="menu_content">
+                 <img src="@Url.Content("~/Content/Images/nav-left.png")" alt="menu_left_corner" id="menu_left_corner" class="float-left"/>
+                 <ul class="float-left">
+                   <li class="float-left">@Html.ActionLink("Tous les événements", "Index", "Event")</li>
+                   <li class="float-left">@Html.ActionLink("Concerts", "Concert", "Event")</li>
+                   <li class="float-left">@Html.ActionLink("Spectacles", "Spectacle", "Event")</li>
+                   <li class="float-left">@Html.ActionLink("Festivals", "Festival", "Event")</li>
+                   <li class="float-left">@Html.ActionLink("Ajouter un événement", "CreateEvent", "Event")</li>
+                   @if (User.Identity.IsAuthenticated)
+                   {
+                   <li class="float-left">@Html.ActionLink("Administration utilisateur", "ManageUser", "Admin")</li>
+                   }
+                   <li class="clear"></li>
+                  </ul>
+                  <img src="@Url.Content("~/Content/Images/nav-right.png")" alt="menu_right_corner" class="float-left"/>
+                  <div class="clear"></div>
+             </div>
+        </div>
     </header>
     <section class="page">
         @RenderBody()

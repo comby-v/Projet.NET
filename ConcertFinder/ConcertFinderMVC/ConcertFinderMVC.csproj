@@ -95,6 +95,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\bg_list.gif" />
+    <Content Include="Content\Images\footer-bg.png" />
+    <Content Include="Content\Images\footer-left.png" />
+    <Content Include="Content\Images\footer-right.png" />
+    <Content Include="Content\Images\gradient.gif" />
+    <Content Include="Content\Images\header.png" />
+    <Content Include="Content\Images\headerv2.png" />
+    <Content Include="Content\Images\nav-bg.png" />
+    <Content Include="Content\Images\nav-left.png" />
+    <Content Include="Content\Images\nav-right.png" />
+    <Content Include="Content\Images\nav.png" />
+    <Content Include="Content\Images\no_avatar.gif" />
+    <Content Include="Content\Index.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -210,6 +223,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -243,12 +257,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ConcertFinderModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Admin\AdminUser.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Admin\AdminEvent.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

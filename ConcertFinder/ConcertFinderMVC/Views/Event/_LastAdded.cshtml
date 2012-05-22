@@ -4,7 +4,7 @@
 
 @foreach (ConcertFinderMVC.Models.EventItem item in Model)
 {
-    <div class="item">
+    <div class="QuickItem">
         <span>@Html.ActionLink(item.Titre, "Detail", "Event")</span>
         <span>A Paris, le @item.StartDate</span>
     </div>

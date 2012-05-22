@@ -22,6 +22,7 @@ namespace ConcertFinderMVC.BusinessManagement
             {
                 role = UserModel.GetRoleType((int)eRole.User);
             }
+            SimpleAES encryptor = new SimpleAES();
             DataAccess.T_User user = new DataAccess.T_User()
             {
                 Name = form.Name,
@@ -29,7 +30,7 @@ namespace ConcertFinderMVC.BusinessManagement
                 Pseudo = form.Pseudo,
                 Mail = form.Email,
                 Ville = form.City,
-                Password = form.Password,
+                Password = encryptor.EncryptToString(form.Password),
                 Role = role,
                 Deleted = false,
                 T_Event = null,

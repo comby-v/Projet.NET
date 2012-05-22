@@ -1,0 +1,37 @@
+﻿h2
+{
+    margin:0px;
+    color:#0185e1;
+}
+
+.main
+{
+    width:700px;
+}
+
+/*Item*/
+.item
+{
+    height:200px;
+    border: 2px solid #ff893a;
+    width:100%;
+    margin-bottom:10px;
+    border-radius:10px;
+    /*background: #0185e1 url("Images/bg_list.gif") 100% 100% repeat-x;*/
+    background:#dadada;
+    /*padding-left:5px;
+    padding-right:5px;*/
+}
+
+.item_content
+{
+    background: white;
+    width:100%;
+    margin-top:10px;
+    height:160px;
+}
+.info1
+{
+    font-size:16px;
+}
+

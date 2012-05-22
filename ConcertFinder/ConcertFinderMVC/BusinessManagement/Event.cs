@@ -127,7 +127,10 @@ namespace ConcertFinderMVC.BusinessManagement
                     Image = myevent.Image,
                     Email = myevent.Email,
                     Tel = myevent.Tel,
-                    Website = myevent.WebSite
+                    Website = myevent.WebSite,
+                    CP = myevent.T_Location.CP,
+                    Ville = myevent.T_Location.Ville,
+                    Rue = myevent.T_Location.Rue
                 };
                 list_eventItem.Add(myeventitem);
             }
@@ -153,7 +156,10 @@ namespace ConcertFinderMVC.BusinessManagement
                     Image = myevent.Image,
                     Email = myevent.Email,
                     Tel = myevent.Tel,
-                    Website = myevent.WebSite
+                    Website = myevent.WebSite,
+                    CP = myevent.T_Location.CP,
+                    Ville = myevent.T_Location.Ville,
+                    Rue = myevent.T_Location.Rue
                 };
                 list_eventItem.Add(myeventitem);
             }

@@ -19,17 +19,19 @@ namespace ConcertFinderMVC.Controllers
 
         public ActionResult ManageUser()
         {
-            if (DataAccess.User.GetUserByPseudo(User.Identity.Name).Role.Equals(UserModel.GetRoleType((int)eRole.Admin)))
-            {
+            /*if (DataAccess.User.GetUserByPseudo(User.Identity.Name).Role.Equals(UserModel.GetRoleType((int)eRole.Admin)))
+            {*/
                 AdminModels admin = new AdminModels();
                 admin.listPost = new List<string>() { UserModel.GetRoleType((int)eRole.User), UserModel.GetRoleType((int)eRole.Admin), UserModel.GetRoleType((int)eRole.Moderateur)};
                 admin.listUser = BusinessManagement.User.GetListUser();
                 return View("AdminUser", admin);
-            }
+            /*}
             else
             {
                 return RedirectToAction("Index", "Event");
-            }
+            }*/
+
+
         }
 
         public ActionResult BlockUser(long Id)

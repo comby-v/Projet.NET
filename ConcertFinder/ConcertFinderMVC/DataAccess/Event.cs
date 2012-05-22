@@ -29,7 +29,7 @@ namespace ConcertFinderMVC.DataAccess
                 }
                 catch (Exception)
                 {
-                    throw;
+                    return false;
                 }
             }
             return true;
@@ -145,7 +145,7 @@ namespace ConcertFinderMVC.DataAccess
                 catch (Exception)
                 {
                     throw;
-                    return null;
+                    
                 }
             }
         }
@@ -172,7 +172,7 @@ namespace ConcertFinderMVC.DataAccess
                 catch (Exception)
                 {
                     throw;
-                    return null;
+                   
                 }
             }
         }

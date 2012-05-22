@@ -30,8 +30,6 @@ namespace ConcertFinderMVC.Controllers
             {
                 return RedirectToAction("Index", "Event");
             }*/
-
-
         }
 
         public ActionResult BlockUser(long Id)

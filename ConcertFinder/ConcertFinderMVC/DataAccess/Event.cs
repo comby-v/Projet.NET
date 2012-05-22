@@ -17,8 +17,9 @@ namespace ConcertFinderMVC.DataAccess
                     bdd.Attach(location);
                     foreach (T_Tag tag in tags)
                     {
-                        bdd.Attach(tag);
-                        myevent.T_Tag.Add(tag);
+                        T_Tag a_tag = bdd.T_Tag.Where(x => x.Name == tag.Name).FirstOrDefault();
+                        bdd.Attach(a_tag);
+                        myevent.T_Tag.Add(a_tag);
                     }
 
                     myevent.T_Location = location;

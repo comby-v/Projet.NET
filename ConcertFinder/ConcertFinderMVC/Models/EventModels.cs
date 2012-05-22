@@ -19,6 +19,7 @@ namespace ConcertFinderMVC.Models
         public string Email { get; set; }
         public string Tel { get; set; }
         public string Website { get; set; }
+        public bool Valide { get; set; }
         
         /* Location */
         public string Salle { get; set; }

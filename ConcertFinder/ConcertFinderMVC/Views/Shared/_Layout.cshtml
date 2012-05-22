@@ -38,7 +38,10 @@
             <li>@Html.ActionLink("Ajouter un événement", "CreateEvent", "Event")</li>
             @if (User.Identity.IsAuthenticated)
             {
-                <li>@Html.ActionLink("Administration utilisateur", "ManageUser", "Admin")</li>
+                if (ConcertFinderMVC.DataAccess.User.getUserbylogin(User.Identity.Name).Role.Equals("Administrateur"))
+                {
+                    <li>@Html.ActionLink("Administration utilisateur", "ManageUser", "Admin")</li>
+                }
             }
         </ul>
     </header>

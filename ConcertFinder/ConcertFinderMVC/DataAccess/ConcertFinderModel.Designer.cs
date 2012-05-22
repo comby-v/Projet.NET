@@ -1247,7 +1247,7 @@ namespace ConcertFinderMVC.DataAccess
         /// <param name="password">Initial value of the Password property.</param>
         /// <param name="role">Initial value of the Role property.</param>
         /// <param name="deleted">Initial value of the Deleted property.</param>
-        public static T_User CreateT_User(global::System.Int64 id, global::System.String name, global::System.String firstname, global::System.String mail, global::System.String pseudo, global::System.String password, global::System.String role, global::System.Byte[] deleted)
+        public static T_User CreateT_User(global::System.Int64 id, global::System.String name, global::System.String firstname, global::System.String mail, global::System.String pseudo, global::System.String password, global::System.String role, global::System.Boolean deleted)
         {
             T_User t_User = new T_User();
             t_User.Id = id;
@@ -1464,23 +1464,23 @@ namespace ConcertFinderMVC.DataAccess
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Byte[] Deleted
+        public global::System.Boolean Deleted
         {
             get
             {
-                return StructuralObject.GetValidValue(_Deleted);
+                return _Deleted;
             }
             set
             {
                 OnDeletedChanging(value);
                 ReportPropertyChanging("Deleted");
-                _Deleted = StructuralObject.SetValidValue(value, false);
+                _Deleted = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("Deleted");
                 OnDeletedChanged();
             }
         }
-        private global::System.Byte[] _Deleted;
-        partial void OnDeletedChanging(global::System.Byte[] value);
+        private global::System.Boolean _Deleted;
+        partial void OnDeletedChanging(global::System.Boolean value);
         partial void OnDeletedChanged();
 
         #endregion

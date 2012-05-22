@@ -148,7 +148,7 @@
           <Property Name="Password" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="Role" Type="varchar" Nullable="false" MaxLength="15" />
           <Property Name="Ville" Type="varchar" MaxLength="50" />
-          <Property Name="Deleted" Type="binary" Nullable="false" MaxLength="50" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_EVENT_LOCATION">
           <End Role="T_Location" Type="ConcertFinderModel.Store.T_Location" Multiplicity="1" />
@@ -373,7 +373,7 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="Role" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="Ville" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Deleted" Type="Binary" Nullable="false" MaxLength="50" FixedLength="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="T_Event" Relationship="ConcertFinderModel.FK_EVENT_USER" FromRole="T_User" ToRole="T_Event" />
           <NavigationProperty Name="T_Notification" Relationship="ConcertFinderModel.T_Notified" FromRole="T_User" ToRole="T_Notification" />
           <NavigationProperty Name="T_Tag" Relationship="ConcertFinderModel.T_Prefer" FromRole="T_User" ToRole="T_Tag" />
@@ -521,7 +521,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ConcertFinderModel" ZoomLevel="86">
+      <Diagram Name="ConcertFinderModel" ZoomLevel="74">
         <EntityTypeShape EntityType="ConcertFinderModel.T_Event" Width="1.5" PointX="3" PointY="2" Height="4.0956022135416656" IsExpanded="true" />
         <EntityTypeShape EntityType="ConcertFinderModel.T_Location" Width="1.5" PointX="0.75" PointY="2.625" Height="2.7494921874999996" IsExpanded="true" />
         <EntityTypeShape EntityType="ConcertFinderModel.T_Notification" Width="1.5" PointX="5.25" PointY="1.75" Height="2.1725878906249996" IsExpanded="true" />

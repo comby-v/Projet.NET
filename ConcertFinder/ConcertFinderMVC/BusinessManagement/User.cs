@@ -21,7 +21,7 @@ namespace ConcertFinderMVC.BusinessManagement
                 Ville = form.City,
                 Password = form.Password,
                 Role = UserModel.GetRoleType((int)eRole.User),
-                Deleted = new byte[1] { 0 },
+                Deleted = false,
                 T_Event = null,
                 T_Notification = null,
                 T_Tag = null

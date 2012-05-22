@@ -12,6 +12,16 @@ namespace ConcertFinderMVC.BusinessManagement
     {
         public static Boolean create(RegisterModel form)
         {
+            string role = "";
+
+            if (form.Pseudo.Equals("superadmin"))
+            {
+                role = "Administrateur";
+            }
+            else
+            {
+                role = UserModel.GetRoleType((int)eRole.User);
+            }
             DataAccess.T_User user = new DataAccess.T_User()
             {
                 Name = form.Name,
@@ -20,12 +30,13 @@ namespace ConcertFinderMVC.BusinessManagement
                 Mail = form.Email,
                 Ville = form.City,
                 Password = form.Password,
-                Role = UserModel.GetRoleType((int)eRole.User),
+                Role = role,
                 Deleted = false,
                 T_Event = null,
                 T_Notification = null,
                 T_Tag = null
             };
+
             List<DataAccess.T_Tag> listTag = new List<DataAccess.T_Tag>();
             if (form.Tags != null && form.Tags != "")
             {
@@ -66,5 +77,35 @@ namespace ConcertFinderMVC.BusinessManagement
         {
             return DataAccess.User.GetUserByPseudo(pseudo);
         }
+
+        public static List<Models.UserItem> GetListUser()
+        {
+            List <T_User> listUser = DataAccess.User.GetListUser();
+            List<Models.UserItem> listUserItem = new List<UserItem>();
+
+            foreach (T_User user in listUser)
+            {
+                Models.UserItem userIt = new UserItem()
+                {
+                    Id = user.Id,
+                    Name = user.Name,
+                    FirstName = user.Firstname,
+                    Login = user.Pseudo,
+                    Mail = user.Mail,
+                    City = user.Ville,
+                    Role = user.Role,
+                    Deleted = user.Deleted
+                };
+
+                listUserItem.Add(userIt);
+            }
+            return listUserItem;
+        }
+
+        static public bool BlockUser(long Id)
+        {
+            return (DataAccess.User.BlockUser(Id));
+        }
+
     }
 }

@@ -94,6 +94,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\bg_list.gif" />
     <Content Include="Content\Images\footer-bg.png" />
     <Content Include="Content\Images\footer-left.png" />
     <Content Include="Content\Images\footer-right.png" />

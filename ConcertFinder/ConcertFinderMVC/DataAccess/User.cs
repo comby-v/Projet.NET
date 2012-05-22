@@ -172,5 +172,35 @@ namespace ConcertFinderMVC.DataAccess
                }
            }
        }
+
+       public static List<T_User> GetListUser()
+       {
+           using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+           {
+               try
+               {
+                  return bdd.T_User.ToList();
+               }
+               catch (Exception)
+               {
+                   return null;
+               }
+           }
+       }
+
+       static public bool BlockUser(long Id)
+       {
+           T_User user = new T_User();
+           try
+           {
+               user = get(Id);
+               user.Deleted = true;
+               return (update(user));
+           }
+           catch (Exception)
+           {
+               return false;
+           }
+       }
     }
 }

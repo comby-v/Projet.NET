@@ -22,7 +22,7 @@ namespace ConcertFinderMVC.Models
             switch (enumType)
             {
                 case eRole.User:
-                    return "User";
+                    return "Utilisateur";
                 case eRole.Admin:
                     return "Administrateur";
                 case eRole.Moderateur:

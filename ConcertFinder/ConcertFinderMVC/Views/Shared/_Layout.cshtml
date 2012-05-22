@@ -40,13 +40,16 @@
                    <li class="float-left">@Html.ActionLink("Spectacles", "Spectacle", "Event")</li>
                    <li class="float-left">@Html.ActionLink("Festivals", "Festival", "Event")</li>
                    <li class="float-left">@Html.ActionLink("Ajouter un événement", "CreateEvent", "Event")</li>
+                   @if (User.Identity.IsAuthenticated)
+                   {
+                   <li class="float-left">@Html.ActionLink("Administration utilisateur", "ManageUser", "Admin")</li>
+                   }
                    <li class="clear"></li>
                   </ul>
                   <img src="@Url.Content("~/Content/Images/nav-right.png")" alt="menu_right_corner" class="float-left"/>
                   <div class="clear"></div>
              </div>
-        </div>
-
+        </div>git
     </header>
     <section class="page">
         @RenderBody()

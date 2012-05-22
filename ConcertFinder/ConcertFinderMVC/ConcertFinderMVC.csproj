@@ -88,6 +88,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\AdminModels.cs" />
     <Compile Include="Models\EventModels.cs" />
     <Compile Include="Models\NotificationModel.cs" />
     <Compile Include="Models\UserModels.cs" />

@@ -3,6 +3,8 @@
 
 @using (Html.BeginForm("Register", "Account", "POST"))
 {
+    @Html.AntiForgeryToken()
+    
     <div>
         <span class="connexion_lbl ">
             @Html.LabelFor(m => m.Name)

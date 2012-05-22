@@ -69,6 +69,7 @@
     <Compile Include="BusinessManagement\Event.cs" />
     <Compile Include="BusinessManagement\Location.cs" />
     <Compile Include="BusinessManagement\Notification.cs" />
+    <Compile Include="BusinessManagement\SimpleAES.cs" />
     <Compile Include="BusinessManagement\Tag.cs" />
     <Compile Include="BusinessManagement\User.cs" />
     <Compile Include="Controllers\AccountController.cs" />

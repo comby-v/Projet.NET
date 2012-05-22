@@ -26,7 +26,8 @@ namespace ConcertFinderMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (BusinessManagement.User.validate_user(model.Pseudo, model.Password))
+                BusinessManagement.SimpleAES encryptor = new BusinessManagement.SimpleAES();
+                if (BusinessManagement.User.validate_user(model.Pseudo, encryptor.EncryptToString(model.Password)))
                 {
                     FormsAuthentication.SetAuthCookie(model.Pseudo, false);
                 }
@@ -56,6 +57,7 @@ namespace ConcertFinderMVC.Controllers
             return View(form);
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Register(RegisterModel form)
         {

@@ -73,15 +73,23 @@ namespace ConcertFinderMVC.DataAccess
             return true;
         }
 
-        static public T_Event Get(long id)
+        static public T_Event Get(long id, bool creation = false)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 T_Event myevent;
                 try
                 {
-                    myevent = bdd.T_Event.Include("T_Tag").Include("T_Location").Include("T_User").Include("T_Notification").
-                        Where(x => x.Valide == true && x.DateDebut > DateTime.Now && x.Id == id).FirstOrDefault();
+                    if (!creation)
+                    {
+                        myevent = bdd.T_Event.Include("T_Tag").Include("T_Location").Include("T_User").Include("T_Notification").
+                            Where(x => x.Valide == true && x.DateDebut > DateTime.Now && x.Id == id).FirstOrDefault();
+                    }
+                    else
+                    {
+                        myevent = bdd.T_Event.Include("T_Tag").Include("T_Location").Include("T_User").Include("T_Notification").
+                            Where(x => x.Id == id).FirstOrDefault();
+                    }
                 }
                 catch (Exception)
                 {

@@ -20,35 +20,39 @@ namespace ConcertFinderMVC.BusinessManagement
                 Mail = form.Email,
                 Ville = form.City,
                 Password = form.Password,
-                Role = "User",
+                Role = UserModel.GetRoleType((int)eRole.User),
+                Deleted = new byte[1] { 0 },
                 T_Event = null,
                 T_Notification = null,
-                T_Tag = null                
+                T_Tag = null
             };
-            string[] split = form.Tags.Split(new Char[] { ' ', ',', '.', ';'});
             List<DataAccess.T_Tag> listTag = new List<DataAccess.T_Tag>();
-            foreach (string str in split)
+            if (form.Tags != null && form.Tags != "")
             {
-                if (str.Length > 2)
+                string[] split = form.Tags.Split(new Char[] { ' ', ',', '.', ';' });
+                foreach (string str in split)
                 {
-                    Regex r = new Regex("[a-z1-9*]");
-                    Match m = r.Match(str);
-                    if (m.Success)
+                    if (str.Length > 2)
                     {
-                        str.ToLower();
-                        DataAccess.T_Tag tag = new DataAccess.T_Tag ()
+                        Regex r = new Regex("[a-z1-9*]");
+                        Match m = r.Match(str);
+                        if (m.Success)
                         {
-                            Name = str
-                        };
-                        if (DataAccess.Tag.Get(str) == null)
-                        {
-                            DataAccess.Tag.Create(tag);
-                        }
+                            str.ToLower();
+                            DataAccess.T_Tag tag = new DataAccess.T_Tag()
+                            {
+                                Name = str
+                            };
+                            if (DataAccess.Tag.Get(str) == null)
+                            {
+                                DataAccess.Tag.Create(tag);
+                            }
 
-                        tag = DataAccess.Tag.Get(str);
-                        listTag.Add(tag);
+                            tag = DataAccess.Tag.Get(str);
+                            listTag.Add(tag);
+                        }
                     }
-                } 
+                }
             }
             return DataAccess.User.create(user, listTag);
         }

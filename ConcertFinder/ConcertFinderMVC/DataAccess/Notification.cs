@@ -8,14 +8,14 @@ namespace ConcertFinderMVC.DataAccess
 {
     public partial class Notification
     {
-        public static bool Create(Notification notification, User user, Event myevent)
+        public static bool Create(T_Notification notification, T_User user, T_Event myevent)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    Event a_event = bdd.T_Event.Where(x => x.EVENT_ID == myevent.EVENT_ID).FirstOrDefault();
-                    User a_user = bdd.T_User.Where(x => x.Id == user.Id).FirstOrDefault();
+                    T_Event a_event = bdd.T_Event.Where(x => x.Id == myevent.Id).FirstOrDefault();
+                    T_User a_user = bdd.T_User.Where(x => x.Id == user.Id).FirstOrDefault();
 
                     bdd.Attach(a_event);
                     bdd.Attach(a_user);
@@ -35,13 +35,13 @@ namespace ConcertFinderMVC.DataAccess
             return true;
         }
 
-        public static List<DataAccess.Notification> Get(User user)
+        public static List<DataAccess.T_Notification> Get(T_User user)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    List<DataAccess.Notification> notifs = bdd.T_User.Include("T_Notification").Where(x => x.Id == user.Id).FirstOrDefault().T_Notification.ToList();
+                    List<DataAccess.T_Notification> notifs = bdd.T_User.Include("T_Notification").Where(x => x.Id == user.Id).FirstOrDefault().T_Notification.ToList();
                     return notifs;
                 }
                 catch (Exception)

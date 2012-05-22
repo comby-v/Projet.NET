@@ -12,7 +12,7 @@ namespace ConcertFinderMVC.BusinessManagement
     {
         public static Boolean create(RegisterModel form)
         {
-            DataAccess.User user = new DataAccess.User()
+            DataAccess.T_User user = new DataAccess.T_User()
             {
                 Name = form.Name,
                 Firstname = form.Firstname,
@@ -26,7 +26,7 @@ namespace ConcertFinderMVC.BusinessManagement
                 T_Tag = null                
             };
             string[] split = form.Tags.Split(new Char[] { ' ', ',', '.', ';'});
-            List<DataAccess.Tag> listTag = new List<DataAccess.Tag>();
+            List<DataAccess.T_Tag> listTag = new List<DataAccess.T_Tag>();
             foreach (string str in split)
             {
                 if (str.Length > 2)
@@ -36,9 +36,9 @@ namespace ConcertFinderMVC.BusinessManagement
                     if (m.Success)
                     {
                         str.ToLower();
-                        DataAccess.Tag tag = new DataAccess.Tag ()
+                        DataAccess.T_Tag tag = new DataAccess.T_Tag ()
                         {
-                            TAG_CONTENT = str
+                            Name = str
                         };
                         if (DataAccess.Tag.Get(str) == null)
                         {
@@ -58,7 +58,7 @@ namespace ConcertFinderMVC.BusinessManagement
             return DataAccess.User.validate_user(pseudo, password);
         }
 
-        public static DataAccess.User GetUserByPseudo(String pseudo)
+        public static DataAccess.T_User GetUserByPseudo(String pseudo)
         {
             return DataAccess.User.GetUserByPseudo(pseudo);
         }

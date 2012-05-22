@@ -7,13 +7,13 @@ namespace ConcertFinderMVC.DataAccess
 {
     public partial class User
     {
-        public static Boolean create(User user, List<Tag> tags)
+        public static Boolean create(T_User user, List<T_Tag> tags)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    foreach (Tag tag in tags)
+                    foreach (T_Tag tag in tags)
                     {
                         bdd.Attach(tag);
                         user.T_Tag.Add(tag);
@@ -36,7 +36,7 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    User user = bdd.T_User.Where(u => u.Id == idUser).FirstOrDefault();
+                    T_User user = bdd.T_User.Where(u => u.Id == idUser).FirstOrDefault();
 
                     user.Role = "deactivated";
 
@@ -52,13 +52,13 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        public static Boolean update(User upUser)
+        public static Boolean update(T_User upUser)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities ())
             {
                 try
                 {
-                    var user = new User { Id = upUser.Id };
+                    var user = new T_User { Id = upUser.Id };
                     bdd.T_User.Attach(user);
                     bdd.ApplyCurrentValues("T_User", upUser);
                     bdd.SaveChanges();
@@ -71,7 +71,7 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        public static User get(long idUser)
+        public static T_User get(long idUser)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
@@ -86,7 +86,7 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        public static User getUserbylogin(String pseudo)
+        public static T_User getUserbylogin(String pseudo)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
@@ -101,7 +101,7 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        public static User getUserbyemail(String email)
+        public static T_User getUserbyemail(String email)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
@@ -115,14 +115,14 @@ namespace ConcertFinderMVC.DataAccess
                 }
             }
         }
-       public static List<Tag> getTaglistfromUser(long idUser)
+       public static List<T_Tag> getTaglistfromUser(long idUser)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    User user = bdd.T_User.Where(x => x.Id == idUser).FirstOrDefault();
-                    List<Tag> tags = user.T_Tag.ToList();
+                    T_User user = bdd.T_User.Where(x => x.Id == idUser).FirstOrDefault();
+                    List<T_Tag> tags = user.T_Tag.ToList();
                     return tags;
                 }
                 catch (Exception)
@@ -138,7 +138,7 @@ namespace ConcertFinderMVC.DataAccess
            {
                try
                {
-                   User user = bdd.T_User.Where(x => x.Pseudo == pseudo && x.Password == password).FirstOrDefault();
+                   T_User user = bdd.T_User.Where(x => x.Pseudo == pseudo && x.Password == password).FirstOrDefault();
                    if (user != null)
                    {
                        return true;
@@ -152,13 +152,13 @@ namespace ConcertFinderMVC.DataAccess
            }
        }
 
-       public static User GetUserByPseudo(String pseudo)
+       public static T_User GetUserByPseudo(String pseudo)
        {
            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
            {
                try
                {
-                   User user = bdd.T_User.Include("T_Tag").Where(x => x.Pseudo == pseudo).FirstOrDefault();
+                   T_User user = bdd.T_User.Include("T_Tag").Where(x => x.Pseudo == pseudo).FirstOrDefault();
                    if (user != null)
                    {
                        return user;

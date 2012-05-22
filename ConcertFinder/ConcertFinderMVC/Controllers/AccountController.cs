@@ -77,9 +77,9 @@ namespace ConcertFinderMVC.Controllers
 
         public ActionResult Notifications()
         {
-            List<DataAccess.Notification> notifs = BusinessManagement.Notification.Get(User.Identity.Name);
+            List<DataAccess.T_Notification> notifs = BusinessManagement.Notification.Get(User.Identity.Name);
             List<NotificationItem> notif_items = new List<NotificationItem>();
-            foreach (DataAccess.Notification notif in notifs)
+            foreach (DataAccess.T_Notification notif in notifs)
             {
                 NotificationItem item = new NotificationItem()
                 {

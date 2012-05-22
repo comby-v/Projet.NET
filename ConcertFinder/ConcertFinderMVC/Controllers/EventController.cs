@@ -73,9 +73,9 @@ namespace ConcertFinderMVC.Controllers
         //
         // GET : /Event/Detail/Id
 
-        public ActionResult Detail(long id)
+        public ActionResult Detail(long id, bool creation = false)
         {
-            DataAccess.T_Event myevent = BusinessManagement.Event.Get(id);
+            DataAccess.T_Event myevent = BusinessManagement.Event.Get(id, creation);
             EventItem event_item = new EventItem()
             {
                 Id = myevent.Id,
@@ -119,7 +119,7 @@ namespace ConcertFinderMVC.Controllers
                 {
                     DataAccess.T_Event bdd_event = BusinessManagement.Event.Get(form.Title, true);
                     BusinessManagement.Notification.Create(user, bdd_event);
-                    return RedirectToAction("Detail", "Event", new { id = bdd_event.Id });
+                    return RedirectToAction("Detail", "Event", new { id = bdd_event.Id, creation = true });
                 }
                 else
                 {

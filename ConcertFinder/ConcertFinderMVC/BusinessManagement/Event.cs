@@ -99,9 +99,9 @@ namespace ConcertFinderMVC.BusinessManagement
             return DataAccess.Event.Update(ev);
         }
 
-        static public DataAccess.T_Event Get(long id)
+        static public DataAccess.T_Event Get(long id, bool creation = false)
         {
-            return DataAccess.Event.Get(id);
+            return DataAccess.Event.Get(id, creation);
         }
 
         static public DataAccess.T_Event Get(string title, bool creation = false)

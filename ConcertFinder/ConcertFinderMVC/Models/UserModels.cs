@@ -7,6 +7,32 @@ using System.Web.Mvc;
 
 namespace ConcertFinderMVC.Models
 {
+    public enum eRole
+    {
+        User = 0,
+        Admin,
+        Moderateur
+    }
+
+    public class UserModel
+    {
+        public static string GetRoleType(int type)
+        {
+            var enumType = (eRole)type;
+            switch (enumType)
+            {
+                case eRole.User:
+                    return "User";
+                case eRole.Admin:
+                    return "Administrateur";
+                case eRole.Moderateur:
+                    return "Moderateur";
+                default:
+                    return string.Empty;
+            }
+        }
+    }
+
     public class RegisterModel
     {
         [Required]
@@ -40,7 +66,6 @@ namespace ConcertFinderMVC.Models
         [Compare("Password", ErrorMessage = "La confirmation de mot de passe n'est pas identique.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
         [StringLength (255, ErrorMessage = "Le {0} doit faire au moins {2} caractères de long.",MinimumLength = 3)]
         [Display(Name = "Tags")]
         public string Tags { get; set; }

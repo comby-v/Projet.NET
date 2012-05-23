@@ -58,7 +58,6 @@ namespace ConcertFinderMVC.Controllers
         {
             NotificationItem notif = new NotificationItem();
 
-<<<<<<< HEAD
             notif.Date = DateTime.Now;
             notif.Titre = form.Title;
             notif.Message = form.resaon;
@@ -67,8 +66,7 @@ namespace ConcertFinderMVC.Controllers
             return RedirectToAction("NotValidEvent", "Admin");
         }
 
-=======
->>>>>>> e0ebc1948e364b74a27dafa243037e8cc6d0d8df
+
         [HttpPost]
         public void ChangeRole(long id, string role)
         {

@@ -190,7 +190,7 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    return (bdd.T_Event.Include("T_Location").Where(ev => (ev.Valide == false || ev.Valide == null)).ToList());
+                    return (bdd.T_Event.Include("T_Location").Where(ev => (ev.Valide == false || ev.Valide == null)).OrderBy(ev => ev.DateCreation).ToList());
                 }
                 catch (Exception)
                 {
@@ -205,12 +205,27 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    return (bdd.T_Event.Include("T_Location").Where(ev => (ev.Valide == true)).ToList());
+                    return (bdd.T_Event.Include("T_Location").Where(ev => (ev.Valide == true)).OrderBy(ev => ev.DateCreation).ToList());
                 }
                 catch (Exception)
                 {
                     return null;
                 }
+            }
+        }
+
+         static public bool ValidEvent(long idEvent)
+        {
+            try
+            {
+                T_Event ev = new T_Event ();
+                ev = Get(idEvent);
+                ev.Valide = true;
+                return (Update(ev));
+            }
+             catch (Exception)
+            {
+                return false;
             }
         }
     }

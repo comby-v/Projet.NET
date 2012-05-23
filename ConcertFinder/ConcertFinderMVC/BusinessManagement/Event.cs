@@ -218,10 +218,11 @@ namespace ConcertFinderMVC.BusinessManagement
                 list.Add(myeventitem);
             }
             return list;
-
-
         }
 
-
+        static public bool ValidEvent(long idEvent)
+        {
+            return DataAccess.Event.ValidEvent (idEvent);
+        }
     }
 }

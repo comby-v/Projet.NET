@@ -52,6 +52,18 @@ namespace ConcertFinderMVC.Controllers
             return View("AdminEvent", admin);
         }
 
+        public ActionResult EditToDetail(long idevent)
+        {
+            return RedirectToAction("Detail", "Event", new { id = idevent, creation = false });
+        }
+
+        public ActionResult ValideEvent(long idevent)
+        {
+            BusinessManagement.Event.ValidEvent(idevent);
+
+            return RedirectToAction("ValidEvent", "Admin");
+        }
+
         [HttpPost]
         public void ChangeRole(long id, string role)
         {

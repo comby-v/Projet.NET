@@ -28,5 +28,6 @@ namespace ConcertFinderMVC.Models
         [Required]
         [Display(Name = "Raisons")]
         public string reason { get; set; }
+
     }
 }

@@ -63,7 +63,8 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    List<DataAccess.T_Notification> notifs = bdd.T_User.Include("T_Notification").Where(x => x.Id == user.Id).FirstOrDefault().T_Notification.ToList();
+                    List<DataAccess.T_Notification> notifs = bdd.T_User.Include("T_Notification").Include("T_Event").Where(x => x.Id == user.Id).FirstOrDefault().T_Notification.ToList();
+
                     return notifs;
                 }
                 catch (Exception)

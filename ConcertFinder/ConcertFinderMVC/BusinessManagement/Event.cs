@@ -244,5 +244,10 @@ namespace ConcertFinderMVC.BusinessManagement
             }
             return listEventItem;
         }
+
+        static public bool ValidEvent(long idEvent)
+        {
+            return DataAccess.Event.ValidEvent (idEvent);
+        }
     }
 }

@@ -23,14 +23,16 @@
                 <span>@eve.Type</span>
                 <span>Salle :<strong>@eve.Salle</strong></span>
                 <em>@eve.Ville, @eve.CP, @eve.Rue</em>
+                <br/>
                 <strong>@eve.Titre</strong>
                 <strong>@eve.StartDate</strong>
+                <br/>
                 <span>@eve.Description</span>
                 <br />
                 <span>@eve.Website</span>
-                
+                <br/>
                 <a href="#">@eve.Website</a>
-                <a href="#">Editer</a>
+                @Html.ActionLink("Editer", "EditToDetail", "Admin", new { idevent = @eve.Id }, null)
             </li>
         }
     <ul>

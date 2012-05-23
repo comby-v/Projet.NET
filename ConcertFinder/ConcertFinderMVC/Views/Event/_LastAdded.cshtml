@@ -8,7 +8,7 @@
     @foreach (ConcertFinderMVC.Models.EventItem item in Model)
     {
         <div class="QuickItem">
-            <span>@Html.ActionLink(item.Titre, "Detail", "Event")</span>
+            <span>@Html.ActionLink(item.Titre, "Detail", "Event", new { id = item.Id }, null)</span>
             <span>A Paris, le @item.StartDate</span>
         </div>
     }

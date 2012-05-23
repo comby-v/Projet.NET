@@ -18,6 +18,7 @@
     <header>
         <div id="banniere">
             <div class="center">
+                <strong id="concertfinder">Concert Finder</strong>
                <div id="connect" class="float-right">
                     @if (!Request.IsAuthenticated)
                     {
@@ -44,10 +45,6 @@
                    <li class="float-left">@Html.ActionLink("Concerts", "Concert", "Event")</li>
                    <li class="float-left">@Html.ActionLink("Spectacles", "Spectacle", "Event")</li>
                    <li class="float-left">@Html.ActionLink("Festivals", "Festival", "Event")</li>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li class="float-left">@Html.ActionLink("Mes événements", "MyEvents", "Event")</li>
-                    }
                    <li class="float-left">@Html.ActionLink("Ajouter un événement", "CreateEvent", "Event")</li>
                    @if (User.Identity.IsAuthenticated)
                    {

@@ -1,17 +1,19 @@
 ﻿@model ConcertFinderMVC.Models.EventsList
-<h2 class="page_title">Tous les événements :</h2>
+
 
 <div class="main float-left">
+    <div class="section_title">Tous les événements</div>
+    <div class="item_separator"></div>
     @foreach (ConcertFinderMVC.Models.EventItem item in Model.Events)
     {
         <div class="item">
-           <div class="info2">
-                <strong class="item_titre">@item.Titre</strong>
-                <strong class="item_date">@item.StartDate.</strong>
-           </div>
            <div class="item_content">
-             <img src="@Url.Content("~/Content/Images/no_avatar.gif")" width="130" height="160" alt="flyers" class="float-left" />
+             <img src="@Url.Content("~/Content/Images/no_avatar.gif")" width="130" height="160" alt="flyers" class="flyers float-left" />
              <div class="infos float-left">
+                <div class="main_infos">
+                      <strong class="item_titre">@item.Titre</strong>
+                       <span class="item_date">@item.StartDate.</span>
+                </div>
                 <div class="info1">
                     <span class="item_type">@item.Type</span>
                     <span class="item_salle">@item.Salle</span>
@@ -25,6 +27,8 @@
                 </div>
              </div>   
             </div>
+        </div>
+        <div class="item_separator">
         </div>
     }
 </div>

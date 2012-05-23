@@ -44,6 +44,12 @@ header
     height: 145px;
 }
 
+.center
+{
+    width:1200px;
+    margin:auto;
+}
+
 #connect
 {
     margin-right:70px;
@@ -58,14 +64,16 @@ header
 #open_connect
 {
 	color:white;
+	margin-left:175px;
 }
 
 #connect_panel
 {
    /* height:50px;*/
     width:250px;
-    border: 2px solid black;
-    background : white;
+    border: 2px solid #ff893a;
+    background : #f4f4f4;
+    border-radius:5px;
 }
 
 .connexion_lbl
@@ -78,6 +86,29 @@ header
 {
     margin-right: 5px;
     margin-top: 2px;
+}
+
+#connexion_form
+{
+    padding-left:5px;
+    padding-top:5px;
+    padding-right:8px;
+}
+
+#register_form
+{
+    padding-left:5px;
+    padding-right:10px;
+}
+
+#pseudo_form .connexion_form
+{
+    margin-left:30px;
+}
+
+#password_form .connexion_form
+{
+    margin-left:15px;
 }
 
 /*MENU*/

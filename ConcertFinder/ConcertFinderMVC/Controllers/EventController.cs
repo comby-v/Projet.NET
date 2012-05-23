@@ -129,5 +129,14 @@ namespace ConcertFinderMVC.Controllers
             }
             return View(form);
         }
+
+        public ActionResult ValideEvent(long idevent)
+        {
+            BusinessManagement.Event.ValidEvent(idevent);
+
+            AdminModels admin = new AdminModels();
+            admin.listEvent = BusinessManagement.Event.GetListNonValid();
+            return RedirectToAction("NotValidEvent", "Admin");
+        }
     }
 }

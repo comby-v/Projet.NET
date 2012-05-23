@@ -107,9 +107,11 @@ namespace ConcertFinderMVC.Models
         public double Latitude { get; set; }
 
         [Required]
+        [DataType(DataType.DateTime)]
         [Display(Name = "Date de début")]
         public DateTime StartDate { get; set; }
 
+        [DataType(DataType.DateTime)]
         [Display(Name = "Date de fin")]
         public DateTime EndDate { get; set; }
 
@@ -144,12 +146,15 @@ namespace ConcertFinderMVC.Models
         [Display(Name = "Nom de salle")]
         public string RoomName { get; set; }
 
+        [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
+        [DataType(DataType.PhoneNumber)]
         [Display(Name = "Téléphone")]
         public string Phone { get; set; }
 
+        [DataType(DataType.Url)]
         [Display(Name = "Site web")]
         public string Website { get; set; }
     }

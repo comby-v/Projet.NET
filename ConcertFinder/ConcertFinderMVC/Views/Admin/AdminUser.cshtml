@@ -3,7 +3,7 @@
 <h2>Administration</h2>
 
 <ul>
-            <li>@Html.ActionLink("Gerer les événements", "NotValidEvent", "Admin")</li>
+    <li>@Html.ActionLink("Gerer les événements", "NotValidEvent", "Admin")</li>
 </ul>
 
 <section>
@@ -32,7 +32,8 @@
                         <td>@user.Mail</td>
                         <td>@user.City</td>
                         <td>
-                            <select>
+                            @{ var att_id = "role_" + user.Id; }
+                            <select id='@att_id'>
                                 <option>
                                     @user.Role
                                 </option>
@@ -52,3 +53,19 @@
         </tbody>
     </table>
 </section>
+
+@section Script
+{
+    <script type="text/javascript">
+
+        $("select").change(function () {
+            var select_id = "#" + $(this).attr("id");
+            var new_role = $(select_id + " option:selected").text();
+            var splitted = select_id.split('_');
+            var id_user = splitted[1];
+
+            $.post("/Admin/ChangeRole", { id: id_user, role: new_role });
+        });
+
+    </script>
+}

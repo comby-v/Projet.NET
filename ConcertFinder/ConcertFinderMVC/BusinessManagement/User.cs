@@ -66,12 +66,12 @@ namespace ConcertFinderMVC.BusinessManagement
                     }
                 }
             }
-            return DataAccess.User.create(user, listTag);
+            return DataAccess.User.Create(user, listTag);
         }
 
-        public static Boolean validate_user(string pseudo, string password)
+        public static Boolean ValidateUser(string pseudo, string password)
         {
-            return DataAccess.User.validate_user(pseudo, password);
+            return DataAccess.User.ValidateUser(pseudo, password);
         }
 
         public static DataAccess.T_User GetUserByPseudo(String pseudo)
@@ -108,5 +108,39 @@ namespace ConcertFinderMVC.BusinessManagement
             return (DataAccess.User.BlockUser(Id));
         }
 
+        static public bool ChangePassword(string pseudo, ChangePasswordModel form)
+        {
+            SimpleAES encryptor = new SimpleAES();
+
+            if (ValidateUser(pseudo, encryptor.EncryptToString(form.OldPassword)))
+            {
+                return (DataAccess.User.ChangePassword(pseudo, encryptor.EncryptToString(form.NewPassword)));
+            }
+            return false;
+        }
+
+        static public bool ForgotPassword(string email)
+        {
+            SimpleAES encryptor = new SimpleAES();
+
+            T_User user = DataAccess.User.GetUserByEmail(email);
+            if (user != null)
+            {
+                /* Send an email */
+                string password = encryptor.DecryptString(user.Password);
+                return true;
+            }
+            return false;
+        }
+
+        static public bool ChangeRole(long id, string role)
+        {
+            if (DataAccess.User.ChangeRole(id, role))
+            {
+                T_Notification notif = new T_Notification() { Titre = NotificationModel.GetStatus((int)eStatus.Status), Date = DateTime.Now, Message = "Votre statut est désormais " + role };
+                return DataAccess.Notification.Create(notif, id);
+            }
+            return false;
+        }
     }
 }

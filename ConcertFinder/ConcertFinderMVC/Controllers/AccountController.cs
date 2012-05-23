@@ -27,9 +27,16 @@ namespace ConcertFinderMVC.Controllers
             if (ModelState.IsValid)
             {
                 BusinessManagement.SimpleAES encryptor = new BusinessManagement.SimpleAES();
-                if (BusinessManagement.User.validate_user(model.Pseudo, encryptor.EncryptToString(model.Password)))
+                if (BusinessManagement.User.ValidateUser(model.Pseudo, encryptor.EncryptToString(model.Password)))
                 {
-                    FormsAuthentication.SetAuthCookie(model.Pseudo, false);
+                    if (model.RemembreMe)
+                    {
+                        FormsAuthentication.SetAuthCookie(model.Pseudo, true);
+                    }
+                    else
+                    {
+                        FormsAuthentication.SetAuthCookie(model.Pseudo, false);
+                    }
                 }
             }
           // If we got this far, something failed, redisplay form
@@ -95,6 +102,54 @@ namespace ConcertFinderMVC.Controllers
             }
 
             return View(notif_items);
+        }
+
+        public ActionResult ChangePassword()
+        {
+            ChangePasswordModel model = new ChangePasswordModel();
+            return View(model);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult ChangePassword(ChangePasswordModel post)
+        {
+            if (ModelState.IsValid)
+            {
+                if (BusinessManagement.User.ChangePassword(User.Identity.Name, post))
+                {
+                    return RedirectToAction("Index", "Event");
+                }
+                else
+                {
+                    return View("Error");
+                }
+            }
+            return View(post);
+        }
+
+        public ActionResult ForgottenPassword()
+        {
+            ForgotPasswordModel model = new ForgotPasswordModel();
+            return View(model);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult ForgottenPassword(ForgotPasswordModel form)
+        {
+            if (ModelState.IsValid)
+            {
+                if (BusinessManagement.User.ForgotPassword(form.Email))
+                {
+                    return RedirectToAction("Index", "Event");
+                }
+                else
+                {
+                    return View("Error");
+                }
+            }
+            return View(form);
         }
     }
 }

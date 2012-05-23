@@ -81,5 +81,47 @@ namespace ConcertFinderMVC.Models
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
+
+        [Display(Name = "Se souvenir de moi")]
+        public bool RemembreMe { get; set; }
+    }
+
+    public class ChangePasswordModel
+    {
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Mot de passe actuel")]
+        public string OldPassword { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "Le {0} doit être au moins de {2} caractères de long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Nouveau mot de passe")]
+        public string NewPassword { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirmer le mot de passe")]
+        [Compare("NewPassword", ErrorMessage = "Le nouveau mot de passe et la confirmation ne sont pas identiques.")]
+        public string ConfirmPassword { get; set; }
+    }
+
+    public class ForgotPasswordModel
+    {
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+    }
+
+    public class UserItem
+    {
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string Login { get; set; }
+        public string Mail { get; set; }
+        public string City { get; set; }
+        public string Role { get; set; }
+        public bool Deleted { get; set; }
     }
 }

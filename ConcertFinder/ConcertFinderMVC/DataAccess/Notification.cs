@@ -35,6 +35,28 @@ namespace ConcertFinderMVC.DataAccess
             return true;
         }
 
+        public static bool Create(T_Notification notification, long id)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                try
+                {
+                    T_User user = bdd.T_User.Where(x => x.Id == id).FirstOrDefault();
+                    bdd.Attach(user);
+                    notification.T_User.Add(user);
+
+                    bdd.AddToT_Notification(notification);
+                    bdd.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    throw;
+
+                }
+            }
+            return true;
+        }
+
         public static List<DataAccess.T_Notification> Get(T_User user)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())

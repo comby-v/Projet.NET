@@ -5,14 +5,15 @@ using System.Web;
 
 namespace ConcertFinderMVC.Models
 {
+    public enum eStatus
+    {
+        Creation = 0,
+        Edition,
+        Status
+    }
+
     public class NotificationModel
     {
-        public enum eStatus
-        {
-            Creation = 0,
-            Edition
-        }
-
         public static string GetStatus(int status)
         {
             var enumType = (eStatus)status;
@@ -22,6 +23,8 @@ namespace ConcertFinderMVC.Models
                     return "Creation";
                 case eStatus.Edition:
                     return "Edition";
+                case eStatus.Status:
+                    return "Statut";
                 default:
                     return string.Empty;
             }

@@ -7,7 +7,7 @@ namespace ConcertFinderMVC.DataAccess
 {
     public partial class User
     {
-        public static Boolean create(T_User user, List<T_Tag> tags)
+        public static Boolean Create(T_User user, List<T_Tag> tags)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
@@ -30,7 +30,7 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        public static Boolean delete(long idUser)
+        public static Boolean Delete(long idUser)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
@@ -52,7 +52,7 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        public static Boolean update(T_User upUser)
+        public static Boolean Update(T_User upUser)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities ())
             {
@@ -71,7 +71,7 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        public static T_User get(long idUser)
+        public static T_User Get(long idUser)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
@@ -86,22 +86,7 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        public static T_User getUserbylogin(String pseudo)
-        {
-            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
-            {
-                try
-                {
-                    return (bdd.T_User.Where(u => u.Pseudo == pseudo).FirstOrDefault());
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-            }
-        }
-
-        public static T_User getUserbyemail(String email)
+        public static T_User GetUserByEmail(String email)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
@@ -115,7 +100,7 @@ namespace ConcertFinderMVC.DataAccess
                 }
             }
         }
-       public static List<T_Tag> getTaglistfromUser(long idUser)
+       public static List<T_Tag> GetTagListFromUser(long idUser)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
@@ -132,7 +117,7 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-       public static Boolean validate_user(string pseudo, string password)
+       public static Boolean ValidateUser(string pseudo, string password)
        {
            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
            {
@@ -193,9 +178,37 @@ namespace ConcertFinderMVC.DataAccess
            T_User user = new T_User();
            try
            {
-               user = get(Id);
+               user = Get(Id);
                user.Deleted = true;
-               return (update(user));
+               return (Update(user));
+           }
+           catch (Exception)
+           {
+               return false;
+           }
+       }
+
+       static public bool ChangePassword(string pseudo, string new_password)
+       {
+           try
+           {
+               T_User user = GetUserByPseudo(pseudo);
+               user.Password = new_password;
+               return (Update(user));
+           }
+           catch (Exception)
+           {
+               return false;
+           }
+       }
+
+       static public bool ChangeRole(long id, string role)
+       {
+           try
+           {
+               T_User user = Get(id);
+               user.Role = role;
+               return (Update(user));
            }
            catch (Exception)
            {

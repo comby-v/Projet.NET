@@ -51,6 +51,12 @@ namespace ConcertFinderMVC.Controllers
             admin.listEvent = BusinessManagement.Event.GetListValid();
             return View("AdminEvent", admin);
         }
+
+        [HttpPost]
+        public void ChangeRole(long id, string role)
+        {
+            BusinessManagement.User.ChangeRole(id, role);
+        }
     }
 
 }

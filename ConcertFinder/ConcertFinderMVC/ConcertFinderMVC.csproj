@@ -108,6 +108,10 @@
     <Content Include="Content\Images\nav.png" />
     <Content Include="Content\Images\no_avatar.gif" />
     <Content Include="Content\Index.css" />
+    <Content Include="Content\jquery-ui-1.8.20.custom.css" />
+    <Content Include="Content\jquery-ui-1.8.20.custom.min.css">
+      <DependentUpon>jquery-ui-1.8.20.custom.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -187,6 +191,7 @@
     <Content Include="Scripts\jquery-1.7.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.custom.min.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.min.js">
       <DependentUpon>jquery.validate-vsdoc.js</DependentUpon>

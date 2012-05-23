@@ -2,6 +2,8 @@
 
 @section Header
 {
+    <link href="@Url.Content("~/Content/jquery-ui-1.8.20.custom.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.20.custom.min.js")" type="text/javascript"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBm8CQjlFqdYRoa3Am16rtSsAiIpdhL_nw&sensor=false"></script>
 }
 
@@ -36,7 +38,7 @@
             @Html.LabelFor(m => m.StartDate)
         </span>
         <span class="connexion_form ">
-            @Html.TextBoxFor(m => m.StartDate)
+            @Html.TextBoxFor(m => m.StartDate, new { id = "startDate" })
             @Html.ValidationMessageFor(m => m.StartDate)
         </span>
     </div>
@@ -46,7 +48,7 @@
             @Html.LabelFor(m => m.EndDate)
         </span>
         <span class="connexion_form ">
-            @Html.TextBoxFor(m => m.EndDate)
+            @Html.TextBoxFor(m => m.EndDate, new { id = "endDate" })
             @Html.ValidationMessageFor(m => m.EndDate)
         </span>
     </div>
@@ -171,6 +173,7 @@
 @section Script
 {
     <script type="text/javascript">
+
         function getLatLong(address) {
             var geo = new google.maps.Geocoder;
 
@@ -194,5 +197,21 @@
                 var latlong = getLatLong(address);
             }
         });
+
+        $("#startDate, #endDate").datepicker({
+            monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet',
+                            'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            monthNamesShort: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun',
+                                'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'],
+            dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi',
+                        'Jeudi', 'Vendredi', 'Samedi'],
+            dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+            dayNamesShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+            dateFormat: "dd/mm/yy",
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            showAnim: "fold"
+        });
+
       </script>
 }

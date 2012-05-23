@@ -57,8 +57,6 @@ namespace ConcertFinderMVC.Controllers
             return RedirectToAction("Detail", "Event", new { id = idevent, creation = true });
         }
 
-        
-
         [HttpPost]
         public void ChangeRole(long id, string role)
         {

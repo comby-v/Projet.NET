@@ -214,6 +214,27 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
+        static public List<T_Event> MyEvent(string pseudo)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                List<T_Event> list = new List<T_Event>();
+                try
+                {
+                    T_User user = User.GetUserByPseudo(pseudo);
+                    if (user != null)
+                    {
+                        list = bdd.T_Event.Include("T_Location").Include("T_Tag").Where(e => e.Valide == true).ToList().Where(x => x.T_Tag.Intersect(user.T_Tag).Count() >= 1 || user.Ville == x.T_Location.Ville || user.T_Event.Contains(x)).ToList();
+                    }
+                    return list;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
          static public bool ValidEvent(long idEvent)
         {
             try

@@ -15,4 +15,15 @@ namespace ConcertFinderMVC.Models
         public List<String> listPost { get; set; }
         public List<EventItem> listEvent { get; set; }
     }
+
+    public class ForbidForm
+    {
+        [Required]
+        [Display(Name = "Title")]
+        public string Title { get; set; }
+
+        [Required]
+        [Display(Name = "Raisons")]
+        public string resaon { get; set; }
+    }
 }

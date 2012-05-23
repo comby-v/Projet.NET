@@ -182,6 +182,7 @@
     <Content Include="Content\themes\base\jquery.ui.theme.min.css">
       <DependentUpon>jquery.ui.theme.css</DependentUpon>
     </Content>
+    <Content Include="Content\_LastAdded.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.min.js">

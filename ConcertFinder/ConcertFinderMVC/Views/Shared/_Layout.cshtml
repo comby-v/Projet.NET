@@ -59,3 +59,9 @@
 </body>
 </html>
 @RenderSection("Script", false)
+
+<script type="text/javascript">
+    $("#open_connect").click(function () {
+        $("#connect_panel").toggle('blind', null, 500);
+    });
+</script>

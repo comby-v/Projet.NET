@@ -52,10 +52,20 @@ namespace ConcertFinderMVC.Controllers
             return View("AdminEvent", admin);
         }
 
-        public ActionResult EditToDetail(long idevent)
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult forbid(ForbidForm form)
         {
-            return RedirectToAction("Detail", "Event", new { id = idevent, creation = true });
+            NotificationItem notif = new NotificationItem();
+
+            notif.Date = DateTime.Now;
+            notif.Titre = form.Title;
+            notif.Message = form.resaon;
+
+            BusinessManagement.Notification.Create();
+            return RedirectToAction("NotValidEvent", "Admin");
         }
+
 
         [HttpPost]
         public void ChangeRole(long id, string role)

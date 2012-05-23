@@ -143,5 +143,6 @@ namespace ConcertFinderMVC.Controllers
             admin.listEvent = BusinessManagement.Event.GetListNonValid();
             return RedirectToAction("NotValidEvent", "Admin");
         }
+
     }
 }

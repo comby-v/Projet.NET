@@ -20,5 +20,16 @@ namespace ConcertFinderMVC.BusinessManagement
             DataAccess.T_User user = User.GetUserByPseudo(pseudo);
             return DataAccess.Notification.Get(user);
         }
+
+        public static bool Deny(ForbidForm form)
+        {
+            T_Notification notif = new T_Notification()
+            {
+                Date = DateTime.Now,
+                Titre = form.Title,
+                Message = form.reason
+            };
+            return (DataAccess.Notification.Deny(notif, form.IdEvent));
+        }
     }
 }

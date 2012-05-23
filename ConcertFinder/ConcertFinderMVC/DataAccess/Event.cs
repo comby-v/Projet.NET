@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ConcertFinderMVC.Models;
 
 namespace ConcertFinderMVC.DataAccess
 {
@@ -224,7 +225,7 @@ namespace ConcertFinderMVC.DataAccess
                     T_User user = User.GetUserByPseudo(pseudo);
                     if (user != null)
                     {
-                        list = bdd.T_Event.Include("T_Location").Include("T_Tag").Where(e => e.Valide == true).ToList().Where(x => x.T_Tag.Intersect(user.T_Tag).Count() >= 1 || user.Ville == x.T_Location.Ville || user.T_Event.Contains(x)).ToList();
+                        list = bdd.T_Event.Include("T_Location").Include("T_Tag").Where(e => e.Valide == true && e.DateDebut > DateTime.Now).ToList().Where(x => x.T_Tag.Intersect(user.T_Tag).Count() >= 1 || user.Ville == x.T_Location.Ville || user.T_Event.Contains(x)).OrderBy(x => x.DateDebut).ToList();
                     }
                     return list;
                 }
@@ -237,16 +238,35 @@ namespace ConcertFinderMVC.DataAccess
 
          static public bool ValidEvent(long idEvent)
         {
-            try
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
-                T_Event ev = new T_Event ();
-                ev = Get(idEvent, true);
-                ev.Valide = true;
-                return (Update(ev));
-            }
-             catch (Exception)
-            {
-                return false;
+                try
+                {
+                    T_Event ev = bdd.T_Event.Include("T_Tag").Include("T_Location").Where(x => x.Id == idEvent).FirstOrDefault();
+
+                    List<T_User> users = bdd.T_User.Include("T_Tag").Where(u => u.Deleted == false).ToList().Where(x => x.T_Tag.Intersect(ev.T_Tag).Count() >= 1 || x.Ville == ev.T_Location.Ville || x.T_Event.Contains(ev)).ToList();
+
+                    foreach (T_User user in users)
+                    {
+                        T_Notification notif = new T_Notification()
+                        {
+                            Titre = NotificationModel.GetStatus((int)eStatus.Ajout),
+                            Date = DateTime.Now,
+                            Message = "L'évènement suivant vient d'être créé " + ev.Titre
+                        };
+                        notif.T_User.Add(user);
+                        notif.T_Event.Add(ev);
+                        bdd.AddToT_Notification(notif);
+                    }
+                    bdd.SaveChanges();
+
+                    ev.Valide = true;
+                    return (Update(ev));
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
         }
     }

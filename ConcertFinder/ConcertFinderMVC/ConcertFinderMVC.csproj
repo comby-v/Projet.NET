@@ -275,7 +275,7 @@
     <Content Include="Views\Admin\AdminUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\ForbidEvent.cshtml" />
+    <Content Include="Views\Admin\DenyEvent.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

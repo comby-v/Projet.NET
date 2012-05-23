@@ -25,9 +25,12 @@
 </div>
 
     <div>
-        @Html.ActionLink("Accepter", "ValideEvent", "Event", new { idevent = @Model.Id }, null)
-        <a href="../Admin/ForbidEvent.cshtml">refuser</a>
-        <a href="#">editer</a>
+        @if (!Model.Valide)
+        {
+            @Html.ActionLink("Accepter", "ValideEvent", "Event", new { idevent = Model.Id }, null)
+            @Html.ActionLink("Refuser", "DenyEvent", "Admin", new { idevent = Model.Id }, null)
+        }
+        @Html.ActionLink("Editer", "CreateEvent", "Event", new { id = Model.Id }, null)
     </div>
 
 @section Script

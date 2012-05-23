@@ -69,6 +69,21 @@ namespace ConcertFinderMVC.Models
             }
         }
 
+        public static eTypes GetEventType(string type)
+        {
+            switch (type)
+            {
+                case "Spectacle":
+                    return eTypes.Spectacle;
+                case "Concert":
+                    return eTypes.Concert;
+                case "Festival":
+                    return eTypes.Festival;
+                default:
+                    return eTypes.Spectacle;
+            }
+        }
+
         public static Dictionary<int, string> GetEventTypes()
         {
             return EventTypes.ToDictionary(o => o, o => GetEventType(o));
@@ -90,6 +105,8 @@ namespace ConcertFinderMVC.Models
             StartDate = DateTime.Now.AddDays(1);
             EndDate = DateTime.Now;
         }
+
+        public long Id { get; set; }
 
         [Required]
         [Display(Name = "Titre")]

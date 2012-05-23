@@ -91,6 +91,7 @@ namespace ConcertFinderMVC.Controllers
                 Type = myevent.Type,
                 Image = myevent.Image,
                 Email = myevent.Email,
+                Valide = myevent.Valide.GetValueOrDefault(),
                 Tel = myevent.Tel,
                 Website = myevent.WebSite,
                 Salle = myevent.T_Location.Name,
@@ -107,9 +108,46 @@ namespace ConcertFinderMVC.Controllers
             return View(event_item);
         }
 
-        public ActionResult CreateEvent()
+        public ActionResult CreateEvent(long? id)
         {
-            FormEventModels form = new FormEventModels();
+            FormEventModels form;
+            if (id.HasValue)
+            {
+                T_Event myevent = BusinessManagement.Event.Get(id.Value, true);
+                string tags = "";
+                foreach (T_Tag tag in myevent.T_Tag.ToList())
+                {
+                    tags += tag.Name + " ";
+                }
+
+                form = new FormEventModels()
+                {
+                    Id = myevent.Id,
+                    StartDate = myevent.DateDebut,
+                    EndDate = myevent.DateFin.GetValueOrDefault(),
+                    Description = myevent.Description,
+                    Title = myevent.Titre,
+                    Image = myevent.Image,
+                    Email = myevent.Email,
+                    Phone = myevent.Tel,
+                    Website = myevent.WebSite,
+                    Type = (int)EventModel.GetEventType(myevent.Type),
+                    Tags = tags,
+
+                    RoomName = myevent.T_Location.Name,
+                    Country = myevent.T_Location.Pays,
+                    City = myevent.T_Location.Ville,
+                    CodePostal = myevent.T_Location.CP,
+                    Address = myevent.T_Location.Rue,
+                    Latitude = myevent.T_Location.Latitude,
+                    Longitude = myevent.T_Location.Longitude
+                };
+            }
+            else
+            {
+                form = new FormEventModels();
+            }
+
             return View(form);
         }
 
@@ -139,8 +177,6 @@ namespace ConcertFinderMVC.Controllers
         {
             BusinessManagement.Event.ValidEvent(idevent);
 
-            AdminModels admin = new AdminModels();
-            admin.listEvent = BusinessManagement.Event.GetListNonValid();
             return RedirectToAction("NotValidEvent", "Admin");
         }
 

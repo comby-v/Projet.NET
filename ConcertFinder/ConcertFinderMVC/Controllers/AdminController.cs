@@ -52,18 +52,28 @@ namespace ConcertFinderMVC.Controllers
             return View("AdminEvent", admin);
         }
 
+        public ActionResult DenyEvent(long idevent)
+        {
+            ForbidForm model = new ForbidForm() { IdEvent = idevent};
+            return View(model);
+        }
+
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult forbid(ForbidForm form)
+        public ActionResult DenyEvent(ForbidForm form)
         {
-            NotificationItem notif = new NotificationItem();
-
-            notif.Date = DateTime.Now;
-            notif.Titre = form.Title;
-            notif.Message = form.resaon;
-
-            BusinessManagement.Notification.Create();
-            return RedirectToAction("NotValidEvent", "Admin");
+            if (ModelState.IsValid)
+            {
+                if (BusinessManagement.Notification.Deny(form))
+                {
+                    return RedirectToAction("NotValidEvent", "Admin");
+                }
+                else
+                {
+                    return View("Error");
+                }
+            }
+            return View(form);
         }
 
 

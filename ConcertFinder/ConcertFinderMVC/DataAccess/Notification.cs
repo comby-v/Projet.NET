@@ -73,5 +73,26 @@ namespace ConcertFinderMVC.DataAccess
                 }
             }
         }
+
+        public static bool Deny(T_Notification notif, long idEvent)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                try
+                {
+                    T_Event myevent = bdd.T_Event.Include("T_User").Where(x => x.Id == idEvent).FirstOrDefault();
+                    notif.T_Event.Add(myevent);
+                    notif.T_User.Add(myevent.T_User);
+                    bdd.AddToT_Notification(notif);
+                    bdd.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    throw;
+                    return false;
+                }
+            }
+        }
     }
 }

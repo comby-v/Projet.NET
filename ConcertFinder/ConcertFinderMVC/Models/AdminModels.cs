@@ -19,11 +19,14 @@ namespace ConcertFinderMVC.Models
     public class ForbidForm
     {
         [Required]
-        [Display(Name = "Title")]
+        public long IdEvent { get; set; }
+
+        [Required]
+        [Display(Name = "Titre")]
         public string Title { get; set; }
 
         [Required]
         [Display(Name = "Raisons")]
-        public string resaon { get; set; }
+        public string reason { get; set; }
     }
 }

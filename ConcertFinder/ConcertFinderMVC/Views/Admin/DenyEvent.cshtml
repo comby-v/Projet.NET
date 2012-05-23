@@ -6,14 +6,19 @@
 
 <h2>ForbidEvent</h2>
 
-<section>
+@using (Html.BeginForm("DenyEvent", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.IdEvent)
+
     <h2>@Html.LabelFor(t => t.Title)</h2>
     <div>
         @Html.TextBoxFor(t => t.Title)
     </div>
-    <h2>@Html.LabelFor(r => r.resaon)</h2>
+    <h2>@Html.LabelFor(r => r.reason)</h2>
     <div>
-        @Html.TextAreaFor(r => r.resaon)
+        @Html.TextAreaFor(r => r.reason)
     </div>
      <input type="submit" value="Envoyer" />
-</section>
+}

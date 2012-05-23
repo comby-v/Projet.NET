@@ -9,7 +9,8 @@ namespace ConcertFinderMVC.Models
     {
         Creation = 0,
         Edition,
-        Status
+        Status,
+        Ajout
     }
 
     public class NotificationModel
@@ -25,6 +26,8 @@ namespace ConcertFinderMVC.Models
                     return "Edition";
                 case eStatus.Status:
                     return "Statut";
+                case eStatus.Ajout:
+                    return "Ajout";
                 default:
                     return string.Empty;
             }

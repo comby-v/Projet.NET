@@ -67,7 +67,12 @@ namespace ConcertFinderMVC.Controllers
 
         public ActionResult MyEvents()
         {
-            return View();
+            EventsList eventList = new EventsList()
+            {
+                Last = BusinessManagement.Event.GetListLastAddEvent(5),
+                Events = BusinessManagement.Event.MyEvent(User.Identity.Name)
+            };
+            return View("Index", eventList);
         }
 
         //

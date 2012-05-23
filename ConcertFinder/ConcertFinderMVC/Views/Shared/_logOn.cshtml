@@ -3,28 +3,28 @@
 @using (Html.BeginForm("LogOn", "Account","POST"))
 {
     @Html.AntiForgeryToken()
-    <div>
-        <span class="connexion_lbl float-left">
+    <div id="pseudo_form">
+        <span class="connexion_lbl">
             @Html.LabelFor(m => m.Pseudo)
         </span>
-        <span class="connexion_form float-right">
-            @Html.TextBoxFor(m => m.Pseudo)
+        <span class="connexion_form">
+            @Html.TextBoxFor(m => m.Pseudo, new { style = "width:150px" })
             @Html.ValidationMessageFor(m => m.Pseudo)
         </span>
-        <span class=clear></span>
+        <span class="clear"></span>
     </div>
     
-    <div>
-        <span class="connexion_lbl float-left">
+    <div id="password_form">
+        <span class="connexion_lbl">
             @Html.LabelFor(m => m.Password)
         </span>
-        <span class="connexion_form float-right">
-            @Html.PasswordFor(m => m.Password)
+        <span class="connexion_form">
+            @Html.PasswordFor(m => m.Password, new { style = "width:150px" })
             @Html.ValidationMessageFor(m => m.Password)
         </span>
-        <span class=clear></span>
+        <span class="clear"></span>
     </div>
-     <div>
+    <div id="connexion_form">
         <div class="float-left">
             <span>
                 @Html.LabelFor(x => x.RemembreMe)
@@ -33,13 +33,16 @@
                 @Html.CheckBoxFor(x => x.RemembreMe)
             </span>
         </div>
+        <div class="float-right">
+            <input type="submit" value="Connexion" />
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div id="register_form">
         <div class="float-left">
             @Html.ActionLink("Mot de passe oublié", "ForgottenPassword", "Account")
         </div>
         <div class="float-right">
-            <input type="submit" value="Connexion" />
-        </div>
-        <div>
             @Html.ActionLink("S'inscrire", "Register", "Account")
         </div>
         <div class="clear"></div>

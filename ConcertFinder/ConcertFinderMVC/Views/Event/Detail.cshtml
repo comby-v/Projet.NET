@@ -24,14 +24,12 @@
 <div id="map" style="width:400px; height:400px;">
 </div>
 
-@if (ConcertFinderMVC.DataAccess.User.GetUserByPseudo(User.Identity.Name).Role.Equals("Administrateur") || (ConcertFinderMVC.DataAccess.User.GetUserByPseudo(User.Identity.Name).Role.Equals("Moderateur")))
-{
     <div>
-        <a href="#">accepter</a>
+        @Html.ActionLink("Accepter", "ValideEvent", "Event", new { idevent = @Model.Id }, null)
         <a href="#">refuser</a>
         <a href="#">editer</a>
     </div>
-}
+
 @section Script
 {
     <script type="text/javascript">

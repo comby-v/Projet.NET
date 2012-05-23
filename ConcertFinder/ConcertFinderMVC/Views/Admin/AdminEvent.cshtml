@@ -32,7 +32,7 @@
                 <span>@eve.Website</span>
                 <br/>
                 <a href="#">@eve.Website</a>
-                @Html.ActionLink("Editer", "EventToDetail", "Admin")
+                @Html.ActionLink("Editer", "EditToDetail", "Admin", new { idevent = @eve.Id }, null)
             </li>
         }
     <ul>

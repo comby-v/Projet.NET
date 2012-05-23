@@ -61,7 +61,7 @@ namespace ConcertFinderMVC.DataAccess
                 {
                     var n_event = new T_Event { Id = myevent.Id };
                     bdd.T_Event.Attach(n_event);
-                    bdd.ApplyCurrentValues("T_EVENT", myevent);
+                    bdd.ApplyCurrentValues("T_Event", myevent);
                     bdd.SaveChanges();
                 }
                 catch (Exception)
@@ -219,7 +219,7 @@ namespace ConcertFinderMVC.DataAccess
             try
             {
                 T_Event ev = new T_Event ();
-                ev = Get(idEvent);
+                ev = Get(idEvent, true);
                 ev.Valide = true;
                 return (Update(ev));
             }

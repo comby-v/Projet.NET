@@ -47,7 +47,8 @@
                    <li class="float-left">@Html.ActionLink("Ajouter un événement", "CreateEvent", "Event")</li>
                    @if (User.Identity.IsAuthenticated)
                    {
-                   <li class="float-left">@Html.ActionLink("Administration utilisateur", "ManageUser", "Admin")</li>
+                        <li class="float-left">@Html.ActionLink("Mes évènements", "MyEvents", "Event")</li>
+                        <li class="float-left">@Html.ActionLink("Administration utilisateur", "ManageUser", "Admin")</li>
                    }
                    <li class="clear"></li>
                   </ul>

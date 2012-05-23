@@ -143,7 +143,7 @@ namespace ConcertFinderMVC.DataAccess
            {
                try
                {
-                   T_User user = bdd.T_User.Include("T_Tag").Where(x => x.Pseudo == pseudo).FirstOrDefault();
+                   T_User user = bdd.T_User.Include("T_Tag").Include("T_Event").Where(x => x.Pseudo == pseudo).FirstOrDefault();
                    if (user != null)
                    {
                        return user;

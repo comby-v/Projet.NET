@@ -218,10 +218,31 @@ namespace ConcertFinderMVC.BusinessManagement
                 list.Add(myeventitem);
             }
             return list;
-
-
         }
 
-
+        static public List<EventItem> MyEvent(string pseudo)
+        {
+            List<T_Event> list = DataAccess.Event.MyEvent(pseudo);
+            List<EventItem> listEventItem = new List<EventItem>();
+            foreach (T_Event item in list)
+            {
+                EventItem eventItem = new EventItem()
+                {
+                    Id = item.Id,
+                    Titre = item.Titre,
+                    Description = item.Description,
+                    Type = item.Type,
+                    StartDate = item.DateDebut,
+                    EndDate = item.DateFin.GetValueOrDefault(),
+                    Salle = item.T_Location.Name,
+                    Image = item.Image,
+                    Email = item.Email,
+                    Tel = item.Tel,
+                    Website = item.WebSite
+                };
+                listEventItem.Add(eventItem);
+            }
+            return listEventItem;
+        }
     }
 }

@@ -84,6 +84,7 @@
     <Compile Include="DataAccess\Location.cs" />
     <Compile Include="DataAccess\Notification.cs" />
     <Compile Include="DataAccess\Tag.cs" />
+    <Compile Include="DataAccess\T_Tag.cs" />
     <Compile Include="DataAccess\User.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

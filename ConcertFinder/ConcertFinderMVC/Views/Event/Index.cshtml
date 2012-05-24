@@ -8,15 +8,15 @@
     {
         <div class="item">
            <div class="item_content">
-             <img src="@Url.Content("~/Content/Images/no_avatar.gif")" width="130" height="160" alt="flyers" class="flyers float-left" />
+             <img src="@Url.Content("~/Content/Images/no_avatar.gif")" width="125" height="150" alt="flyers" class="flyers float-left" />
              <div class="infos float-left">
                 <div class="main_infos">
                       <strong class="item_titre">@item.Titre</strong>
-                      <span class="item_date">@item.StartDate.</span>
+                      <strong class="item_date float-right">@item.StartDate.</strong>
                 </div>
                 <div class="info1">
                     <span class="item_type">@item.Type</span>
-                    <span class="item_salle">@item.Salle</span>
+                    <strong class="item_salle">@item.Salle</strong>
                     <em class="item_adresse">@item.Ville , @item.CP , @item.Rue</em>
                 </div>
                 <p class="item_descr">

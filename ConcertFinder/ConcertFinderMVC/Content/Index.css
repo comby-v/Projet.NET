@@ -17,12 +17,12 @@
     height:40px;
     width:260px;
     margin-top:-20px;
-    margin-bottom:15px;
+
     margin-left:10px;
     padding-left:5px;
     color:#333333;
     background:white;
-    font-size:30px;
+    font-size:20px;
     font-weight:bold;
 }
 
@@ -44,11 +44,13 @@
 .flyers
 {
     border:1px solid #518cf2;
+    margin-left:10px;
 }
 
 .item_content
 {
-    background: white;
+    background: #F7F7F7;
+    border-radius:20px;
     width:100%;
     margin-top:10px;
     height:160px;
@@ -59,7 +61,18 @@
 }
 .item_titre
 {
-    font-size:24px;
+    font-size:18px;
+}
+
+.item_date
+{
+    margin-right:20px;
+}
+
+.item_type
+{
+    font-family:Copperplate Gothic Bold;
+    font-size:12px;
 }
 
 .infos
@@ -68,10 +81,6 @@
    width: 500px;
 }
 
-.info1
-{
-    font-size:16px;
-}
 
 .item_separator
 {

@@ -10,7 +10,15 @@ namespace ConcertFinderMVC.BusinessManagement
     {
         public static string Truncate(string description)
         {
-            return description.ToArray().Take(100).ToString();
+            if (description.Length > 200)
+            {
+                return (new String(description.ToArray().Take(200).ToArray())) + " ...";
+            }
+            else
+            {
+                return (description);
+            }
+            
         }
 
         public static bool IsAdmin(string pseudo)

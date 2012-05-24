@@ -52,6 +52,13 @@
     color:#333;
     padding-top:10px;
     padding-bottom:10px;
+    border: 1px solid #CCC;
+    box-shadow:4px 4px 5px #DDD;
+}
+
+.item_content:hover
+{
+    background: #FEFEFE;
 }
 .main_infos
 {
@@ -97,7 +104,7 @@
 
 .item_separator
 {
-    width:600px;
+   /* width:600px;
     margin:auto;
-    border-bottom:1px solid #AAA;
+    border-bottom:1px solid #AAA;*/
 }

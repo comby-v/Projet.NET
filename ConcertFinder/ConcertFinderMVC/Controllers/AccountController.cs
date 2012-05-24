@@ -105,7 +105,7 @@ namespace ConcertFinderMVC.Controllers
                 notif_items.Add(item);
             }
 
-            return View(notif_items);
+            return View(notif_items.OrderByDescending(x => x.Date).ToList());
         }
 
         public ActionResult ChangePassword()

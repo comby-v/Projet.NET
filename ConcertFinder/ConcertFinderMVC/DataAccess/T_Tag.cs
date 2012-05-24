@@ -16,7 +16,7 @@ namespace ConcertFinderMVC.DataAccess
             if (Object.ReferenceEquals(this, tag)) return true;
 
             //Check whether the products' properties are equal.
-            return Id.Equals(tag.Id) && Name.Equals(tag.Name);
+            return Id.Equals(tag.Id);
         }
 
         // If Equals() returns true for a pair of objects 
@@ -24,14 +24,11 @@ namespace ConcertFinderMVC.DataAccess
 
         public override int GetHashCode()
         {
-            //Get hash code for the Name field if it is not null.
-            int hashProductName = Name == null ? 0 : Name.GetHashCode();
+            //Get hash code for the Id field.
+            int hashIdCode = Id.GetHashCode();
 
-            //Get hash code for the Code field.
-            int hashProductCode = Id.GetHashCode();
-
-            //Calculate the hash code for the product.
-            return hashProductName ^ hashProductCode;
+            //Calculate the hash Id for the tag.
+            return hashIdCode;
         }
     }
 }

@@ -65,12 +65,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessManagement\CustomMemberShip.cs" />
     <Compile Include="BusinessManagement\Event.cs" />
     <Compile Include="BusinessManagement\Location.cs" />
     <Compile Include="BusinessManagement\Notification.cs" />
     <Compile Include="BusinessManagement\SimpleAES.cs" />
     <Compile Include="BusinessManagement\Tag.cs" />
+    <Compile Include="BusinessManagement\Tool.cs" />
     <Compile Include="BusinessManagement\User.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -84,6 +84,7 @@
     <Compile Include="DataAccess\Location.cs" />
     <Compile Include="DataAccess\Notification.cs" />
     <Compile Include="DataAccess\Tag.cs" />
+    <Compile Include="DataAccess\T_Event.cs" />
     <Compile Include="DataAccess\T_Tag.cs" />
     <Compile Include="DataAccess\User.cs" />
     <Compile Include="Global.asax.cs">

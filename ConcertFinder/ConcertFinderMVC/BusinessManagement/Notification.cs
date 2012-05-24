@@ -17,8 +17,7 @@ namespace ConcertFinderMVC.BusinessManagement
 
         public static List<DataAccess.T_Notification> Get(string pseudo)
         {
-            DataAccess.T_User user = User.GetUserByPseudo(pseudo);
-            return DataAccess.Notification.Get(user);
+            return DataAccess.Notification.Get(pseudo);
         }
 
         public static bool Deny(ForbidForm form)

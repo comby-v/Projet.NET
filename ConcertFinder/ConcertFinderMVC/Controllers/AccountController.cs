@@ -91,18 +91,17 @@ namespace ConcertFinderMVC.Controllers
             List<NotificationItem> notif_items = new List<NotificationItem>();
             foreach (DataAccess.T_Notification notif in notifs)
             {
-                long idevent = 0;
-                if (notif.T_Event.IsLoaded)
-                     idevent = notif.T_Event.FirstOrDefault().Id;
-
                 NotificationItem item = new NotificationItem()
                 {
                     Id = notif.Id,
                     Titre = notif.Titre,
                     Date = notif.Date,
-                    Message = notif.Message,
-                    IdEvent = idevent
+                    Message = notif.Message
                 };
+                if (notif.T_Event != null && notif.T_Event.Count > 0)
+                {
+                    item.IdEvent = notif.T_Event.FirstOrDefault().Id;
+                }
                 notif_items.Add(item);
             }
 

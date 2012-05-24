@@ -57,45 +57,21 @@ namespace ConcertFinderMVC.DataAccess
             return true;
         }
 
-        public static List<DataAccess.T_Notification> Get(T_User user)
+        public static List<DataAccess.T_Notification> Get(string pseudo)
         {
+            List<DataAccess.T_Notification> notifs;
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                     List<T_Notification> notiflist = bdd.T_Notification.Include("T_User").Include("T_Event").ToList();
-                     List<T_Notification> relist = new List<T_Notification>(); 
-                    foreach (T_Notification notif in notiflist)
-                     {
-                         bool find = false;
-                         List<T_User> test = notif.T_User.ToList();
-                         foreach (T_User us in test)
-                         {
-                            
-                             if (us.Id == user.Id)
-                             {
-                                 find = true;
-                                 break;
-                             }
-                         }
-                         if (find)
-                         {
-                             relist.Add(notif);
-                         }
-                     }
-
-                    List<DataAccess.T_Notification> notifs = bdd.T_User.Include("T_Notification").Include("T_Event").Where(x => x.Id == user.Id).FirstOrDefault().T_Notification.ToList();
-
-
-
-                    return relist;
+                    notifs = bdd.T_Notification.Include("T_User").Include("T_Event").ToList().Where(x => x.T_User.FirstOrDefault().Pseudo == pseudo).ToList();
                 }
                 catch (Exception)
                 {
                     throw;
-                   
                 }
             }
+            return notifs;
         }
 
         public static bool Deny(T_Notification notif, long idEvent)

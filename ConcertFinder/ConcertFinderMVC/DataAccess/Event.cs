@@ -191,7 +191,7 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    return (bdd.T_Event.Include("T_Location").Where(ev => (ev.Valide == false || ev.Valide == null)).OrderBy(ev => ev.DateCreation).ToList());
+                    return (bdd.T_Event.Include("T_Location").Where(ev => ev.Valide == false).OrderByDescending(ev => ev.DateCreation).ToList());
                 }
                 catch (Exception)
                 {
@@ -206,7 +206,7 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    return (bdd.T_Event.Include("T_Location").Where(ev => (ev.Valide == true)).OrderBy(ev => ev.DateCreation).ToList());
+                    return (bdd.T_Event.Include("T_Location").Where(ev => (ev.Valide == true)).OrderByDescending(ev => ev.DateCreation).ToList());
                 }
                 catch (Exception)
                 {

@@ -45,10 +45,11 @@
                    <li class="float-left">@Html.ActionLink("Concerts", "Concert", "Event")</li>
                    <li class="float-left">@Html.ActionLink("Spectacles", "Spectacle", "Event")</li>
                    <li class="float-left">@Html.ActionLink("Festivals", "Festival", "Event")</li>
-                   <li class="float-left">@Html.ActionLink("Ajouter un événement", "CreateEvent", "Event")</li>
+                   
                    @if (User.Identity.IsAuthenticated)
                    {
                         <li class="float-left">@Html.ActionLink("Mes évènements", "MyEvents", "Event")</li>
+                        <li class="float-left">@Html.ActionLink("Ajouter un événement", "CreateEvent", "Event")</li>
                         <li class="float-left">@Html.ActionLink("Administration utilisateur", "ManageUser", "Admin")</li>
                    }
 

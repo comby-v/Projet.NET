@@ -40,5 +40,6 @@ namespace ConcertFinderMVC.Models
         public String Titre { get; set; }
         public DateTime Date { get; set; }
         public String Message { get; set; }
+        public long IdEvent { get; set; }
     }
 }

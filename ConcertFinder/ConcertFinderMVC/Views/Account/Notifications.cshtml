@@ -10,5 +10,7 @@
     </div>
     <div>
         @item.Message
-    </div>
+    </div> 
+    
+    @Html.ActionLink("Voir l'evenement", "Detail", "Event", new { id = @item.IdEvent, creation = true}, null)
 }

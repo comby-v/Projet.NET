@@ -11,6 +11,7 @@ namespace ConcertFinderMVC.Models
 {
     public class AdminModels
     {
+        public UserItem User { get; set; }
         public List<UserItem> listUser { get; set; }
         public List<String> listPost { get; set; }
         public List<EventItem> listEvent { get; set; }

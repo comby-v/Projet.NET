@@ -5,11 +5,13 @@
 }
 
 <h2>AdminEvent</h2>
-<ul>
-            <li>@Html.ActionLink("Gerer les utlisateurs", "ManageUser", "Admin")</li>
-</ul>
-
-<section>
+    @if (Model.User.Role.Equals(ConcertFinderMVC.Models.UserModel.GetRoleType((int)ConcertFinderMVC.Models.eRole.Admin)))
+    {
+        <ul>
+                    <li>@Html.ActionLink("Gerer les utlisateurs", "ManageUser", "Admin")</li>
+        </ul>
+    }
+ <section>
     <ul id="onglet">
         <li>@Html.ActionLink("Evenement valide", "ValidEvent", "Admin")</li>
         <li>@Html.ActionLink("Evenement en attente", "NotValidEvent", "Admin")</li>

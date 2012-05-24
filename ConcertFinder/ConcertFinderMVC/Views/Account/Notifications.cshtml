@@ -12,5 +12,8 @@
         @item.Message
     </div> 
     
-    @Html.ActionLink("Voir l'evenement", "Detail", "Event", new { id = @item.IdEvent, creation = true}, null)
+    if (item.Titre != "Statut")
+    {
+        @Html.ActionLink("Voir l'evenement", "Detail", "Event", new { id = item.IdEvent }, null)
+    }
 }

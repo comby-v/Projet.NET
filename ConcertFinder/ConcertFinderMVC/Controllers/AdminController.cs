@@ -19,9 +19,10 @@ namespace ConcertFinderMVC.Controllers
 
         public ActionResult ManageUser()
         {
-            /*if (DataAccess.User.GetUserByPseudo(User.Identity.Name).Role.Equals(UserModel.GetRoleType((int)eRole.Admin)))
+            /*if (BusinessManagement.User.GetUserByPseudo(User.Identity.Name).Role.Equals(UserModel.GetRoleType((int)eRole.Admin)))
             {*/
                 AdminModels admin = new AdminModels();
+                admin.User = ConcertFinderMVC.BusinessManagement.User.UserToUserItem(User.Identity.Name);
                 admin.listPost = new List<string>() { UserModel.GetRoleType((int)eRole.User), UserModel.GetRoleType((int)eRole.Admin), UserModel.GetRoleType((int)eRole.Moderateur)};
                 admin.listUser = BusinessManagement.User.GetListUser();
                 return View("AdminUser", admin);
@@ -41,6 +42,7 @@ namespace ConcertFinderMVC.Controllers
         public ActionResult NotValidEvent()
         {
             AdminModels admin = new AdminModels();
+            admin.User = ConcertFinderMVC.BusinessManagement.User.UserToUserItem(User.Identity.Name);
             admin.listEvent = BusinessManagement.Event.GetListNonValid();
             return View("AdminEvent", admin);
         }
@@ -48,6 +50,7 @@ namespace ConcertFinderMVC.Controllers
         public ActionResult ValidEvent()
         {
             AdminModels admin = new AdminModels();
+            admin.User = ConcertFinderMVC.BusinessManagement.User.UserToUserItem(User.Identity.Name);
             admin.listEvent = BusinessManagement.Event.GetListValid();
             return View("AdminEvent", admin);
         }

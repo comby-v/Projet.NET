@@ -142,5 +142,23 @@ namespace ConcertFinderMVC.BusinessManagement
             }
             return false;
         }
+
+        static public UserItem UserToUserItem(string pseudo)
+        {
+            T_User user = DataAccess.User.GetUserByPseudo(pseudo);
+            Models.UserItem itemUser = new UserItem()
+            {
+                Name = user.Name,
+                FirstName = user.Firstname,
+                Role = user.Role,
+                City = user.Ville,
+                Id = user.Id,
+                Deleted = user.Deleted,
+                Mail = user.Mail
+            };
+
+            return itemUser;
+
+        }
     }
 }

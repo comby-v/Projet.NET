@@ -171,21 +171,24 @@ namespace ConcertFinderMVC.BusinessManagement
             List<EventItem> list = new List<EventItem>();
             List<T_Event> listEvent = DataAccess.Event.GetListNonValid();
 
-            foreach (T_Event even in listEvent)
+            foreach (T_Event myevent in listEvent)
             {
                 EventItem myeventitem = new EventItem()
                 {
-                    Id = even.Id,
-                    Titre = even.Titre,
-                    Description = even.Description,
-                    Type = even.Type,
-                    StartDate = even.DateDebut,
-                    EndDate = even.DateFin.GetValueOrDefault(),
-                    Salle = even.T_Location.Name,
-                    Image = even.Image,
-                    Email = even.Email,
-                    Tel = even.Tel,
-                    Website = even.WebSite
+                    Id = myevent.Id,
+                    Titre = myevent.Titre,
+                    Description = myevent.Description,
+                    Type = myevent.Type,
+                    StartDate = myevent.DateDebut,
+                    EndDate = myevent.DateFin.GetValueOrDefault(),
+                    Salle = myevent.T_Location.Name,
+                    Image = myevent.Image,
+                    Email = myevent.Email,
+                    Tel = myevent.Tel,
+                    Website = myevent.WebSite,
+                    CP = myevent.T_Location.CP,
+                    Ville = myevent.T_Location.Ville,
+                    Rue = myevent.T_Location.Rue
                 };
                 list.Add(myeventitem);    
             }
@@ -199,21 +202,24 @@ namespace ConcertFinderMVC.BusinessManagement
             List<EventItem> list = new List<EventItem>();
             List<T_Event> listEvent = DataAccess.Event.GetListValid();
 
-            foreach (T_Event even in listEvent)
+            foreach (T_Event myevent in listEvent)
             {
                 EventItem myeventitem = new EventItem()
                 {
-                    Id = even.Id,
-                    Titre = even.Titre,
-                    Description = even.Description,
-                    Type = even.Type,
-                    StartDate = even.DateDebut,
-                    EndDate = even.DateFin.GetValueOrDefault(),
-                    Salle = even.T_Location.Name,
-                    Image = even.Image,
-                    Email = even.Email,
-                    Tel = even.Tel,
-                    Website = even.WebSite
+                    Id = myevent.Id,
+                    Titre = myevent.Titre,
+                    Description = myevent.Description,
+                    Type = myevent.Type,
+                    StartDate = myevent.DateDebut,
+                    EndDate = myevent.DateFin.GetValueOrDefault(),
+                    Salle = myevent.T_Location.Name,
+                    Image = myevent.Image,
+                    Email = myevent.Email,
+                    Tel = myevent.Tel,
+                    Website = myevent.WebSite,
+                    CP = myevent.T_Location.CP,
+                    Ville = myevent.T_Location.Ville,
+                    Rue = myevent.T_Location.Rue
                 };
                 list.Add(myeventitem);
             }
@@ -224,21 +230,24 @@ namespace ConcertFinderMVC.BusinessManagement
         {
             List<T_Event> list = DataAccess.Event.MyEvent(pseudo);
             List<EventItem> listEventItem = new List<EventItem>();
-            foreach (T_Event item in list)
+            foreach (T_Event myevent in list)
             {
                 EventItem eventItem = new EventItem()
                 {
-                    Id = item.Id,
-                    Titre = item.Titre,
-                    Description = item.Description,
-                    Type = item.Type,
-                    StartDate = item.DateDebut,
-                    EndDate = item.DateFin.GetValueOrDefault(),
-                    Salle = item.T_Location.Name,
-                    Image = item.Image,
-                    Email = item.Email,
-                    Tel = item.Tel,
-                    Website = item.WebSite
+                    Id = myevent.Id,
+                    Titre = myevent.Titre,
+                    Description = myevent.Description,
+                    Type = myevent.Type,
+                    StartDate = myevent.DateDebut,
+                    EndDate = myevent.DateFin.GetValueOrDefault(),
+                    Salle = myevent.T_Location.Name,
+                    Image = myevent.Image,
+                    Email = myevent.Email,
+                    Tel = myevent.Tel,
+                    Website = myevent.WebSite,
+                    CP = myevent.T_Location.CP,
+                    Ville = myevent.T_Location.Ville,
+                    Rue = myevent.T_Location.Rue
                 };
                 listEventItem.Add(eventItem);
             }

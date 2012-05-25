@@ -191,7 +191,7 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    return (bdd.T_Event.Include("T_Location").Where(ev => ev.Valide == false).OrderByDescending(ev => ev.DateCreation).ToList());
+                    return (bdd.T_Event.Include("T_Location").Where(ev => ev.Valide.Value == false).OrderByDescending(ev => ev.DateCreation).ToList());
                 }
                 catch (Exception)
                 {

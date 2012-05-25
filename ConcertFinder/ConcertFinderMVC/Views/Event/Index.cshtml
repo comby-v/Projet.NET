@@ -21,7 +21,7 @@
                     <div class="clear"></div>
                 </div>
                 <p class="item_descr">
-                    @item.Description
+                    @ConcertFinderMVC.BusinessManagement.Tool.Truncate(item.Description)
                 </p>
                 <div class="clear">
                     @Html.ActionLink("voir le détail", "Detail", "Event", new { id = item.Id }, null)

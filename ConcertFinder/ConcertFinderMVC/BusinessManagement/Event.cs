@@ -220,7 +220,7 @@ namespace ConcertFinderMVC.BusinessManagement
             if (myevent.Image != null)
             {
                 var tab = myevent.Image.Split('\\');
-                var path = "Download/" + tab[tab.Length - 1];
+                var path = "~/Download/" + tab[tab.Length - 1];
                 myeventitem.Image = path;
             }
         }
@@ -300,7 +300,6 @@ namespace ConcertFinderMVC.BusinessManagement
                     StartDate = myevent.DateDebut,
                     EndDate = myevent.DateFin.GetValueOrDefault(),
                     Salle = myevent.T_Location.Name,
-                    Image = myevent.Image,
                     Email = myevent.Email,
                     Tel = myevent.Tel,
                     Website = myevent.WebSite,
@@ -308,6 +307,7 @@ namespace ConcertFinderMVC.BusinessManagement
                     Ville = myevent.T_Location.Ville,
                     Rue = myevent.T_Location.Rue
                 };
+                ServerPathImage(myevent, eventItem);
                 listEventItem.Add(eventItem);
             }
             return listEventItem;

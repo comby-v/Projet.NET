@@ -68,10 +68,15 @@
     <Compile Include="BusinessManagement\Event.cs" />
     <Compile Include="BusinessManagement\Location.cs" />
     <Compile Include="BusinessManagement\Notification.cs" />
+    <Compile Include="BusinessManagement\Serializer.cs" />
     <Compile Include="BusinessManagement\SimpleAES.cs" />
     <Compile Include="BusinessManagement\Tag.cs" />
     <Compile Include="BusinessManagement\Tool.cs" />
     <Compile Include="BusinessManagement\User.cs" />
+    <Compile Include="ConcertFinderService.asmx.cs">
+      <DependentUpon>ConcertFinderService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\EventController.cs" />
@@ -97,6 +102,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ConcertFinderService.asmx" />
     <Content Include="Content\Images\bg_list.gif" />
     <Content Include="Content\Images\footer-bg.png" />
     <Content Include="Content\Images\footer-left.png" />
@@ -230,6 +236,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Download\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

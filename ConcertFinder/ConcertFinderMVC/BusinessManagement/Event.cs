@@ -5,6 +5,7 @@ using System.Web;
 using ConcertFinderMVC.Models;
 using ConcertFinderMVC.DataAccess;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace ConcertFinderMVC.BusinessManagement
 {
@@ -12,17 +13,18 @@ namespace ConcertFinderMVC.BusinessManagement
     {
         static public bool Create(FormEventModels myevent, DataAccess.T_User user)
         {
-            DataAccess.T_Event ev = new DataAccess.T_Event ();
-            
-            ev.Titre = myevent.Title;
-            ev.Type = EventModel.GetEventType(myevent.Type);
-            ev.Description = myevent.Description;
-            ev.DateDebut = myevent.StartDate;
-            ev.DateFin= myevent.EndDate;
-            ev.Image = myevent.Image;
-            ev.Email = myevent.Email;
-            ev.WebSite = myevent.Website;
-            ev.Tel = myevent.Phone;
+            DataAccess.T_Event ev = new DataAccess.T_Event ()
+            {
+                Titre = myevent.Title,
+                Type = EventModel.GetEventType(myevent.Type),
+                Description = myevent.Description,
+                DateDebut = myevent.StartDate,
+                DateFin= myevent.EndDate,
+                Email = myevent.Email,
+                WebSite = myevent.Website,
+                Tel = myevent.Phone
+            };
+            SaveImage(myevent, ev);
 
             List<DataAccess.T_Tag> list_tag = new List<DataAccess.T_Tag>();
             List<String> tags = myevent.Tags.Split(new Char[] { ' ', ',', '.', ';'}).ToList();
@@ -74,6 +76,48 @@ namespace ConcertFinderMVC.BusinessManagement
             }
         }
 
+        private static void SaveImage(FormEventModels myevent, T_Event evnt)
+        {
+            var destinationFolder = HttpContext.Current.Server.MapPath("~/Download");
+            var postedFile = myevent.FileImage;
+            if (postedFile != null && postedFile.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(postedFile.FileName);
+                var path = Path.Combine(destinationFolder, fileName);
+                postedFile.SaveAs(path);
+                var minipath = Path.Combine(destinationFolder, "mini_" + fileName);
+                ResizeImage(path, minipath, 125, 160, false);
+                evnt.Image = minipath;
+            }
+        }
+
+        private static void ResizeImage(string OriginalFile, string NewFile, int NewWidth, int MaxHeight, bool OnlyResizeIfWider)
+        {
+            System.Drawing.Image FullsizeImage = System.Drawing.Image.FromFile(OriginalFile);
+            // Prevent using images internal thumbnail
+            FullsizeImage.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
+            FullsizeImage.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
+            if (OnlyResizeIfWider)
+            {
+                if (FullsizeImage.Width <= NewWidth)
+                {
+                    NewWidth = FullsizeImage.Width;
+                }
+            }
+            int NewHeight = FullsizeImage.Height * NewWidth / FullsizeImage.Width;
+            if (NewHeight > MaxHeight)
+            {
+                // Resize with height instead
+                NewWidth = FullsizeImage.Width * MaxHeight / FullsizeImage.Height;
+                NewHeight = MaxHeight;
+            }
+            System.Drawing.Image NewImage = FullsizeImage.GetThumbnailImage(NewWidth, NewHeight, null, IntPtr.Zero);
+            // Clear handle to original file so that we can overwrite it if necessary
+            FullsizeImage.Dispose();
+            // Save resized picture
+            NewImage.Save(NewFile);
+        }
+
         static public bool Delete(long id)
         {
             return DataAccess.Event.Delete (id);
@@ -89,7 +133,7 @@ namespace ConcertFinderMVC.BusinessManagement
             ev.Description = myevent.Description;
             ev.DateDebut = myevent.StartDate;
             ev.DateFin = myevent.EndDate;
-            ev.Image = myevent.Image;
+            ev.Image = //myevent.Image;
             ev.Email = myevent.Email;
             ev.WebSite = myevent.Website;
             ev.Tel = myevent.Phone;
@@ -137,6 +181,11 @@ namespace ConcertFinderMVC.BusinessManagement
             return list_eventItem;
         }
 
+        public static List<T_Event> GetListTEvent(int nb_event)
+        {
+            return DataAccess.Event.GetListEvent(nb_event);
+        }
+
 
         static public List<EventItem> GetListEvent(int nbr, string type = "")
         {
@@ -153,7 +202,6 @@ namespace ConcertFinderMVC.BusinessManagement
                     StartDate = myevent.DateDebut,
                     EndDate = myevent.DateFin.GetValueOrDefault(),
                     Salle = myevent.T_Location.Name,
-                    Image = myevent.Image,
                     Email = myevent.Email,
                     Tel = myevent.Tel,
                     Website = myevent.WebSite,
@@ -161,9 +209,20 @@ namespace ConcertFinderMVC.BusinessManagement
                     Ville = myevent.T_Location.Ville,
                     Rue = myevent.T_Location.Rue
                 };
+                ServerPathImage(myevent, myeventitem);
                 list_eventItem.Add(myeventitem);
             }
             return list_eventItem;
+        }
+
+        private static void ServerPathImage(T_Event myevent, EventItem myeventitem)
+        {
+            if (myevent.Image != null)
+            {
+                var tab = myevent.Image.Split('\\');
+                var path = "Download/" + tab[tab.Length - 1];
+                myeventitem.Image = path;
+            }
         }
 
         static public List<EventItem> GetListNonValid ()

@@ -127,7 +127,6 @@ namespace ConcertFinderMVC.Controllers
                     EndDate = myevent.DateFin.GetValueOrDefault(),
                     Description = myevent.Description,
                     Title = myevent.Titre,
-                    Image = myevent.Image,
                     Email = myevent.Email,
                     Phone = myevent.Tel,
                     Website = myevent.WebSite,

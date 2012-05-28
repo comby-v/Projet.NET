@@ -123,7 +123,7 @@ namespace ConcertFinderMVC.DataAccess
            {
                try
                {
-                   T_User user = bdd.T_User.Where(x => x.Pseudo == pseudo && x.Password == password).FirstOrDefault();
+                   T_User user = bdd.T_User.Where(x => x.Pseudo == pseudo && x.Password == password && x.Deleted == false) .FirstOrDefault();
                    if (user != null)
                    {
                        return true;

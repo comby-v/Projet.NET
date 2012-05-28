@@ -137,7 +137,9 @@ namespace ConcertFinderMVC.Models
         public string Description { get; set; }
 
         [Display(Name = "Image")]
-        public string Image { get; set; }
+        public HttpPostedFileBase FileImage { get; set; }
+
+        public String Image { get; set; }
 
         [Required]
         [Display(Name = "Tags")]

@@ -59,12 +59,32 @@ namespace ConcertFinderMVC.DataAccess
 
         public static List<DataAccess.T_Notification> Get(string pseudo)
         {
-            List<DataAccess.T_Notification> notifs;
+            List<DataAccess.T_Notification> notifs = new List<T_Notification>();
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    notifs = bdd.T_Notification.Include("T_User").Include("T_Event").ToList().Where(x => x.T_User.FirstOrDefault().Pseudo == pseudo).ToList();
+                    List<T_Notification> notiflist = bdd.T_Notification.Include("T_Event").Include("T_User").ToList();
+
+                    foreach (T_Notification no in notiflist)
+                    {
+                        bool find = false;
+                        List<T_User> uslist = no.T_User.ToList();
+                        foreach (T_User user in uslist)
+                        {
+                            if (user.Pseudo == pseudo)
+                            {
+                                find = true;
+                                break;
+                            }
+                        }
+                        if (find)
+                        {
+                            notifs.Add(no);
+                        }
+
+                    }
+                    //notifs = bdd.T_Notification.Include("T_User").Include("T_Event").ToList().Where(x => x.T_User.FirstOrDefault().Pseudo == pseudo).ToList();
                 }
                 catch (Exception)
                 {

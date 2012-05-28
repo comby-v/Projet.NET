@@ -25,7 +25,7 @@
 </div>
 
     <div>
-        @if (!Model.Valide)
+        @if (!Model.Valide && (ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name) || ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name)))
         {
             @Html.ActionLink("Accepter", "ValideEvent", "Event", new { idevent = Model.Id }, null)
             @Html.ActionLink("Refuser", "DenyEvent", "Admin", new { idevent = Model.Id }, null)

@@ -15,17 +15,11 @@ namespace ConcertFinderMVC.BusinessManagement
 
         public static bool IsAdmin(string pseudo)
         {
-            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
-            {
-                try
-                {
-                    return (bdd.T_User.Where(u => u.Pseudo == pseudo).FirstOrDefault().Role.Equals("Administrateur"));
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
+            return BusinessManagement.User.GetUserByPseudo(pseudo).Role.Equals(Models.UserModel.GetRoleType((int)Models.eRole.Admin));
+        }
+        public static bool IsModerator(string pseudo)
+        {
+            return BusinessManagement.User.GetUserByPseudo(pseudo).Role.Equals(Models.UserModel.GetRoleType((int)Models.eRole.Moderateur));
         }
     }
 }

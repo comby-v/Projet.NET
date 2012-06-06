@@ -85,9 +85,21 @@ namespace ConcertFinderMVC.BusinessManagement
                 var fileName = Path.GetFileName(postedFile.FileName);
                 var path = Path.Combine(destinationFolder, fileName);
                 postedFile.SaveAs(path);
-                var minipath = Path.Combine(destinationFolder, "mini_" + fileName);
-                ResizeImage(path, minipath, 125, 160, false);
-                evnt.Image = minipath;
+                var hashpath = Path.Combine(destinationFolder, Serializer.NameFile(fileName));
+                ResizeImage(path, hashpath, 125, 160, false);
+                SuppressOriginalImage(path);
+                evnt.Image = hashpath;
+            }
+        }
+
+        private static void SuppressOriginalImage(String filename)
+        {
+            try
+            {
+                File.Delete(filename);
+            }
+            catch (Exception)
+            {
             }
         }
 
@@ -220,7 +232,7 @@ namespace ConcertFinderMVC.BusinessManagement
             if (myevent.Image != null)
             {
                 var tab = myevent.Image.Split('\\');
-                var path = "~/Download/" + tab[tab.Length - 1];
+                var path = "Download/" + tab[tab.Length - 1];
                 myeventitem.Image = path;
             }
         }
@@ -316,6 +328,34 @@ namespace ConcertFinderMVC.BusinessManagement
         static public bool ValidEvent(long idEvent)
         {
             return DataAccess.Event.ValidEvent (idEvent);
+        }
+
+        public static List<EventItem> GetNextEvents(int last_id, string type)
+        {
+            List<T_Event> list = DataAccess.Event.GetNextEvents(last_id, type);
+            List<EventItem> listEventItem = new List<EventItem>();
+            foreach (T_Event myevent in list)
+            {
+                EventItem eventItem = new EventItem()
+                {
+                    Id = myevent.Id,
+                    Titre = myevent.Titre,
+                    Description = BusinessManagement.Tool.Truncate(myevent.Description),
+                    Type = myevent.Type,
+                    StartDate = myevent.DateDebut,
+                    EndDate = myevent.DateFin.GetValueOrDefault(),
+                    Salle = myevent.T_Location.Name,
+                    Email = myevent.Email,
+                    Tel = myevent.Tel,
+                    Website = myevent.WebSite,
+                    CP = myevent.T_Location.CP.Substring(0, 2),
+                    Ville = myevent.T_Location.Ville,
+                    Rue = myevent.T_Location.Rue
+                };
+                ServerPathImage(myevent, eventItem);
+                listEventItem.Add(eventItem);
+            }
+            return listEventItem;
         }
     }
 }

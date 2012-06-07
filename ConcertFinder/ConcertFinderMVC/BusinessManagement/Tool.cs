@@ -18,7 +18,6 @@ namespace ConcertFinderMVC.BusinessManagement
             {
                 return (description);
             }
-            
         }
 
         public static bool IsAdmin(string pseudo)

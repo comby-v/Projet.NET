@@ -19,5 +19,16 @@ namespace ConcertFinderMVC.BusinessManagement
         {
             return DataAccess.Tag.Get(tagName);
         }
+
+        public static List<String> Keyword(string q)
+        {
+            List<T_Tag> tags = DataAccess.Tag.Keyword(q);
+            List<String> keywords = new List<String>();
+            foreach (T_Tag tag in tags)
+            {
+                keywords.Add(tag.Name);
+            }
+            return keywords;
+        }
     }
 }

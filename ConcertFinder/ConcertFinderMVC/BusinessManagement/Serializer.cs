@@ -108,11 +108,12 @@ namespace ConcertFinderMVC.BusinessManagement
 
         }
 
-        private static String NameFile()
+        public static String NameFile(String filename)
         {
+            var extension = filename.Split('.')[1];
             MD5 md5HashAlgo = MD5.Create();
             // Place le texte à hacher dans un tableau d'octets 
-            byte[] byteArrayToHash = Encoding.UTF8.GetBytes(DateTime.Now.ToString());
+            byte[] byteArrayToHash = Encoding.UTF8.GetBytes(DateTime.Now.ToString() + filename.Split('.')[0]);
             // Hash le texte et place le résulat dans un tableau d'octets 
             byte[] hashResult = md5HashAlgo.ComputeHash(byteArrayToHash);
             StringBuilder result = new StringBuilder();
@@ -122,7 +123,7 @@ namespace ConcertFinderMVC.BusinessManagement
                 result.Append(hashResult[i].ToString("X2"));
             }
 
-            return result.ToString() + ".xml";
+            return result.ToString() + "." + extension;
         }
     }
 }

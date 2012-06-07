@@ -18,7 +18,7 @@ namespace ConcertFinderMVC.Controllers
             EventsList eventList = new EventsList()
             {
                 Last = BusinessManagement.Event.GetListLastAddEvent(5),
-                Events = BusinessManagement.Event.GetListEvent(10)
+                Events = BusinessManagement.Event.GetListEvent(5)
             };
             return View("Index", eventList);
         }
@@ -31,7 +31,7 @@ namespace ConcertFinderMVC.Controllers
             EventsList eventList = new EventsList()
             {
                 Last = BusinessManagement.Event.GetListLastAddEvent(5),
-                Events = BusinessManagement.Event.GetListEvent(10, EventModel.GetEventType((int)eTypes.Concert))
+                Events = BusinessManagement.Event.GetListEvent(5, EventModel.GetEventType((int)eTypes.Concert))
             };
             return View("Index", eventList);
         }
@@ -44,7 +44,7 @@ namespace ConcertFinderMVC.Controllers
             EventsList eventList = new EventsList()
             {
                 Last = BusinessManagement.Event.GetListLastAddEvent(5),
-                Events = BusinessManagement.Event.GetListEvent(10, EventModel.GetEventType((int)eTypes.Spectacle))
+                Events = BusinessManagement.Event.GetListEvent(5, EventModel.GetEventType((int)eTypes.Spectacle))
             };
             return View("Index", eventList);
         }
@@ -57,7 +57,7 @@ namespace ConcertFinderMVC.Controllers
             EventsList eventList = new EventsList()
             {
                 Last = BusinessManagement.Event.GetListLastAddEvent(5),
-                Events = BusinessManagement.Event.GetListEvent(10, EventModel.GetEventType((int)eTypes.Festival))
+                Events = BusinessManagement.Event.GetListEvent(5, EventModel.GetEventType((int)eTypes.Festival))
             };
             return View("Index", eventList);
         }
@@ -179,5 +179,17 @@ namespace ConcertFinderMVC.Controllers
             return RedirectToAction("NotValidEvent", "Admin");
         }
 
+
+        public JsonResult GetNextEvents(int last_id, string type)
+        {
+            List<EventItem> list = BusinessManagement.Event.GetNextEvents(last_id, type);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Search(string q)
+        {
+            List<String> list = BusinessManagement.Tag.Keyword(q);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
 }

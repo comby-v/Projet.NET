@@ -269,5 +269,30 @@ namespace ConcertFinderMVC.DataAccess
                 }
             }
         }
+
+         static public List<T_Event> GetNextEvents(int last_id, string type)
+         {
+             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+             {
+                 List<T_Event> list = new List<T_Event>();
+                 try
+                 {
+                    T_Event last_event = bdd.T_Event.Where(x => x.Id == last_id).FirstOrDefault();
+                    if (type == "")
+                    {
+                        list = bdd.T_Event.Include("T_Location").Include("T_Tag").Where(e => e.Valide == true && e.DateDebut > DateTime.Now && e.DateDebut > last_event.DateDebut).ToList().OrderBy(x => x.DateDebut).Take(5).ToList();
+                    }
+                    else
+                    {
+                        list = bdd.T_Event.Include("T_Location").Include("T_Tag").Where(e => e.Valide == true && e.DateDebut > DateTime.Now && e.DateDebut > last_event.DateDebut && e.Type == type).ToList().OrderBy(x => x.DateDebut).Take(5).ToList();
+                    }
+                    return list;
+                 }
+                 catch (Exception)
+                 {
+                     return null;
+                 }
+             }
+         }
     }
 }

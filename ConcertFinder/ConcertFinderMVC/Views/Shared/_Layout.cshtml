@@ -84,12 +84,25 @@
                     url: "Event/Search",
                     data: { q: $(this).val() },
                     success: function (data) {
+                        $("#tags").remove();
+                        var tags = "<datalist id='tags'>";
                         for (var i = 0; i < data.length; i++) {
-                            alert(data[i]);
+                            tags += "<option value='" + data[i] + "'>";
                         }
+                        tags += "</datalist>";
+                        $("#menu_content").append(tags);
+                        $("#SearchBar").attr({ list: "tags" });
                     },
                     dataType: "json"
                 });
+            }
+        });
+
+        $("#SearchBar").keypress(function () {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (code == 13) {
+                var q = $(this).val();
+
             }
         });
 

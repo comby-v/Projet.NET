@@ -141,5 +141,21 @@ namespace ConcertFinderMVC.DataAccess
                }
            }
        }
+
+       public static List<T_Tag> Keyword(String q)
+       {
+           using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+           {
+               try
+               {
+                   List<T_Tag> keywords = bdd.T_Tag.Where(x => x.Name.StartsWith(q)).ToList();
+                   return keywords;
+               }
+               catch (Exception)
+               {
+                   return null;
+               }
+           }
+       }
     }
 }

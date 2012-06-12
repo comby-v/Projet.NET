@@ -191,6 +191,10 @@
     </Content>
     <Content Include="Content\_LastAdded.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\dateformat.js" />
+    <Content Include="Scripts\dateformat.min.js">
+      <DependentUpon>dateformat.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.min.js">
       <DependentUpon>jquery-1.5.1-vsdoc.js</DependentUpon>
@@ -303,7 +307,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>12708</DevelopmentServerPort>
+          <DevelopmentServerPort>50649</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

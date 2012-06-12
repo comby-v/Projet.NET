@@ -30,7 +30,10 @@
             @Html.ActionLink("Accepter", "ValideEvent", "Event", new { idevent = Model.Id }, null)
             @Html.ActionLink("Refuser", "DenyEvent", "Admin", new { idevent = Model.Id }, null)
         }
-        @Html.ActionLink("Editer", "CreateEvent", "Event", new { id = Model.Id }, null)
+        @if(ConcertFinderMVC.BusinessManagement.Tool.CreatedByMe (User.Identity.Name, @Model.Id) && (User.Identity.IsAuthenticated))
+        {
+                @Html.ActionLink("Editer", "CreateEvent", "Event", new { id = Model.Id }, null)
+        }
     </div>
     <div>
         <input id="direction" type="button" value="Direction" />

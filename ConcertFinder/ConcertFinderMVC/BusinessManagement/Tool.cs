@@ -28,5 +28,15 @@ namespace ConcertFinderMVC.BusinessManagement
         {
             return BusinessManagement.User.GetUserByPseudo(pseudo).Role.Equals(Models.UserModel.GetRoleType((int)Models.eRole.Moderateur));
         }
+
+
+        public static bool CreatedByMe(string pseudo, long id)
+        {
+            T_Event ev = new DataAccess.T_Event();
+
+            ev = DataAccess.Event.Get(id, false);
+
+            return (ev.T_User.Id == id);
+        }
     }
 }

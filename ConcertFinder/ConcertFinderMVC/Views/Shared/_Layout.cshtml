@@ -55,7 +55,7 @@
                            }
                        }
                        <li class="float-right">
-                            <input type="search" id="SearchBar" />
+                            <input type="search" id="SearchBar" placeholder="Rechercher ..." />
                        </li>
                       </ul>
                       <img src="@Url.Content("~/Content/Images/nav-right.png")" alt="menu_right_corner" class="float-left"/>
@@ -79,9 +79,11 @@
         });
 
         $("#SearchBar").keyup(function () {
+            var url = document.URL.split("//");
+            url = (url[1] ? url[1] : url[0]).split("/");
             if ($(this).val().length >= 2) {
                 $.ajax({
-                    url: "Event/Search",
+                    url: "http://" + url[0] + "/Event/AutoComplete",
                     data: { q: $(this).val() },
                     success: function (data) {
                         $("#tags").remove();
@@ -98,11 +100,25 @@
             }
         });
 
-        $("#SearchBar").keypress(function () {
+        $("#SearchBar").keypress(function (e) {
             var code = (e.keyCode ? e.keyCode : e.which);
             if (code == 13) {
+                var url = document.URL.split("//");
+                url = (url[1] ? url[1] : url[0]).split("/");
+                var qtype = "";
+                if (url.length > 2)
+                {
+                    qtype = url[2];
+                }
                 var q = $(this).val();
-
+                $.ajax({
+                    url: "http://" + url[0] + "/Event/Search",
+                    data: { q: $(this).val(), type: qtype },
+                    success: function (data) {
+                        
+                    },
+                    dataType: "json"
+                });
             }
         });
 

@@ -186,7 +186,13 @@ namespace ConcertFinderMVC.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult Search(string q)
+        public JsonResult AutoComplete(string q)
+        {
+            List<String> list = BusinessManagement.Tag.Keyword(q);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Search(string q, string type)
         {
             List<String> list = BusinessManagement.Tag.Keyword(q);
             return Json(list, JsonRequestBehavior.AllowGet);

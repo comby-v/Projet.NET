@@ -57,20 +57,14 @@
             if ($(window).scrollTop() == $(document).height() - $(window).height()) {
                 var url = document.URL.split("//");
                 url = (url[1] ? url[1] : url[0]).split("/");
-                var req_url;
                 var qtype = "";
-                if (url.length == 2)
+                if (url.length > 2)
                 {
-                    req_url = "Event/GetNextEvents";
-                }
-                else
-                {
-                    req_url = "GetNextEvents";
                     qtype = url[2];
                 }
                 var id = $(".item:last").attr("id");
                 $.ajax({
-                    url: req_url,
+                    url: "http://"+url[0]+"/Event/GetNextEvents",
                     data: { last_id: id, type : qtype },
                     success: function (data) {
                         for (var i = 0; i < data.length; i++) {

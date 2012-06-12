@@ -83,8 +83,6 @@ namespace ConcertFinderMVC.Controllers
             return View(form);
         }
 
-
-
         public ActionResult Notifications()
         {
             List<DataAccess.T_Notification> notifs = BusinessManagement.Notification.Get(User.Identity.Name);
@@ -105,7 +103,30 @@ namespace ConcertFinderMVC.Controllers
                 notif_items.Add(item);
             }
 
-            return View(notif_items.OrderByDescending(x => x.Date).ToList());
+            return View(notif_items);
+        }
+
+        public JsonResult GetNextNotifications(int last_id)
+        {
+            List<DataAccess.T_Notification> notifs = BusinessManagement.Notification.GetNext(User.Identity.Name, last_id);
+            List<NotificationItem> notif_items = new List<NotificationItem>();
+            foreach (DataAccess.T_Notification notif in notifs)
+            {
+                NotificationItem item = new NotificationItem()
+                {
+                    Id = notif.Id,
+                    Titre = notif.Titre,
+                    Date = notif.Date,
+                    Message = notif.Message
+                };
+                if (notif.T_Event != null && notif.T_Event.Count > 0)
+                {
+                    item.IdEvent = notif.T_Event.FirstOrDefault().Id;
+                }
+                notif_items.Add(item);
+            }
+
+            return Json(notif_items, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ChangePassword()

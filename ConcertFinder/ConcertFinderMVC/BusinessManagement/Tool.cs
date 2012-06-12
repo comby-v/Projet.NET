@@ -36,7 +36,7 @@ namespace ConcertFinderMVC.BusinessManagement
 
             ev = DataAccess.Event.Get(id, false);
 
-            return (ev.T_User.Id == id);
+            return (ev.T_User.Pseudo == pseudo);
         }
     }
 }

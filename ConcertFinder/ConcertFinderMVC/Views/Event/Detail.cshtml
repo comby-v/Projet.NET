@@ -32,7 +32,7 @@
         }
         @if(ConcertFinderMVC.BusinessManagement.Tool.CreatedByMe (User.Identity.Name, @Model.Id) && (User.Identity.IsAuthenticated))
         {
-                @Html.ActionLink("Editer", "CreateEvent", "Event", new { id = Model.Id }, null)
+            @Html.ActionLink("Editer", "CreateEvent", "Event", new { id = Model.Id }, null)
         }
     </div>
     <div>

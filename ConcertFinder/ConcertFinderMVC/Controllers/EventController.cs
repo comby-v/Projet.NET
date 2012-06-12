@@ -154,20 +154,50 @@ namespace ConcertFinderMVC.Controllers
         [HttpPost]
         public ActionResult CreateEvent(FormEventModels form)
         {
+            
             if (ModelState.IsValid && User.Identity.IsAuthenticated)
             {
-                DataAccess.T_User user = BusinessManagement.User.GetUserByPseudo(User.Identity.Name);
-                if (user != null && BusinessManagement.Event.Create(form, user))
+                if (form.Id == 0)
                 {
-                    DataAccess.T_Event bdd_event = BusinessManagement.Event.Get(form.Title, true);
-                    BusinessManagement.Notification.Create(user, bdd_event);
-                    return RedirectToAction("Detail", "Event", new { id = bdd_event.Id, creation = true });
+                    DataAccess.T_User user = BusinessManagement.User.GetUserByPseudo(User.Identity.Name);
+                    if (user != null && BusinessManagement.Event.Create(form, user))
+                    {
+                        DataAccess.T_Event bdd_event = BusinessManagement.Event.Get(form.Title, true);
+                        BusinessManagement.Notification.Create(user, bdd_event);
+                        return RedirectToAction("Detail", "Event", new { id = bdd_event.Id, creation = true });
+                    }
+                    else
+                    {
+                        // TODO : Rediriger vers une page d'erreur
+                        return View("Error");
+                    }
                 }
                 else
                 {
-                    // TODO : Rediriger vers une page d'erreur
-                    return View("Error");
+                    DataAccess.T_User user = new T_User();
+                    user = BusinessManagement.User.GetUserByPseudo(User.Identity.Name);
+                    DataAccess.T_Location location = new T_Location ();
+                    if ((location = BusinessManagement.Location.GetLocationByCoord(form.Latitude, form.Longitude)) == null)
+                    {
+                        location.CP = form.CodePostal;
+                        location.Latitude = form.Latitude;
+                        location.Name = location.Name;
+                        location.Pays = form.Country;
+                        location.Rue = form.Address;
+                        location.Ville = form.City;
+                        BusinessManagement.Location.Create(location);
+                    }
+
+                    BusinessManagement.Location.Update(location);
+                    
+                    if (user != null && BusinessManagement.Event.Update(form, location, user, form.Id))
+                    {
+                        DataAccess.T_Event bdd_event = BusinessManagement.Event.Get(form.Id, true);
+                        BusinessManagement.Notification.Create(user, bdd_event);
+                        return RedirectToAction("Detail", "Event", new { id = bdd_event.Id, creation = true });
+                    }
                 }
+
             }
             return View(form);
         }

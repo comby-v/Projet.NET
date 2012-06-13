@@ -179,16 +179,23 @@ namespace ConcertFinderMVC.Controllers
                     DataAccess.T_Location location = new T_Location ();
                     if ((location = BusinessManagement.Location.GetLocationByCoord(form.Latitude, form.Longitude)) == null)
                     {
+                        DataAccess.T_Location location2 = new T_Location();
+                        location2.CP = form.CodePostal;
+                        location2.Latitude = form.Latitude;
+                        location2.Name = form.RoomName;
+                        location2.Pays = form.Country;
+                        location2.Rue = form.Address;
+                        location2.Ville = form.City;
+                        BusinessManagement.Location.Create(location2);
+                    }
+                    else
+                    {
                         location.CP = form.CodePostal;
                         location.Latitude = form.Latitude;
                         location.Name = location.Name;
                         location.Pays = form.Country;
                         location.Rue = form.Address;
                         location.Ville = form.City;
-                        BusinessManagement.Location.Create(location);
-                    }
-                    else
-                    {
                         BusinessManagement.Location.Update(location);
                     } 
                     if (user != null && BusinessManagement.Event.Update(form, location, user, form.Id))

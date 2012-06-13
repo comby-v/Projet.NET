@@ -18,14 +18,17 @@ body
 {
     margin:0px;
     background:#f4f4f4;
+    background:white;
     min-height:100%;
     font-family:Verdana;
     font-size:12px;
+     background: url("Images/yt_bg_60.png");
 }
 
 a
 {
     text-decoration:none;
+    color:#518CF2;
 }
 
 li
@@ -178,20 +181,22 @@ header
     margin-left:15px;
 }
 
-
+#SearchBar
+{
+    margin-right:10px;
+}
 
 /*Page*/
 .page
 {
-   width:1040px;
+   width:1100px;
    margin:auto;
-   background: white;
+   background:white;
    margin-top:0px;
-   padding-left:30px;
-   padding-right:30px;
    padding-top:30px;
-    padding-bottom:20px;
-    height:100%;
+   padding-bottom:20px;
+   height:100%;
+   background: url("Images/yt_bg_60.png");  
   /* border: 2px solid #222222;
    border-top:0px;*/
 }

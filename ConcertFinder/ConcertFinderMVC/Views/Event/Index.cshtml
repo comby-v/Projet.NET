@@ -2,6 +2,8 @@
 
 @section Header
 {
+    <link href="@Url.Content("~/Content/Index.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/_LastAdded.css")" rel="stylesheet" type="text/css" />
     <script src="@Url.Content("~/Scripts/dateformat.js")" type="text/javascript"></script>
 }
 
@@ -20,7 +22,6 @@
             {
                 <img src="@Url.Content("~/Content/Images/no_avatar.gif")" width="125" height="160" alt="flyers" class="flyers float-left" />
             }
-
             <strong class="item_titre">@item.Titre</strong>
             <span class="item_type float-left">@item.Type</span>
             <span class="item_Date float-right">@item.StartDate.ToShortDateString() à @item.Ville (@item.CP.Substring(0, 2))</span>

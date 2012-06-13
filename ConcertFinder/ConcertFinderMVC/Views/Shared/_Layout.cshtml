@@ -5,11 +5,10 @@
     <title>Concert Finder</title>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/Index.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/jquery-ui-1.8.20.custom.css")" rel="stylesheet" type="text/css" />
     <script src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery-ui-1.8.20.custom.min.js")" type="text/javascript"></script>
-    <link href="@Url.Content("~/Content/_LastAdded.css")" rel="stylesheet" type="text/css" />
+    
     @RenderSection("Header", false)
 </head>
 <body>
@@ -39,23 +38,23 @@
                 <div id="menu_content">
                      <img src="@Url.Content("~/Content/Images/nav-left.png")" alt="menu_left_corner" id="menu_left_corner" class="float-left"/>
                      <ul class="float-left">
-                       <li class="float-left">@Html.ActionLink("Tous les événements", "Index", "Event")</li>
-                       <li class="float-left">@Html.ActionLink("Concerts", "Concert", "Event")</li>
-                       <li class="float-left">@Html.ActionLink("Spectacles", "Spectacle", "Event")</li>
-                       <li class="float-left">@Html.ActionLink("Festivals", "Festival", "Event")</li>
+                       <li class="menu_item_first float-left">@Html.ActionLink("Tous les événements", "Index", "Event")</li>
+                       <li class="menu_item float-left">@Html.ActionLink("Concerts", "Concert", "Event")</li>
+                       <li class="menu_item float-left">@Html.ActionLink("Spectacles", "Spectacle", "Event")</li>
+                       <li class="menu_item float-left">@Html.ActionLink("Festivals", "Festival", "Event")</li>
                    
                        @if (User.Identity.IsAuthenticated)
                        {
-                             <li class="float-left">@Html.ActionLink("Mes évènements", "MyEvents", "Event")</li>
-                             <li class="float-left">@Html.ActionLink("Ajouter un événement", "CreateEvent", "Event")</li>
+                             <li class="menu_item float-left">@Html.ActionLink("Mes évènements", "MyEvents", "Event")</li>
+                             <li class="menu_item float-left">@Html.ActionLink("Ajouter un événement", "CreateEvent", "Event")</li>
                              if (ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name))
                              {
                                 <li class="float-left">@Html.ActionLink("Moderation", "NotValidEvent", "Admin")</li>
                              } 
                             if (ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name))
                             {
-                                <li class="float-left">@Html.ActionLink("Administration utilisateur", "ManageUser", "Admin")</li>
-                                <li class="float-left">@Html.ActionLink("Moderation", "NotValidEvent", "Admin")</li>
+                                <li class="menu_item float-left">@Html.ActionLink("Administration utilisateur", "ManageUser", "Admin")</li>
+                                <li class="menu_item float-left">@Html.ActionLink("Moderation", "NotValidEvent", "Admin")</li>
                             }
                        }
                        <li class="float-right">

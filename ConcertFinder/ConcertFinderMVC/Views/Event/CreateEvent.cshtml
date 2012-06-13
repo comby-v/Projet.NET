@@ -173,12 +173,11 @@
 
         function getLatLong(address) {
             var geo = new google.maps.Geocoder;
-
             geo.geocode({ 'address': address }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     var latlong = results[0].geometry.location
-                    $("input#Latitude").val((latlong.ab+"").replace(".", ","));
-                    $("input#Longitude").val((latlong.$a+"").replace(".", ","));
+                    $("input#Latitude").val((latlong.cb+"").replace(".", ","));
+                    $("input#Longitude").val((latlong.ab+"").replace(".", ","));
                     return results[0].geometry.location;
                 }
                 else {

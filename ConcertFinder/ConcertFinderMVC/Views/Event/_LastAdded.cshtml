@@ -1,15 +1,12 @@
 ﻿@model List<ConcertFinderMVC.Models.EventItem>
 
-<link href="@Url.Content("~/Content/_LastAdded.css")" rel="stylesheet" type="text/css" />
 
 <div class="section">
     <div class="lastAdded_title">Derniers Ajouts</div>
 
     @foreach (ConcertFinderMVC.Models.EventItem item in Model)
     {
-        <div class="QuickItem">
-            <span>@Html.ActionLink(item.Titre, "Detail", "Event", new { id = item.Id }, null)</span>
-            <span>A Paris, le @item.StartDate</span>
-        </div>
+            <div class="quick_title">@Html.ActionLink(item.Titre, "Detail", "Event", new { id = item.Id }, null)</div>
+            <div class="quick_infos">A Paris, le @item.StartDate</div>
     }
 </div>

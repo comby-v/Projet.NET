@@ -2,8 +2,8 @@
 .section
 {
     width:300px;
-    background:white;
-    border:2px solid #ff893a;
+    background:#FCFCFC;
+    border:2px solid #666;
     border-radius:10px;
 }
 
@@ -12,12 +12,28 @@
 {
     height:40px;
     width:205px;
-    margin-top:-20px;
+    margin-top:-17px;
     margin-bottom:5px;
     margin-left:10px;
     padding-left:5px;
-    color:#333333;
-    background:white;
+    color:#FF893A;
+    background: #FCFCFC url("Images/yt_bg_60.png") 50% 122% repeat-x;
     font-size:20px;
     font-weight:bold;
+}
+
+.quick_title
+{
+    padding:0px 10px 0px 10px;
+}
+
+.quick_title a
+{
+    color:#2F86C0;
+    font-weight:bold;
+}
+
+.quick_infos
+{
+    padding:0px 10px 10px 10px;
 }

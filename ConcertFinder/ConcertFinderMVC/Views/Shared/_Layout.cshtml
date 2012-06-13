@@ -1,39 +1,40 @@
-﻿          
+﻿    
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Concert Finder</title>
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-        <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
-        <link href="@Url.Content("~/Content/Index.css")" rel="stylesheet" type="text/css" />
-        <link href="@Url.Content("~/Content/jquery-ui-1.8.20.custom.css")" rel="stylesheet" type="text/css" />
-        <script src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
-        <script src="@Url.Content("~/Scripts/jquery-ui-1.8.20.custom.min.js")" type="text/javascript"></script>
-        @RenderSection("Header", false)
-    </head>
-    <body>
-        <header>
-            <div id="banniere">
-                <div class="center">
-                    <strong id="concertfinder">Concert Finder</strong>
-                   <div id="connect" class="float-right">
-                        @if (!Request.IsAuthenticated)
-                        {
-                            <div id="open_connect" >se connecter</div>
-                            <div id="connect_panel">
-                                @Html.Partial("_logOn", new ConcertFinderMVC.Models.LogOnModel())
-                            </div>
-                        }
-                        else
-                        {
-                             <div id="connect_panel">
-                                @Html.Partial("_accountPanel", new ConcertFinderMVC.Models.LogOnModel())
-                            </div>
-                        }
-                   </div>
+<head>
+    <title>Concert Finder</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Index.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/jquery-ui-1.8.20.custom.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.20.custom.min.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/_LastAdded.css")" rel="stylesheet" type="text/css" />
+    @RenderSection("Header", false)
+</head>
+<body>
+    <header>
+        <div id="banniere">
+            <div class="center">
+                <strong id="concertfinder">Concert Finder</strong>
+               <div id="connect" class="float-right">
+                    @if (!Request.IsAuthenticated)
+                    {
+                        <div id="open_connect" >se connecter</div>
+                        <div id="connect_panel">
+                            @Html.Partial("_logOn", new ConcertFinderMVC.Models.LogOnModel())
+                        </div>
+                    }
+                    else
+                    {
+                         <div id="connect_panel">
+                            @Html.Partial("_accountPanel", new ConcertFinderMVC.Models.LogOnModel())
+                        </div>
+                    }
+               </div>
 
-                </div>
             </div>
+        </div>
             <div id="menu">
                 <div id="menu_content">
                      <img src="@Url.Content("~/Content/Images/nav-left.png")" alt="menu_left_corner" id="menu_left_corner" class="float-left"/>

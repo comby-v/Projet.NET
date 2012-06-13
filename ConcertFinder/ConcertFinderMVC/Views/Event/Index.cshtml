@@ -7,11 +7,11 @@
 
 <div class="main float-left">
     <div class="section_title">Tous les événements</div>
-    <div class="item_separator"></div>
+    <ul>
     @foreach (ConcertFinderMVC.Models.EventItem item in Model.Events)
     {
-        <div class="item" id="@item.Id">
-           <div class="item_content">
+        <a href='@Url.Content("/Event/Detail/" + item.Id)'> 
+        <li class="item" id="@item.Id">
             @if (item.Image != null)
             {
                 <img src="@Url.Content("/ConcertFinderMVC/")@item.Image" width="125" height="160" alt="flyers" class="flyers float-left" />
@@ -20,29 +20,18 @@
             {
                 <img src="@Url.Content("~/Content/Images/no_avatar.gif")" width="125" height="160" alt="flyers" class="flyers float-left" />
             }
-             <div class="infos float-left">
-                <div class="main_infos">
-                      <strong class="item_titre">@item.Titre</strong>
-                      <strong class="item_date float-right"></strong>
-                </div>
-                <div class="info1">
-                    <div class="item_type float-left">@item.Type</div>
-                    <div class="item_salle float-left">Salle : @item.Salle</div>
-                    <div class="item_Date float-right">@item.StartDate.ToShortDateString()<br />à @item.Ville (@item.CP.Substring(0, 2))</div>
-                    <div class="clear"></div>
-                </div>
-                <p class="item_descr">
-                    @ConcertFinderMVC.BusinessManagement.Tool.Truncate(item.Description)
-                </p>
-                <div class="clear">
-                    @Html.ActionLink("voir le détail", "Detail", "Event", new { id = item.Id }, null)
-                </div>
-             </div>   
-            </div>
-        </div>
-        <div class="item_separator">
-        </div>
+
+            <strong class="item_titre">@item.Titre</strong>
+            <span class="item_type float-left">@item.Type</span>
+            <span class="item_Date float-right">@item.StartDate.ToShortDateString() à @item.Ville (@item.CP.Substring(0, 2))</span>
+            <span class="item_salle">@item.Salle</span>
+            <em class="item_descr">
+                @ConcertFinderMVC.BusinessManagement.Tool.Truncate(item.Description)
+            </em>  
+        </li>
+        </a>
     }
+    </ul>
 </div>
 <div class="float-right">
         @Html.Partial("_LastAdded", Model.Last)

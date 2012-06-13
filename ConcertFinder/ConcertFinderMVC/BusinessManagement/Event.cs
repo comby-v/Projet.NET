@@ -163,7 +163,7 @@ namespace ConcertFinderMVC.BusinessManagement
             ev.WebSite = myevent.Website;
             ev.Tel = myevent.Phone;
           
-            return DataAccess.Event.Update(ev, location, user);
+            return DataAccess.Event.Update(ev, location);
         }
 
         static public DataAccess.T_Event Get(long id, bool creation = false)

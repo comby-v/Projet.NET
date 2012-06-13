@@ -187,9 +187,10 @@ namespace ConcertFinderMVC.Controllers
                         location.Ville = form.City;
                         BusinessManagement.Location.Create(location);
                     }
-
-                    BusinessManagement.Location.Update(location);
-                    
+                    else
+                    {
+                        BusinessManagement.Location.Update(location);
+                    } 
                     if (user != null && BusinessManagement.Event.Update(form, location, user, form.Id))
                     {
                         DataAccess.T_Event bdd_event = BusinessManagement.Event.Get(form.Id, true);

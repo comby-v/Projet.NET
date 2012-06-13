@@ -30,7 +30,7 @@
             @Html.ActionLink("Accepter", "ValideEvent", "Event", new { idevent = Model.Id }, null)
             @Html.ActionLink("Refuser", "DenyEvent", "Admin", new { idevent = Model.Id }, null)
         }
-        @if(ConcertFinderMVC.BusinessManagement.Tool.CreatedByMe (User.Identity.Name, @Model.Id) && (User.Identity.IsAuthenticated))
+        @if (User.Identity.IsAuthenticated && ConcertFinderMVC.BusinessManagement.Tool.CreatedByMe(User.Identity.Name, Model.Id))
         {
             @Html.ActionLink("Editer", "CreateEvent", "Event", new { id = Model.Id }, null)
         }

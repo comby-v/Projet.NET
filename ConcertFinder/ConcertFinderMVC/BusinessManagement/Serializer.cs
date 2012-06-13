@@ -8,11 +8,44 @@ using System.Security.Cryptography;
 using System.Text;
 using System.IO;
 using System.Drawing;
+using System.Web.Script.Serialization;
+using ConcertFinderMVC.Models;
 
 namespace ConcertFinderMVC.BusinessManagement
 {
     public class Serializer
     {
+        public static List<EventItem> SerializeJSON(List<T_Event> events)
+        {
+            List<EventItem> list_event = new List<EventItem>();
+            foreach (T_Event ev in events)
+            {
+                EventItem item = new EventItem()
+                {
+                    Id = ev.Id,
+                    StartDate = ev.DateDebut,
+                    EndDate = ev.DateFin.Value,
+                    Description = ev.Description,
+                    Titre = ev.Titre,
+                    Type = ev.Type,
+                    Image = ev.Image,
+                    Email = ev.Email,
+                    Tel = ev.Tel,
+                    Website = ev.WebSite,
+                    Salle = ev.T_Location.Name,
+                    Ville = ev.T_Location.Ville,
+                    Pays = ev.T_Location.Pays,
+                    Rue = ev.T_Location.Rue,
+                    CP = ev.T_Location.CP,
+                    Latitude = ev.T_Location.Latitude,
+                    Longitude = ev.T_Location.Longitude
+                };
+                list_event.Add(item);
+            }
+
+            return list_event;
+        }
+
         public static XmlDocument Serialize(List<T_Event> events)
         {
             XmlDocument xml = new XmlDocument();

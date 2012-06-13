@@ -14,7 +14,7 @@
            <div class="item_content">
             @if (item.Image != null)
             {
-                <img src="@Url.Content("/")@item.Image" width="125" height="160" alt="flyers" class="flyers float-left" />
+                <img src="@Url.Content("/ConcertFinderMVC/")@item.Image" width="125" height="160" alt="flyers" class="flyers float-left" />
             }
             else
             {
@@ -64,14 +64,14 @@
                 }
                 var id = $(".item:last").attr("id");
                 $.ajax({
-                    url: "http://"+url[0]+"/Event/GetNextEvents",
+                    url: "http://"+url[0]+"/ConcertFinderMVC/Event/GetNextEvents",
                     data: { last_id: id, type : qtype },
                     success: function (data) {
                         for (var i = 0; i < data.length; i++) {
                             var text = "<div class='item' id='" + data[i].Id + "'>" +
                                            "<div class='item_content'>";
                             if (data[i].Image != null) {
-                                text += "<img src="+"@Url.Content("/")"+data[i].Image+" width='125' height='160' alt='flyers' class='flyers float-left' />";
+                                text += "<img src="+"@Url.Content("/ConcertFinderMVC/")"+data[i].Image+" width='125' height='160' alt='flyers' class='flyers float-left' />";
                             }
                             else {
                                 text += "<img src='"+"@Url.Content("~/Content/Images/no_avatar.gif")"+"' width='125' height='160' alt='flyers' class='flyers float-left' />";

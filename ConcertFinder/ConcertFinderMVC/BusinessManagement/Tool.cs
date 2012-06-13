@@ -34,7 +34,7 @@ namespace ConcertFinderMVC.BusinessManagement
         {
             T_Event ev = new DataAccess.T_Event();
 
-            ev = DataAccess.Event.Get(id, false);
+            ev = DataAccess.Event.Get(id, true);
 
             return (ev.T_User.Pseudo == pseudo);
         }

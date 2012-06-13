@@ -173,7 +173,6 @@
 
         function getLatLong(address) {
             var geo = new google.maps.Geocoder;
-
             geo.geocode({ 'address': address }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     var latlong = results[0].geometry.location

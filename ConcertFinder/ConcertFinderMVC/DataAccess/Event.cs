@@ -54,19 +54,33 @@ namespace ConcertFinderMVC.DataAccess
             return true;
         }
 
-        static public bool Update(T_Event myevent, T_Location location, T_User user)
+        static public bool Update(T_Event myevent, T_Location location)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
                     bdd.Attach(location);
-                    bdd.Attach(user);
-                    myevent.T_Location = location;
-                    myevent.T_User = user;
-                    var n_event = new T_Event { Id = myevent.Id };
+                    T_Event ev2 = new T_Event()
+                    {
+                        Id = myevent.Id,
+                        Description = myevent.Description,
+                        DateCreation = myevent.DateCreation,
+                        DateDebut = myevent.DateDebut,
+                        DateFin = myevent.DateFin,
+                        Email = myevent.Email,
+                        Image = myevent.Image,
+                        Tel = myevent.Tel,
+                        Titre = myevent.Titre,
+                        Type = myevent.Type,
+                        Valide = myevent.Valide,
+                        WebSite = myevent.WebSite,
+                        T_User = myevent.T_User
+                    };
+   
+                    var n_event = new T_Event { Id = ev2.Id };
                     bdd.T_Event.Attach(n_event);
-                    bdd.ApplyCurrentValues("T_Event", myevent);
+                    bdd.ApplyCurrentValues("T_Event", ev2);
                     bdd.SaveChanges();
                 }
                 catch (Exception)
@@ -282,7 +296,6 @@ namespace ConcertFinderMVC.DataAccess
                         bdd.AddToT_Notification(notif);
                     }
                     bdd.SaveChanges();
-
                     ev.Valide = true;
                     return (Update(ev));
                 }

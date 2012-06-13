@@ -20,6 +20,11 @@ namespace ConcertFinderMVC.BusinessManagement
             return DataAccess.Notification.Get(pseudo);
         }
 
+        public static List<DataAccess.T_Notification> GetNext(string pseudo, int last_id)
+        {
+            return DataAccess.Notification.GetNext(pseudo, last_id);
+        }
+
         public static bool Deny(ForbidForm form)
         {
             T_Notification notif = new T_Notification()

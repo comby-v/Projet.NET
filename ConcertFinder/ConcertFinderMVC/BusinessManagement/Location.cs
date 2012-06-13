@@ -17,5 +17,11 @@ namespace ConcertFinderMVC.BusinessManagement
         {
             return DataAccess.Location.GetLocationByCoord(latitude, longitude);
         }
+
+        public static bool Update(DataAccess.T_Location location)
+        {
+            return DataAccess.Location.Update(location);
+        }
+
     }
 }

@@ -54,6 +54,29 @@ namespace ConcertFinderMVC.DataAccess
             return true;
         }
 
+        static public bool Update(T_Event myevent, T_Location location, T_User user)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                try
+                {
+                    bdd.Attach(location);
+                    bdd.Attach(user);
+                    myevent.T_Location = location;
+                    myevent.T_User = user;
+                    var n_event = new T_Event { Id = myevent.Id };
+                    bdd.T_Event.Attach(n_event);
+                    bdd.ApplyCurrentValues("T_Event", myevent);
+                    bdd.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         static public bool Update(T_Event myevent)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())

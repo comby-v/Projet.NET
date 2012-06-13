@@ -25,12 +25,15 @@
 </div>
 
     <div>
-        @if (!Model.Valide)
+        @if (!Model.Valide && (ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name) || ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name)))
         {
             @Html.ActionLink("Accepter", "ValideEvent", "Event", new { idevent = Model.Id }, null)
             @Html.ActionLink("Refuser", "DenyEvent", "Admin", new { idevent = Model.Id }, null)
         }
-        @Html.ActionLink("Editer", "CreateEvent", "Event", new { id = Model.Id }, null)
+        @if(ConcertFinderMVC.BusinessManagement.Tool.CreatedByMe (User.Identity.Name, @Model.Id) && (User.Identity.IsAuthenticated))
+        {
+            @Html.ActionLink("Editer", "CreateEvent", "Event", new { id = Model.Id }, null)
+        }
     </div>
     <div>
         <input id="direction" type="button" value="Direction" />

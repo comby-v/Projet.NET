@@ -46,17 +46,20 @@
                    
                        @if (User.Identity.IsAuthenticated)
                        {
-                            <li class="float-left">@Html.ActionLink("Mes évènements", "MyEvents", "Event")</li>
-                            <li class="float-left">@Html.ActionLink("Ajouter un événement", "CreateEvent", "Event")</li>
-                                              
-                           if (ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name))
-                           {
+                             <li class="float-left">@Html.ActionLink("Mes évènements", "MyEvents", "Event")</li>
+                             <li class="float-left">@Html.ActionLink("Ajouter un événement", "CreateEvent", "Event")</li>
+                             if (ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name))
+                             {
+                                <li class="float-left">@Html.ActionLink("Moderation", "NotValidEvent", "Admin")</li>
+                             } 
+                            if (ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name))
+                            {
                                 <li class="float-left">@Html.ActionLink("Administration utilisateur", "ManageUser", "Admin")</li>
                                 <li class="float-left">@Html.ActionLink("Moderation", "NotValidEvent", "Admin")</li>
-                           }
+                            }
                        }
                        <li class="float-right">
-                            <input type="search" id="SearchBar" />
+                            <input type="search" id="SearchBar" placeholder="Rechercher ..." />
                        </li>
                       </ul>
                       <img src="@Url.Content("~/Content/Images/nav-right.png")" alt="menu_right_corner" class="float-left"/>
@@ -80,14 +83,43 @@
         });
 
         $("#SearchBar").keyup(function () {
+            var url = document.URL.split("//");
+            url = (url[1] ? url[1] : url[0]).split("/");
             if ($(this).val().length >= 2) {
                 $.ajax({
-                    url: "Event/Search",
+                    url: "http://" + url[0] + "/Event/AutoComplete",
                     data: { q: $(this).val() },
                     success: function (data) {
+                        $("#tags").remove();
+                        var tags = "<datalist id='tags'>";
                         for (var i = 0; i < data.length; i++) {
-                            alert(data[i]);
+                            tags += "<option value='" + data[i] + "'>";
                         }
+                        tags += "</datalist>";
+                        $("#menu_content").append(tags);
+                        $("#SearchBar").attr({ list: "tags" });
+                    },
+                    dataType: "json"
+                });
+            }
+        });
+
+        $("#SearchBar").keypress(function (e) {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (code == 13) {
+                var url = document.URL.split("//");
+                url = (url[1] ? url[1] : url[0]).split("/");
+                var qtype = "";
+                if (url.length > 2)
+                {
+                    qtype = url[2];
+                }
+                var q = $(this).val();
+                $.ajax({
+                    url: "http://" + url[0] + "/Event/Search",
+                    data: { q: $(this).val(), type: qtype },
+                    success: function (data) {
+                        
                     },
                     dataType: "json"
                 });

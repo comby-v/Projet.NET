@@ -139,20 +139,31 @@ namespace ConcertFinderMVC.BusinessManagement
         static public bool Update(FormEventModels myevent, DataAccess.T_Location location, DataAccess.T_User user, long id)
         {
             DataAccess.T_Event ev = new DataAccess.T_Event();
-            ev.Id = id;
+          /*  ev.Id = id;
             ev.Titre = myevent.Title;
             ev.Type = EventModel.GetEventType(myevent.Type);
             ev.Description = myevent.Description;
             ev.DateDebut = myevent.StartDate;
             ev.DateFin = myevent.EndDate;
-            ev.Image = //myevent.Image;
+            ev.Image = myevent.Image;
             ev.Email = myevent.Email;
             ev.WebSite = myevent.Website;
             ev.Tel = myevent.Phone;
             ev.T_Location = location;
             ev.T_User = user;
-
-            return DataAccess.Event.Update(ev);
+            */
+            ev = Get(myevent.Id, true);
+            ev.Id = myevent.Id;
+            ev.Type = EventModel.GetEventType(myevent.Type);
+            ev.Description = myevent.Description;
+            ev.DateDebut = myevent.StartDate;
+            ev.DateFin = myevent.EndDate;
+            ev.Image = myevent.Image;
+            ev.Email = myevent.Email;
+            ev.WebSite = myevent.Website;
+            ev.Tel = myevent.Phone;
+          
+            return DataAccess.Event.Update(ev, location, user);
         }
 
         static public DataAccess.T_Event Get(long id, bool creation = false)

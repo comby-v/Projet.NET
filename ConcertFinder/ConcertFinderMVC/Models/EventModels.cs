@@ -37,6 +37,12 @@ namespace ConcertFinderMVC.Models
         public List<EventItem> Last { get; set; }
     }
 
+    public class EventDetail
+    {
+        public EventItem Item { get; set; }
+        public List<EventItem> Events { get; set; }
+    }
+
     public enum eTypes
     {
         Spectacle = 0,

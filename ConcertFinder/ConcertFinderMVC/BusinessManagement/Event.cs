@@ -22,7 +22,8 @@ namespace ConcertFinderMVC.BusinessManagement
                 DateFin= myevent.EndDate,
                 Email = myevent.Email,
                 WebSite = myevent.Website,
-                Tel = myevent.Phone
+                Tel = myevent.Phone,
+                Valide = false
             };
             SaveImage(myevent, ev);
 
@@ -147,8 +148,31 @@ namespace ConcertFinderMVC.BusinessManagement
             ev.WebSite = myevent.Website;
             ev.Tel = myevent.Phone;
             SaveImage(myevent, ev);
-          
-            return DataAccess.Event.Update(ev);
+
+            List<DataAccess.T_Tag> list_tag = new List<DataAccess.T_Tag>();
+            List<String> tags = myevent.Tags.Split(new Char[] { ' ', ',', '.', ';' }).ToList();
+
+            foreach (String tag in tags)
+            {
+                Regex regx = new Regex("[a-z1-9*]");
+                if (tag.Length > 2 && regx.Match(tag).Success)
+                {
+                    tag.ToLower();
+                    DataAccess.T_Tag bdd_tag = BusinessManagement.Tag.Get(tag);
+                    if (bdd_tag != null)
+                    {
+                        list_tag.Add(bdd_tag);
+                    }
+                    else
+                    {
+                        BusinessManagement.Tag.Create(tag);
+                        bdd_tag = BusinessManagement.Tag.Get(tag);
+                        list_tag.Add(bdd_tag);
+                    }
+                }
+            }
+
+            return DataAccess.Event.Update(ev, location, list_tag);
         }
 
         static public DataAccess.T_Event Get(long id, bool creation = false)
@@ -352,6 +376,67 @@ namespace ConcertFinderMVC.BusinessManagement
                 listEventItem.Add(eventItem);
             }
             return listEventItem;
+        }
+
+
+        public static List<EventItem> GetEventForAdmin(T_Event myevent, int nb)
+        {
+            List<EventItem> listRes = new List<EventItem> ();
+            List<T_Event> listEvent = new List<T_Event>();
+
+            listEvent = DataAccess.Event.GetEventForAdmin(myevent, nb);
+            foreach (T_Event myev in listEvent)
+            {
+                EventItem eventItem = new EventItem()
+                {
+                    Id = myev.Id,
+                    Titre = myev.Titre,
+                    Description = myev.Description,
+                    Type = myev.Type,
+                    StartDate = myev.DateDebut,
+                    EndDate = myev.DateFin.GetValueOrDefault(),
+                    Salle = myev.T_Location.Name,
+                    Email = myev.Email,
+                    Tel = myev.Tel,
+                    Website = myev.WebSite,
+                    CP = myev.T_Location.CP,
+                    Ville = myev.T_Location.Ville,
+                    Rue = myev.T_Location.Rue
+                };
+                listRes.Add(eventItem);
+            }
+
+            return listRes;
+        }
+
+        public static List<EventItem> GetListEventByUserTag (T_Event myevent, T_User user)
+        {
+            List<EventItem> listRes = new List<EventItem>();
+            List<T_Event> listEvent = new List<T_Event>();
+
+            listEvent = DataAccess.Event.GetListEventByUserTag(myevent, user);
+            foreach (T_Event myev in listEvent)
+            {
+                EventItem eventItem = new EventItem()
+                {
+                    Id = myev.Id,
+                    Titre = myev.Titre,
+                    Description = myev.Description,
+                    Type = myev.Type,
+                    StartDate = myev.DateDebut,
+                    EndDate = myev.DateFin.GetValueOrDefault(),
+                    Salle = myev.T_Location.Name,
+                    Email = myev.Email,
+                    Tel = myev.Tel,
+                    Website = myev.WebSite,
+                    CP = myev.T_Location.CP,
+                    Ville = myev.T_Location.Ville,
+                    Rue = myev.T_Location.Rue
+                };
+                listRes.Add(eventItem);
+            }
+
+            return listRes;
         }
     }
 }

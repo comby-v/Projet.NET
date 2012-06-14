@@ -1,4 +1,4 @@
-﻿@model ConcertFinderMVC.Models.EventItem
+﻿@model ConcertFinderMVC.Models.EventDetail
 
 @section Header
 {
@@ -6,37 +6,60 @@
 }
 
 <div>
-    @Model.Titre
+    @Model.Item.Titre
 </div>
 <div>
-    @Model.StartDate
+    @Model.Item.StartDate
 </div>
 <div>
-    @Model.Description
+    @Model.Item.Description
 </div>
 <div>
-    @Model.Rue, @Model.Ville, @Model.CP, @Model.Pays
+    @Model.Item.Rue, @Model.Item.Ville, @Model.Item.CP, @Model.Item.Pays
 </div>
 <div>
-    @Model.Salle
+    @Model.Item.Salle
 </div>
 
 <div id="map" style="width:400px; height:400px;">
 </div>
 
     <div>
-        @if (!Model.Valide && (ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name) || ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name)))
+        @if (!Model.Item.Valide && (ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name) ||
+            ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name)))
         {
-            @Html.ActionLink("Accepter", "ValideEvent", "Event", new { idevent = Model.Id }, null)
-            @Html.ActionLink("Refuser", "DenyEvent", "Admin", new { idevent = Model.Id }, null)
+            @Html.ActionLink("Accepter", "ValideEvent", "Event", new { idevent = Model.Item.Id }, null)
+            @Html.ActionLink("Refuser", "DenyEvent", "Admin", new { idevent = Model.Item.Id }, null)
         }
-        @if ((User.Identity.IsAuthenticated) && (ConcertFinderMVC.BusinessManagement.Tool.CreatedByMe(User.Identity.Name, Model.Id) || ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name) || ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name)))
+        @if ((User.Identity.IsAuthenticated) && (ConcertFinderMVC.BusinessManagement.Tool.CreatedByMe(User.Identity.Name, Model.Item.Id) ||
+            ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name) ||
+            ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name)))
         {
-            @Html.ActionLink("Editer", "CreateEvent", "Event", new { id = Model.Id }, null)
+            @Html.ActionLink("Editer", "CreateEvent", "Event", new { id = Model.Item.Id }, null)
         }
     </div>
     <div>
         <input id="direction" type="button" value="Direction" />
+    </div>
+
+
+    <div>
+    <ul>
+        @foreach(var ev in Model.Events)
+        {
+          <li>
+            <strong>
+                @ev.Titre
+            </strong>
+            <span>
+                @ev.Ville
+            </span>
+            <span>
+                @ev.StartDate
+            </span>
+          </li>  
+        }
+    </ul>
     </div>
 
 @section Script
@@ -44,7 +67,7 @@
     <script type="text/javascript">
 
         function initialize() {
-            var myLatlng = new google.maps.LatLng(@Model.Longitude.ToString().Replace(',', '.'), @Model.Latitude.ToString().Replace(',', '.'));
+            var myLatlng = new google.maps.LatLng(@Model.Item.Longitude.ToString().Replace(',', '.'), @Model.Item.Latitude.ToString().Replace(',', '.'));
             var myOptions = {
                 zoom: 15,
                 center: myLatlng,
@@ -55,14 +78,14 @@
             var marker = new google.maps.Marker({
                 position: myLatlng,
                 map: map,
-                title: "@Model.Salle"
+                title: "@Model.Item.Salle"
             });
         }
 
         $("#direction").click(function (){
         
             var directionsDisplay = new google.maps.DirectionsRenderer();
-            var eventLatlng = new google.maps.LatLng(@Model.Longitude.ToString().Replace(',', '.'), @Model.Latitude.ToString().Replace(',', '.'));
+            var eventLatlng = new google.maps.LatLng(@Model.Item.Longitude.ToString().Replace(',', '.'), @Model.Item.Latitude.ToString().Replace(',', '.'));
             
             var myOptions = {
                 zoom: 6,

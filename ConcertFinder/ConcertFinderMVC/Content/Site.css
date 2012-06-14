@@ -159,7 +159,9 @@ header
    background: url("Images/nav.png");
    margin-top:0px;
    margin-bottom:0px;
-   height:100%;
+   height:30px;
+   padding-top:15px;
+   padding-bottom:15px;
 }
 
 #menu a 
@@ -175,10 +177,20 @@ header
 }
 
 
-#menu li
+.menu_item_first
 {
-    padding-top:20px;
+    padding-top:10px;
     margin-left:15px;
+    padding-left:10px;
+    height:25px;
+}
+.menu_item
+{
+    padding-top:10px;
+    margin-left:15px;
+    padding-left:10px;
+    border-left:1px solid #FFAD6C;
+    height:25px;
 }
 
 #SearchBar

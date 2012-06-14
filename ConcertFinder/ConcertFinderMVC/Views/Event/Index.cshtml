@@ -9,14 +9,15 @@
 
 <div class="main float-left">
     <div class="section_title">Tous les événements</div>
-    <ul>
+    <ul id="items">
     @foreach (ConcertFinderMVC.Models.EventItem item in Model.Events)
     {
         <a href='@Url.Content("/Event/Detail/" + item.Id)'> 
         <li class="item" id="@item.Id">
             @if (item.Image != null)
             {
-                <img src="@Url.Content("/ConcertFinderMVC/")@item.Image" width="125" height="160" alt="flyers" class="flyers float-left" />
+                <!--<img src="@@Url.Content("/ConcertFinderMVC/")@@item.Image" width="125" height="160" alt="flyers" class="flyers float-left" />-->
+                <img src="@Url.Content("/")@item.Image" width="125" height="160" alt="flyers" class="flyers float-left" />
             }
             else
             {
@@ -54,14 +55,16 @@
                 }
                 var id = $(".item:last").attr("id");
                 $.ajax({
-                    url: "http://"+url[0]+"/ConcertFinderMVC/Event/GetNextEvents",
+                    url: "http://"+url[0]+"/Event/GetNextEvents",//"http://"+url[0]+"/ConcertFinderMVC/Event/GetNextEvents",
                     data: { last_id: id, type : qtype },
                     success: function (data) {
                         for (var i = 0; i < data.length; i++) {
-                            var text = "<div class='item' id='" + data[i].Id + "'>" +
-                                           "<div class='item_content'>";
+
+                            var text = "<a href='/Event/Detail/" + data[i].Id + "'>"+
+                                            "<li class='item' id='"+ data[i].Id +"'>";
                             if (data[i].Image != null) {
-                                text += "<img src="+"@Url.Content("/ConcertFinderMVC/")"+data[i].Image+" width='125' height='160' alt='flyers' class='flyers float-left' />";
+                                // text += "<img src="+"@@Url.Content("/ConcertFinderMVC/")"+data[i].Image+" width='125' height='160' alt='flyers' class='flyers float-left' />";
+                                text += "<img src="+"@Url.Content("/")"+data[i].Image+" width='125' height='160' alt='flyers' class='flyers float-left' />";
                             }
                             else {
                                 text += "<img src='"+"@Url.Content("~/Content/Images/no_avatar.gif")"+"' width='125' height='160' alt='flyers' class='flyers float-left' />";
@@ -70,30 +73,17 @@
                             var milli = data[i].StartDate.replace(/\/Date\((-?\d+)\)\//, '$1');
                             var d = new Date(parseInt(milli));
 
-                            text += "<div class='infos float-left'>" +
-                                                "<div class='main_infos'>" +
-                                                      "<strong class='item_titre'>" + data[i].Titre + "</strong>" +
-                                                      "<strong class='item_date float-right'></strong>" +
-                                                "</div>" +
-                                                "<div class='info1'>" +
-                                                    "<div class='item_type float-left'>" + data[i].Type + "</div>" +
-                                                    "<div class='item_salle float-left'>Salle : " + data[i].Salle + "</div>" +
-                                                    "<div class='item_Date float-right'>" + dateFormat(d, "dd/mm/yyyy") + "<br />à " + data[i].Ville + " (" + data[i].CP + ")</div>" +
-                                                    "<div class='clear'></div>" +
-                                                "</div>" +
-                                                "<p class='item_descr'>" +
-                                                    data[i].Description +
-                                                "</p>" +
-                                                "<div class='clear'>" +
-                                                    "<a href='Event/Detail/" + data[i].Id + "'>voir le détail</a>" +
-                                                "</div>" +
-                                             "</div>" +
-                                            "</div>" +
-                                        "</div>" +
-                                        "<div class='item_separator'>" +
-                                        "</div>";
+                            text += "<strong class='item_titre'>" + data[i].Titre + "</strong>" +
+                                "<span class='item_type float-left'>" + data[i].Type + "</span>" +
+                                "<span class='item_Date float-right'>" + dateFormat(d, "dd/mm/yyyy") + "<br />à " + data[i].Ville + " (" + data[i].CP + ")</span>" +
+                                "<span class='item_salle'>" + data[i].Salle + "</span>"+
+                                "<em class='item_descr'>" +
+                                    data[i].Description +
+                                "</em>" +
+                            "</li>" +
+                            "</a>";
 
-                            $(".main").append(text);
+                            $("#items").append(text);
                         }
                     },
                     dataType: "json"

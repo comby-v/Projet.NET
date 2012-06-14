@@ -85,10 +85,11 @@ namespace ConcertFinderMVC.BusinessManagement
                 var fileName = Path.GetFileName(postedFile.FileName);
                 var path = Path.Combine(destinationFolder, fileName);
                 postedFile.SaveAs(path);
-                var hashpath = Path.Combine(destinationFolder, Serializer.NameFile(fileName));
-                ResizeImage(path, hashpath, 125, 160, false);
+                /*var hashpath = Path.Combine(destinationFolder, Serializer.NameFile(fileName));
+                ResizeImage(path, hashpath, 180, 570, false);
                 SuppressOriginalImage(path);
-                evnt.Image = hashpath;
+                evnt.Image = hashpath;*/
+                evnt.Image = path;
             }
         }
 

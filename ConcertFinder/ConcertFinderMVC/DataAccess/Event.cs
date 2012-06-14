@@ -338,12 +338,8 @@ namespace ConcertFinderMVC.DataAccess
                      return listevent;
                  }
 
-                 for (int i = listevent.Count; i < (listevent.Count - nb); i++)
-                 {
-                     listevent.RemoveAt(listevent.Count - 1);
-                 }
-                 listevent.Remove(myevent);
-                 return listevent;
+                 
+                 return listevent.Take(nb).ToList();
              }
          }
 

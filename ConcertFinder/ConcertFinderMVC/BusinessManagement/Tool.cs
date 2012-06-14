@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ConcertFinderMVC.DataAccess;
 
 namespace ConcertFinderMVC.BusinessManagement
 {
@@ -32,7 +31,7 @@ namespace ConcertFinderMVC.BusinessManagement
 
         public static bool CreatedByMe(string pseudo, long id)
         {
-            T_Event ev = new DataAccess.T_Event();
+            DataAccess.T_Event ev = new DataAccess.T_Event();
 
             ev = DataAccess.Event.Get(id, true);
 

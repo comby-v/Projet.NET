@@ -104,6 +104,14 @@ namespace ConcertFinderMVC.Controllers
                 Latitude = myevent.T_Location.Latitude,
                 Longitude = myevent.T_Location.Longitude,
             };
+            event_item.TagList = new List<string>();
+            /*
+            List<T_Tag> taglist = BusinessManagement.Event.getTagListFromEvent(myevent.Id);
+            */
+            foreach (DataAccess.T_Tag tag  in myevent.T_Tag)
+            {
+                event_item.TagList.Add(tag.Name);
+            }
             List<EventItem> list = new List<EventItem>();
             detail.Item = event_item;
             if (BusinessManagement.Tool.IsAdmin(User.Identity.Name) || BusinessManagement.Tool.IsAdmin(User.Identity.Name))

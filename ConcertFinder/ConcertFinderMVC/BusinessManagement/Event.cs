@@ -219,6 +219,10 @@ namespace ConcertFinderMVC.BusinessManagement
             return DataAccess.Event.GetListEvent(nb_event);
         }
 
+        public static List<T_Tag> getTagListFromEvent(long idevent)
+        {
+            return DataAccess.Event.getTaglistfromEvent(idevent);
+        }
 
         static public List<EventItem> GetListEvent(int nbr, string type = "")
         {

@@ -29,6 +29,10 @@ namespace ConcertFinderMVC.Models
         public string CP { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+
+        /* Liste de Tags */
+
+        public List<string> TagList { get; set; }
     }
 
     public class EventsList

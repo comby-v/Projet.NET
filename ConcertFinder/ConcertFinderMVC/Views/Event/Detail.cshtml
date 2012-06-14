@@ -21,22 +21,44 @@
     @Model.Item.Salle
 </div>
 
+
+
+<div>
+    @foreach (var tag in Model.Item.TagList)
+    {
+        <span>
+            @tag
+        </span>
+    }
+
 <div id="map" style="width:400px; height:400px;">
+
+
+</div>
 </div>
 
     <div>
-        @if (!Model.Item.Valide && (ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name) ||
-            ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name)))
+        @if(User.Identity.IsAuthenticated)
         {
-            @Html.ActionLink("Accepter", "ValideEvent", "Event", new { idevent = Model.Item.Id }, null)
-            @Html.ActionLink("Refuser", "DenyEvent", "Admin", new { idevent = Model.Item.Id }, null)
-        }
-        @if ((User.Identity.IsAuthenticated) && (ConcertFinderMVC.BusinessManagement.Tool.CreatedByMe(User.Identity.Name, Model.Item.Id) ||
-            ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name) ||
-            ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name)))
-        {
-            @Html.ActionLink("Editer", "CreateEvent", "Event", new { id = Model.Item.Id }, null)
-        }
+                if (!Model.Item.Valide && (ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name) ||
+                    ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name)))
+                {
+                    <div>
+                        @Html.ActionLink("Accepter", "ValideEvent", "Event", new { idevent = Model.Item.Id }, null)
+                    </div>
+                    <div>
+                        @Html.ActionLink("Refuser", "DenyEvent", "Admin", new { idevent = Model.Item.Id }, null)
+                    </div>
+                }
+                if ((User.Identity.IsAuthenticated) && (ConcertFinderMVC.BusinessManagement.Tool.CreatedByMe(User.Identity.Name, Model.Item.Id) ||
+                    ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name) ||
+                    ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name)))
+                {
+                    <div>
+                        @Html.ActionLink("Editer", "CreateEvent", "Event", new { id = Model.Item.Id }, null)
+                    </div>
+                }   
+         }
     </div>
     <div>
         <input id="direction" type="button" value="Direction" />

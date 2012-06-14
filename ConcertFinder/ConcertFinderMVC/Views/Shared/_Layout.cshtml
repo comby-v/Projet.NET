@@ -86,7 +86,7 @@
             url = (url[1] ? url[1] : url[0]).split("/");
             if ($(this).val().length >= 2) {
                 $.ajax({
-                    url: "http://" + url[0] + "/Event/AutoComplete",
+                    url: "http://" + url[0] + "/Event/AutoComplete", //"http://" + url[0] + "/ConcertFinderMVC/Event/AutoComplete"
                     data: { q: $(this).val() },
                     success: function (data) {
                         $("#tags").remove();
@@ -115,7 +115,7 @@
                 }
                 var q = $(this).val();
                 $.ajax({
-                    url: "http://" + url[0] + "/Event/Search",
+                    url: "http://" + url[0] + "/Event/Search", //"http://" + url[0] + "/ConcertFinderMVC/Event/Search"
                     data: { q: $(this).val(), type: qtype },
                     success: function (data) {
                         

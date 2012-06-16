@@ -122,7 +122,7 @@ namespace ConcertFinderMVC.Controllers
             }
             else
             {
-                list = BusinessManagement.Event.GetListEventByUserTag(myevent, me);
+                list = BusinessManagement.Event.GetListEventByUserTag(myevent, me, 10);
             }
             detail.Events = list;
             return View(detail);

@@ -4,35 +4,47 @@
     ViewBag.Title = "AdminEvent";
 }
 
-<h2>AdminEvent</h2>
-    @if (Model.User.Role.Equals(ConcertFinderMVC.Models.UserModel.GetRoleType((int)ConcertFinderMVC.Models.eRole.Admin)))
-    {
-        <ul>
-                    <li>@Html.ActionLink("Gerer les utlisateurs", "ManageUser", "Admin")</li>
-        </ul>
-    }
+<head>
+     <link href="@Url.Content("~/Content/Index.css")" rel="stylesheet" type="text/css" />
+</head>
+
+
+   
  <section>
     <ul id="onglet">
+        @if (Model.User.Role.Equals(ConcertFinderMVC.Models.UserModel.GetRoleType((int)ConcertFinderMVC.Models.eRole.Admin)))
+        {
+                    <li>@Html.ActionLink("Gerer les utlisateurs", "ManageUser", "Admin")</li>
+        }
+    
         <li>@Html.ActionLink("Evenement valide", "ValidEvent", "Admin")</li>
         <li>@Html.ActionLink("Evenement en attente", "NotValidEvent", "Admin")</li>
     </ul>
 
-    <ul id="content_list">
+    
+<div class="main">
+<div class="section_title">Tous les événements</div>
+    <ul id="item">
         @foreach (ConcertFinderMVC.Models.EventItem eve in Model.listEvent)
         {
-            <li>
-                <img src="@eve.Image" alt="Image descriptive"/>
-                <span>@eve.Type</span>
-                <span>Salle :<strong>@eve.Salle</strong></span>
-                <em>@eve.Ville, @eve.CP, @eve.Rue</em>
-                <br/>
-                <strong>@eve.Titre</strong>
-                <strong>@eve.StartDate</strong>
-                <br/>
-                <span>@eve.Description</span>
-                <br />
-                <span>@eve.Website</span>
-                <br/>
+            <li class="item">
+                @if (eve.Image != null)
+            {
+                <!--<img src="@@Url.Content("/ConcertFinderMVC/")@@item.Image" width="125" height="160" alt="flyers" class="flyers float-left" />-->
+                <img src="@Url.Content("/")@eve.Image" width="125" height="160" alt="flyers" class="flyers float-left" />
+            }
+            else
+            {
+                <img src="@Url.Content("~/Content/Images/no_avatar.gif")" width="125" height="160" alt="flyers" class="flyers float-left" />
+            }
+
+            <strong class="item_titre">@eve.Titre</strong>
+            <span class="item_type float-left">@eve.Type</span>
+            <span class="item_Date float-right">@eve.StartDate.ToShortDateString() à @eve.Ville (@eve.CP.Substring(0, 2))</span>
+            <span class="item_salle">@eve.Salle</span>
+            <em class="item_descr">
+                @ConcertFinderMVC.BusinessManagement.Tool.Truncate(eve.Description)
+            </em> 
                 <a href="#">@eve.Website</a>
                 @Html.ActionLink("Verifier la validite", "Detail", "Event", new { id = @eve.Id, creation = true }, null)
             </li>

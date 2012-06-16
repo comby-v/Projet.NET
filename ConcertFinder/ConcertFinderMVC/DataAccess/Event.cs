@@ -343,7 +343,7 @@ namespace ConcertFinderMVC.DataAccess
              }
          }
 
-         static public List<T_Event> GetListEventByUserTag(T_Event myevent, T_User user)
+         static public List<T_Event> GetListEventByUserTag(T_Event myevent, T_User user, int nb)
          {
              using(ConcertFinderEntities bdd = new ConcertFinderEntities ())
              {
@@ -373,7 +373,13 @@ namespace ConcertFinderMVC.DataAccess
                     }
                 }
                 listRes.Remove(myevent);
-             return listRes;
+
+                if (listRes.Count < nb)
+                {
+                    return listRes;
+
+                }
+             return listRes.Take(nb).ToList();
             }
          }
 

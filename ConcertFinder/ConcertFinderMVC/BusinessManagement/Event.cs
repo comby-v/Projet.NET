@@ -414,12 +414,12 @@ namespace ConcertFinderMVC.BusinessManagement
             return listRes;
         }
 
-        public static List<EventItem> GetListEventByUserTag (T_Event myevent, T_User user)
+        public static List<EventItem> GetListEventByUserTag (T_Event myevent, T_User user, int nb)
         {
             List<EventItem> listRes = new List<EventItem>();
             List<T_Event> listEvent = new List<T_Event>();
 
-            listEvent = DataAccess.Event.GetListEventByUserTag(myevent, user);
+            listEvent = DataAccess.Event.GetListEventByUserTag(myevent, user, nb);
             foreach (T_Event myev in listEvent)
             {
                 EventItem eventItem = new EventItem()

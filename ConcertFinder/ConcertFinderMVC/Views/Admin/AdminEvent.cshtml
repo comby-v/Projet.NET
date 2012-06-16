@@ -4,26 +4,29 @@
     ViewBag.Title = "AdminEvent";
 }
 
-<head>
-     <link href="@Url.Content("~/Content/Index.css")" rel="stylesheet" type="text/css" />
-</head>
+@section Header
+{
+     <link href="@Url.Content("~/Content/Admin.css")" rel="stylesheet" type="text/css"/>
+}
 
 
    
- <section>
-    <ul id="onglet">
-        @if (Model.User.Role.Equals(ConcertFinderMVC.Models.UserModel.GetRoleType((int)ConcertFinderMVC.Models.eRole.Admin)))
-        {
-                    <li>@Html.ActionLink("Gerer les utlisateurs", "ManageUser", "Admin")</li>
-        }
-    
-        <li>@Html.ActionLink("Evenement valide", "ValidEvent", "Admin")</li>
-        <li>@Html.ActionLink("Evenement en attente", "NotValidEvent", "Admin")</li>
-    </ul>
 
     
 <div class="main">
-<div class="section_title">Tous les événements</div>
+    <div class="section_title">@Model.Page</div>
+
+    <ul id="menu_onglet">
+        @if (Model.User.Role.Equals(ConcertFinderMVC.Models.UserModel.GetRoleType((int)ConcertFinderMVC.Models.eRole.Admin)))
+        {
+                    <li id="onglet">@Html.ActionLink("Gerer les utlisateurs", "ManageUser", "Admin")</li>
+        }
+    
+        <li id="onglet">@Html.ActionLink("Evenement valide", "ValidEvent", "Admin")</li>
+        <li id="onglet">@Html.ActionLink("Evenement en attente", "NotValidEvent", "Admin")</li>
+    </ul>
+
+
     <ul id="item">
         @foreach (ConcertFinderMVC.Models.EventItem eve in Model.listEvent)
         {
@@ -44,10 +47,12 @@
             <span class="item_salle">@eve.Salle</span>
             <em class="item_descr">
                 @ConcertFinderMVC.BusinessManagement.Tool.Truncate(eve.Description)
-            </em> 
-                <a href="#">@eve.Website</a>
-                @Html.ActionLink("Verifier la validite", "Detail", "Event", new { id = @eve.Id, creation = true }, null)
+            </em>
+                @if (eve.Valide == false)
+                { 
+                    <span id="valide">@Html.ActionLink("Verifier la validite", "Detail", "Event", new { id = @eve.Id, creation = true }, null)</span>
+                }
             </li>
         }
     <ul>
-</section>
+</div>

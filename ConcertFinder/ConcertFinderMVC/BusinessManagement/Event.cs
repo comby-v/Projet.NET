@@ -284,7 +284,8 @@ namespace ConcertFinderMVC.BusinessManagement
                     Website = myevent.WebSite,
                     CP = myevent.T_Location.CP,
                     Ville = myevent.T_Location.Ville,
-                    Rue = myevent.T_Location.Rue
+                    Rue = myevent.T_Location.Rue,
+                    Valide = myevent.Valide.Value
                 };
                 list.Add(myeventitem);    
             }
@@ -315,7 +316,8 @@ namespace ConcertFinderMVC.BusinessManagement
                     Website = myevent.WebSite,
                     CP = myevent.T_Location.CP,
                     Ville = myevent.T_Location.Ville,
-                    Rue = myevent.T_Location.Rue
+                    Rue = myevent.T_Location.Rue,
+                    Valide = myevent.Valide.Value
                 };
                 list.Add(myeventitem);
             }

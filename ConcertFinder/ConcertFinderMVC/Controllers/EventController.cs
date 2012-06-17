@@ -114,7 +114,7 @@ namespace ConcertFinderMVC.Controllers
             }
             List<EventItem> list = new List<EventItem>();
             detail.Item = event_item;
-            if (BusinessManagement.Tool.IsAdmin(User.Identity.Name) || BusinessManagement.Tool.IsAdmin(User.Identity.Name))
+            if ( User.Identity.IsAuthenticated && (BusinessManagement.Tool.IsAdmin(User.Identity.Name) || BusinessManagement.Tool.IsModerator(User.Identity.Name)))
             {
                
                 list = BusinessManagement.Event.GetEventForAdmin(myevent, 10);

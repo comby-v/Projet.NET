@@ -8,14 +8,6 @@
 }
 
 <div class="main float-left">
-    @if (User.Identity.IsAuthenticated)
-    {
-        <h1>BITE</h1>
-    }
-    else
-    {
-        <h1>connerie</h1>
-    }
     <div class="section_title">Tous les événements</div>
     <ul id="items">
     @foreach (ConcertFinderMVC.Models.EventItem item in Model.Events)

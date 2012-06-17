@@ -81,6 +81,8 @@ namespace ConcertFinderMVC.Controllers
         public ActionResult Detail(long id, bool creation = false)
         {
             DataAccess.T_Event myevent = BusinessManagement.Event.Get(id, creation);
+            DataAccess.T_User me = BusinessManagement.User.GetUserByPseudo(User.Identity.Name);
+            EventDetail detail = new EventDetail();
             EventItem event_item = new EventItem()
             {
                 Id = myevent.Id,
@@ -101,11 +103,29 @@ namespace ConcertFinderMVC.Controllers
                 CP = myevent.T_Location.CP,
                 Latitude = myevent.T_Location.Latitude,
                 Longitude = myevent.T_Location.Longitude,
-                
-
             };
-
-            return View(event_item);
+            event_item.TagList = new List<string>();
+            /*
+            List<T_Tag> taglist = BusinessManagement.Event.getTagListFromEvent(myevent.Id);
+            */
+            foreach (DataAccess.T_Tag tag  in myevent.T_Tag)
+            {
+                event_item.TagList.Add(tag.Name);
+            }
+            List<EventItem> list = new List<EventItem>();
+            detail.Item = event_item;
+            if (BusinessManagement.Tool.IsAdmin(User.Identity.Name) || BusinessManagement.Tool.IsAdmin(User.Identity.Name))
+            {
+               
+                list = BusinessManagement.Event.GetEventForAdmin(myevent, 10);
+               
+            }
+            else
+            {
+                list = BusinessManagement.Event.GetListEventByUserTag(myevent, me, 10);
+            }
+            detail.Events = list;
+            return View(detail);
         }
 
         public ActionResult CreateEvent(long? id)
@@ -187,11 +207,13 @@ namespace ConcertFinderMVC.Controllers
                         location2.Rue = form.Address;
                         location2.Ville = form.City;
                         BusinessManagement.Location.Create(location2);
+                        location = location2;
                     }
                     else
                     {
                         location.CP = form.CodePostal;
                         location.Latitude = form.Latitude;
+                        location.Longitude = form.Longitude;
                         location.Name = location.Name;
                         location.Pays = form.Country;
                         location.Rue = form.Address;

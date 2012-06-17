@@ -55,6 +55,8 @@ namespace ConcertFinderMVC.BusinessManagement
                 writer.WriteDocType("plist", "-//Apple//DTD PLIST 1.0//EN", "http://www.apple.com/DTDs/PropertyList-1.0.dtd", null);
                 writer.WriteStartElement("plist");
                 writer.WriteAttributeString("version", "1.0");
+                writer.WriteStartElement("dict");
+                writer.WriteElementString("key", "Datas");
                 writer.WriteStartElement("array");
 
                 foreach (T_Event evnt in events)
@@ -93,6 +95,7 @@ namespace ConcertFinderMVC.BusinessManagement
                     writer.WriteEndElement();
                 }
 
+                writer.WriteEndElement();
                 writer.WriteEndElement();
                 writer.WriteEndElement();
                 writer.WriteEndDocument();

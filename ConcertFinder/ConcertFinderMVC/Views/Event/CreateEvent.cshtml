@@ -2,9 +2,11 @@
 
 @section Header
 {
+    <link href=@Url.Content("~/Content/Formulaire.css") rel="Stylesheet" type="text/css">
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBm8CQjlFqdYRoa3Am16rtSsAiIpdhL_nw&sensor=false"></script>
 }
-
+<div class="main">
+    <div class="section_title">Creation d'evenement</div>
 @using (Html.BeginForm("CreateEvent", "Event", FormMethod.Post, new {enctype = "multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
@@ -13,160 +15,160 @@
     @Html.HiddenFor(x => x.Longitude);
                                     
     <div>
-        <span class="connexion_lbl ">
+        <div class="text_lbl ">
             @Html.LabelFor(m => m.Title)
-        </span>
-        <span class="connexion_form ">
+        </div>
+        <div class="text_input ">
             @Html.TextBoxFor(m => m.Title)
             @Html.ValidationMessageFor(m => m.Title)
-        </span>
+        </div>
     </div>
     
     <div>
-        <span class="connexion_lbl">
+        <div class="text_lbl">
             @Html.LabelFor(m => m.Type)
-        </span>
-        <span class="connexion_form">
+        </div>
+        <div class="text_input">
         @Html.DropDownListFor(x => x.Type, Model.Types)
-        </span>
+        </div>
     </div>
     
     <div>
-        <span class="connexion_lbl ">
+        <div class="text_lbl ">
             @Html.LabelFor(m => m.StartDate)
-        </span>
-        <span class="connexion_form ">
+        </div>
+        <div class="text_input ">
             @Html.TextBoxFor(m => m.StartDate, new { id = "startDate" })
             @Html.ValidationMessageFor(m => m.StartDate)
-        </span>
+        </div>
     </div>
     
     <div>
-        <span class="connexion_lbl ">
+        <div class="text_lbl ">
             @Html.LabelFor(m => m.EndDate)
-        </span>
-        <span class="connexion_form ">
+        </div>
+        <div class="text_input ">
             @Html.TextBoxFor(m => m.EndDate, new { id = "endDate" })
             @Html.ValidationMessageFor(m => m.EndDate)
-        </span>
+        </div>
     </div>
     
     <div>
-        <span class="connexion_lbl ">
+        <div class="text_lbl ">
             @Html.LabelFor(m => m.Description)
-        </span>
-        <span class="connexion_form ">
+        </div>
+        <div class="text_input">
             @Html.TextAreaFor(m => m.Description)
             @Html.ValidationMessageFor(m => m.Description)
-        </span>
+        </div>
     </div>
     <div>
-        <span class="connexion_lbl ">
+        <div class="text_lbl ">
             @Html.LabelFor(m => m.Image)
-        </span>
-        <span class="connexion_form ">
+        </div>
+        <div class="text_input ">
             <input type="file" id="FileImage" name="FileImage" />
-        </span>
+        </div>
     </div>
     
     <div>
-        <span class="connexion_lbl ">
+        <div class="text_lbl ">
             @Html.LabelFor(m => m.Tags)
-        </span>
-        <span class="connexion_form ">
+        </div>
+        <div class="text_input ">
             @Html.TextBoxFor(m => m.Tags)
             @Html.ValidationMessageFor(m => m.Tags)
-        </span>
+        </div>
     </div>
     
     <div>
-        <span class="connexion_lbl ">
+        <div class="text_lbl ">
             @Html.LabelFor(m => m.Country)
-        </span>
-        <span class="connexion_form ">
+        </div>
+        <div class="text_input ">
             @Html.TextBoxFor(m => m.Country, new { id = "country" })
             @Html.ValidationMessageFor(m => m.Country)
-        </span>
+        </div>
     </div>
     
     <div>
-        <span class="connexion_lbl ">
+        <div class="text_lbl ">
             @Html.LabelFor(m => m.City)
-        </span>
-        <span class="connexion_form ">
+        </div>
+        <div class="text_input ">
             @Html.TextBoxFor(m => m.City, new { id = "city" })
             @Html.ValidationMessageFor(m => m.City)
-        </span>
+        </div>
     </div>
     
     <div>
-        <span class="connexion_lbl ">
+        <div class="text_lbl ">
             @Html.LabelFor(m => m.CodePostal)
-        </span>
-        <span class="connexion_form ">
+        </div>
+        <div class="text_input ">
             @Html.TextBoxFor(m => m.CodePostal, new { id = "code_postal" })
             @Html.ValidationMessageFor(m => m.CodePostal)
-        </span>
+        </div>
     </div>
     
     <div class="clear">
-        <span class="connexion_lbl ">
+        <div class="text_lbl ">
             @Html.LabelFor(m => m.Address)
-        </span>
-        <span class="connexion_form ">
+        </div>
+        <div class="text_input ">
             @Html.TextBoxFor(m => m.Address, new { id = "address" })
             @Html.ValidationMessageFor(m => m.Address)
-        </span>
+        </div>
     </div>
     
     <div>
-        <span class="connexion_lbl ">
+        <div class="text_lbl ">
             @Html.LabelFor(m => m.RoomName)
-        </span>
-        <span class="connexion_form ">
+        </div>
+        <div class="text_input ">
             @Html.TextBoxFor(m => m.RoomName)
             @Html.ValidationMessageFor(m => m.RoomName)
-        </span>
+        </div>
     </div>
     
     <div>
-        <span class="connexion_lbl ">
+        <div class="text_lbl ">
             @Html.LabelFor(m => m.Email)
-        </span>
-        <span class="connexion_form ">
+        </div>
+        <div class="text_input ">
             @Html.TextBoxFor(m => m.Email)
             @Html.ValidationMessageFor(m => m.Email)
-        </span>
+        </div>
     </div>
     
     <div>
-        <span class="connexion_lbl ">
+        <div class="text_lbl ">
             @Html.LabelFor(m => m.Phone)
-        </span>
-        <span class="connexion_form ">
+        </div>
+        <div class="text_input ">
             @Html.TextBoxFor(m => m.Phone)
             @Html.ValidationMessageFor(m => m.Phone)
-        </span>
+        </div>
     </div>
     
     <div>
-        <span class="connexion_lbl ">
+        <div class="text_lbl ">
             @Html.LabelFor(m => m.Website)
-        </span>
-        <span class="connexion_form ">
+        </div>
+        <div class="text_input ">
             @Html.TextBoxFor(m => m.Website)
             @Html.ValidationMessageFor(m => m.Website)
-        </span>
+        </div>
     </div>
     
      <div class="clear">
-        <div class="">
+        <div class="submit">
             <input type="submit" value="Valider" />
         </div>
     </div>
     <div class="clear"></div>
 }
-
+</div>
 @section Script
 {
     <script type="text/javascript">

@@ -1,0 +1,47 @@
+﻿.section_title
+{
+    height:40px;
+    width:260px;
+    margin-top:-17px;
+    margin-left:10px;
+    padding-left:5px;
+    color:#FF893A;
+    background: #FCFCFC url("Images/yt_bg_60.png") 50% 122% repeat-x;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.main
+{
+    width:1094px;
+    background:#FCFCFC;
+    border:2px solid #666;
+    border-radius:10px;
+    padding-bottom:15px;
+}
+
+.text_lbl
+{
+    position:relative;
+    left:360px;
+}
+
+.text_input
+{
+    position:relative;
+    left:360px;
+}
+
+textarea
+{
+    width:400px;
+    height:200px;
+}
+
+.submit
+{
+    position:relative;
+    left: 360px;
+    margin-top: 15px;
+}
+

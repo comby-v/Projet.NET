@@ -180,8 +180,6 @@ header
 .menu_item_first
 {
     padding-top:10px;
-    margin-left:15px;
-    padding-left:10px;
     height:25px;
 }
 .menu_item
@@ -190,7 +188,7 @@ header
     margin-left:15px;
     padding-left:10px;
     border-left:1px solid #FFAD6C;
-    height:25px;
+    height:20px;
 }
 
 #SearchBar

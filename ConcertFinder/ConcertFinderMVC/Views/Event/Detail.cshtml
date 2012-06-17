@@ -2,28 +2,46 @@
 
 @section Header
 {
+    <link href="@Url.Content("~/Content/Detail.css")" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBm8CQjlFqdYRoa3Am16rtSsAiIpdhL_nw&sensor=true"></script>
 }
-
-<div>
-    @Model.Titre
-</div>
-<div>
-    @Model.StartDate
-</div>
-<div>
-    @Model.Description
-</div>
-<div>
-    @Model.Rue, @Model.Ville, @Model.CP, @Model.Pays
-</div>
-<div>
-    @Model.Salle
-</div>
-
-<div id="map" style="width:400px; height:400px;">
-</div>
-
+<div class="main float-left">
+    <span class="float-left">
+        @Model.Ville (@Model.CP.Substring(0, 2))
+    </span>
+    <span class="float-right">
+        @Model.StartDate.ToShortDateString() @Model.StartDate.ToShortTimeString()
+    </span>
+    <strong id="title_salle">
+         @Model.Salle
+    </strong>
+    <p class="clear" id="event_title">
+        @Model.Titre
+    </p>
+    <img class="float-left" id="flyers" src="@Model.Image" alt="flyers" />
+    <strong class="type">@Model.Type</strong>
+    <p class="item_descr float-left">
+        @Model.Description
+    </p>
+    <strong class="infos_sup">
+        Contacts:
+    </strong>
+    <p>
+        Site Web : <a href="@Model.Website">@Model.Website</a>
+    </p>
+    <p>
+        Email : @Model.Email
+    </p>
+    <p>
+        Tel : @Model.Tel
+    </p>
+    
+    <p class="clear">
+        <strong> Salle : </strong>  @Model.Salle
+    </p>
+    <p class="float-left">
+        <strong> Adresse: </strong> <em>@Model.Rue  @Model.Ville, @Model.CP @Model.Pays</em>
+    </p>
     <div>
         @if (!Model.Valide && (ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name) || ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name)))
         {
@@ -35,10 +53,12 @@
             @Html.ActionLink("Editer", "CreateEvent", "Event", new { id = Model.Id }, null)
         }
     </div>
+        <div class="" id="map">
+    </div>
     <div>
         <input id="direction" type="button" value="Direction" />
     </div>
-
+</div>
 @section Script
 {
     <script type="text/javascript">

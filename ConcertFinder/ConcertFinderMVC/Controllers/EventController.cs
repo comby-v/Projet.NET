@@ -100,10 +100,9 @@ namespace ConcertFinderMVC.Controllers
                 Rue = myevent.T_Location.Rue,
                 CP = myevent.T_Location.CP,
                 Latitude = myevent.T_Location.Latitude,
-                Longitude = myevent.T_Location.Longitude,
-                
-
+                Longitude = myevent.T_Location.Longitude
             };
+            BusinessManagement.Event.ServerPathImage(myevent, event_item);
 
             return View(event_item);
         }

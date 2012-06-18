@@ -85,11 +85,10 @@ namespace ConcertFinderMVC.BusinessManagement
                 var fileName = Path.GetFileName(postedFile.FileName);
                 var path = Path.Combine(destinationFolder, fileName);
                 postedFile.SaveAs(path);
-                /*var hashpath = Path.Combine(destinationFolder, Serializer.NameFile(fileName));
-                ResizeImage(path, hashpath, 180, 570, false);
+                var hashpath = Path.Combine(destinationFolder, Serializer.NameFile(fileName));
+                ResizeImage(path, hashpath, 300, 400, false);
                 SuppressOriginalImage(path);
-                evnt.Image = hashpath;*/
-                evnt.Image = path;
+                evnt.Image = hashpath;
             }
         }
 
@@ -224,7 +223,7 @@ namespace ConcertFinderMVC.BusinessManagement
             return list_eventItem;
         }
 
-        private static void ServerPathImage(T_Event myevent, EventItem myeventitem)
+        public static void ServerPathImage(T_Event myevent, EventItem myeventitem)
         {
             if (myevent.Image != null)
             {

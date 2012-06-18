@@ -3,55 +3,57 @@
 @section Header
 {
     <link href="@Url.Content("~/Content/Detail.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/_SimilarEvents.css")" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBm8CQjlFqdYRoa3Am16rtSsAiIpdhL_nw&sensor=true"></script>
 }
 
 <div class="main float-left">
     <span class="float-left">
-        @Model.Ville (@Model.CP.Substring(0, 2))
+        @Model.Item.Ville (@Model.Item.CP.Substring(0, 2))
     </span>
     <span class="float-right">
-        @Model.StartDate.ToShortDateString() @Model.StartDate.ToShortTimeString()
+        @Model.Item.StartDate.ToShortDateString() @Model.Item.StartDate.ToShortTimeString()
     </span>
     <strong id="title_salle">
-         @Model.Salle
+         @Model.Item.Salle
     </strong>
     <p class="clear" id="event_title">
-        @Model.Titre
+        @Model.Item.Titre
     </p>
-    <img class="float-left" id="flyers" src="@Model.Image" alt="flyers" />
-    <strong class="type">@Model.Type</strong>
+    <img class="float-left" id="flyers" src="@Url.Content("/")@Model.Item.Image" alt="flyers" />
+    <strong class="type">@Model.Item.Type</strong>
     <p class="item_descr float-left">
-        @Model.Description
+        @Model.Item.Description
+    </p>
+    <p>
+        <strong > Salle : </strong>  @Model.Item.Salle
+    </p>
+    <p>
+        <strong> Adresse: </strong> <em>@Model.Item.Rue  @Model.Item.Ville, @Model.Item.CP @Model.Item.Pays</em>
+    </p>
+    <p>
+       <strong>Site Web :</strong>  <a href="@Model.Item.Website">@Model.Item.Website</a>
+    </p> 
+    <p>
+        <strong >Email :</strong>  @Model.Item.Email
+    </p>
+    <p>
+        <strong>Tel :</strong> @Model.Item.Tel
     </p>
     <div >
+        <strong>Tags:</strong>
         @foreach (var tag in Model.Item.TagList)
         {
-            <span>
+            <em class="tag">
                 @tag
-            </span>
+            </em>
         }
     </div>
-    <strong class="infos_sup">
-        Contacts:
-    </strong>
-    <p>
-        Site Web : <a href="@Model.Website">@Model.Website</a>
-    </p>
-    <p>
-        Email : @Model.Email
-    </p>
-    <p>
-        Tel : @Model.Tel
-    </p>
-    
-    <p class="clear">
-        <strong> Salle : </strong>  @Model.Salle
-    </p>
-    <p class="float-left">
-        <strong> Adresse: </strong> <em>@Model.Rue  @Model.Ville, @Model.CP @Model.Pays</em>
-    </p>
-
+    <div class="clear"></div>
+    <div  style="width:320px;"></div>
+    <div class="">
+        
+    </div>
     <div>
         @if(User.Identity.IsAuthenticated)
         {
@@ -75,31 +77,16 @@
                 }   
          }
     </div>
-        <div class="" id="map">
+    <p >Visualiser l'évenement sur la map</p>
+    <div class="" id="map">
     </div>
     <div>
         <input id="direction" type="button" value="Direction" />
     </div>
 </div>
-
-    <div>
-    <ul>
-        @foreach(var ev in Model.Events)
-        {
-          <li>
-            <strong>
-                @ev.Titre
-            </strong>
-            <span>
-                @ev.Ville
-            </span>
-            <span>
-                @ev.StartDate
-            </span>
-          </li>  
-        }
-    </ul>
-    </div>
+<div class="float-right">
+        @Html.Partial("_SimilarEvents", Model.Events)
+</div>
 
 @section Script
 {

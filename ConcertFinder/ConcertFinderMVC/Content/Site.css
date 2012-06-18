@@ -13,6 +13,11 @@
 {
 	clear:both;
 }
+.remove_marge
+{
+    margin:0px;
+	padding:0px;
+}
 
 body
 {

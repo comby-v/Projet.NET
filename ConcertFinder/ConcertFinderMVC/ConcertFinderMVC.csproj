@@ -195,6 +195,7 @@
       <DependentUpon>jquery.ui.theme.css</DependentUpon>
     </Content>
     <Content Include="Content\_LastAdded.css" />
+    <Content Include="Content\_SimilarEvents.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\dateformat.js" />
     <Content Include="Scripts\dateformat.min.js">
@@ -294,6 +295,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\DenyEvent.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Event\_SimilarEvents.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

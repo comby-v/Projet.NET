@@ -1,0 +1,63 @@
+﻿.section
+{
+    width:280px;
+    background:#FCFCFC;
+    border:2px solid #666;
+    border-radius:10px;
+    padding:0px 10px 10px 10px; 
+}
+
+.section ul, li
+{
+    margin:0px;
+    padding:0px;
+}
+
+.similar_event
+{
+    margin-bottom:10px;
+}
+
+.similar_infos
+{
+    width:210px;
+}
+
+
+.similarEvent_title
+{
+    height:40px;
+    width:260px;
+    margin-top:-17px;
+    margin-left:10px;
+    padding-left:5px;
+    color:#FF893A;
+    background: #FCFCFC url("Images/yt_bg_60.png") 50% 122% repeat-x;
+    font-size:20px;
+    font-weight:bold;
+
+}
+
+#flyers_mini
+{
+    width:70px;
+    height:80px;
+}
+.quick_title
+{
+    text-transform : uppercase;
+    margin-top:0px;
+    margin-bottom:5px;
+}
+
+.quick_title a
+{
+    color:#2F86C0;
+    font-weight:bold;
+}
+
+.quick_infos
+{
+    padding:0px 10px 5px 10px;
+    display:block;
+}

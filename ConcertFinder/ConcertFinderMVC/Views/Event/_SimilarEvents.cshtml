@@ -1,0 +1,21 @@
+﻿@model List<ConcertFinderMVC.Models.EventItem>
+
+
+<div class="section">
+    <div class="similarEvent_title">Evenements Similaires</div>
+    <ul>
+    @foreach (ConcertFinderMVC.Models.EventItem item in Model)
+    {
+        <li class="similar_event">
+            <p class="quick_title">@Html.ActionLink(item.Titre, "Detail", "Event", new { id = item.Id }, null)</p>
+            <img class="float-left" id="flyers_mini" src="@item.Image" alt="flyers" />
+            <p class="similar_infos float-left">
+                <span class="quick_infos">le @item.StartDate.ToShortDateString() à @item.StartDate.ToShortTimeString()</span>
+                <span class="quick_infos">A @item.Ville (@item.CP.Substring(0, 2))</span>
+                <span class="quick_infos">Salle: @item.Salle</span>
+            </p>
+            <p class="remove_marge clear"></p>
+        </li>
+    }
+    </ul>
+</div>

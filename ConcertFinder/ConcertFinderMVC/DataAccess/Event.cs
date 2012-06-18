@@ -331,13 +331,12 @@ namespace ConcertFinderMVC.DataAccess
              {
                  List<T_Event> listevent = new List<T_Event>();
                  listevent = bdd.T_Event.Include("T_Location").Include("T_Tag").Where(ev => (ev.DateDebut == myevent.DateDebut) &&
-                     (ev.T_Location.Name == myevent.T_Location.Name)).OrderBy(ev => ev.DateDebut).ToList();
+                     (ev.T_Location.Name == myevent.T_Location.Name) && (ev.Id != myevent.Id)).OrderBy(ev => ev.DateDebut).ToList();
 
                  if (nb > listevent.Count)
                  {
                      return listevent;
                  }
-
                  
                  return listevent.Take(nb).ToList();
              }
@@ -351,7 +350,7 @@ namespace ConcertFinderMVC.DataAccess
                 List<T_Event> listRes = new List<T_Event>();
 
                 listEvent = bdd.T_Event.Include("T_Location").Include("T_Tag").Include("T_User").Where(ev => ((ev.Type == myevent.Type) &&
-                    (ev.T_Location.Ville == myevent.T_Location.Ville) && (ev.DateDebut >= DateTime.Now ))).OrderBy(ev => ev.DateDebut).ToList();
+                    (ev.T_Location.Ville == myevent.T_Location.Ville) && (ev.DateDebut >= DateTime.Now ) && (ev.Id != myevent.Id))).OrderBy(ev => ev.DateDebut).ToList();
                 foreach (T_Event event2 in listEvent)
                 {
                     bool broke = false;
@@ -372,8 +371,6 @@ namespace ConcertFinderMVC.DataAccess
                         }
                     }
                 }
-                listRes.Remove(myevent);
-
                 if (listRes.Count < nb)
                 {
                     return listRes;

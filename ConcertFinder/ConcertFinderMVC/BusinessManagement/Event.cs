@@ -277,7 +277,6 @@ namespace ConcertFinderMVC.BusinessManagement
                     StartDate = myevent.DateDebut,
                     EndDate = myevent.DateFin.GetValueOrDefault(),
                     Salle = myevent.T_Location.Name,
-                    Image = myevent.Image,
                     Email = myevent.Email,
                     Tel = myevent.Tel,
                     Website = myevent.WebSite,
@@ -286,6 +285,7 @@ namespace ConcertFinderMVC.BusinessManagement
                     Rue = myevent.T_Location.Rue,
                     Valide = myevent.Valide.Value
                 };
+                ServerPathImage(myevent, myeventitem);
                 list.Add(myeventitem);    
             }
             return list;
@@ -309,7 +309,6 @@ namespace ConcertFinderMVC.BusinessManagement
                     StartDate = myevent.DateDebut,
                     EndDate = myevent.DateFin.GetValueOrDefault(),
                     Salle = myevent.T_Location.Name,
-                    Image = myevent.Image,
                     Email = myevent.Email,
                     Tel = myevent.Tel,
                     Website = myevent.WebSite,
@@ -318,6 +317,7 @@ namespace ConcertFinderMVC.BusinessManagement
                     Rue = myevent.T_Location.Rue,
                     Valide = myevent.Valide.Value
                 };
+                ServerPathImage(myevent, myeventitem);
                 list.Add(myeventitem);
             }
             return list;

@@ -15,6 +15,7 @@ namespace ConcertFinderMVC.Models
         public List<UserItem> listUser { get; set; }
         public List<String> listPost { get; set; }
         public List<EventItem> listEvent { get; set; }
+        public string Page { get; set; }
     }
 
     public class ForbidForm

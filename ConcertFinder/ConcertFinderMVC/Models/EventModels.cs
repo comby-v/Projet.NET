@@ -29,12 +29,22 @@ namespace ConcertFinderMVC.Models
         public string CP { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+
+        /* Liste de Tags */
+
+        public List<string> TagList { get; set; }
     }
 
     public class EventsList
     {
         public List<EventItem> Events { get; set; }
         public List<EventItem> Last { get; set; }
+    }
+
+    public class EventDetail
+    {
+        public EventItem Item { get; set; }
+        public List<EventItem> Events { get; set; }
     }
 
     public enum eTypes

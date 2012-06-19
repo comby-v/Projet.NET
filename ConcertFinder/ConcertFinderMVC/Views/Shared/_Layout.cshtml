@@ -53,7 +53,7 @@
                              } 
                             if (ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name))
                             {
-                                <li class="menu_item float-left">@Html.ActionLink("Administration utilisateur", "ManageUser", "Admin")</li>
+                                <li class="menu_item float-left">@Html.ActionLink("Administration", "ManageUser", "Admin")</li>
                                 <li class="menu_item float-left">@Html.ActionLink("Moderation", "NotValidEvent", "Admin")</li>
                             }
                        }

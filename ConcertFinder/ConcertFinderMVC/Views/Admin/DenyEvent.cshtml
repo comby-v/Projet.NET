@@ -1,24 +1,26 @@
 ﻿@model ConcertFinderMVC.Models.ForbidForm
 
-@{
-    ViewBag.Title = "ForbidEvent";
-}
+<head>
+    <link href=@Url.Content("~/Content/Formulaire.css") rel="Stylesheet" type="text/css">
+</head>
 
-<h2>Refus</h2>
-
+<div class="main">
+    <div class="section_title">Refus</div>
 @using (Html.BeginForm("DenyEvent", "Admin", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
     @Html.HiddenFor(x => x.IdEvent)
 
-    <h2>@Html.LabelFor(t => t.Title)</h2>
-    <div>
+    <h2 class="text_lbl">@Html.LabelFor(t => t.Title)</h2>
+    <div class="text_input">
         @Html.TextBoxFor(t => t.Title)
     </div>
-    <h2>@Html.LabelFor(r => r.reason)</h2>
-    <div>
+    <h2 class="text_lbl">@Html.LabelFor(r => r.reason)</h2>
+    <div class="text_input">
         @Html.TextAreaFor(r => r.reason)
     </div>
-     <input type="submit" value="Envoyer" />
+     <input class="submit" type="submit" value="Envoyer" />
 }
+
+</div>

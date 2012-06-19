@@ -54,33 +54,27 @@ namespace ConcertFinderMVC.DataAccess
             return true;
         }
 
-        static public bool Update(T_Event myevent, T_Location location)
+        static public bool Update(T_Event myevent, T_Location location, List<T_Tag> taglist)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
                     bdd.Attach(location);
-                    T_Event ev2 = new T_Event()
+                    bdd.Attach(myevent);
+
+                    foreach (T_Tag tag in taglist)
                     {
-                        Id = myevent.Id,
-                        Description = myevent.Description,
-                        DateCreation = myevent.DateCreation,
-                        DateDebut = myevent.DateDebut,
-                        DateFin = myevent.DateFin,
-                        Email = myevent.Email,
-                        Image = myevent.Image,
-                        Tel = myevent.Tel,
-                        Titre = myevent.Titre,
-                        Type = myevent.Type,
-                        Valide = myevent.Valide,
-                        WebSite = myevent.WebSite,
-                        T_User = myevent.T_User
-                    };
-   
-                    var n_event = new T_Event { Id = ev2.Id };
-                    bdd.T_Event.Attach(n_event);
-                    bdd.ApplyCurrentValues("T_Event", ev2);
+                        T_Tag a_tag = bdd.T_Tag.Where(x => x.Name == tag.Name).FirstOrDefault();
+                        bdd.Attach(a_tag);
+                        myevent.T_Tag.Add(a_tag);
+                    }
+                    
+                    
+                    myevent.T_Location = location;
+                    var n_event = new T_Event { Id = myevent.Id };
+                    //bdd.T_Event.Attach(n_event);
+                    bdd.ApplyCurrentValues("T_Event", myevent);
                     bdd.SaveChanges();
                 }
                 catch (Exception)
@@ -243,7 +237,7 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    return (bdd.T_Event.Include("T_Location").Where(ev => (ev.Valide == true)).OrderByDescending(ev => ev.DateCreation).ToList());
+                    return (bdd.T_Event.Include("T_Location").Where(ev => (ev.Valide == true) && (ev.DateDebut > DateTime.Now)).OrderByDescending(ev => ev.DateCreation).ToList());
                 }
                 catch (Exception)
                 {
@@ -330,5 +324,61 @@ namespace ConcertFinderMVC.DataAccess
                  }
              }
          }
+
+         static public List<T_Event> GetEventForAdmin(T_Event myevent, int nb)
+         {         
+             using (ConcertFinderEntities bdd = new ConcertFinderEntities ())
+             {
+                 List<T_Event> listevent = new List<T_Event>();
+                 listevent = bdd.T_Event.Include("T_Location").Include("T_Tag").Where(ev => (ev.DateDebut == myevent.DateDebut) &&
+                     (ev.T_Location.Name == myevent.T_Location.Name) && (ev.Id != myevent.Id)).OrderBy(ev => ev.DateDebut).ToList();
+
+                 if (nb > listevent.Count)
+                 {
+                     return listevent;
+                 }
+                 
+                 return listevent.Take(nb).ToList();
+             }
+         }
+
+         static public List<T_Event> GetListEventByUserTag(T_Event myevent, T_User user, int nb)
+         {
+             using(ConcertFinderEntities bdd = new ConcertFinderEntities ())
+             {
+                List<T_Event> listEvent = new List<T_Event>();
+                List<T_Event> listRes = new List<T_Event>();
+
+                listEvent = bdd.T_Event.Include("T_Location").Include("T_Tag").Include("T_User").Where(ev => ((ev.Type == myevent.Type) &&
+                    (ev.T_Location.Ville == myevent.T_Location.Ville) && (ev.DateDebut >= DateTime.Now ) && (ev.Id != myevent.Id))).OrderBy(ev => ev.DateDebut).ToList();
+                foreach (T_Event event2 in listEvent)
+                {
+                    bool broke = false;
+                    foreach (T_Tag tag in event2.T_Tag)
+                    {
+                        foreach (T_Tag tagevent in myevent.T_Tag)
+                        {
+                            if (tagevent.Name.Equals(tag.Name))
+                            {
+                                listRes.Add(event2);
+                                broke = true;
+                                break;
+                            }
+                        }
+                        if (broke)
+                        {
+                            break;
+                        }
+                    }
+                }
+                if (listRes.Count < nb)
+                {
+                    return listRes;
+
+                }
+             return listRes.Take(nb).ToList();
+            }
+         }
+
     }
 }

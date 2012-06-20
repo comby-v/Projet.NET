@@ -120,6 +120,7 @@
     <Content Include="Content\Images\nav.png" />
     <Content Include="Content\Images\notif.gif" />
     <Content Include="Content\Images\no_avatar.gif" />
+    <Content Include="Content\Images\parametres.png" />
     <Content Include="Content\Images\password.png" />
     <Content Include="Content\Images\yt_bg.png" />
     <Content Include="Content\Images\yt_bg_75.png" />

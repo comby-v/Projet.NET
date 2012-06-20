@@ -5,6 +5,7 @@
     background:#FCFCFC;
     border:2px solid #666;
     border-radius:10px;
+    padding: 0px 0px 10px 0px;
 }
 
 
@@ -20,6 +21,12 @@
     background: #FCFCFC url("Images/yt_bg_60.png") 50% 122% repeat-x;
     font-size:20px;
     font-weight:bold;
+}
+/* item */
+
+#item_lastadd p
+{
+    margin:0px;
 }
 
 .quick_title
@@ -39,13 +46,33 @@
     padding:0px 10px 10px 10px;
 }
 
+.add_event_link a
+{
+    color: #FF893A;
+}
 .add_event_link
 {
     text-align:center;
-    font-weight: bold;
-    padding: 6px;
-    border: 2px ridge #333;
-    background-color: #222;
-    color: white;
     border-radius: 5px;
+    background: #363636;
+    background: -webkit-gradient(linear,left top,left bottom,from(#555),to(#2C2C2C));
+    border-radius: 5px;
+    border: 1px outset black;
+    text-shadow: 1 1px 0 rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 4px;
+    width:150px;
+    margin:auto;
+}
+
+.add_event_link:hover
+{
+    background: #363636;
+    background: -webkit-gradient(linear,left top,left bottom,from(#777),to(#333));
+    text-shadow: 1 1px 0 rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    color:white;
 }

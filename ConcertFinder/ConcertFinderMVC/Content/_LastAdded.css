@@ -11,7 +11,7 @@
 .lastAdded_title
 {
     height:40px;
-    width:205px;
+    width:182px;
     margin-top:-17px;
     margin-bottom:5px;
     margin-left:10px;
@@ -25,6 +25,7 @@
 .quick_title
 {
     padding:0px 10px 0px 10px;
+    text-transform : uppercase;
 }
 
 .quick_title a

@@ -288,7 +288,7 @@
     <Content Include="Views\Account\ForgottenPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\Parameter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\AdminEvent.cshtml" />

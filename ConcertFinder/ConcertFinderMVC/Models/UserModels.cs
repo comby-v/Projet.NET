@@ -86,8 +86,20 @@ namespace ConcertFinderMVC.Models
         public bool RemembreMe { get; set; }
     }
 
-    public class ChangePasswordModel
+    public class ParameterModel
     {
+        [Required]
+        [Display(Name = "Ma ville")]
+        public string MyCity { get; set; }
+
+        [Required]
+        [Display(Name ="Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Tags")]
+        public string Tag { get; set; }
+
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Mot de passe actuel")]

@@ -218,7 +218,7 @@ namespace ConcertFinderMVC.Controllers
                         location.Ville = form.City;
                         BusinessManagement.Location.Update(location);
                     } 
-                    if (user != null && BusinessManagement.Event.Update(form, location, user, form.Id))
+                    if (user != null && BusinessManagement.Event.Update(form, location.Id, user, form.Id))
                     {
                         DataAccess.T_Event bdd_event = BusinessManagement.Event.Get(form.Id, true);
                         BusinessManagement.Notification.Create(user, bdd_event);

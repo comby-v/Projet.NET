@@ -97,5 +97,22 @@ namespace ConcertFinderMVC.DataAccess
                 return location;
             }
         }
+
+        public static T_Location GetLocationById(long id)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                T_Location location;
+                try
+                {
+                    location = bdd.T_Location.Where(loc => loc.Id == id).FirstOrDefault();
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+                return location;
+            }
+        }
     }
 }

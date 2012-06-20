@@ -23,5 +23,10 @@ namespace ConcertFinderMVC.BusinessManagement
             return DataAccess.Location.Update(location);
         }
 
+        public static T_Location GetLocationById(long id)
+        {
+            return (DataAccess.Location.GetLocationById(id));
+        }
+
     }
 }

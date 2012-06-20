@@ -1,5 +1,8 @@
-﻿@model ConcertFinderMVC.Models.ChangePasswordModel
+﻿@model ConcertFinderMVC.Models.ParameterModel
 
+
+<div class="main">
+    <div class="section_title">Mes paramètres</div>
 @using (Html.BeginForm("ChangePassword", "Account", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -38,3 +41,4 @@
         <input type="submit" value="Envoyer" />
     </div>
 }
+</div>

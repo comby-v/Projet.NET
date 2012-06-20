@@ -54,26 +54,33 @@ namespace ConcertFinderMVC.DataAccess
             return true;
         }
 
-        static public bool Update(T_Event myevent, T_Location location, List<T_Tag> taglist)
+        static public bool Update(T_Event myevent, long id, List<T_Tag> taglist)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
+                    T_Location location = Location.GetLocationById(id);
+                    //bdd.Attach(myevent);
                     bdd.Attach(location);
-                    bdd.Attach(myevent);
-
                     foreach (T_Tag tag in taglist)
                     {
                         T_Tag a_tag = bdd.T_Tag.Where(x => x.Name == tag.Name).FirstOrDefault();
                         bdd.Attach(a_tag);
                         myevent.T_Tag.Add(a_tag);
                     }
-                    
-                    
-                    myevent.T_Location = location;
+
+                    myevent.T_Location.Name = location.Name;
+                    myevent.T_Location.Latitude = location.Latitude;
+                    myevent.T_Location.Longitude = location.Longitude;
+                    myevent.T_Location.Pays = location.Pays;
+                    myevent.T_Location.Rue = location.Rue;
+                    myevent.T_Location.CP = location.CP;
+                    myevent.T_Location.Ville = location.Ville;
+
                     var n_event = new T_Event { Id = myevent.Id };
-                    //bdd.T_Event.Attach(n_event);
+                    bdd.T_Event.Attach(n_event);
+                    
                     bdd.ApplyCurrentValues("T_Event", myevent);
                     bdd.SaveChanges();
                 }

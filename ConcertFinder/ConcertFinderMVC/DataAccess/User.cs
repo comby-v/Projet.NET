@@ -188,13 +188,11 @@ namespace ConcertFinderMVC.DataAccess
            }
        }
 
-       static public bool ChangePassword(string pseudo, string new_password)
+       static public bool ChangeParameter(T_User me)
        {
            try
            {
-               T_User user = GetUserByPseudo(pseudo);
-               user.Password = new_password;
-               return (Update(user));
+               return (Update(me));
            }
            catch (Exception)
            {

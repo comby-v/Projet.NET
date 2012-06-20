@@ -108,13 +108,30 @@ namespace ConcertFinderMVC.BusinessManagement
             return (DataAccess.User.BlockUser(Id));
         }
 
-        static public bool ChangePassword(string pseudo, ChangePasswordModel form)
+        static public bool ChangeParameter(string pseudo, ParameterModel form)
         {
             SimpleAES encryptor = new SimpleAES();
 
+
             if (ValidateUser(pseudo, encryptor.EncryptToString(form.OldPassword)))
             {
-                return (DataAccess.User.ChangePassword(pseudo, encryptor.EncryptToString(form.NewPassword)));
+                T_User user = DataAccess.User.GetUserByPseudo(pseudo);
+
+                if (user.Ville != form.MyCity)
+                {
+                    user.Ville = form.MyCity;
+                }
+
+                if (encryptor.EncryptToString(form.NewPassword) != user.Password)
+                {
+                    user.Password = encryptor.EncryptToString(form.NewPassword);
+                }
+
+                if (user.Mail != form.Email)
+                {
+                    user.Mail = form.Email;
+                }
+                return (DataAccess.User.ChangeParameter(user));
             }
             return false;
         }

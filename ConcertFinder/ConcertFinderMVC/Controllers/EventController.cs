@@ -218,7 +218,7 @@ namespace ConcertFinderMVC.Controllers
                         location.Ville = form.City;
                         BusinessManagement.Location.Update(location);
                     } 
-                    if (user != null && BusinessManagement.Event.Update(form, location, user, form.Id))
+                    if (user != null && BusinessManagement.Event.Update(form, location.Id, user, form.Id))
                     {
                         DataAccess.T_Event bdd_event = BusinessManagement.Event.Get(form.Id, true);
                         BusinessManagement.Notification.Create(user, bdd_event);
@@ -244,15 +244,10 @@ namespace ConcertFinderMVC.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult AutoComplete(string q)
-        {
-            List<String> list = BusinessManagement.Tag.Keyword(q);
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
-
+        // Critères de recherche : Tags, Ville, Titre, Salle
         public JsonResult Search(string q, string type)
         {
-            List<String> list = BusinessManagement.Tag.Keyword(q);
+            List<EventItem> list = BusinessManagement.Tag.Search(q);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
     }

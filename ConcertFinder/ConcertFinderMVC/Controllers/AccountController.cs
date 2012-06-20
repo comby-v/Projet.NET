@@ -129,19 +129,31 @@ namespace ConcertFinderMVC.Controllers
             return Json(notif_items, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult ChangePassword()
+        public ActionResult Parameter(string pseudo)
         {
-            ChangePasswordModel model = new ChangePasswordModel();
-            return View(model);
+            ParameterModel form = new ParameterModel();
+            DataAccess.T_User user = BusinessManagement.User.GetUserByPseudo(pseudo);
+
+            string tag = "";
+
+            foreach (DataAccess.T_Tag tagitem in user.T_Tag)
+	        {
+		         tag += tagitem.Name + " ";
+	        }
+
+            form.Email = user.Mail;
+            form.MyCity = user.Ville;
+
+            return View(form);
         }
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult ChangePassword(ChangePasswordModel post)
+        public ActionResult Parameter(ParameterModel post)
         {
             if (ModelState.IsValid)
             {
-                if (BusinessManagement.User.ChangePassword(User.Identity.Name, post))
+                if (BusinessManagement.User.ChangeParameter(User.Identity.Name, post))
                 {
                     return RedirectToAction("Index", "Event");
                 }

@@ -137,7 +137,7 @@ namespace ConcertFinderMVC.BusinessManagement
         }
 
 
-        static public bool Update(FormEventModels myevent, DataAccess.T_Location location, DataAccess.T_User user, long id)
+        static public bool Update(FormEventModels myevent, long idLocation, DataAccess.T_User user, long id)
         {
             DataAccess.T_Event ev = Get(myevent.Id);
             ev.Type = EventModel.GetEventType(myevent.Type);
@@ -172,7 +172,7 @@ namespace ConcertFinderMVC.BusinessManagement
                 }
             }
 
-            return DataAccess.Event.Update(ev, location, list_tag);
+            return DataAccess.Event.Update(ev, idLocation, list_tag);
         }
 
         static public DataAccess.T_Event Get(long id, bool creation = false)

@@ -59,3 +59,18 @@
     height:300px;
     border: 1px solid #FF893A;
 }
+
+#edit_button
+{
+    margin-left:500px;
+}
+
+#accept_button
+{
+    margin-left:40px;
+}
+
+#refuse_button
+{
+    margin-left:40px;
+}

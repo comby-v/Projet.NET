@@ -38,3 +38,14 @@
 {
     padding:0px 10px 10px 10px;
 }
+
+.add_event_link
+{
+    text-align:center;
+    font-weight: bold;
+    padding: 6px;
+    border: 2px ridge #333;
+    background-color: #222;
+    color: white;
+    border-radius: 5px;
+}

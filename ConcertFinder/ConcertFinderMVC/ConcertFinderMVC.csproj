@@ -113,11 +113,14 @@
     <Content Include="Content\Images\gradient.gif" />
     <Content Include="Content\Images\header.png" />
     <Content Include="Content\Images\headerv2.png" />
+    <Content Include="Content\Images\logout.png" />
     <Content Include="Content\Images\nav-bg.png" />
     <Content Include="Content\Images\nav-left.png" />
     <Content Include="Content\Images\nav-right.png" />
     <Content Include="Content\Images\nav.png" />
+    <Content Include="Content\Images\notif.gif" />
     <Content Include="Content\Images\no_avatar.gif" />
+    <Content Include="Content\Images\password.png" />
     <Content Include="Content\Images\yt_bg.png" />
     <Content Include="Content\Images\yt_bg_75.png" />
     <Content Include="Content\Index.css" />

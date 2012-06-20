@@ -96,6 +96,12 @@ header
     border-radius:5px;
 }
 
+.icon
+{
+    height:30px;
+    width:30px;
+}
+
 .connexion_lbl
 {
     margin-left: 5px;

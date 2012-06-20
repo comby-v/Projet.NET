@@ -1,9 +1,13 @@
 ﻿<div >Bienvenue @User.Identity.Name</div>
 <div>
-   <div class="float-left"> @Html.ActionLink("Mes notifications", "Notifications", "Account") </div>
+  <div class="float-left"> @Html.ActionLink("Mes notifications", "Notifications", "Account") </div>
    <div class="float-left"> @Html.ActionLink("Changer de mot de passe", "ChangePassword", "Account") </div>
    <div class="float-left"> @Html.ActionLink("Deconnexion", "LogOut", "Account") </div>
-   <div class="clear"></div>
+   <div class="clear"></div> 
+
+   <img class="icon" src="@Url.Content("~/Content/Images/notif.gif")" alt="notif" />
+   <img class="icon" src="@Url.Content("~/Content/Images/password.png")" alt="notif" />
+   <img class="icon" src="@Url.Content("~/Content/Images/logout.png")" alt="notif" />
 </div>
 
 

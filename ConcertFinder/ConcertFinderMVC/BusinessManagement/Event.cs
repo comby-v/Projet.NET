@@ -86,11 +86,10 @@ namespace ConcertFinderMVC.BusinessManagement
                 var fileName = Path.GetFileName(postedFile.FileName);
                 var path = Path.Combine(destinationFolder, fileName);
                 postedFile.SaveAs(path);
-                /*var hashpath = Path.Combine(destinationFolder, Serializer.NameFile(fileName));
-                ResizeImage(path, hashpath, 180, 570, false);
+                var hashpath = Path.Combine(destinationFolder, Serializer.NameFile(fileName));
+                ResizeImage(path, hashpath, 300, 400, false);
                 SuppressOriginalImage(path);
-                evnt.Image = hashpath;*/
-                evnt.Image = path;
+                evnt.Image = hashpath;
             }
         }
 
@@ -252,7 +251,7 @@ namespace ConcertFinderMVC.BusinessManagement
             return list_eventItem;
         }
 
-        private static void ServerPathImage(T_Event myevent, EventItem myeventitem)
+        public static void ServerPathImage(T_Event myevent, EventItem myeventitem)
         {
             if (myevent.Image != null)
             {
@@ -278,7 +277,6 @@ namespace ConcertFinderMVC.BusinessManagement
                     StartDate = myevent.DateDebut,
                     EndDate = myevent.DateFin.GetValueOrDefault(),
                     Salle = myevent.T_Location.Name,
-                    Image = myevent.Image,
                     Email = myevent.Email,
                     Tel = myevent.Tel,
                     Website = myevent.WebSite,
@@ -287,6 +285,7 @@ namespace ConcertFinderMVC.BusinessManagement
                     Rue = myevent.T_Location.Rue,
                     Valide = myevent.Valide.Value
                 };
+                ServerPathImage(myevent, myeventitem);
                 list.Add(myeventitem);    
             }
             return list;
@@ -310,7 +309,6 @@ namespace ConcertFinderMVC.BusinessManagement
                     StartDate = myevent.DateDebut,
                     EndDate = myevent.DateFin.GetValueOrDefault(),
                     Salle = myevent.T_Location.Name,
-                    Image = myevent.Image,
                     Email = myevent.Email,
                     Tel = myevent.Tel,
                     Website = myevent.WebSite,
@@ -319,6 +317,7 @@ namespace ConcertFinderMVC.BusinessManagement
                     Rue = myevent.T_Location.Rue,
                     Valide = myevent.Valide.Value
                 };
+                ServerPathImage(myevent, myeventitem);
                 list.Add(myeventitem);
             }
             return list;

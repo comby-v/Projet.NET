@@ -91,7 +91,6 @@ namespace ConcertFinderMVC.Controllers
                 Description = myevent.Description,
                 Titre = myevent.Titre,
                 Type = myevent.Type,
-                Image = myevent.Image,
                 Email = myevent.Email,
                 Valide = myevent.Valide.GetValueOrDefault(),
                 Tel = myevent.Tel,
@@ -102,12 +101,11 @@ namespace ConcertFinderMVC.Controllers
                 Rue = myevent.T_Location.Rue,
                 CP = myevent.T_Location.CP,
                 Latitude = myevent.T_Location.Latitude,
-                Longitude = myevent.T_Location.Longitude,
+                Longitude = myevent.T_Location.Longitude
             };
+            BusinessManagement.Event.ServerPathImage(myevent, event_item);
+
             event_item.TagList = new List<string>();
-            /*
-            List<T_Tag> taglist = BusinessManagement.Event.getTagListFromEvent(myevent.Id);
-            */
             foreach (DataAccess.T_Tag tag  in myevent.T_Tag)
             {
                 event_item.TagList.Add(tag.Name);

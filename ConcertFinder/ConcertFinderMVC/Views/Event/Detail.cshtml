@@ -20,11 +20,21 @@
     <p class="clear" id="event_title">
         @Model.Item.Titre
     </p>
+
+    <!-- Description et flyers-->
     <img class="float-left" id="flyers" src="@Url.Content("/")@Model.Item.Image" alt="flyers" />
     <strong class="type">@Model.Item.Type</strong>
     <p lang="text" class="item_descr float-left">
         @Model.Item.Description
     </p>
+
+    <div id="visualiser" class="clear">Visualiser l'évenement sur la map</div>
+    <div class="float-right" id="map">
+    </div>
+    <div class="clear">
+        <input id="direction" type="button" value="Direction" />
+    </div>
+
     <p>
         <strong > Salle : </strong>  @Model.Item.Salle
     </p>
@@ -40,7 +50,7 @@
     <p>
         <strong>Tel :</strong> @Model.Item.Tel
     </p>
-    <div >
+    <div>
         <strong>Tags:</strong>
         @foreach (var tag in Model.Item.TagList)
         {
@@ -48,11 +58,6 @@
                 @tag
             </em>
         }
-    </div>
-    <div class="clear"></div>
-    <div  style="width:320px;"></div>
-    <div class="">
-        
     </div>
     <div>
         @if(User.Identity.IsAuthenticated)
@@ -77,12 +82,6 @@
                 }   
          }
     </div>
-    <p >Visualiser l'évenement sur la map</p>
-    <div class="float-right" id="map">
-    </div>
-    <div>
-        <input id="direction" type="button" value="Direction" />
-    </div>
 </div>
 <div class="float-right">
         @Html.Partial("_SimilarEvents", Model.Events)
@@ -93,7 +92,7 @@
     <script type="text/javascript">
 
         function initialize() {
-            var myLatlng = new google.maps.LatLng(@Model.Item.Longitude.ToString().Replace(',', '.'), @Model.Item.Latitude.ToString().Replace(',', '.'));
+            var myLatlng = new google.maps.LatLng(@Model.Item.Latitude.ToString().Replace(',', '.'), @Model.Item.Longitude.ToString().Replace(',', '.'));
             var myOptions = {
                 zoom: 15,
                 center: myLatlng,
@@ -111,7 +110,7 @@
         $("#direction").click(function (){
         
             var directionsDisplay = new google.maps.DirectionsRenderer();
-            var eventLatlng = new google.maps.LatLng(@Model.Item.Longitude.ToString().Replace(',', '.'), @Model.Item.Latitude.ToString().Replace(',', '.'));
+            var eventLatlng = new google.maps.LatLng(@Model.Item.Latitude.ToString().Replace(',', '.'), @Model.Item.Longitude.ToString().Replace(',', '.'));
             
             var myOptions = {
                 zoom: 6,

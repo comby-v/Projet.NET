@@ -178,8 +178,8 @@
             geo.geocode({ 'address': address }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     var latlong = results[0].geometry.location
-                    $("input#Latitude").val((latlong.cb+"").replace(".", ","));
-                    $("input#Longitude").val((latlong.ab+"").replace(".", ","));
+                    $("input#Latitude").val((latlong.lat()+"").replace(".", ","));
+                    $("input#Longitude").val((latlong.lng()+"").replace(".", ","));
                     return results[0].geometry.location;
                 }
                 else {

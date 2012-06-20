@@ -244,15 +244,10 @@ namespace ConcertFinderMVC.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult AutoComplete(string q)
-        {
-            List<String> list = BusinessManagement.Tag.Keyword(q);
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
-
+        // Critères de recherche : Tags, Ville, Titre, Salle
         public JsonResult Search(string q, string type)
         {
-            List<String> list = BusinessManagement.Tag.Keyword(q);
+            List<EventItem> list = BusinessManagement.Tag.Search(q);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
     }

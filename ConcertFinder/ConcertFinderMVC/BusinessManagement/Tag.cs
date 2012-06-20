@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ConcertFinderMVC.DataAccess;
+using ConcertFinderMVC.Models;
 
 namespace ConcertFinderMVC.BusinessManagement
 {
@@ -20,15 +21,28 @@ namespace ConcertFinderMVC.BusinessManagement
             return DataAccess.Tag.Get(tagName);
         }
 
-        public static List<String> Keyword(string q)
+        public static List<EventItem> Search(string q)
         {
-            List<T_Tag> tags = DataAccess.Tag.Keyword(q);
-            List<String> keywords = new List<String>();
-            foreach (T_Tag tag in tags)
+            List<EventItem> list_item = new List<EventItem>();
+            List<T_Event> events = DataAccess.Tag.Search(q);
+            foreach (T_Event ev in events)
             {
-                keywords.Add(tag.Name);
+                EventItem item = new EventItem()
+                {
+                    CP = ev.T_Location.CP,
+                    Ville = ev.T_Location.Ville,
+                    Salle = ev.T_Location.Name,
+                    Type = ev.Type,
+                    Description = ev.Description,
+                    Email = ev.Email,
+                    Id = ev.Id,
+                    Titre = ev.Titre,
+                    StartDate = ev.DateDebut
+                };
+                Event.ServerPathImage(ev, item);
+                list_item.Add(item);
             }
-            return keywords;
+            return list_item;
         }
     }
 }

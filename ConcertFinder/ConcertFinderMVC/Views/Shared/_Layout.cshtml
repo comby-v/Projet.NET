@@ -85,39 +85,39 @@
             url = (url[1] ? url[1] : url[0]).split("/");
             if ($(this).val().length >= 2) {
                 $.ajax({
-                    url: "http://" + url[0] + "/Event/AutoComplete", //"http://" + url[0] + "/ConcertFinderMVC/Event/AutoComplete"
+                    url: "http://" + url[0] + "/Event/Search", //"http://" + url[0] + "/ConcertFinderMVC/Event/Search"
                     data: { q: $(this).val() },
                     success: function (data) {
-                        $("#tags").remove();
-                        var tags = "<datalist id='tags'>";
-                        for (var i = 0; i < data.length; i++) {
-                            tags += "<option value='" + data[i] + "'>";
-                        }
-                        tags += "</datalist>";
-                        $("#menu_content").append(tags);
-                        $("#SearchBar").attr({ list: "tags" });
-                    },
-                    dataType: "json"
-                });
-            }
-        });
+                        if ($("#items") != null) {
+                            $("#items").children("a").remove();
+                            for (var i = 0; i < data.length; i++) {
 
-        $("#SearchBar").keypress(function (e) {
-            var code = (e.keyCode ? e.keyCode : e.which);
-            if (code == 13) {
-                var url = document.URL.split("//");
-                url = (url[1] ? url[1] : url[0]).split("/");
-                var qtype = "";
-                if (url.length > 2)
-                {
-                    qtype = url[2];
-                }
-                var q = $(this).val();
-                $.ajax({
-                    url: "http://" + url[0] + "/Event/Search", //"http://" + url[0] + "/ConcertFinderMVC/Event/Search"
-                    data: { q: $(this).val(), type: qtype },
-                    success: function (data) {
-                        
+                                var text = "<a href='/Event/Detail/" + data[i].Id + "'>"+
+                                                "<li class='item' id='"+ data[i].Id +"'>";
+                                if (data[i].Image != null) {
+                                    // text += "<img src="+"@@Url.Content("/ConcertFinderMVC/")"+data[i].Image+" width='125' height='160' alt='flyers' class='flyers float-left' />";
+                                    text += "<img src="+"@Url.Content("/")"+data[i].Image+" width='125' height='160' alt='flyers' class='flyers float-left' />";
+                                }
+                                else {
+                                    text += "<img src='"+"@Url.Content("~/Content/Images/no_avatar.gif")"+"' width='125' height='160' alt='flyers' class='flyers float-left' />";
+                                }
+
+                                var milli = data[i].StartDate.replace(/\/Date\((-?\d+)\)\//, '$1');
+                                var d = new Date(parseInt(milli));
+
+                                text += "<strong class='item_titre'>" + data[i].Titre + "</strong>" +
+                                    "<span class='item_type float-left'>" + data[i].Type + "</span>" +
+                                    "<span class='item_Date float-right'>" + dateFormat(d, "dd/mm/yyyy") + "<br />à " + data[i].Ville + " (" + data[i].CP + ")</span>" +
+                                    "<span class='item_salle'>" + data[i].Salle + "</span>"+
+                                    "<em class='item_descr'>" +
+                                        data[i].Description +
+                                    "</em>" +
+                                "</li>" +
+                                "</a>";
+
+                                $("#items").append(text);
+                            }
+                        }
                     },
                     dataType: "json"
                 });

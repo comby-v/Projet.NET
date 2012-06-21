@@ -126,11 +126,19 @@
     <Content Include="Content\Images\yt_bg.png" />
     <Content Include="Content\Images\yt_bg_75.png" />
     <Content Include="Content\Index.css" />
+    <Content Include="Content\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
     <Content Include="Content\jquery-ui-1.8.20.custom.css" />
     <Content Include="Content\jquery-ui-1.8.20.custom.min.css">
       <DependentUpon>jquery-ui-1.8.20.custom.css</DependentUpon>
     </Content>
+
     <Content Include="Content\Parameter.css" />
+
+    <Content Include="Content\Site.min.css">
+      <DependentUpon>Site.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -207,6 +215,9 @@
     <Content Include="Scripts\dateformat.min.js">
       <DependentUpon>dateformat.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\datetimepicker.min.js">
+      <DependentUpon>datetimepicker.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.min.js">
       <DependentUpon>jquery-1.5.1-vsdoc.js</DependentUpon>
@@ -225,6 +236,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\datetimepicker.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

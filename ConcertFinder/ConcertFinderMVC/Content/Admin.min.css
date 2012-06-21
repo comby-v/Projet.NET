@@ -1,0 +1,27 @@
+﻿.section_title{height:40px;width:260px;margin-top:-17px;margin-left:10px;padding-left:5px;color:#FF893A;background:#FCFCFC url("Images/yt_bg_60.png") 50% 122% repeat-x;font-size:20px;font-weight:bold}
+.main{width:1094px;background:#FCFCFC;border:2px solid #666;border-radius:10px;padding-bottom:15px}
+h3{text-align:center;color:#FF893A}
+table{margin:auto;border-spacing:0;border:4px solid #ff893a;border-radius:10px;width:1054px}
+thead tr{background-color:#FF893A;color:White}
+tbody tr{background-color:white;border:2px solid #FF893A}
+tbody tr:last-child td:first-child{border-bottom-left-radius:7px}
+tbody tr:last-child td:last-child{border-bottom-right-radius:7px}
+td{padding:0 4px 0 4px}
+a{color:black}
+#menu_onglet{margin:0 20px 20px 20px;padding:20px;border:1px solid #FF893A;border-radius:10px}
+#onglet{display:inline}
+#onglet a{padding:6px;border:2px ridge #333;background-color:#222;color:White;border-radius:5px}
+#onglet a:hover{color:#FF893A}
+.item{margin-bottom:10px;color:#333;background:#F7F7F7;margin-left:20px;margin-right:20px;height:160px;border:1px solid #CCC;box-shadow:4px 4px 5px #DDD;padding-top:10px;padding-bottom:10px;border-radius:20px;margin-top:10px}
+.item p,li,ul{margin:0;padding:0}
+.flyers{border:1px solid #2F86C0;margin-left:10px}
+.item:hover{background:#FEFEFE}
+.item_titre{font-size:16px;color:#2F86C0;display:block;padding-bottom:5px;margin-left:145px;margin-right:20px}
+.item_salle{display:block;font-weight:bold;font-size:13px;margin:auto;text-align:center;padding-bottom:15px}
+.item_Date{margin-right:20px;font-size:10px;max-width:140px;text-align:center}
+.item_type{font-family:Copperplate Gothic Bold;font-size:12px;color:#FF893A;margin-left:8px}
+.item_ville{font-size:10px}
+.infos{margin-left:20px;width:500px}
+.item_descr{display:block;margin-left:145px;margin-right:20px}
+#valide a{padding:6px;border:2px ridge #FF893A;background-color:#FF893A;color:White;border-radius:5px;float:right;position:relative;bottom:-56px;right:13px}
+#valide a:hover{color:#333}

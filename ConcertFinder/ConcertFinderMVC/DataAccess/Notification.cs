@@ -85,9 +85,8 @@ namespace ConcertFinderMVC.DataAccess
                         }
 
                     }
-                    //notifs = bdd.T_Notification.Include("T_User").Include("T_Event").ToList().Where(x => x.T_User.FirstOrDefault().Pseudo == pseudo).ToList();
 
-                    notifs = bdd.T_Notification.Include("T_User").Include("T_Event").ToList().Where(x => x.T_User.FirstOrDefault().Pseudo == pseudo).OrderByDescending(x => x.Date).Take(5).ToList();
+                    notifs = bdd.T_Notification.Include("T_User").Include("T_Event").ToList().Where(x => x.T_User.FirstOrDefault().Pseudo == pseudo).OrderByDescending(x => x.Date).Take(6).ToList();
                 }
                 catch (Exception)
                 {
@@ -104,7 +103,7 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    notifs = bdd.T_Notification.Include("T_User").Include("T_Event").ToList().Where(x => x.T_User.FirstOrDefault().Pseudo == pseudo && x.Id < last_id).OrderByDescending(x => x.Date).Take(5).ToList();
+                    notifs = bdd.T_Notification.Include("T_User").Include("T_Event").ToList().Where(x => x.T_User.FirstOrDefault().Pseudo == pseudo && x.Id < last_id).OrderByDescending(x => x.Date).Take(6).ToList();
                 }
                 catch (Exception)
                 {

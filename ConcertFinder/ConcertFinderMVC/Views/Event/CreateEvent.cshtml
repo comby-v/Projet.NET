@@ -2,8 +2,9 @@
 
 @section Header
 {
-    <link href=@Url.Content("~/Content/Formulaire.css") rel="Stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/Formulaire.css")" rel="Stylesheet" type="text/css" />
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBm8CQjlFqdYRoa3Am16rtSsAiIpdhL_nw&sensor=false"></script>
+    <script src="@Url.Content("~/Scripts/datetimepicker.js")" type="text/javascript"></script>
 }
 <div class="main">
     <div class="section_title">Creation d'evenement</div>
@@ -196,7 +197,7 @@
             }
         });
 
-        $("#startDate, #endDate").datepicker({
+        $("#startDate, #endDate").datetimepicker({
             monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet',
                             'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
             monthNamesShort: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun',
@@ -208,7 +209,11 @@
             dateFormat: "dd/mm/yy",
             showOtherMonths: true,
             selectOtherMonths: true,
-            showAnim: "fold"
+            showAnim: "fold",
+            currentText: "Maintenant",
+            closeText: "Valider",
+            hourText: "Heure",
+            timeText: "Horaire"
         });
 
       </script>

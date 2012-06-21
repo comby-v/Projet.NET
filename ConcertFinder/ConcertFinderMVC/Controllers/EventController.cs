@@ -20,6 +20,7 @@ namespace ConcertFinderMVC.Controllers
                 Last = BusinessManagement.Event.GetListLastAddEvent(5),
                 Events = BusinessManagement.Event.GetListEvent(5)
             };
+            ViewBag.page_title = "Tous les événements";
             return View("Index", eventList);
         }
 
@@ -33,6 +34,7 @@ namespace ConcertFinderMVC.Controllers
                 Last = BusinessManagement.Event.GetListLastAddEvent(5),
                 Events = BusinessManagement.Event.GetListEvent(5, EventModel.GetEventType((int)eTypes.Concert))
             };
+            ViewBag.page_title = "Concert";
             return View("Index", eventList);
         }
 
@@ -46,6 +48,7 @@ namespace ConcertFinderMVC.Controllers
                 Last = BusinessManagement.Event.GetListLastAddEvent(5),
                 Events = BusinessManagement.Event.GetListEvent(5, EventModel.GetEventType((int)eTypes.Spectacle))
             };
+            ViewBag.page_title = "Spectacles";
             return View("Index", eventList);
         }
 
@@ -59,6 +62,7 @@ namespace ConcertFinderMVC.Controllers
                 Last = BusinessManagement.Event.GetListLastAddEvent(5),
                 Events = BusinessManagement.Event.GetListEvent(5, EventModel.GetEventType((int)eTypes.Festival))
             };
+            ViewBag.page_title = "Festivals";
             return View("Index", eventList);
         }
 
@@ -72,6 +76,7 @@ namespace ConcertFinderMVC.Controllers
                 Last = BusinessManagement.Event.GetListLastAddEvent(5),
                 Events = BusinessManagement.Event.MyEvent(User.Identity.Name)
             };
+            ViewBag.page_title = "Mes événements";
             return View("Index", eventList);
         }
 

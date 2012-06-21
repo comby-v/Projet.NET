@@ -28,14 +28,7 @@
         @Model.Item.Description
     </p>
 
-    <div id="visualiser" class="clear">Visualiser l'évenement sur la map</div>
-    <div class="float-right" id="map">
-    </div>
-    <div class="clear">
-        <input id="direction" type="button" value="Direction" />
-    </div>
-
-    <p>
+    <p class="clear">
         <strong > Salle : </strong>  @Model.Item.Salle
     </p>
     <p>
@@ -50,7 +43,7 @@
     <p>
         <strong>Tel :</strong> @Model.Item.Tel
     </p>
-    <div>
+    <div class="tag_list">
         <strong>Tags:</strong>
         @foreach (var tag in Model.Item.TagList)
         {
@@ -59,6 +52,14 @@
             </em>
         }
     </div>
+
+    <div id="visualiser" >Visualiser l'évenement sur la map</div>
+    <div class="float-right" id="map">
+    </div>
+    <div class="clear">
+        <input id="direction" type="button" value="Direction" />
+    </div>
+
     <div>
         @if(User.Identity.IsAuthenticated)
         {
@@ -67,7 +68,7 @@
                     ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name) ||
                     ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name)))
                 {
-                    <div id="edit_button" class="float-left">
+                    <div id="edit_button" class="float-right">
                         @Html.ActionLink("Editer", "CreateEvent", "Event", new { id = Model.Item.Id }, null)
                     </div>
                 }   
@@ -75,12 +76,13 @@
                 if (!Model.Item.Valide && (ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name) ||
                     ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name)))
                 {
-                    <div id="accept_button" class="float-left">
+
+                    <div id="accept_button" class="float-right">
                         @Html.ActionLink("Accepter", "ValideEvent", "Event", new { idevent = Model.Item.Id }, null)
                     </div>
-                    <div id="refuse_button" class="float-left">
+                    <div id="refuse_button" class="float-right">
                         @Html.ActionLink("Refuser", "DenyEvent", "Admin", new { idevent = Model.Item.Id }, null)
-                    </div>       
+                    </div> 
                 }
 
         }

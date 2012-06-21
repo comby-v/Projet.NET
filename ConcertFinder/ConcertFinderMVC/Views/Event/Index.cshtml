@@ -8,8 +8,8 @@
 }
 
 <div class="main float-left">
-    <div class="section_title">Tous les événements</div>
-    <ul id="items">
+    <div class="section_title float-left">@ViewBag.page_title</div>
+    <ul id="items"  class="clear">
     @foreach (ConcertFinderMVC.Models.EventItem item in Model.Events)
     {
         <a href='@Url.Content("/Event/Detail/" + item.Id)'> 

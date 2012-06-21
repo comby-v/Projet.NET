@@ -23,6 +23,7 @@
     height:400px;
     margin-right:20px;
     border: 1px solid #FF893A;
+    margin-bottom:20px;
 }
 
 #event_title
@@ -37,6 +38,8 @@
 {
     width:400px;
     min-height:200px;
+    margin-bottom:20px;
+    white-space:pre;
 }
 .type
 {
@@ -44,6 +47,12 @@
     font-size: 12px;
     color: #FF893A;
 }
+
+.tag_list
+{
+    margin-bottom:20px;
+}
+
 .tag
 {
     margin-right:5px;
@@ -62,15 +71,15 @@
 
 #edit_button
 {
-    margin-left:500px;
+    margin-right:2px;
 }
 
 #accept_button
 {
-    margin-left:40px;
+    margin-right:40px;
 }
 
 #refuse_button
 {
-    margin-left:40px;
+    margin-right:40px;
 }

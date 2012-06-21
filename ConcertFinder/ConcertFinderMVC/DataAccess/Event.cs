@@ -263,7 +263,7 @@ namespace ConcertFinderMVC.DataAccess
                     T_User user = User.GetUserByPseudo(pseudo);
                     if (user != null)
                     {
-                        list = bdd.T_Event.Include("T_Location").Include("T_Tag").Where(e => e.Valide == true && e.DateDebut > DateTime.Now).ToList().Where(x => (x.T_Tag.Intersect(user.T_Tag).Count() >= 1 && user.Ville == x.T_Location.Ville) || user.T_Event.Contains(x)).OrderBy(x => x.DateDebut).ToList();
+                        list = bdd.T_Event.Include("T_Location").Include("T_Tag").Where(e => e.Valide == true && e.DateDebut > DateTime.Now).ToList().Where(x => x.T_Tag.Intersect(user.T_Tag).Count() >= 1 && user.Ville.Equals(x.T_Location.Ville, StringComparison.InvariantCultureIgnoreCase)).OrderBy(x => x.DateDebut).ToList();
                     }
                     return list;
                 }

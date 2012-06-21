@@ -88,24 +88,20 @@ namespace ConcertFinderMVC.Models
 
     public class ParameterModel
     {
-        [Required]
+     
         [Display(Name = "Ma ville")]
         public string MyCity { get; set; }
 
-        [Required]
         [Display(Name ="Email")]
         public string Email { get; set; }
 
-        [Required]
         [Display(Name = "Tags")]
         public string Tag { get; set; }
 
-        [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Mot de passe actuel")]
         public string OldPassword { get; set; }
 
-        [Required]
         [StringLength(100, ErrorMessage = "Le {0} doit être au moins de {2} caractères de long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Nouveau mot de passe")]

@@ -1,44 +1,78 @@
 ﻿@model ConcertFinderMVC.Models.ParameterModel
 
+@section Header
+{
+    <link href=@Url.Content("~/Content/Parameter.css") rel="Stylesheet" type="text/css"/>
+}
 
 <div class="main">
     <div class="section_title">Mes paramètres</div>
-@using (Html.BeginForm("ChangePassword", "Account", FormMethod.Post))
+@using (Html.BeginForm("Parameter", "Account", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
     <div>
-        <span class="connexion_lbl ">
+        <span class="text_lbl ">
+            @Html.LabelFor(m => m.MyCity)
+        </span>
+        <span class="city_input">
+            @Html.TextBoxFor(m => m.MyCity)
+            @Html.ValidationMessageFor(m => m.MyCity)
+        </span>
+    </div>
+    <div>
+        <span class="text_lbl ">
+            @Html.LabelFor(m => m.Email)
+        </span>
+        <span class="mail_input ">
+            @Html.TextBoxFor(m => m.Email)
+            @Html.ValidationMessageFor(m => m.Email)
+        </span>
+    </div>
+    
+    <div>
+        <span class="text_lbl ">
+            @Html.LabelFor(m => m.Tag)
+        </span>
+        <span class="tag_input">
+            @Html.TextBoxFor(m => m.Tag)
+            @Html.ValidationMessageFor(m => m.Tag)
+        </span>
+    </div>
+    
+    
+    <div>
+        <span class="text_lbl ">
             @Html.LabelFor(m => m.OldPassword)
         </span>
-        <span class="connexion_form ">
-            @Html.TextBoxFor(m => m.OldPassword)
+        <span class="old_input">
+            @Html.PasswordFor(m => m.OldPassword)
             @Html.ValidationMessageFor(m => m.OldPassword)
         </span>
     </div>
     
     <div>
-        <span class="connexion_lbl ">
+        <span class="text_lbl ">
             @Html.LabelFor(m => m.NewPassword)
         </span>
-        <span class="connexion_form ">
-            @Html.TextBoxFor(m => m.NewPassword)
+        <span class="pass_input">
+            @Html.PasswordFor(m => m.NewPassword)
             @Html.ValidationMessageFor(m => m.NewPassword)
         </span>
     </div>
     
     <div>
-        <span class="connexion_lbl ">
+        <span class="text_lbl ">
             @Html.LabelFor(m => m.ConfirmPassword)
         </span>
-        <span class="connexion_form ">
-            @Html.TextBoxFor(m => m.ConfirmPassword)
+        <span class="confirm_input">
+            @Html.PasswordFor(m => m.ConfirmPassword)
             @Html.ValidationMessageFor(m => m.ConfirmPassword)
         </span>
     </div>
     
     <div>
-        <input type="submit" value="Envoyer" />
+        <input class="submit" type="submit" value="Envoyer" />
     </div>
 }
 </div>

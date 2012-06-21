@@ -80,99 +80,112 @@ namespace ConcertFinderMVC.Controllers
 
         public ActionResult Detail(long id, bool creation = false)
         {
-            DataAccess.T_Event myevent = BusinessManagement.Event.Get(id, creation);
-            DataAccess.T_User me = BusinessManagement.User.GetUserByPseudo(User.Identity.Name);
-            EventDetail detail = new EventDetail();
-            EventItem event_item = new EventItem()
+            try
             {
-                Id = myevent.Id,
-                StartDate = myevent.DateDebut,
-                EndDate = myevent.DateFin.GetValueOrDefault(),
-                Description = myevent.Description,
-                Titre = myevent.Titre,
-                Type = myevent.Type,
-                Email = myevent.Email,
-                Valide = myevent.Valide.GetValueOrDefault(),
-                Tel = myevent.Tel,
-                Website = myevent.WebSite,
-                Salle = myevent.T_Location.Name,
-                Ville = myevent.T_Location.Ville,
-                Pays = myevent.T_Location.Pays,
-                Rue = myevent.T_Location.Rue,
-                CP = myevent.T_Location.CP,
-                Latitude = myevent.T_Location.Latitude,
-                Longitude = myevent.T_Location.Longitude
-            };
-            BusinessManagement.Event.ServerPathImage(myevent, event_item);
-
-            event_item.TagList = new List<string>();
-            foreach (DataAccess.T_Tag tag  in myevent.T_Tag)
-            {
-                event_item.TagList.Add(tag.Name);
-            }
-            List<EventItem> list = new List<EventItem>();
-            detail.Item = event_item;
-            if ( User.Identity.IsAuthenticated && (BusinessManagement.Tool.IsAdmin(User.Identity.Name) || BusinessManagement.Tool.IsModerator(User.Identity.Name)))
-            {
-               
-                list = BusinessManagement.Event.GetEventForAdmin(myevent, 10);
-               
-            }
-            else
-            {
-                list = BusinessManagement.Event.GetListEventByUserTag(myevent, me, 10);
-            }
-            detail.Events = list;
-            return View(detail);
-        }
-
-        public ActionResult CreateEvent(long? id)
-        {
-            FormEventModels form;
-            if (id.HasValue)
-            {
-                T_Event myevent = BusinessManagement.Event.Get(id.Value, true);
-                string tags = "";
-                foreach (T_Tag tag in myevent.T_Tag.ToList())
-                {
-                    tags += tag.Name + " ";
-                }
-
-                form = new FormEventModels()
+                DataAccess.T_Event myevent = BusinessManagement.Event.Get(id, creation);
+                DataAccess.T_User me = BusinessManagement.User.GetUserByPseudo(User.Identity.Name);
+                EventDetail detail = new EventDetail();
+                EventItem event_item = new EventItem()
                 {
                     Id = myevent.Id,
                     StartDate = myevent.DateDebut,
                     EndDate = myevent.DateFin.GetValueOrDefault(),
                     Description = myevent.Description,
-                    Title = myevent.Titre,
+                    Titre = myevent.Titre,
+                    Type = myevent.Type,
                     Email = myevent.Email,
-                    Phone = myevent.Tel,
+                    Valide = myevent.Valide.GetValueOrDefault(),
+                    Tel = myevent.Tel,
                     Website = myevent.WebSite,
-                    Type = (int)EventModel.GetEventType(myevent.Type),
-                    Tags = tags,
-
-                    RoomName = myevent.T_Location.Name,
-                    Country = myevent.T_Location.Pays,
-                    City = myevent.T_Location.Ville,
-                    CodePostal = myevent.T_Location.CP,
-                    Address = myevent.T_Location.Rue,
+                    Salle = myevent.T_Location.Name,
+                    Ville = myevent.T_Location.Ville,
+                    Pays = myevent.T_Location.Pays,
+                    Rue = myevent.T_Location.Rue,
+                    CP = myevent.T_Location.CP,
                     Latitude = myevent.T_Location.Latitude,
                     Longitude = myevent.T_Location.Longitude
                 };
-            }
-            else
-            {
-                form = new FormEventModels();
-            }
+                BusinessManagement.Event.ServerPathImage(myevent, event_item);
 
-            return View(form);
+                event_item.TagList = new List<string>();
+                foreach (DataAccess.T_Tag tag in myevent.T_Tag)
+                {
+                    event_item.TagList.Add(tag.Name);
+                }
+                List<EventItem> list = new List<EventItem>();
+                detail.Item = event_item;
+                if (User.Identity.IsAuthenticated && (BusinessManagement.Tool.IsAdmin(User.Identity.Name) || BusinessManagement.Tool.IsModerator(User.Identity.Name)))
+                {
+
+                    list = BusinessManagement.Event.GetEventForAdmin(myevent, 10);
+
+                }
+                else
+                {
+                    list = BusinessManagement.Event.GetListEventByUserTag(myevent, me, 10);
+                }
+                detail.Events = list;
+                return View(detail);
+            }
+            catch
+            {
+                return View("Error");
+            }
+        }
+
+        public ActionResult CreateEvent(long? id)
+        {
+            try
+            {
+                FormEventModels form;
+                if (id.HasValue)
+                {
+                    T_Event myevent = BusinessManagement.Event.Get(id.Value, true);
+                    string tags = "";
+                    foreach (T_Tag tag in myevent.T_Tag.ToList())
+                    {
+                        tags += tag.Name + " ";
+                    }
+
+                    form = new FormEventModels()
+                    {
+                        Id = myevent.Id,
+                        StartDate = myevent.DateDebut,
+                        EndDate = myevent.DateFin.GetValueOrDefault(),
+                        Description = myevent.Description,
+                        Title = myevent.Titre,
+                        Email = myevent.Email,
+                        Phone = myevent.Tel,
+                        Website = myevent.WebSite,
+                        Type = (int)EventModel.GetEventType(myevent.Type),
+                        Tags = tags,
+
+                        RoomName = myevent.T_Location.Name,
+                        Country = myevent.T_Location.Pays,
+                        City = myevent.T_Location.Ville,
+                        CodePostal = myevent.T_Location.CP,
+                        Address = myevent.T_Location.Rue,
+                        Latitude = myevent.T_Location.Latitude,
+                        Longitude = myevent.T_Location.Longitude
+                    };
+                }
+                else
+                {
+                    form = new FormEventModels();
+                }
+
+                return View(form);
+            }
+            catch
+            {
+                return View("Error");
+            }
         }
 
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult CreateEvent(FormEventModels form)
         {
-            
             if (ModelState.IsValid && User.Identity.IsAuthenticated)
             {
                 if (form.Id == 0)
@@ -186,7 +199,6 @@ namespace ConcertFinderMVC.Controllers
                     }
                     else
                     {
-                        // TODO : Rediriger vers une page d'erreur
                         return View("Error");
                     }
                 }

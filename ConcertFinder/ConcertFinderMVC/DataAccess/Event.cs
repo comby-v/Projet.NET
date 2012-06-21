@@ -290,7 +290,7 @@ namespace ConcertFinderMVC.DataAccess
                         {
                             Titre = NotificationModel.GetStatus((int)eStatus.Ajout),
                             Date = DateTime.Now,
-                            Message = "L'évènement suivant vient d'être créé " + ev.Titre
+                            Message = "L'événement suivant vient d'être ajouté " + ev.Titre
                         };
                         notif.T_User.Add(user);
                         notif.T_Event.Add(ev);

@@ -2,30 +2,28 @@
 
 @section Header
 {
+    <link href="@Url.Content("~/Content/Index.css")" rel="stylesheet" type="text/css" />
     <script src="@Url.Content("~/Scripts/dateformat.js")" type="text/javascript"></script>
 }
 
-<ul id="notifs">
-@foreach (ConcertFinderMVC.Models.NotificationItem item in Model)
-{
-    <li class="notif" id="@item.Id">
-        <div>
-            @item.Titre
-        </div>
-        <div>
-            @item.Date
-        </div>
-        <div>
-            @item.Message
-        </div> 
+<div class="main float-left">
+    <div class="section_title">Mes Notifications</div>
+    <ul id="notifs">
+    @foreach (ConcertFinderMVC.Models.NotificationItem item in Model)
+    {
+        <li class="notif" id="@item.Id">
+            <span>@item.Titre</span>
+            <span>@item.Date</span>
+            <p>@item.Message</p> 
     
-        @if (item.Titre != "Statut")
-        {
-            @Html.ActionLink("Voir l'evenement", "Detail", "Event", new { id = item.IdEvent, creation = true}, null)
-        }
-    </li>
-}
-</ul>
+            @if (item.Titre != "Statut")
+            {
+                @Html.ActionLink("Voir l'evenement", "Detail", "Event", new { id = item.IdEvent, creation = true }, null);
+            }
+        </li>
+    }
+    </ul>
+</div>
 
 @section Script
 {
@@ -35,7 +33,7 @@
             if ($(window).scrollTop() == $(document).height() - $(window).height()) {
                 var id = $(".notif:last").attr("id");
                 $.ajax({
-                    url: "GetNextNotifications",
+                    url: "/Account/GetNextNotifications",
                     data: { last_id: id },
                     success: function (data) {
                         var url = document.URL.split("//");
@@ -47,24 +45,21 @@
                             var d = new Date(parseInt(milli));
 
                             txt += "<li class='notif' id='" + data[i].Id + "'>" +
-                                    "<div>" +
-                                        data[i].Titre +
-                                    "</div>" +
-                                    "<div>" +
-                                        dateFormat(d, "dd/mm/yyyy HH:MM:ss") +
-                                    "</div>" +
-                                    "<div>" +
-                                        data[i].Message +
-                                    "</div>";
+                                    "<span>" + data[i].Titre + "</span>" +
+                                    "<span>" + dateFormat(d, "dd/mm/yyyy HH:MM:ss") + "</span>" +
+                                    "<p>" + data[i].Message + "</p>";
 
                             if (data[i].Titre != "Statut") {
-                                txt += "<a href='http://"+url[0]+"/Event/Detail/" + data[i].IdEvent + "'>Voir l'événement</a>";
+                                txt += "<a href='http://" + url[0] + "/Event/Detail/" + data[i].IdEvent + "'>Voir l'événement</a>";
                             }
                             txt += "</li>";
                         }
                         $("#notifs").append(txt);
                     },
-                    dataType: "json"
+                    dataType: "json",
+                    error: function (a, b, c) {
+                        alert(a + b + c);
+                    }
                 });
             }
         });

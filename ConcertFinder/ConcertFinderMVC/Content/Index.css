@@ -113,3 +113,48 @@
     margin-left: 145px;
     margin-right: 20px;
 }
+
+/*
+*** Notification
+*/
+
+.notif, .notif p
+{
+    clear: both;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.notif span:first-child
+{
+    float: left;
+    margin-left: 20px;
+}
+
+.notif span:nth-child(2)
+{
+    float: right;
+    margin-right: 20px;
+}
+
+.notif a
+{    
+    margin-right: 20px;
+    float: right;
+}
+
+.notif
+{
+    margin-bottom: 10px;
+    color: #333;
+    background: #F7F7F7;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 60px;
+    border: 1px solid #CCC;
+    box-shadow: 4px 4px 5px #DDD;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+}

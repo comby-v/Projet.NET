@@ -129,10 +129,10 @@ namespace ConcertFinderMVC.Controllers
             return Json(notif_items, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Parameter(string pseudo)
+        public ActionResult Parameter()
         {
             ParameterModel form = new ParameterModel();
-            DataAccess.T_User user = BusinessManagement.User.GetUserByPseudo(pseudo);
+            DataAccess.T_User user = BusinessManagement.User.GetUserByPseudo(User.Identity.Name);
 
             string tag = "";
 
@@ -143,6 +143,7 @@ namespace ConcertFinderMVC.Controllers
 
             form.Email = user.Mail;
             form.MyCity = user.Ville;
+            form.Tag = tag;
 
             return View(form);
         }

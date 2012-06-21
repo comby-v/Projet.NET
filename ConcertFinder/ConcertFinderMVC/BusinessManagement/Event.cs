@@ -139,7 +139,7 @@ namespace ConcertFinderMVC.BusinessManagement
 
         static public bool Update(FormEventModels myevent, long idLocation, DataAccess.T_User user, long id)
         {
-            DataAccess.T_Event ev = Get(myevent.Id);
+            DataAccess.T_Event ev = Event.Get(myevent.Id, true);
             ev.Type = EventModel.GetEventType(myevent.Type);
             ev.Description = myevent.Description;
             ev.DateDebut = myevent.StartDate;

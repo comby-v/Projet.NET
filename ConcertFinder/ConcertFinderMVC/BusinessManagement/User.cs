@@ -113,26 +113,28 @@ namespace ConcertFinderMVC.BusinessManagement
             SimpleAES encryptor = new SimpleAES();
 
 
-            if (ValidateUser(pseudo, encryptor.EncryptToString(form.OldPassword)))
-            {
+            
                 T_User user = DataAccess.User.GetUserByPseudo(pseudo);
 
-                if (user.Ville != form.MyCity)
+                if (user.Ville != form.MyCity && form.MyCity != null)
                 {
                     user.Ville = form.MyCity;
                 }
 
-                if (encryptor.EncryptToString(form.NewPassword) != user.Password)
+                if ((form.NewPassword != null) && (form.OldPassword != null) && (form.ConfirmPassword != null))
                 {
-                    user.Password = encryptor.EncryptToString(form.NewPassword);
+                    if (User.ValidateUser(pseudo, encryptor.EncryptToString(form.OldPassword)) && encryptor.EncryptToString(form.NewPassword) != user.Password)
+                    {
+                        user.Password = encryptor.EncryptToString(form.NewPassword);
+                    }
                 }
 
-                if (user.Mail != form.Email)
+                if (user.Mail != form.Email && (form.Email != null))
                 {
                     user.Mail = form.Email;
                 }
                 return (DataAccess.User.ChangeParameter(user));
-            }
+            
             return false;
         }
 

@@ -65,7 +65,7 @@ namespace ConcertFinderMVC.DataAccess
                 try
                 {
                     notifs = bdd.T_Notification.Include("T_User").Include("T_Event").ToList().Where(x => x.T_User.FirstOrDefault().Pseudo == pseudo).OrderByDescending(x => x.Date).Take(6).ToList();
-                    foreach (T_Notification notif in bdd.T_Notification.Include("T_User").ToList().Where(x => x.T_User.FirstOrDefault().Pseudo == pseudo).ToList())
+                    foreach (T_Notification notif in bdd.T_Notification.Include("T_User").ToList().Where(x => x.T_User.FirstOrDefault().Pseudo == pseudo && x.Check == false).ToList())
                     {
                         notif.Check = true;
                     }

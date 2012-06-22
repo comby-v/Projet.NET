@@ -22,8 +22,6 @@
 body
 {
     margin:0px;
-    background:#f4f4f4;
-    background:white;
     min-height:100%;
     font-family:Verdana;
     font-size:12px;
@@ -94,6 +92,7 @@ header
     border: 2px solid #ff893a;
     background : #f4f4f4;
     border-radius:5px;
+    box-shadow: -4px 6px 5px black;
     
 }
 

@@ -65,7 +65,7 @@ namespace ConcertFinderMVC.Controllers
             ViewBag.page_title = "Festivals";
             return View("Index", eventList);
         }
-
+        
         //
         // GET: /Event/MyEvents
 
@@ -76,7 +76,7 @@ namespace ConcertFinderMVC.Controllers
                 Last = BusinessManagement.Event.GetListLastAddEvent(5),
                 Events = BusinessManagement.Event.MyEvent(User.Identity.Name)
             };
-            ViewBag.page_title = "Mes événements";
+            ViewBag.page_title = "Suggestions";
             return View("Index", eventList);
         }
 

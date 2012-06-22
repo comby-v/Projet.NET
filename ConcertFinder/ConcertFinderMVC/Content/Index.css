@@ -30,15 +30,12 @@
 .item
 {
     margin-bottom:10px;
-    color:#333333;
     background:#F7F7F7;
     margin-left:20px;
     margin-right:20px;
-    height:160px;
+
     border: 1px solid #CCC;
     box-shadow:4px 4px 5px #DDD;
-    padding-top:10px;
-    padding-bottom:10px;
     border-radius:20px;
     margin-top:10px;
 }
@@ -47,6 +44,15 @@
 {
     margin: 0px;
     padding:0px;
+}
+
+.item a
+{
+    display:block;
+    height:160px;
+    padding-top:10px;
+    padding-bottom:10px;
+    color:#333333;
 }
 
 .flyers

@@ -20,17 +20,7 @@
     padding-bottom:15px;
 }
 
-.text_lbl
-{
-    position:relative;
-    left:360px;
-}
 
-.text_input
-{
-    position:relative;
-    left:360px;
-}
 
 textarea
 {
@@ -43,5 +33,20 @@ textarea
     position:relative;
     left: 360px;
     margin-top: 15px;
+}
+#event
+{
+    margin-left:15px;
+    width:500px;
+    border: 2px solid black;
+    float:left;
+}
+
+#localite
+{
+    width:500px;
+    border:2px solid black;
+    float:right;
+    margin-right:15px;
 }
 

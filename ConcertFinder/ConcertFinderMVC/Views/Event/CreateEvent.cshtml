@@ -8,14 +8,14 @@
 }
 <div class="main">
     <div class="section_title">Creation d'evenement</div>
-@using (Html.BeginForm("CreateEvent", "Event", FormMethod.Post, new {enctype = "multipart/form-data"}))
+@using (Html.BeginForm("CreateEvent", "Event", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
     @Html.HiddenFor(x => x.Latitude);
     @Html.HiddenFor(x => x.Longitude);
-                                    
-    <div>
+        
+    <div id="event">                                                             
         <div class="text_lbl ">
             @Html.LabelFor(m => m.Title)
         </div>
@@ -23,18 +23,14 @@
             @Html.TextBoxFor(m => m.Title)
             @Html.ValidationMessageFor(m => m.Title)
         </div>
-    </div>
     
-    <div>
         <div class="text_lbl">
             @Html.LabelFor(m => m.Type)
         </div>
         <div class="text_input">
         @Html.DropDownListFor(x => x.Type, Model.Types)
         </div>
-    </div>
     
-    <div>
         <div class="text_lbl ">
             @Html.LabelFor(m => m.StartDate)
         </div>
@@ -42,9 +38,8 @@
             @Html.TextBoxFor(m => m.StartDate, new { id = "startDate" })
             @Html.ValidationMessageFor(m => m.StartDate)
         </div>
-    </div>
     
-    <div>
+    
         <div class="text_lbl ">
             @Html.LabelFor(m => m.EndDate)
         </div>
@@ -52,9 +47,8 @@
             @Html.TextBoxFor(m => m.EndDate, new { id = "endDate" })
             @Html.ValidationMessageFor(m => m.EndDate)
         </div>
-    </div>
     
-    <div>
+    
         <div class="text_lbl ">
             @Html.LabelFor(m => m.Description)
         </div>
@@ -62,17 +56,14 @@
             @Html.TextAreaFor(m => m.Description)
             @Html.ValidationMessageFor(m => m.Description)
         </div>
-    </div>
-    <div>
+    
         <div class="text_lbl ">
             @Html.LabelFor(m => m.Image)
         </div>
         <div class="text_input ">
             <input type="file" id="FileImage" name="FileImage" />
         </div>
-    </div>
     
-    <div>
         <div class="text_lbl ">
             @Html.LabelFor(m => m.Tags)
         </div>
@@ -81,8 +72,7 @@
             @Html.ValidationMessageFor(m => m.Tags)
         </div>
     </div>
-    
-    <div>
+    <div id="localite">
         <div class="text_lbl ">
             @Html.LabelFor(m => m.Country)
         </div>
@@ -90,9 +80,7 @@
             @Html.TextBoxFor(m => m.Country, new { id = "country" })
             @Html.ValidationMessageFor(m => m.Country)
         </div>
-    </div>
     
-    <div>
         <div class="text_lbl ">
             @Html.LabelFor(m => m.City)
         </div>
@@ -100,9 +88,7 @@
             @Html.TextBoxFor(m => m.City, new { id = "city" })
             @Html.ValidationMessageFor(m => m.City)
         </div>
-    </div>
     
-    <div>
         <div class="text_lbl ">
             @Html.LabelFor(m => m.CodePostal)
         </div>
@@ -110,9 +96,6 @@
             @Html.TextBoxFor(m => m.CodePostal, new { id = "code_postal" })
             @Html.ValidationMessageFor(m => m.CodePostal)
         </div>
-    </div>
-    
-    <div class="clear">
         <div class="text_lbl ">
             @Html.LabelFor(m => m.Address)
         </div>
@@ -120,9 +103,8 @@
             @Html.TextBoxFor(m => m.Address, new { id = "address" })
             @Html.ValidationMessageFor(m => m.Address)
         </div>
-    </div>
     
-    <div>
+    
         <div class="text_lbl ">
             @Html.LabelFor(m => m.RoomName)
         </div>
@@ -130,9 +112,7 @@
             @Html.TextBoxFor(m => m.RoomName)
             @Html.ValidationMessageFor(m => m.RoomName)
         </div>
-    </div>
     
-    <div>
         <div class="text_lbl ">
             @Html.LabelFor(m => m.Email)
         </div>
@@ -140,9 +120,9 @@
             @Html.TextBoxFor(m => m.Email)
             @Html.ValidationMessageFor(m => m.Email)
         </div>
-    </div>
+   
     
-    <div>
+   
         <div class="text_lbl ">
             @Html.LabelFor(m => m.Phone)
         </div>
@@ -150,9 +130,8 @@
             @Html.TextBoxFor(m => m.Phone)
             @Html.ValidationMessageFor(m => m.Phone)
         </div>
-    </div>
+   
     
-    <div>
         <div class="text_lbl ">
             @Html.LabelFor(m => m.Website)
         </div>
@@ -161,13 +140,13 @@
             @Html.ValidationMessageFor(m => m.Website)
         </div>
     </div>
-    
      <div class="clear">
         <div class="submit">
             <input type="submit" value="Valider" />
         </div>
     </div>
     <div class="clear"></div>
+    
 }
 </div>
 @section Script

@@ -50,7 +50,7 @@ header
 }
 #banniere
 {
-    background-image: url("Images/headerv2.png");
+    background-image: url("Images/gradient-top.png");
     background-repeat: repeat-x ;
     height: 145px;
 }

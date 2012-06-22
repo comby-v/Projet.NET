@@ -113,6 +113,7 @@
     <Content Include="Content\Images\footer-bg.png" />
     <Content Include="Content\Images\footer-left.png" />
     <Content Include="Content\Images\footer-right.png" />
+    <Content Include="Content\Images\gradient-top.png" />
     <Content Include="Content\Images\gradient.gif" />
     <Content Include="Content\Images\header.png" />
     <Content Include="Content\Images\headerv2.png" />
@@ -133,9 +134,7 @@
     <Content Include="Content\jquery-ui-1.8.20.custom.min.css">
       <DependentUpon>jquery-ui-1.8.20.custom.css</DependentUpon>
     </Content>
-
     <Content Include="Content\Parameter.css" />
-
     <Content Include="Content\Site.min.css">
       <DependentUpon>Site.css</DependentUpon>
     </Content>

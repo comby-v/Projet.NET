@@ -136,10 +136,60 @@ namespace ConcertFinderMVC.BusinessManagement
 
                 if (form.Tag != null)
                 {
+                    List<DataAccess.T_Tag> listTag = new List<DataAccess.T_Tag>();    
+                    string[] split = form.Tag.Split(new Char[] { ' ', ',', '.', ';' });
+                    foreach (string str in split)
+                    {
+                        if (str.Length > 2)
+                        {
+                            Regex r = new Regex("[a-z1-9*]");
+                            Match m = r.Match(str);
+                            if (m.Success)
+                            {
+                                str.ToLower();
+                                DataAccess.T_Tag tag = new DataAccess.T_Tag()
+                                {
+                                    Name = str
+                                };
+                                if (DataAccess.Tag.Get(str) == null)
+                                {
+                                    DataAccess.Tag.Create(tag);
+                                }
 
+                                tag = DataAccess.Tag.Get(str);
+                                bool find = false;
+                                if (user.T_Tag.Count > 0)
+                                {
+                                    foreach (T_Tag usertag in user.T_Tag)
+                                    {
+                                        if ((usertag.Name.Equals(tag.Name)))
+                                        {
+                                            find = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!find)
+                                    {
+                                        listTag.Add(tag);
+                                        
+                                    }
+                                    find = false;
+                                }
+                                else
+                                {
+                                    listTag.Add(tag);
+                                }
+                            }
+                        }
+                    }
+                    if (listTag.Count > 0)
+                    {
+                        return (DataAccess.User.Update(user, listTag));
+                    }
                 }
 
-                return (DataAccess.User.ChangeParameter(user));
+
+                return (DataAccess.User.Update(user));
             
             return false;
         }

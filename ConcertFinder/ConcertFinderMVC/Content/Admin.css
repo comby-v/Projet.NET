@@ -111,6 +111,12 @@ a
     margin-top:10px;
 }
 
+.item a
+{
+    display:block;
+    min-height: 172px;
+}
+
 .item p, li, ul
 {
     margin: 0px;

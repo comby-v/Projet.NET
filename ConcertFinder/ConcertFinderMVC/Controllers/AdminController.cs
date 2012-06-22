@@ -33,6 +33,12 @@ namespace ConcertFinderMVC.Controllers
             }*/
         }
 
+        [HttpGet]
+        public JsonResult GetNextUsers(long last_id)
+        {
+            return Json(BusinessManagement.User.GetNextUsers(last_id), JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult BlockUser(long Id)
         {
            BusinessManagement.User.BlockUser(Id);        

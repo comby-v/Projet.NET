@@ -191,7 +191,22 @@ namespace ConcertFinderMVC.DataAccess
            {
                try
                {
-                  return bdd.T_User.ToList();
+                  return bdd.T_User.Where(x => x.Deleted == false).OrderByDescending(x => x.Id).Take(16).ToList();
+               }
+               catch (Exception)
+               {
+                   return null;
+               }
+           }
+       }
+
+       public static List<T_User> GetNextUsers(long last_id)
+       {
+           using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+           {
+               try
+               {
+                   return bdd.T_User.OrderByDescending(x => x.Id).Where(x => x.Deleted == false && x.Id < last_id).Take(16).ToList();
                }
                catch (Exception)
                {

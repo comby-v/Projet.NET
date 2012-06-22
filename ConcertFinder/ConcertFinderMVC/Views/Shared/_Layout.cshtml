@@ -15,11 +15,12 @@
     <header>
         <div id="banniere">
             <div class="center">
-                <strong id="concertfinder">Concert Finder</strong>
+            <img src="@Url.Content("~/Content/Images/concert_finder_title.png")" alt="Concert_finder"/>
+                <!-- <strong id="concertfinder">Concert Finder</strong> -->
                <div id="connect" class="float-right">
                     @if (!Request.IsAuthenticated)
                     {
-                        <div id="open_connect" >se connecter</div>
+                        <div id="open_connect" >Se connecter</div>
                         <div id="connect_panel">
                             @Html.Partial("_logOn", new ConcertFinderMVC.Models.LogOnModel())
                         </div>

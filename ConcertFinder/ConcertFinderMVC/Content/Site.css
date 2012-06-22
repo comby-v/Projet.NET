@@ -50,7 +50,7 @@ header
 }
 #banniere
 {
-    background-image: url("Images/gradient-top.png");
+    background-image: url("Images/header2.png");
     background-repeat: repeat-x ;
     height: 145px;
 }
@@ -179,7 +179,7 @@ header
    /* background: #de5901;*/
    margin:auto;
    height:60px;
-   background: url("Images/wtf.png");
+   background: url("Images/victory.png");
     font-family:Arial;
 }
 

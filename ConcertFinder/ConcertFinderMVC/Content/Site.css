@@ -48,7 +48,7 @@ header
 }
 #banniere
 {
-    background-image: url("Images/header2.png");
+    background-image: url("Images/header.png");
     background-repeat: repeat-x ;
     height: 145px;
 }
@@ -57,6 +57,7 @@ header
 {
     width:1100px;
     margin:auto;
+    padding-top:14px;
 }
 
 #concertfinder
@@ -70,7 +71,6 @@ header
 #connect
 {
     margin-right:20px;
-    margin-top:14px;
     width:255px;
 }
 
@@ -82,7 +82,10 @@ header
 #open_connect
 {
 	color:white;
-	margin-left:170px;
+	margin-left:104px;
+	font-family: Copperplate Gothic Bold;
+	font-weight:bold;
+	font-size:14px;
 }
 
 #connect_panel

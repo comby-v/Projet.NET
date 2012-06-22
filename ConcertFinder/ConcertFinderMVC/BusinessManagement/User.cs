@@ -103,6 +103,29 @@ namespace ConcertFinderMVC.BusinessManagement
             return listUserItem;
         }
 
+        public static List<Models.UserItem> GetNextUsers(long last_id)
+        {
+            List<T_User> listUser = DataAccess.User.GetNextUsers(last_id);
+            List<Models.UserItem> listUserItem = new List<UserItem>();
+
+            foreach (T_User user in listUser)
+            {
+                Models.UserItem userIt = new UserItem()
+                {
+                    Id = user.Id,
+                    Name = user.Name,
+                    FirstName = user.Firstname,
+                    Login = user.Pseudo,
+                    Mail = user.Mail,
+                    City = user.Ville,
+                    Role = user.Role
+                };
+
+                listUserItem.Add(userIt);
+            }
+            return listUserItem;
+        }
+
         static public bool BlockUser(long Id)
         {
             return (DataAccess.User.BlockUser(Id));

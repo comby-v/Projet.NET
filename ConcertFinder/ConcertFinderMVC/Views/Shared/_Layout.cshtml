@@ -45,7 +45,7 @@
                    
                        @if (User.Identity.IsAuthenticated)
                        {
-                             <li class="menu_item float-left">@Html.ActionLink("Mes évènements", "MyEvents", "Event")</li>
+                             <li class="menu_item float-left">@Html.ActionLink("Suggestions", "MyEvents", "Event")</li>
                              if (ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name))
                              {
                                 <li class="menu_item float-left">@Html.ActionLink("Moderation", "NotValidEvent", "Admin")</li>

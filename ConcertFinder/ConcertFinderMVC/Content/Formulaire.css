@@ -36,16 +36,20 @@ textarea
 }
 #event
 {
+    padding: 10px 0px 10px 15px;
     margin-left:15px;
     width:500px;
-    border: 2px solid black;
+    border: 2px groove black;
+    border-radius:15px;
     float:left;
 }
 
 #localite
 {
+    padding:10px 0px 10px 15px;
     width:500px;
-    border:2px solid black;
+    border:2px groove black;
+    border-radius:15px;
     float:right;
     margin-right:15px;
 }

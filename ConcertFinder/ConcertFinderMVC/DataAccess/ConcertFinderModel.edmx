@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ConcertFinderModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="ConcertFinderModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ConcertFinderModelStoreContainer">
           <EntitySet Name="T_Event" EntityType="ConcertFinderModel.Store.T_Event" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="T_HasNotification" EntityType="ConcertFinderModel.Store.T_HasNotification" store:Type="Tables" Schema="dbo" />
@@ -112,6 +112,7 @@
           <Property Name="Titre" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Message" Type="text" Nullable="false" />
+          <Property Name="Check" Type="bit" Nullable="true" />
         </EntityType>
         <EntityType Name="T_Notified">
           <Key>
@@ -270,8 +271,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ConcertFinderModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -351,6 +351,7 @@
           <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="T_Event" Relationship="ConcertFinderModel.T_HasNotification" FromRole="T_Notification" ToRole="T_Event" />
           <NavigationProperty Name="T_User" Relationship="ConcertFinderModel.T_Notified" FromRole="T_Notification" ToRole="T_User" />
+          <Property Type="Boolean" Name="Check" />
         </EntityType>
         <EntityType Name="T_Tag">
           <Key>
@@ -433,7 +434,8 @@
             <ScalarProperty Name="Longitude" ColumnName="Longitude" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="T_Notification"><EntityTypeMapping TypeName="ConcertFinderModel.T_Notification"><MappingFragment StoreEntitySet="T_Notification">
-            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Check" ColumnName="Check" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="Titre" ColumnName="Titre" />
             <ScalarProperty Name="Date" ColumnName="Date" />
             <ScalarProperty Name="Message" ColumnName="Message" />
@@ -521,7 +523,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ConcertFinderModel" ZoomLevel="74">
+      <Diagram Name="ConcertFinderModel" ZoomLevel="67">
         <EntityTypeShape EntityType="ConcertFinderModel.T_Event" Width="1.5" PointX="3" PointY="2" Height="4.0956022135416656" IsExpanded="true" />
         <EntityTypeShape EntityType="ConcertFinderModel.T_Location" Width="1.5" PointX="0.75" PointY="2.625" Height="2.7494921874999996" IsExpanded="true" />
         <EntityTypeShape EntityType="ConcertFinderModel.T_Notification" Width="1.5" PointX="5.25" PointY="1.75" Height="2.1725878906249996" IsExpanded="true" />

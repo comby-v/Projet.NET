@@ -18,27 +18,28 @@
     <div class="section_title float-left">@ViewBag.page_title</div>
     <ul id="items"  class="clear">
     @foreach (ConcertFinderMVC.Models.EventItem item in Model.Events)
-    {
-        <a href='@Url.Content("/Event/Detail/" + item.Id)'> 
+    {   
         <li class="item" id="@item.Id">
-            @if (item.Image != null)
-            {
-                <!--<img src="@@Url.Content("/ConcertFinderMVC/")@@item.Image" width="125" height="160" alt="flyers" class="flyers float-left" />-->
-                <img src="@Url.Content("/")@item.Image" width="125" height="160" alt="flyers" class="flyers float-left" />
-            }
-            else
-            {
-                <img src="@Url.Content("~/Content/Images/no_avatar.gif")" width="125" height="160" alt="flyers" class="flyers float-left" />
-            }
-            <strong class="item_titre">@item.Titre</strong>
-            <span class="item_type float-left">@item.Type</span>
-            <span class="item_Date float-right">@item.StartDate.ToShortDateString() à @item.Ville (@item.CP.Substring(0, 2))</span>
-            <span class="item_salle">@item.Salle</span>
-            <em class="item_descr">
-                @ConcertFinderMVC.BusinessManagement.Tool.Truncate(item.Description)
-            </em>  
+            <a href='@Url.Content("/Event/Detail/" + item.Id)'> 
+                @if (item.Image != null)
+                {
+                    <!--<img src="@@Url.Content("/ConcertFinderMVC/")@@item.Image" width="125" height="160" alt="flyers" class="flyers float-left" />-->
+                    <img src="@Url.Content("/")@item.Image" width="125" height="160" alt="flyers" class="flyers float-left" />
+                }
+                else
+                {
+                    <img src="@Url.Content("~/Content/Images/no_avatar.gif")" width="125" height="160" alt="flyers" class="flyers float-left" />
+                }
+                <strong class="item_titre">@item.Titre</strong>
+                <span class="item_type float-left">@item.Type</span>
+                <span class="item_Date float-right">@item.StartDate.ToShortDateString() à @item.Ville (@item.CP.Substring(0, 2))</span>
+                <span class="item_salle">@item.Salle</span>
+                <em class="item_descr">
+                    @ConcertFinderMVC.BusinessManagement.Tool.Truncate(item.Description)
+                </em>  
+            </a>
         </li>
-        </a>
+        
     }
     </ul>
 </div>

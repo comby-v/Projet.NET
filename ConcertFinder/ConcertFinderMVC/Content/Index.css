@@ -10,6 +10,7 @@
     background:#FCFCFC;
     border:2px solid #666;
     border-radius:10px;
+    box-shadow: -3px 11px 22px #818181;
 }
 
 .section_title
@@ -35,7 +36,7 @@
     margin-right:20px;
 
     border: 1px solid #CCC;
-    box-shadow:4px 4px 5px #DDD;
+    box-shadow:-4px 4px 5px #DDD;
     border-radius:20px;
     margin-top:10px;
 }

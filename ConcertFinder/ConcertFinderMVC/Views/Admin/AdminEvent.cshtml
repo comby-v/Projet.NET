@@ -28,7 +28,6 @@
         {
             
             <li class="item">
-                <a href='@Url.Content("/Event/Detail/" + eve.Id)'>
                     @if (eve.Image != null)
                     {
                         <!--<img src="@@Url.Content("/ConcertFinderMVC/")@@item.Image" width="125" height="160" alt="flyers" class="flyers float-left" />-->
@@ -49,8 +48,6 @@
                     { 
                         <span id="valide">@Html.ActionLink("Verifier la validite", "Detail", "Event", new { id = @eve.Id, creation = true }, null)</span>
                     }
-           
-            </a>
         </li>
         }
     </ul>

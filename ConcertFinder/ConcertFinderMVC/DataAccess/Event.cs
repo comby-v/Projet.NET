@@ -61,13 +61,21 @@ namespace ConcertFinderMVC.DataAccess
                 try
                 {
                     T_Location location = Location.GetLocationById(id);
-                    //bdd.Attach(myevent);
+                   
                     bdd.Attach(location);
-                    foreach (T_Tag tag in taglist)
+                    if (taglist.Count > 0)
                     {
-                        T_Tag a_tag = bdd.T_Tag.Where(x => x.Name == tag.Name).FirstOrDefault();
-                        bdd.Attach(a_tag);
-                        myevent.T_Tag.Add(a_tag);
+                        foreach (T_Tag tag in taglist)
+                        {
+                            T_Tag a_tag = bdd.T_Tag.Where(x => x.Name == tag.Name).FirstOrDefault();
+                            bdd.Attach(a_tag);
+                            bdd.Attach(myevent);
+                            myevent.T_Tag.Add(a_tag);
+                        }
+                    }
+                    else
+                    {
+                        bdd.Attach(myevent);
                     }
 
                     myevent.T_Location.Name = location.Name;
@@ -79,7 +87,7 @@ namespace ConcertFinderMVC.DataAccess
                     myevent.T_Location.Ville = location.Ville;
 
                     var n_event = new T_Event { Id = myevent.Id };
-                    bdd.T_Event.Attach(n_event);
+                    //bdd.T_Event.Attach(n_event);
                     
                     bdd.ApplyCurrentValues("T_Event", myevent);
                     bdd.SaveChanges();
@@ -216,7 +224,7 @@ namespace ConcertFinderMVC.DataAccess
                 }
                 catch (Exception)
                 {
-                    throw;
+                    return null;
                    
                 }
             }

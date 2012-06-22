@@ -133,6 +133,12 @@ namespace ConcertFinderMVC.BusinessManagement
                 {
                     user.Mail = form.Email;
                 }
+
+                if (form.Tag != null)
+                {
+
+                }
+
                 return (DataAccess.User.ChangeParameter(user));
             
             return false;

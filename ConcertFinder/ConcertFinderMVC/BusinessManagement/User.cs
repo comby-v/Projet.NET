@@ -156,7 +156,7 @@ namespace ConcertFinderMVC.BusinessManagement
         {
             if (DataAccess.User.ChangeRole(id, role))
             {
-                T_Notification notif = new T_Notification() { Titre = NotificationModel.GetStatus((int)eStatus.Status), Date = DateTime.Now, Message = "Votre statut est désormais " + role };
+                T_Notification notif = new T_Notification() { Titre = NotificationModel.GetStatus((int)eStatus.Status), Date = DateTime.Now, Message = "Votre statut est désormais " + role, Check = false };
                 return DataAccess.Notification.Create(notif, id);
             }
             return false;

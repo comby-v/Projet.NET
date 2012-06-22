@@ -78,6 +78,20 @@
             $("#connect_panel").toggle('blind', null, 500);
         });
 
+        setInterval(function (){
+            var url = document.URL.split("//");
+            url = (url[1] ? url[1] : url[0]).split("/");
+            $.ajax({
+                url: "http://" + url[0] + "/Account/Check",
+                data: { user : "@User.Identity.Name" },
+                success: function (data){
+                    if (parseInt(data) != -1){
+                        $("#Mynotifs").text(" ("+data+")");
+                    }
+                }
+            });
+        }, 45000);
+
         $("#SearchBar").keyup(function () {
             var url = document.URL.split("//");
             url = (url[1] ? url[1] : url[0]).split("/");

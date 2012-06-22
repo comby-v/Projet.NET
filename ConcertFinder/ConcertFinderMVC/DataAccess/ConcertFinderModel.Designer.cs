@@ -1046,6 +1046,30 @@ namespace ConcertFinderMVC.DataAccess
         private global::System.String _Message;
         partial void OnMessageChanging(global::System.String value);
         partial void OnMessageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Check
+        {
+            get
+            {
+                return _Check;
+            }
+            set
+            {
+                OnCheckChanging(value);
+                ReportPropertyChanging("Check");
+                _Check = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Check");
+                OnCheckChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Check;
+        partial void OnCheckChanging(Nullable<global::System.Boolean> value);
+        partial void OnCheckChanged();
 
         #endregion
     

@@ -189,5 +189,14 @@ namespace ConcertFinderMVC.Controllers
             }
             return View(form);
         }
+
+        public int Check(String user)
+        {
+            if (user != "")
+            {
+                return BusinessManagement.Notification.Checks(User.Identity.Name);
+            }
+            return -1;
+        }
     }
 }

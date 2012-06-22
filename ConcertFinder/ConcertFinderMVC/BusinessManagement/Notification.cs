@@ -11,7 +11,7 @@ namespace ConcertFinderMVC.BusinessManagement
     {
         public static bool Create(DataAccess.T_User user, DataAccess.T_Event myevent)
         {
-            DataAccess.T_Notification notif = new DataAccess.T_Notification() { Date = DateTime.Now, Titre = NotificationModel.GetStatus((int)eStatus.Creation), Message = "Vous venez d'éditer l'événement " + myevent.Titre };
+            DataAccess.T_Notification notif = new DataAccess.T_Notification() { Date = DateTime.Now, Titre = NotificationModel.GetStatus((int)eStatus.Creation), Message = "Vous venez d'éditer l'événement " + myevent.Titre, Check = false };
             return DataAccess.Notification.Create(notif, user, myevent);
         }
 
@@ -31,9 +31,15 @@ namespace ConcertFinderMVC.BusinessManagement
             {
                 Date = DateTime.Now,
                 Titre = form.Title,
-                Message = form.reason
+                Message = form.reason,
+                Check = false
             };
             return (DataAccess.Notification.Deny(notif, form.IdEvent));
+        }
+
+        public static int Checks(String user)
+        {
+            return (DataAccess.Notification.Checks(user));
         }
     }
 }

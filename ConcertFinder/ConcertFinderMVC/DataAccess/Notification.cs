@@ -64,29 +64,12 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-
-                    List<T_Notification> notiflist = bdd.T_Notification.Include("T_Event").Include("T_User").ToList();
-
-                    foreach (T_Notification no in notiflist)
-                    {
-                        bool find = false;
-                        List<T_User> uslist = no.T_User.ToList();
-                        foreach (T_User user in uslist)
-                        {
-                            if (user.Pseudo == pseudo)
-                            {
-                                find = true;
-                                break;
-                            }
-                        }
-                        if (find)
-                        {
-                            notifs.Add(no);
-                        }
-
-                    }
-
                     notifs = bdd.T_Notification.Include("T_User").Include("T_Event").ToList().Where(x => x.T_User.FirstOrDefault().Pseudo == pseudo).OrderByDescending(x => x.Date).Take(6).ToList();
+                    foreach (T_Notification notif in bdd.T_Notification.Include("T_User").ToList().Where(x => x.T_User.FirstOrDefault().Pseudo == pseudo).ToList())
+                    {
+                        notif.Check = true;
+                    }
+                    bdd.SaveChanges();
                 }
                 catch (Exception)
                 {
@@ -130,6 +113,21 @@ namespace ConcertFinderMVC.DataAccess
                 {
                     throw;
                     return false;
+                }
+            }
+        }
+
+        public static int Checks(String user)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                try
+                {
+                    return bdd.T_User.Include("T_Notification").Where(x => x.Pseudo.Equals(user)).FirstOrDefault().T_Notification.Where(x => x.Check.Value == false).Count();
+                }
+                catch (Exception)
+                {
+                    return 0;
                 }
             }
         }

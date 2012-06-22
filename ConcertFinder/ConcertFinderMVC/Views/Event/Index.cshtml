@@ -68,8 +68,8 @@
                     success: function (data) {
                         for (var i = 0; i < data.length; i++) {
 
-                            var text = "<a href='/Event/Detail/" + data[i].Id + "'>"+
-                                            "<li class='item' id='"+ data[i].Id +"'>";
+                            var text = "<li class='item' id='"+ data[i].Id +"'>" +
+                                        "<a href='/Event/Detail/" + data[i].Id + "'>";
                             if (data[i].Image != null) {
                                 // text += "<img src="+"@@Url.Content("/ConcertFinderMVC/")"+data[i].Image+" width='125' height='160' alt='flyers' class='flyers float-left' />";
                                 text += "<img src="+"@Url.Content("/")"+data[i].Image+" width='125' height='160' alt='flyers' class='flyers float-left' />";
@@ -88,8 +88,8 @@
                                 "<em class='item_descr'>" +
                                     data[i].Description +
                                 "</em>" +
-                            "</li>" +
-                            "</a>";
+                            "</a>" +
+                            "</li>";
 
                             $("#items").append(text);
                         }

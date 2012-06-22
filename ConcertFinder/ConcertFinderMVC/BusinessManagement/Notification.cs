@@ -11,7 +11,13 @@ namespace ConcertFinderMVC.BusinessManagement
     {
         public static bool Create(DataAccess.T_User user, DataAccess.T_Event myevent)
         {
-            DataAccess.T_Notification notif = new DataAccess.T_Notification() { Date = DateTime.Now, Titre = NotificationModel.GetStatus((int)eStatus.Creation), Message = "Vous venez d'éditer l'événement " + myevent.Titre, Check = false };
+            DataAccess.T_Notification notif = new DataAccess.T_Notification() { Date = DateTime.Now, Titre = NotificationModel.GetStatus((int)eStatus.Creation), Message = "Vous venez de créer l'événement " + myevent.Titre, Check = false };
+            return DataAccess.Notification.Create(notif, user, myevent);
+        }
+
+        public static bool Update(DataAccess.T_User user, DataAccess.T_Event myevent)
+        {
+            DataAccess.T_Notification notif = new DataAccess.T_Notification() { Date = DateTime.Now, Titre = NotificationModel.GetStatus((int)eStatus.Edition), Message = "Vous venez d'éditer l'événement " + myevent.Titre, Check = false };
             return DataAccess.Notification.Create(notif, user, myevent);
         }
 

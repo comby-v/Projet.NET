@@ -238,7 +238,7 @@ namespace ConcertFinderMVC.Controllers
                     if (user != null && BusinessManagement.Event.Update(form, location.Id, user, form.Id))
                     {
                         DataAccess.T_Event bdd_event = BusinessManagement.Event.Get(form.Id, true);
-                        BusinessManagement.Notification.Create(user, bdd_event);
+                        BusinessManagement.Notification.Update(user, bdd_event);
                         return RedirectToAction("Detail", "Event", new { id = bdd_event.Id, creation = true });
                     }
                 }

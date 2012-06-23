@@ -439,6 +439,7 @@ namespace ConcertFinderMVC.BusinessManagement
                     Ville = myev.T_Location.Ville,
                     Rue = myev.T_Location.Rue
                 };
+                ServerPathImage(myev, eventItem);
                 listRes.Add(eventItem);
             }
 
@@ -469,6 +470,7 @@ namespace ConcertFinderMVC.BusinessManagement
                     Ville = myev.T_Location.Ville,
                     Rue = myev.T_Location.Rue
                 };
+                ServerPathImage(myev, eventItem);
                 listRes.Add(eventItem);
             }
 

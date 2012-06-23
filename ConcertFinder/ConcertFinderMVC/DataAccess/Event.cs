@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ConcertFinderMVC.Models;
+using System.Text.RegularExpressions;
 
 namespace ConcertFinderMVC.DataAccess
 {
@@ -54,46 +55,114 @@ namespace ConcertFinderMVC.DataAccess
             return true;
         }
 
-        static public bool Update(T_Event myevent, long id, List<T_Tag> taglist)
+        static public bool Update(Models.FormEventModels myevent, string pseudo)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    T_Location location = Location.GetLocationById(id);
+                    double longitude = myevent.Longitude;
+                    double latitude = myevent.Latitude;
+                    long idevent = myevent.Id;
+                    T_User user = bdd.T_User.Include("T_Tag").Include("T_Event").Where(x => x.Pseudo == pseudo).FirstOrDefault();
+                    DataAccess.T_Event ev = bdd.T_Event.Include("T_Tag").Include("T_Location").Include("T_User").Include("T_Notification").Where(x => x.Id == idevent).FirstOrDefault();
+                    ev.Type = EventModel.GetEventType(myevent.Type);
+                    ev.Description = myevent.Description;
+                    ev.DateDebut = myevent.StartDate;
+                    ev.DateFin = myevent.EndDate;
+                    ev.Email = myevent.Email;
+                    ev.WebSite = myevent.Website;
+                    ev.Tel = myevent.Phone;
+                    BusinessManagement.Event.SaveImage(myevent, ev);
                    
-                    bdd.Attach(location);
-                    if (taglist.Count > 0)
+                    T_Location location = new T_Location ();
+                    if ((bdd.T_Location.Where(x => x.Latitude == latitude && x.Longitude == longitude).FirstOrDefault()) == null)
                     {
-                        foreach (T_Tag tag in taglist)
-                        {
-                            T_Tag a_tag = bdd.T_Tag.Where(x => x.Name == tag.Name).FirstOrDefault();
-                            bdd.Attach(a_tag);
-                            bdd.Attach(myevent);
-                            myevent.T_Tag.Add(a_tag);
-                        }
+                        location.CP = myevent.CodePostal;
+                        location.Latitude = myevent.Latitude;
+                        location.Longitude = myevent.Longitude;
+                        location.Name = myevent.RoomName;
+                        location.Pays = myevent.Country;
+                        location.Rue = myevent.Address;
+                        location.Ville = myevent.City;
+                        Location.Create(location);
                     }
                     else
                     {
-                        bdd.Attach(myevent);
+                        location = bdd.T_Location.Where(x => x.Latitude == latitude && x.Longitude == longitude).FirstOrDefault();;
+                        location.CP = myevent.CodePostal;
+                        location.Name = myevent.RoomName;
+                        location.Pays = myevent.Country;
+                        location.Rue = myevent.Address;
+                        location.Ville = myevent.City;
+                        Location.Update(location);
+                    }
+                   
+
+
+                    List<DataAccess.T_Tag> listTag = new List<DataAccess.T_Tag>();    
+                    string[] split = myevent.Tags.Split(new Char[] { ' ', ',', '.', ';' });
+                    foreach (string str in split)
+                    {
+                        if (str.Length > 2)
+                        {
+                            Regex r = new Regex("[a-z1-9*]");
+                            Match m = r.Match(str);
+                            if (m.Success)
+                            {
+                                str.ToLower();
+                                DataAccess.T_Tag tag = new DataAccess.T_Tag()
+                                {
+                                    Name = str
+                                };
+                                if (bdd.T_Tag.Where(t => t.Name == tag.Name).FirstOrDefault() == null)
+                                {
+                                    DataAccess.Tag.Create(tag);
+                                }
+
+                                tag = bdd.T_Tag.Where(t => t.Name == tag.Name).FirstOrDefault();
+                                bool find = false;
+                                if (user.T_Tag.Count > 0)
+                                {
+                                    foreach (T_Tag eventtag in ev.T_Tag)
+                                    {
+                                        if ((eventtag.Name.Equals(tag.Name)))
+                                        {
+                                            find = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!find)
+                                    {
+                                        listTag.Add(tag);
+
+                                    }
+                                    find = false;
+                                }
+                                else
+                                {
+                                    listTag.Add(tag);
+                                }
+                            }
+                        }
                     }
 
-                    myevent.T_Location = location;
-/*
-                    myevent.T_Location.Name = location.Name;
-                    myevent.T_Location.Latitude = location.Latitude;
-                    myevent.T_Location.Longitude = location.Longitude;
-                    myevent.T_Location.Pays = location.Pays;
-                    myevent.T_Location.Rue = location.Rue;
-                    myevent.T_Location.CP = location.CP;
-                    myevent.T_Location.Ville = location.Ville;
-                    */
-
-
-                    var n_event = new T_Event { Id = myevent.Id };
-                    //bdd.T_Event.Attach(n_event);
+                 
+                    if (listTag.Count > 0)
+                    {
+                        foreach (T_Tag tag in listTag)
+                        {
+                            bdd.Attach(tag);
+                            ev.T_Tag.Add(tag);
+                        }
+                    }
                     
-                    bdd.ApplyCurrentValues("T_Event", myevent);
+
+                    ev.T_Location = location;
+
+                    var n_event = new T_Event { Id = ev.Id };
+                    
+                    bdd.ApplyCurrentValues("T_Event", ev);
                     bdd.SaveChanges();
                 }
                 catch (Exception)

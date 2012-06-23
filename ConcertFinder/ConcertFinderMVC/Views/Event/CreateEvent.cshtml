@@ -17,13 +17,9 @@
         
     <div id="event">                                                             
             @Html.LabelFor(m => m.Title)
-       
-       
             @Html.TextBoxFor(m => m.Title)
             @Html.ValidationMessageFor(m => m.Title)
-      
-    
-       
+
             @Html.LabelFor(m => m.Type)
        
             @Html.DropDownListFor(x => x.Type, Model.Types)

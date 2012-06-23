@@ -20,8 +20,6 @@
     padding-bottom:15px;
 }
 
-
-
 textarea
 {
     width:400px;
@@ -54,13 +52,33 @@ textarea
     margin-right:15px;
 }
 
-label
+#event label
 {
     display:block;
 }
 
-input
+#event input
 {
     display:block;
 }
 
+#localite label
+{
+    display:block;
+}
+
+
+#localite input
+{
+    display:block;
+}
+
+#create_user label
+{
+    display: block;
+}
+
+#create_user input
+{
+    display: block;
+}

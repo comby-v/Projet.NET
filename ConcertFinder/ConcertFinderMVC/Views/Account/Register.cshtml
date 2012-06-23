@@ -6,95 +6,36 @@
 
 <div class="main">
     <div class="section_title">Inscription</div>
-@using (Html.BeginForm("Register", "Account", "POST"))
+@using (Html.BeginForm("Register", "Account", null, FormMethod.Post, new {id="create_user"}))
 {
-    @Html.AntiForgeryToken()
     
-    <div>
-        <div class="text_lbl ">
+    @Html.AntiForgeryToken()
+
             @Html.LabelFor(m => m.Name)
-        </div>
-        <div class="text_input ">
             @Html.TextBoxFor(m => m.Name)
             @Html.ValidationMessageFor(m => m.Name)
-        </div>
-    </div>
-    
-    <div>
-        <div class="text_lbl ">
             @Html.LabelFor(m => m.Firstname)
-        </div>
-        <div class="text_input ">
             @Html.TextBoxFor(m => m.Firstname)
             @Html.ValidationMessageFor(m => m.Firstname)
-        </div>
-    </div>
-    
-    <div>
-        <div class="text_lbl ">
             @Html.LabelFor(m => m.Pseudo)
-        </div>
-        <div class="text_input ">
             @Html.TextBoxFor(m => m.Pseudo)
             @Html.ValidationMessageFor(m => m.Pseudo)
-        </div>
-    </div>
-    
-    <div>
-        <div class="text_lbl ">
             @Html.LabelFor(m => m.Email)
-        </div>
-        <div class="text_input ">
             @Html.TextBoxFor(m => m.Email)
             @Html.ValidationMessageFor(m => m.Email)
-        </div>
-    </div>
-    
-    <div>
-        <div class="text_lbl ">
             @Html.LabelFor(m => m.City)
-        </div>
-        <div class="text_input ">
             @Html.TextBoxFor(m => m.City)
             @Html.ValidationMessageFor(m => m.City)
-        </div>
-    </div>
-    
-    <div>
-        <div class="text_lbl ">
             @Html.LabelFor(m => m.Password)
-        </div>
-        <div class="text_input ">
             @Html.PasswordFor(m => m.Password)
             @Html.ValidationMessageFor(m => m.Password)
-        </div>
-    </div>
-    
-    <div class="clear">
-        <div class="text_lbl ">
             @Html.LabelFor(m => m.ConfirmPassword)
-        </div>
-        <div class="text_input ">
             @Html.PasswordFor(m => m.ConfirmPassword)
             @Html.ValidationMessageFor(m => m.ConfirmPassword)
-        </div>
-    </div>
-    
-    <div>
-        <div class="text_lbl">
             @Html.LabelFor(m => m.Tags)
-        </div>
-        <div class="text_input">
             @Html.TextBoxFor(m => m.Tags)
             @Html.ValidationMessageFor(m => m.Tags)
-        </div>
-    </div>
-    
-     <div class="clear">
-        <div class="submit">
             <input type="submit" value="S'inscrire" />
-        </div>
-    </div>
     <div class="clear"></div>
 }
 

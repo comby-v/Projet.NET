@@ -6,20 +6,20 @@
 
 <div class="main">
     <div class="section_title">Refus</div>
-@using (Html.BeginForm("DenyEvent", "Admin", FormMethod.Post))
+@using (Html.BeginForm("DenyEvent", "Admin", FormMethod.Post, new { id= "deny_event" }))
 {
     @Html.AntiForgeryToken()
 
     @Html.HiddenFor(x => x.IdEvent)
 
-    <h2 class="text_lbl">@Html.LabelFor(t => t.Title)</h2>
-    <div class="text_input">
-        @Html.TextBoxFor(t => t.Title)
-    </div>
-    <h2 class="text_lbl">@Html.LabelFor(r => r.reason)</h2>
-    <div class="text_input">
-        @Html.TextAreaFor(r => r.reason)
-    </div>
+    @Html.LabelFor(t => t.Title)
+ 
+    @Html.TextBoxFor(t => t.Title)
+  
+    @Html.LabelFor(r => r.reason)
+    
+    @Html.TextAreaFor(r => r.reason)
+   
      <input class="submit" type="submit" value="Envoyer" />
 }
 

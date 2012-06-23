@@ -26,11 +26,10 @@ textarea
     height:200px;
 }
 
-.submit
+.clear .submit
 {
-    position:relative;
-    left: 360px;
-    margin-top: 15px;
+    float:right;
+    margin: 15px 15px 0px 0px;
 }
 #event
 {
@@ -68,17 +67,37 @@ textarea
 }
 
 
-#localite input
-{
-    display:block;
-}
-
 #create_user label
 {
     display: block;
+    text-align:center;
 }
 
 #create_user input
 {
-    display: block;
+
+    margin-left: 360px;
+}
+
+#deny_event textarea
+{
+    display:block;
+    margin: auto;
+}
+
+#deny_event input
+{
+    position:relative;
+    left:468px;
+}
+
+#deny_event label
+{
+    display:block;
+    text-align: center;
+}
+
+#deny_event .submit
+{
+    margin:15px 15px 15px 48px;
 }

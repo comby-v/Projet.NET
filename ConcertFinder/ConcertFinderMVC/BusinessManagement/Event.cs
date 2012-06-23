@@ -476,5 +476,33 @@ namespace ConcertFinderMVC.BusinessManagement
 
             return listRes;
         }
+
+        public static List<EventItem> Refresh(int first_id, string type)
+        {
+            List<T_Event> list = DataAccess.Event.Refresh(first_id, type);
+            List<EventItem> listEventItem = new List<EventItem>();
+            foreach (T_Event myevent in list)
+            {
+                EventItem eventItem = new EventItem()
+                {
+                    Id = myevent.Id,
+                    Titre = myevent.Titre,
+                    Description = BusinessManagement.Tool.Truncate(myevent.Description),
+                    Type = myevent.Type,
+                    StartDate = myevent.DateDebut,
+                    EndDate = myevent.DateFin.GetValueOrDefault(),
+                    Salle = myevent.T_Location.Name,
+                    Email = myevent.Email,
+                    Tel = myevent.Tel,
+                    Website = myevent.WebSite,
+                    CP = myevent.T_Location.CP.Substring(0, 2),
+                    Ville = myevent.T_Location.Ville,
+                    Rue = myevent.T_Location.Rue
+                };
+                ServerPathImage(myevent, eventItem);
+                listEventItem.Add(eventItem);
+            }
+            return listEventItem;
+        }
     }
 }

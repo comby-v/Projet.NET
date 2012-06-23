@@ -5,8 +5,10 @@
 </head>
 
 <div class="main">
-    <div class="section_title">Inscription</div>
-@using (Html.BeginForm("Register", "Account", null, FormMethod.Post, new { id = "create_user" }))
+    <div class="section_title float-left">Inscription</div>
+        <div class="clear"></div>
+@using (Html.BeginForm("Register", "Account", null, FormMethod.Post, new {id="create_user"}))
+
 {
     
     @Html.AntiForgeryToken()
@@ -36,6 +38,7 @@
             @Html.TextBoxFor(m => m.Tags, new { id = "txt_input" })
             @Html.ValidationMessageFor(m => m.Tags)
             <input class="submit" type="submit" value="S'inscrire" />
+
 }
 
 </div>

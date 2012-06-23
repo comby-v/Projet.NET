@@ -152,7 +152,7 @@ namespace ConcertFinderMVC.DataAccess
                {
                    List<T_Event> events = bdd.T_Event.Include("T_Tag").Include("T_Location")
                        .Where(x => x.Valide == true && x.DateDebut > DateTime.Now).ToList()
-                       .Where(x => x.Titre.Split(new char[] { ' ', '+' }).Intersect(q.Split(new char[] { ' ', '+' }), new BusinessManagement.MyStringComparer ()).Count() > 0 ||
+                       .Where(x => x.Titre.Split(new char[] { ' ', '+' }).Intersect(q.Split(new char[] { ' ', '+' })).Count() > 0 ||
                            x.T_Location.Name.Split(' ').Select(z => z.ToLowerInvariant()).Intersect(q.Split(' ').Select(z => z.ToLowerInvariant())).Count() > 0 ||
                            x.T_Location.Ville.Split(new char[] { ' ', '-' }).Intersect(q.Split(new char[] { ' ', '-' })).Count() > 0 ||
                            x.T_Tag.FirstOrDefault(y => y.Name.Equals(q, StringComparison.InvariantCultureIgnoreCase)) != null)

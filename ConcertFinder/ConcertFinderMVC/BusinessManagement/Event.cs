@@ -77,7 +77,7 @@ namespace ConcertFinderMVC.BusinessManagement
             }
         }
 
-        private static void SaveImage(FormEventModels myevent, T_Event evnt)
+        public static void SaveImage(FormEventModels myevent, T_Event evnt)
         {
             var destinationFolder = HttpContext.Current.Server.MapPath("~/Download");
             var postedFile = myevent.FileImage;
@@ -137,69 +137,9 @@ namespace ConcertFinderMVC.BusinessManagement
         }
 
 
-        static public bool Update(FormEventModels myevent, long idLocation, DataAccess.T_User user, long id)
-        {
-            DataAccess.T_Event ev = Event.Get(myevent.Id, true);
-            ev.Type = EventModel.GetEventType(myevent.Type);
-            ev.Description = myevent.Description;
-            ev.DateDebut = myevent.StartDate;
-            ev.DateFin = myevent.EndDate;
-            ev.Email = myevent.Email;
-            ev.WebSite = myevent.Website;
-            ev.Tel = myevent.Phone;
-            SaveImage(myevent, ev);
-
-           
-                
-            List<DataAccess.T_Tag> listTag = new List<DataAccess.T_Tag>();    
-            string[] split = myevent.Tags.Split(new Char[] { ' ', ',', '.', ';' });
-            foreach (string str in split)
-            {
-                if (str.Length > 2)
-                {
-                    Regex r = new Regex("[a-z1-9*]");
-                    Match m = r.Match(str);
-                    if (m.Success)
-                    {
-                        str.ToLower();
-                        DataAccess.T_Tag tag = new DataAccess.T_Tag()
-                        {
-                            Name = str
-                        };
-                        if (DataAccess.Tag.Get(str) == null)
-                        {
-                            DataAccess.Tag.Create(tag);
-                        }
-
-                        tag = DataAccess.Tag.Get(str);
-                        bool find = false;
-                        if (user.T_Tag.Count > 0)
-                        {
-                            foreach (T_Tag eventtag in ev.T_Tag)
-                            {
-                                if ((eventtag.Name.Equals(tag.Name)))
-                                {
-                                    find = true;
-                                    break;
-                                }
-                            }
-                            if (!find)
-                            {
-                                listTag.Add(tag);
-
-                            }
-                            find = false;
-                        }
-                        else
-                        {
-                            listTag.Add(tag);
-                        }
-                    }
-                }
-                        
-            }
-
-            return DataAccess.Event.Update(ev, idLocation, listTag);
+        static public bool Update(FormEventModels myevent, string pseudo)
+        { 
+            return DataAccess.Event.Update(myevent, pseudo);
         }
 
         static public DataAccess.T_Event Get(long id, bool creation = false)

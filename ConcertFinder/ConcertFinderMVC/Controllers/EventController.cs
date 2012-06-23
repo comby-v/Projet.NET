@@ -211,30 +211,8 @@ namespace ConcertFinderMVC.Controllers
                 {
                     DataAccess.T_User user = new T_User();
                     user = BusinessManagement.User.GetUserByPseudo(User.Identity.Name);
-                    DataAccess.T_Location location = new T_Location ();
-                    if ((BusinessManagement.Location.GetLocationByCoord(form.Latitude, form.Longitude)) == null)
-                    {
-                        
-                        location.CP = form.CodePostal;
-                        location.Latitude = form.Latitude;
-                        location.Longitude = form.Longitude;
-                        location.Name = form.RoomName;
-                        location.Pays = form.Country;
-                        location.Rue = form.Address;
-                        location.Ville = form.City;
-                        BusinessManagement.Location.Create(location);
-                    }
-                    else
-                    {
-                        location = BusinessManagement.Location.GetLocationByCoord(form.Latitude, form.Longitude);
-                        location.CP = form.CodePostal;
-                        location.Name = form.RoomName;
-                        location.Pays = form.Country;
-                        location.Rue = form.Address;
-                        location.Ville = form.City;
-                        BusinessManagement.Location.Update(location);
-                    } 
-                    if (user != null && BusinessManagement.Event.Update(form, location.Id, user, form.Id))
+                     
+                    if (user != null && BusinessManagement.Event.Update(form, User.Identity.Name))
                     {
                         DataAccess.T_Event bdd_event = BusinessManagement.Event.Get(form.Id, true);
                         BusinessManagement.Notification.Update(user, bdd_event);

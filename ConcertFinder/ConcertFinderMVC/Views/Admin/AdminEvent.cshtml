@@ -22,7 +22,7 @@
         @foreach (ConcertFinderMVC.Models.EventItem eve in Model.listEvent)
         {
             <li class="item">
-                <a class="valide" href='@Url.Content("/Event/Detail/" + eve.Id)'>
+                <a class="valide" href='@Url.Content("/Event/Detail?id=" + eve.Id + "&creation=true")'>
                     @if (eve.Image != null)
                     {
                         <!--<img src="@@Url.Content("/ConcertFinderMVC/")@@item.Image" width="125" height="160" alt="flyers" class="flyers float-left" />-->

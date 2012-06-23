@@ -34,7 +34,7 @@ namespace ConcertFinderMVC.Controllers
                 Last = BusinessManagement.Event.GetListLastAddEvent(5),
                 Events = BusinessManagement.Event.GetListEvent(5, EventModel.GetEventType((int)eTypes.Concert))
             };
-            ViewBag.page_title = "Concert";
+            ViewBag.page_title = "Concerts";
             return View("Index", eventList);
         }
 
@@ -235,6 +235,12 @@ namespace ConcertFinderMVC.Controllers
         public JsonResult GetNextEvents(int last_id, string type)
         {
             List<EventItem> list = BusinessManagement.Event.GetNextEvents(last_id, type);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Refresh(int first_id, string type)
+        {
+            List<EventItem> list = BusinessManagement.Event.Refresh(first_id, type);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

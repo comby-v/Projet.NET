@@ -3,10 +3,10 @@
 
 <div class="section">
     <div class="lastAdded_title">Derniers Ajouts</div>
-    <ul>
+    <ul id="item_lastadded">
     @foreach (ConcertFinderMVC.Models.EventItem item in Model)
     {
-        <li id="item_lastadd">
+        <li id="@item.Id">
             <p class="quick_title">@Html.ActionLink(item.Titre, "Detail", "Event", new { id = item.Id }, null)</p>
             <p class="quick_infos">A Paris, le @item.StartDate</p>
         </li>

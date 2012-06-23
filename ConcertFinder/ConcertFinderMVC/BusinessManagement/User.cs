@@ -133,83 +133,8 @@ namespace ConcertFinderMVC.BusinessManagement
 
         static public bool ChangeParameter(string pseudo, ParameterModel form)
         {
-            SimpleAES encryptor = new SimpleAES();
-            
-            T_User user = DataAccess.User.GetUserByPseudo(pseudo);
 
-            if (user.Ville != form.MyCity && form.MyCity != null)
-            {
-                user.Ville = form.MyCity;
-            }
-
-            if ((form.NewPassword != null) && (form.OldPassword != null) && (form.ConfirmPassword != null))
-            {
-                if (User.ValidateUser(pseudo, encryptor.EncryptToString(form.OldPassword)) && encryptor.EncryptToString(form.NewPassword) != user.Password)
-                {
-                    user.Password = encryptor.EncryptToString(form.NewPassword);
-                }
-            }
-
-            if (user.Mail != form.Email && (form.Email != null))
-            {
-                user.Mail = form.Email;
-            }
-
-            if (form.Tag != null)
-            {
-                List<DataAccess.T_Tag> listTag = new List<DataAccess.T_Tag>();    
-                string[] split = form.Tag.Split(new Char[] { ' ', ',', '.', ';' });
-                foreach (string str in split)
-                {
-                    if (str.Length > 2)
-                    {
-                        Regex r = new Regex("[a-z1-9*]");
-                        Match m = r.Match(str);
-                        if (m.Success)
-                        {
-                            str.ToLower();
-                            DataAccess.T_Tag tag = new DataAccess.T_Tag()
-                            {
-                                Name = str
-                            };
-                            if (DataAccess.Tag.Get(str) == null)
-                            {
-                                DataAccess.Tag.Create(tag);
-                            }
-
-                            tag = DataAccess.Tag.Get(str);
-                            bool find = false;
-                            if (user.T_Tag.Count > 0)
-                            {
-                                foreach (T_Tag usertag in user.T_Tag)
-                                {
-                                    if ((usertag.Name.Equals(tag.Name)))
-                                    {
-                                        find = true;
-                                        break;
-                                    }
-                                }
-                                if (!find)
-                                {
-                                    listTag.Add(tag);
-                                        
-                                }
-                                find = false;
-                            }
-                            else
-                            {
-                                listTag.Add(tag);
-                            }
-                        }
-                    }
-                }
-                if (listTag.Count > 0)
-                {
-                    return (DataAccess.User.Update(user, listTag));
-                }
-            }
-
-            return (DataAccess.User.Update(user));
+            return (DataAccess.User.Update(pseudo, form));
         }
 
         static public bool ForgotPassword(string email)

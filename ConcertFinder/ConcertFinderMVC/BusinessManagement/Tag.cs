@@ -29,11 +29,11 @@ namespace ConcertFinderMVC.BusinessManagement
             {
                 EventItem item = new EventItem()
                 {
-                    CP = ev.T_Location.CP,
+                    CP = ev.T_Location.CP.Substring(0, 2),
                     Ville = ev.T_Location.Ville,
                     Salle = ev.T_Location.Name,
                     Type = ev.Type,
-                    Description = ev.Description,
+                    Description = Tool.Truncate(ev.Description),
                     Email = ev.Email,
                     Id = ev.Id,
                     Titre = ev.Titre,

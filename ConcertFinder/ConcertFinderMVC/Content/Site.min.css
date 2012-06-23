@@ -2,30 +2,27 @@
 .float-right{float:right}
 .clear{clear:both}
 .remove_marge{margin:0;padding:0}
-body{margin:0;background:#f4f4f4;background:white;min-height:100%;font-family:Verdana;font-size:12px;background:url("Images/yt_bg_60.png")}
+body{margin:0;min-height:100%;font-family:Verdana;font-size:12px;background:url("Images/yt_bg_60.png")}
 a{text-decoration:none;color:#518CF2}
 li{list-style-type:none}
 header{width:100%}
-#banniere{background-image:url("Images/gradient-top.png");background-repeat:repeat-x;height:145px}
-.center{width:1100px;margin:auto}
+#banniere{background-image:url("Images/header.png");background-repeat:repeat-x;height:145px}
+.center{width:1100px;margin:auto;padding-top:14px}
 #concertfinder{color:white;font-size:60px;margin-top:14px;margin-left:20px}
-#connect{margin-right:20px;margin-top:14px;width:255px}
+#connect{margin-right:20px;width:255px}
 #open_connect:hover{cursor:pointer}
-#open_connect{color:white;margin-left:170px}
-#connect_panel{width:250px;border:2px solid #ff893a;background:#f4f4f4;border-radius:5px}
+#open_connect{color:white;margin-left:104px;font-family:Copperplate Gothic Bold;font-weight:bold;font-size:14px}
+#connect_panel{width:250px;border:2px solid #ff893a;background:#f4f4f4;border-radius:5px;box-shadow:-4px 6px 5px black}
 #bienvenue{margin:10px;font-weight:bold;font-style:italic}
 #logo_content{padding:0 10px 10px 10px}
 .icon{height:30px;width:30px}
-.notif_logo{margin-bottom:10px;margin-left:10px}
-.parametre_logo{margin-bottom:10px;margin-left:35px}
-.logout_logo{margin-bottom:10px;margin-left:50px}
 .connexion_lbl{margin-left:5px;margin-top:2px}
 .connexion_form{margin-right:5px;margin-top:2px}
 #connexion_form{padding-left:5px;padding-top:5px;padding-right:8px}
 #register_form{padding-left:5px;padding-right:10px}
 #pseudo_form .connexion_form{margin-left:30px}
 #password_form .connexion_form{margin-left:15px}
-#menu{margin:auto;height:60px;background:url("Images/nav-bg.png");font-family:Arial}
+#menu{margin:auto;height:60px;background:url("Images/victory.png");font-family:Arial}
 #menu_content{margin-top:0;margin-bottom:0;width:1100px;margin:auto;height:100%}
 #menu ul{padding:0;width:1062px;margin:auto;background:url("Images/nav.png");margin-top:0;margin-bottom:0;height:30px;padding-top:15px;padding-bottom:15px}
 #menu a{color:white;font-weight:bold;font-size:14px}
@@ -34,3 +31,6 @@ header{width:100%}
 .menu_item{padding-top:10px;margin-left:15px;padding-left:10px;border-left:1px solid #FFAD6C;height:20px}
 #SearchBar{margin-right:10px}
 .page{width:1100px;margin:auto;background:white;margin-top:0;padding-top:30px;padding-bottom:20px;height:100%;background:url("Images/yt_bg_60.png")}
+.notif_logo{width:30px;height:30px;background:url(Images/sprite_logo.png) no-repeat;background-position:-4px -5px;display:block;float:left;margin-left:10px}
+.parametre_logo{width:30px;height:30px;background:url(Images/sprite_logo.png) no-repeat;background-position:-4px -40px;display:block;float:left;margin-right:60px}
+.logout_logo{width:30px;height:30px;background:url(Images/sprite_logo.png) no-repeat;background-position:-6px -76px;display:block;float:left}

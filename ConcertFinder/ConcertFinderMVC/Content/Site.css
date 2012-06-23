@@ -117,24 +117,6 @@ header
     width:30px;
 }
 
-.notif_logo
-{
-   margin-bottom:10px;
-   margin-left:10px;
-}
-
-.parametre_logo
-{
-   margin-bottom:10px;
-   margin-left:35px;
-}
-
-.logout_logo
-{
-   margin-bottom:10px;
-   margin-left:50px;
-}
-
 .connexion_lbl
 {
     margin-left: 5px;
@@ -253,4 +235,36 @@ header
    background: url("Images/yt_bg_60.png");  
   /* border: 2px solid #222222;
    border-top:0px;*/
+}
+
+.notif_logo
+{
+    width: 30px;
+    height: 30px;
+    background: url(Images/sprite_logo.png) no-repeat;
+    background-position: -4px -5px;
+    display: block;
+    float: left;
+    margin-left: 10px;
+}
+
+.parametre_logo
+{
+    width: 30px;
+    height: 30px;
+    background: url(Images/sprite_logo.png) no-repeat;
+    background-position: -4px -40px;
+    display: block;
+    float: left;
+    margin-right: 60px;
+}
+
+.logout_logo
+{
+    width: 30px;
+    height: 30px;
+    background: url(Images/sprite_logo.png) no-repeat;
+    background-position: -6px -76px;
+    display: block;
+    float: left;
 }

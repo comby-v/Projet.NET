@@ -400,8 +400,18 @@ namespace ConcertFinderMVC.DataAccess
              using (ConcertFinderEntities bdd = new ConcertFinderEntities ())
              {
                  List<T_Event> listevent = new List<T_Event>();
-                 listevent = bdd.T_Event.Include("T_Location").Include("T_Tag").Where(ev => (ev.DateDebut == myevent.DateDebut) &&
-                     (ev.T_Location.Name == myevent.T_Location.Name) && (ev.Id != myevent.Id)).OrderBy(ev => ev.DateDebut).ToList();
+                 List<T_Event> listevent2 = bdd.T_Event.Include("T_Location").Include("T_Tag").Where(ev => (ev.T_Location.Name == myevent.T_Location.Name) && (ev.Id != myevent.Id)).OrderBy(ev => ev.DateDebut).ToList();
+
+                 if (listevent2 != null)
+                 {
+                     foreach (T_Event item in listevent2)
+                     {
+                         if (item.DateDebut.DayOfYear == myevent.DateDebut.DayOfYear)
+                         {
+                             listevent.Add(item);
+                         }
+                     }
+                 }
 
                  if (nb > listevent.Count)
                  {

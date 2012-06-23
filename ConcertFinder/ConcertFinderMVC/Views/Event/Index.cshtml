@@ -50,6 +50,33 @@
 {
     <script type="text/javascript">
 
+    setInterval(function (){
+            var url = document.URL.split("//");
+            url = (url[1] ? url[1] : url[0]).split("/");
+            var qtype = "";
+            if (url.length > 2)
+            {
+                qtype = url[2];
+            }
+            var id = $("#item_lastadded li:first").attr("id");
+            $.ajax({
+                url: "http://" + url[0] + "/Event/Refresh",
+                data: { first_id : id, type : qtype },
+                success: function (data){
+                    for (var i = 0; i < data.length; i++) {
+                        var milli = data[i].StartDate.replace(/\/Date\((-?\d+)\)\//, '$1');
+                        var d = new Date(parseInt(milli));
+                        var text = "<li>" +
+                            "<p class='quick_title'><a href='/Event/Detail/"+data[i].Id+"'>"+data[i].Titre+"</a></p>" +
+                            "<p class='quick_infos'>A "+data[i].Ville+", le "+dateFormat(d, "dd/mm/yyyy HH:MM:ss")+"</p>" +
+                        "</li>";
+                        $("#item_lastadded").prepend(text);
+                    }
+                },
+                dataType: "json"
+            });
+        }, 20000);
+
         $(window).scroll(function () {
             if ($(window).scrollTop() == $(document).height() - $(window).height()) {
                 var url = document.URL.split("//");

@@ -238,6 +238,12 @@ namespace ConcertFinderMVC.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult Refresh(int first_id, string type)
+        {
+            List<EventItem> list = BusinessManagement.Event.Refresh(first_id, type);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
         // Critères de recherche : Tags, Ville, Titre, Salle
         public JsonResult Search(string q, string type)
         {

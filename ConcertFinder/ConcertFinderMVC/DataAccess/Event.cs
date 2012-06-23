@@ -244,7 +244,7 @@ namespace ConcertFinderMVC.DataAccess
                 try
                 {
                     List<T_Event> myevent = bdd.T_Event.Include("T_Location").
-                        Where(x => x.Valide == true && x.DateDebut > DateTime.Now).OrderByDescending(x => x.Id).Take(nbr).ToList();
+                        Where(x => x.Valide == true && x.DateDebut > DateTime.Now).OrderByDescending(x => x.DateCreation).Take(nbr).ToList();
                     return (myevent);
                 }
                 catch (Exception)
@@ -287,7 +287,7 @@ namespace ConcertFinderMVC.DataAccess
             {
                 try
                 {
-                    return (bdd.T_Event.Include("T_Location").Where(ev => ev.Valide == false).OrderByDescending(ev => ev.DateCreation).ToList());
+                    return (bdd.T_Event.Include("T_Location").Where(ev => ev.Valide == false).OrderByDescending(ev => ev.Id).ToList());
                 }
                 catch (Exception)
                 {
@@ -360,6 +360,7 @@ namespace ConcertFinderMVC.DataAccess
                     }
                     bdd.SaveChanges();
                     ev.Valide = true;
+                    ev.DateCreation = DateTime.Now;
                     return (Update(ev));
                 }
                 catch (Exception)
@@ -379,17 +380,17 @@ namespace ConcertFinderMVC.DataAccess
                     T_Event last_event = bdd.T_Event.Where(x => x.Id == last_id).FirstOrDefault();
                     if (type == "")
                     {
-                        list = bdd.T_Event.Include("T_Location").Include("T_Tag").Where(e => e.Valide == true && e.DateDebut > DateTime.Now && e.DateDebut > last_event.DateDebut).ToList().OrderBy(x => x.DateDebut).Take(5).ToList();
+                        list = bdd.T_Event.Include("T_Location").Include("T_Tag").Where(e => e.Valide == true && e.DateDebut > DateTime.Now && e.DateDebut > last_event.DateDebut).OrderBy(x => x.DateDebut).Take(5).ToList();
                     }
                     else
                     {
-                        list = bdd.T_Event.Include("T_Location").Include("T_Tag").Where(e => e.Valide == true && e.DateDebut > DateTime.Now && e.DateDebut > last_event.DateDebut && e.Type == type).ToList().OrderBy(x => x.DateDebut).Take(5).ToList();
+                        list = bdd.T_Event.Include("T_Location").Include("T_Tag").Where(e => e.Valide == true && e.DateDebut > DateTime.Now && e.DateDebut > last_event.DateDebut && e.Type == type).OrderBy(x => x.DateDebut).Take(5).ToList();
                     }
                     return list;
                  }
                  catch (Exception)
                  {
-                     return null;
+                     return list;
                  }
              }
          }
@@ -449,5 +450,29 @@ namespace ConcertFinderMVC.DataAccess
             }
          }
 
+         public static List<T_Event> Refresh(int first_id, string type)
+         {
+             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+             {
+                 List<T_Event> list = new List<T_Event>();
+                 try
+                 {
+                     T_Event first_event = bdd.T_Event.Where(x => x.Id == first_id).FirstOrDefault();
+                     if (type == "")
+                     {
+                         list = bdd.T_Event.Include("T_Location").Include("T_Tag").Where(x => x.Valide == true && x.DateDebut > DateTime.Now && x.DateCreation > first_event.DateCreation).OrderByDescending(x => x.DateCreation).ToList();
+                     }
+                     else
+                     {
+                         list = bdd.T_Event.Include("T_Location").Include("T_Tag").Where(e => e.Valide == true && e.DateDebut > DateTime.Now && e.DateCreation > first_event.DateCreation && e.Type == type).OrderByDescending(x => x.DateCreation).ToList();
+                     }
+                     return list;
+                 }
+                 catch (Exception)
+                 {
+                     return list;
+                 }
+             }
+         }
     }
 }

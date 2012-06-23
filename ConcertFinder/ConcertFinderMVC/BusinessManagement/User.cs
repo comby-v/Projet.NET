@@ -134,87 +134,82 @@ namespace ConcertFinderMVC.BusinessManagement
         static public bool ChangeParameter(string pseudo, ParameterModel form)
         {
             SimpleAES encryptor = new SimpleAES();
-
-
             
-                T_User user = DataAccess.User.GetUserByPseudo(pseudo);
+            T_User user = DataAccess.User.GetUserByPseudo(pseudo);
 
-                if (user.Ville != form.MyCity && form.MyCity != null)
+            if (user.Ville != form.MyCity && form.MyCity != null)
+            {
+                user.Ville = form.MyCity;
+            }
+
+            if ((form.NewPassword != null) && (form.OldPassword != null) && (form.ConfirmPassword != null))
+            {
+                if (User.ValidateUser(pseudo, encryptor.EncryptToString(form.OldPassword)) && encryptor.EncryptToString(form.NewPassword) != user.Password)
                 {
-                    user.Ville = form.MyCity;
+                    user.Password = encryptor.EncryptToString(form.NewPassword);
                 }
+            }
 
-                if ((form.NewPassword != null) && (form.OldPassword != null) && (form.ConfirmPassword != null))
+            if (user.Mail != form.Email && (form.Email != null))
+            {
+                user.Mail = form.Email;
+            }
+
+            if (form.Tag != null)
+            {
+                List<DataAccess.T_Tag> listTag = new List<DataAccess.T_Tag>();    
+                string[] split = form.Tag.Split(new Char[] { ' ', ',', '.', ';' });
+                foreach (string str in split)
                 {
-                    if (User.ValidateUser(pseudo, encryptor.EncryptToString(form.OldPassword)) && encryptor.EncryptToString(form.NewPassword) != user.Password)
+                    if (str.Length > 2)
                     {
-                        user.Password = encryptor.EncryptToString(form.NewPassword);
-                    }
-                }
-
-                if (user.Mail != form.Email && (form.Email != null))
-                {
-                    user.Mail = form.Email;
-                }
-
-                if (form.Tag != null)
-                {
-                    List<DataAccess.T_Tag> listTag = new List<DataAccess.T_Tag>();    
-                    string[] split = form.Tag.Split(new Char[] { ' ', ',', '.', ';' });
-                    foreach (string str in split)
-                    {
-                        if (str.Length > 2)
+                        Regex r = new Regex("[a-z1-9*]");
+                        Match m = r.Match(str);
+                        if (m.Success)
                         {
-                            Regex r = new Regex("[a-z1-9*]");
-                            Match m = r.Match(str);
-                            if (m.Success)
+                            str.ToLower();
+                            DataAccess.T_Tag tag = new DataAccess.T_Tag()
                             {
-                                str.ToLower();
-                                DataAccess.T_Tag tag = new DataAccess.T_Tag()
-                                {
-                                    Name = str
-                                };
-                                if (DataAccess.Tag.Get(str) == null)
-                                {
-                                    DataAccess.Tag.Create(tag);
-                                }
+                                Name = str
+                            };
+                            if (DataAccess.Tag.Get(str) == null)
+                            {
+                                DataAccess.Tag.Create(tag);
+                            }
 
-                                tag = DataAccess.Tag.Get(str);
-                                bool find = false;
-                                if (user.T_Tag.Count > 0)
+                            tag = DataAccess.Tag.Get(str);
+                            bool find = false;
+                            if (user.T_Tag.Count > 0)
+                            {
+                                foreach (T_Tag usertag in user.T_Tag)
                                 {
-                                    foreach (T_Tag usertag in user.T_Tag)
+                                    if ((usertag.Name.Equals(tag.Name)))
                                     {
-                                        if ((usertag.Name.Equals(tag.Name)))
-                                        {
-                                            find = true;
-                                            break;
-                                        }
+                                        find = true;
+                                        break;
                                     }
-                                    if (!find)
-                                    {
-                                        listTag.Add(tag);
-                                        
-                                    }
-                                    find = false;
                                 }
-                                else
+                                if (!find)
                                 {
                                     listTag.Add(tag);
+                                        
                                 }
+                                find = false;
+                            }
+                            else
+                            {
+                                listTag.Add(tag);
                             }
                         }
                     }
-                    if (listTag.Count > 0)
-                    {
-                        return (DataAccess.User.Update(user, listTag));
-                    }
                 }
+                if (listTag.Count > 0)
+                {
+                    return (DataAccess.User.Update(user, listTag));
+                }
+            }
 
-
-                return (DataAccess.User.Update(user));
-            
-            return false;
+            return (DataAccess.User.Update(user));
         }
 
         static public bool ForgotPassword(string email)

@@ -70,12 +70,17 @@ textarea
 #create_user label
 {
     display: block;
-    text-align:center;
+    margin-left:360px;
 }
 
-#create_user input
+#create_user #txt_input
 {
+    margin-left: 360px;
+}
 
+#create_user .submit
+{
+    display:block;
     margin-left: 360px;
 }
 

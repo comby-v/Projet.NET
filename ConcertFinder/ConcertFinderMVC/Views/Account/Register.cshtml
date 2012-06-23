@@ -6,37 +6,36 @@
 
 <div class="main">
     <div class="section_title">Inscription</div>
-@using (Html.BeginForm("Register", "Account", null, FormMethod.Post, new {id="create_user"}))
+@using (Html.BeginForm("Register", "Account", null, FormMethod.Post, new { id = "create_user" }))
 {
     
     @Html.AntiForgeryToken()
 
             @Html.LabelFor(m => m.Name)
-            @Html.TextBoxFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { id = "txt_input"})
             @Html.ValidationMessageFor(m => m.Name)
             @Html.LabelFor(m => m.Firstname)
-            @Html.TextBoxFor(m => m.Firstname)
+            @Html.TextBoxFor(m => m.Firstname, new { id = "txt_input"})
             @Html.ValidationMessageFor(m => m.Firstname)
             @Html.LabelFor(m => m.Pseudo)
-            @Html.TextBoxFor(m => m.Pseudo)
+            @Html.TextBoxFor(m => m.Pseudo, new { id = "txt_input" })
             @Html.ValidationMessageFor(m => m.Pseudo)
             @Html.LabelFor(m => m.Email)
-            @Html.TextBoxFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email, new { id = "txt_input" })
             @Html.ValidationMessageFor(m => m.Email)
             @Html.LabelFor(m => m.City)
-            @Html.TextBoxFor(m => m.City)
+            @Html.TextBoxFor(m => m.City, new { id = "txt_input" })
             @Html.ValidationMessageFor(m => m.City)
             @Html.LabelFor(m => m.Password)
-            @Html.PasswordFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password, new { id = "txt_input" })
             @Html.ValidationMessageFor(m => m.Password)
             @Html.LabelFor(m => m.ConfirmPassword)
-            @Html.PasswordFor(m => m.ConfirmPassword)
+            @Html.PasswordFor(m => m.ConfirmPassword, new { id = "txt_input" })
             @Html.ValidationMessageFor(m => m.ConfirmPassword)
             @Html.LabelFor(m => m.Tags)
-            @Html.TextBoxFor(m => m.Tags)
+            @Html.TextBoxFor(m => m.Tags, new { id = "txt_input" })
             @Html.ValidationMessageFor(m => m.Tags)
-            <input type="submit" value="S'inscrire" />
-    <div class="clear"></div>
+            <input class="submit" type="submit" value="S'inscrire" />
 }
 
 </div>

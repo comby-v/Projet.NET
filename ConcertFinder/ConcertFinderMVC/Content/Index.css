@@ -132,7 +132,7 @@
     margin-top: 20px;
 }
 
-.notif span:first-child
+.notif strong
 {
     float: left;
     margin-left: 20px;

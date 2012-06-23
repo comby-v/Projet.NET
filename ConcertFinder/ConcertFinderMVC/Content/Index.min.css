@@ -1,8 +1,9 @@
 ﻿h2{margin:0}
-.main{width:750px;background:#FCFCFC;border:2px solid #666;border-radius:10px}
+.main{width:750px;background:#FCFCFC;border:2px solid #666;border-radius:10px;box-shadow:-3px 11px 22px #818181}
 .section_title{height:40px;margin-top:-17px;margin-left:10px;padding-left:5px;padding-right:5px;color:#FF893A;background:#FCFCFC url("Images/yt_bg_60.png") 50% 122% repeat-x;font-size:20px;font-weight:bold}
-.item{margin-bottom:10px;color:#333;background:#F7F7F7;margin-left:20px;margin-right:20px;height:160px;border:1px solid #CCC;box-shadow:4px 4px 5px #DDD;padding-top:10px;padding-bottom:10px;border-radius:20px;margin-top:10px}
+.item{margin-bottom:10px;background:#F7F7F7;margin-left:20px;margin-right:20px;border:1px solid #CCC;box-shadow:-4px 4px 5px #DDD;border-radius:20px;margin-top:10px}
 .item p,li,ul{margin:0;padding:0}
+.item a{display:block;height:160px;padding-top:10px;padding-bottom:10px;color:#333}
 .flyers{border:1px solid #2F86C0;margin-left:10px}
 .item:hover{background:#FEFEFE}
 .item_titre{font-size:16px;color:#2F86C0;display:block;padding-bottom:5px;margin-left:145px;margin-right:20px}
@@ -13,7 +14,7 @@
 .infos{margin-left:20px;width:500px}
 .item_descr{display:block;margin-left:145px;margin-right:20px}
 .notif,.notif p{clear:both;margin-left:20px;margin-top:20px}
-.notif span:first-child{float:left;margin-left:20px}
+.notif strong{float:left;margin-left:20px}
 .notif span:nth-child(2){float:right;margin-right:20px}
 .notif a{margin-right:20px;float:right}
 .notif{margin-bottom:10px;color:#333;background:#F7F7F7;margin-left:20px;margin-right:20px;height:60px;border:1px solid #CCC;box-shadow:4px 4px 5px #DDD;padding-top:10px;padding-bottom:10px;border-radius:20px;margin-top:10px}

@@ -214,12 +214,28 @@
     <Content Include="Content\_LastAdded.css" />
     <Content Include="Content\_SimilarEvents.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\AdminUser.js" />
+    <Content Include="Scripts\AdminUser.min.js">
+      <DependentUpon>AdminUser.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\CreateEvent.js" />
+    <Content Include="Scripts\CreateEvent.min.js">
+      <DependentUpon>CreateEvent.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\dateformat.js" />
     <Content Include="Scripts\dateformat.min.js">
       <DependentUpon>dateformat.js</DependentUpon>
     </Content>
     <Content Include="Scripts\datetimepicker.min.js">
       <DependentUpon>datetimepicker.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Detail.js" />
+    <Content Include="Scripts\Detail.min.js">
+      <DependentUpon>Detail.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Index.js" />
+    <Content Include="Scripts\Index.min.js">
+      <DependentUpon>Index.js</DependentUpon>
     </Content>
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.min.js">
@@ -237,9 +253,17 @@
     </Content>
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\Layout.js" />
+    <Content Include="Scripts\Layout.min.js">
+      <DependentUpon>Layout.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
     <Content Include="Scripts\datetimepicker.js" />
+    <Content Include="Scripts\Notifications.js" />
+    <Content Include="Scripts\Notifications.min.js">
+      <DependentUpon>Notifications.js</DependentUpon>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

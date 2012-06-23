@@ -16,19 +16,18 @@
 
 <div class="main float-left">
     <div class="section_title float-left">@ViewBag.page_title</div>
-    <ul id="items"  class="clear">
+    <ul id="items" class="clear">
     @foreach (ConcertFinderMVC.Models.EventItem item in Model.Events)
     {   
         <li class="item" id="@item.Id">
             <a href='@Url.Content("/Event/Detail/" + item.Id)'> 
                 @if (item.Image != null)
                 {
-                    <!--<img src="@@Url.Content("/ConcertFinderMVC/")@@item.Image" width="125" height="160" alt="flyers" class="flyers float-left" />-->
-                    <img src="@Url.Content("/")@item.Image" width="125" height="160" alt="flyers" class="flyers float-left" />
+                    <img src="@Url.Content("/")@item.Image"  alt="flyers" class="flyers float-left" />
                 }
                 else
                 {
-                    <img src="@Url.Content("~/Content/Images/no_image.png")" width="125" height="160" alt="flyers" class="flyers float-left" />
+                    <img src="@Url.Content("~/Content/Images/no_image.png")" alt="flyers" class="flyers float-left" />
                 }
                 <strong class="item_titre">@item.Titre</strong>
                 <span class="item_type float-left">@item.Type</span>
@@ -39,7 +38,6 @@
                 </em>  
             </a>
         </li>
-        
     }
     </ul>
 </div>
@@ -72,10 +70,10 @@
                                         "<a href='/Event/Detail/" + data[i].Id + "'>";
                             if (data[i].Image != null) {
                                 // text += "<img src="+"@@Url.Content("/ConcertFinderMVC/")"+data[i].Image+" width='125' height='160' alt='flyers' class='flyers float-left' />";
-                                text += "<img src="+"@Url.Content("/")"+data[i].Image+" width='125' height='160' alt='flyers' class='flyers float-left' />";
+                                text += "<img src="+"@Url.Content("/")"+data[i].Image+" alt='flyers' class='flyers float-left' />";
                             }
                             else {
-                                text += "<img src='"+"@Url.Content("~/Content/Images/no_avatar.gif")"+"' width='125' height='160' alt='flyers' class='flyers float-left' />";
+                                text += "<img src='"+"@Url.Content("~/Content/Images/no_avatar.gif")"+"' alt='flyers' class='flyers float-left' />";
                             }
 
                             var milli = data[i].StartDate.replace(/\/Date\((-?\d+)\)\//, '$1');

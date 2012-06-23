@@ -26,12 +26,13 @@
                     @if (eve.Image != null)
                     {
                         <!--<img src="@@Url.Content("/ConcertFinderMVC/")@@item.Image" width="125" height="160" alt="flyers" class="flyers float-left" />-->
-                        <img src="@Url.Content("/")@eve.Image" width="125" height="160" alt="flyers" class="flyers float-left" />
+                        <img src="@Url.Content("/")@eve.Image" alt="flyers" class="flyers float-left" />
                     }
                     else
                     {
-                        <img src="@Url.Content("~/Content/Images/no_avatar.gif")" width="125" height="160" alt="flyers" class="flyers float-left" />
+                        <img src="@Url.Content("~/Content/Images/no_image.png")" alt="flyers" class="flyers float-left" />
                     }
+
                     <strong class="item_titre">@eve.Titre</strong>
                     <span class="item_type float-left">@eve.Type</span>
                     <span class="item_Date float-right">@eve.StartDate.ToShortDateString() à @eve.Ville (@eve.CP.Substring(0, 2))</span>

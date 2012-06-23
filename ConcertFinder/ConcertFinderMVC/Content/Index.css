@@ -1,7 +1,6 @@
 ﻿h2
 {
     margin:0px;
-
 }
 
 .main
@@ -33,7 +32,6 @@
     background:#F7F7F7;
     margin-left:20px;
     margin-right:20px;
-
     border: 1px solid #CCC;
     box-shadow:-4px 4px 5px #DDD;
     border-radius:20px;
@@ -59,6 +57,8 @@
 {
     border:1px solid #2F86C0;
     margin-left:10px;
+    width:125px;
+    height:160px;
 }
 
 .item:hover

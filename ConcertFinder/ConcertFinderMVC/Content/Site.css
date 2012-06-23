@@ -102,6 +102,7 @@ header
 #bienvenue
 {
     margin:10px;
+    padding-left:10px;
     font-weight:bold;
     font-style:italic;
 }
@@ -111,10 +112,36 @@ header
     padding: 0px 10px 10px 10px;
 }
 
-.icon
+.notif_logo
 {
-    height:30px;
-    width:30px;
+    width: 30px;
+    height: 30px;
+    background: url(Images/sprite_logo.png) no-repeat;
+    background-position: -4px -5px;
+    display: block;
+    float: left;
+    margin-left: 10px;
+}
+
+.parametre_logo
+{
+    width: 30px;
+    height: 30px;
+    background: url(Images/sprite_logo.png) no-repeat;
+    background-position: -4px -40px;
+    display: block;
+    float: left;
+    margin-right: 60px;
+}
+
+.logout_logo
+{
+    width: 30px;
+    height: 30px;
+    background: url(Images/sprite_logo.png) no-repeat;
+    background-position: -6px -76px;
+    display: block;
+    float: left;
 }
 
 .connexion_lbl
@@ -235,6 +262,7 @@ header
    background: url("Images/yt_bg_60.png");  
 }
 
+
 .custom_button
 {
     text-align:center;
@@ -274,34 +302,3 @@ header
     border: 1px outset #FF893A;
 }
 
-.notif_logo
-{
-    width: 30px;
-    height: 30px;
-    background: url(Images/sprite_logo.png) no-repeat;
-    background-position: -4px -5px;
-    display: block;
-    float: left;
-    margin-left: 10px;
-}
-
-.parametre_logo
-{
-    width: 30px;
-    height: 30px;
-    background: url(Images/sprite_logo.png) no-repeat;
-    background-position: -4px -40px;
-    display: block;
-    float: left;
-    margin-right: 60px;
-}
-
-.logout_logo
-{
-    width: 30px;
-    height: 30px;
-    background: url(Images/sprite_logo.png) no-repeat;
-    background-position: -6px -76px;
-    display: block;
-    float: left;
-}

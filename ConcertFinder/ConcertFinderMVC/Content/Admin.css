@@ -64,10 +64,7 @@ td
 {
     padding: 0px 4px 0px 4px;
 }
-a
-{
-    color: black;
-}
+
 
 #menu_onglet
 {
@@ -82,11 +79,6 @@ a
     display:inline;
 }
 
-
-#onglet a:hover
-{
-    color: #FF893A; 
-}
 .item
 {
     margin-bottom:10px;
@@ -103,6 +95,12 @@ a
     margin-top:10px;
 }
 
+.item a
+{
+    display:block;
+    min-height:172px;
+    color:#333;
+}
 
 .item p, li, ul
 {
@@ -114,6 +112,8 @@ a
 {
     border:1px solid #2F86C0;
     margin-left:10px;
+    width:125px;
+    height:160px;    
 }
 
 .item:hover
@@ -176,8 +176,4 @@ a
     margin-right: 20px;
 }
 
-.valide 
-{
-    display:block;
-    min-height:172px;
-}
+

@@ -10,9 +10,9 @@ namespace ConcertFinderMVC.BusinessManagement
     {
         public static string Truncate(string description)
         {
-            if (description.Length > 200)
+            if (description.Length > 400)
             {
-                return (new String(description.ToArray().Take(200).ToArray())) + " ...";
+                return (new String(description.ToArray().Take(400).ToArray())) + " ...";
             }
             else
             {

@@ -5,7 +5,8 @@
 </head>
 
 <div class="main">
-    <div class="section_title">Inscription</div>
+    <div class="section_title float-left">Inscription</div>
+        <div class="clear"></div>
 @using (Html.BeginForm("Register", "Account", null, FormMethod.Post, new {id="create_user"}))
 {
     
@@ -36,7 +37,7 @@
             @Html.TextBoxFor(m => m.Tags)
             @Html.ValidationMessageFor(m => m.Tags)
             <input type="submit" value="S'inscrire" />
-    <div class="clear"></div>
+
 }
 
 </div>

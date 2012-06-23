@@ -1,7 +1,6 @@
 ﻿.section_title
 {
     height:40px;
-    width:260px;
     margin-top:-17px;
     margin-left:10px;
     padding-left:5px;
@@ -18,6 +17,7 @@
     border:2px solid #666;
     border-radius:10px;
     padding-bottom:15px;
+    box-shadow: -3px 11px 22px #818181;
 }
 
 textarea

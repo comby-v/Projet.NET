@@ -110,11 +110,13 @@
     <Content Include="Content\Admin.css" />
     <Content Include="Content\Formulaire.css" />
     <Content Include="Content\Images\bg_list.gif" />
+    <Content Include="Content\Images\concert_finder_title.png" />
     <Content Include="Content\Images\footer-bg.png" />
     <Content Include="Content\Images\footer-left.png" />
     <Content Include="Content\Images\footer-right.png" />
     <Content Include="Content\Images\gradient-top.png" />
     <Content Include="Content\Images\gradient.gif" />
+    <Content Include="Content\Images\header.jpg" />
     <Content Include="Content\Images\header.png" />
     <Content Include="Content\Images\headerv2.png" />
     <Content Include="Content\Images\logout_30x30.png" />
@@ -122,7 +124,7 @@
     <Content Include="Content\Images\nav-left.png" />
     <Content Include="Content\Images\nav-right.png" />
     <Content Include="Content\Images\nav.png" />
-    <Content Include="Content\Images\no_avatar.gif" />
+    <Content Include="Content\Images\no_image.png" />
     <Content Include="Content\Images\parametres.png" />
     <Content Include="Content\Images\victory.png" />
     <Content Include="Content\Images\yt_bg.png" />

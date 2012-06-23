@@ -23,9 +23,9 @@ body
 {
     margin:0px;
     min-height:100%;
-    font-family:Verdana;
+    font-family: Verdana;
     font-size:12px;
-     background: url("Images/yt_bg_60.png");
+    background: url("Images/yt_bg_60.png");
 }
 
 a
@@ -253,4 +253,43 @@ header
    background: url("Images/yt_bg_60.png");  
   /* border: 2px solid #222222;
    border-top:0px;*/
+}
+
+.custom_button
+{
+    text-align:center;
+    border-radius: 5px;
+    background: #363636;
+    background: -webkit-gradient(linear,left top,left bottom,from(#555),to(#2C2C2C));
+    border-radius: 5px;
+    border: 1px outset black;
+    text-shadow: 1 1px 0 rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 4px;
+    margin:auto;
+}
+
+.custom_button a
+{
+    color: #FF893A;
+}
+
+.custom_button:hover
+{
+    background: #363636;
+    background: -webkit-gradient(linear,left top,left bottom,from(#777),to(#333));
+    text-shadow: 1 1px 0 rgba(255, 255, 255, 0.2);
+    cursor: pointer;   
+}
+
+.custom_button:hover a
+{
+    color:white;
+}
+
+.custom_button:active
+{
+    color:white;
+    border: 1px outset #FF893A;
 }

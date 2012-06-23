@@ -36,7 +36,6 @@
 .item_descr
 {
     min-height:200px;
-    margin-bottom:20px;
     white-space:pre-line;
     padding:0px;
 }
@@ -45,6 +44,11 @@
     font-family: Copperplate Gothic Bold;
     font-size: 12px;
     color: #FF893A;
+}
+
+.salle_margin
+{
+    margin-top:30px;
 }
 
 .tag_list
@@ -61,12 +65,6 @@
 {
     display:block;
 }
-#map
-{
-    width:750px;
-    height:300px;
-    border: 1px solid #FF893A;
-}
 
 #edit_button
 {
@@ -80,5 +78,27 @@
 
 #refuse_button
 {
-    margin-right:40px;
+    margin-right:80px;
 }
+
+#visualiser
+{
+    font-style:italic;
+    margin-top:20px;
+}
+
+#map
+{
+    width:750px;
+    height:300px;
+    border: 1px solid #FF893A;
+    margin-bottom:15px;
+}
+
+#direction
+{
+    color:white;
+}
+
+
+

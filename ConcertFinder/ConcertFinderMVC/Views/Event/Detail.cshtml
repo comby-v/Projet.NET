@@ -22,13 +22,20 @@
     </p>
 
     <!-- Description et flyers-->
-    <img class="float-left" id="flyers" src="@Url.Content("/")@Model.Item.Image" alt="flyers" />
+    @if (@Model.Item.Image != null)
+    {
+        <img class="float-left" id="flyers" src="@Url.Content("/")@Model.Item.Image" alt="flyers" />
+    }
+    else
+    {
+        <img class="float-left" id="flyers" src="@Url.Content("~/Content/Images/no_image.png")" alt="flyers" />
+    }
     <strong class="type">@Model.Item.Type</strong>
     <p lang="text" class="item_descr">
         @Model.Item.Description
     </p>
-
-    <p class="clear">
+    <div class="clear"></div>
+    <p class="clear salle_margin">
         <strong > Salle : </strong>  @Model.Item.Salle
     </p>
     <p>
@@ -53,40 +60,40 @@
         }
     </div>
 
-    <div id="visualiser" >Visualiser l'évenement sur la map</div>
-    <div class="float-right" id="map">
-    </div>
-    <div class="clear">
-        <input id="direction" type="button" value="Direction" />
-    </div>
-
+    
     <div>
-        @if(User.Identity.IsAuthenticated)
+        @if (User.Identity.IsAuthenticated)
         {
-            
-                if ((User.Identity.IsAuthenticated) && (ConcertFinderMVC.BusinessManagement.Tool.CreatedByMe(User.Identity.Name, Model.Item.Id) ||
-                    ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name) ||
-                    ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name)))
-                {
-                    <div id="edit_button" class="float-right">
+
+            if ((User.Identity.IsAuthenticated) && (ConcertFinderMVC.BusinessManagement.Tool.CreatedByMe(User.Identity.Name, Model.Item.Id) ||
+                ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name) ||
+                ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name)))
+            {
+                    <div id="edit_button" class="custom_button float-right">
                         @Html.ActionLink("Editer", "CreateEvent", "Event", new { id = Model.Item.Id }, null)
                     </div>
-                }   
-            
-                if (!Model.Item.Valide && (ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name) ||
-                    ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name)))
-                {
+            }
 
-                    <div id="accept_button" class="float-right">
-                        @Html.ActionLink("Accepter", "ValideEvent", "Event", new { idevent = Model.Item.Id }, null)
-                    </div>
-                    <div id="refuse_button" class="float-right">
+            if (!Model.Item.Valide && (ConcertFinderMVC.BusinessManagement.Tool.IsAdmin(User.Identity.Name) ||
+                ConcertFinderMVC.BusinessManagement.Tool.IsModerator(User.Identity.Name)))
+            {
+                     <div id="refuse_button" class="custom_button float-right">
                         @Html.ActionLink("Refuser", "DenyEvent", "Admin", new { idevent = Model.Item.Id }, null)
                     </div> 
-                }
+                    <div id="accept_button" class="custom_button float-right">
+                        @Html.ActionLink("Accepter", "ValideEvent", "Event", new { idevent = Model.Item.Id }, null)
+                    </div>
 
+            }
         }
     </div>
+    <div class="clear"></div>
+    <div  class="clear" id="visualiser" >Visualiser l'évenement sur la map</div>
+    <div class="float-right" id="map">
+    </div>
+    <div class="clear"></div>
+    <a id="direction" class="custom_button float-right"> Calculer mon itinéraire </a>
+
 </div>
 <div class="float-right">
         @Html.Partial("_SimilarEvents", Model.Events)

@@ -149,30 +149,57 @@ namespace ConcertFinderMVC.BusinessManagement
             ev.Tel = myevent.Phone;
             SaveImage(myevent, ev);
 
-            List<DataAccess.T_Tag> list_tag = new List<DataAccess.T_Tag>();
-            List<String> tags = myevent.Tags.Split(new Char[] { ' ', ',', '.', ';' }).ToList();
-
-            foreach (String tag in tags)
+           
+                
+            List<DataAccess.T_Tag> listTag = new List<DataAccess.T_Tag>();    
+            string[] split = myevent.Tags.Split(new Char[] { ' ', ',', '.', ';' });
+            foreach (string str in split)
             {
-                Regex regx = new Regex("[a-z1-9*]");
-                if (tag.Length > 2 && regx.Match(tag).Success)
+                if (str.Length > 2)
                 {
-                    tag.ToLower();
-                    DataAccess.T_Tag bdd_tag = BusinessManagement.Tag.Get(tag);
-                    if (bdd_tag != null)
+                    Regex r = new Regex("[a-z1-9*]");
+                    Match m = r.Match(str);
+                    if (m.Success)
                     {
-                        list_tag.Add(bdd_tag);
-                    }
-                    else
-                    {
-                        BusinessManagement.Tag.Create(tag);
-                        bdd_tag = BusinessManagement.Tag.Get(tag);
-                        list_tag.Add(bdd_tag);
+                        str.ToLower();
+                        DataAccess.T_Tag tag = new DataAccess.T_Tag()
+                        {
+                            Name = str
+                        };
+                        if (DataAccess.Tag.Get(str) == null)
+                        {
+                            DataAccess.Tag.Create(tag);
+                        }
+
+                        tag = DataAccess.Tag.Get(str);
+                        bool find = false;
+                        if (user.T_Tag.Count > 0)
+                        {
+                            foreach (T_Tag eventtag in ev.T_Tag)
+                            {
+                                if ((eventtag.Name.Equals(tag.Name)))
+                                {
+                                    find = true;
+                                    break;
+                                }
+                            }
+                            if (!find)
+                            {
+                                listTag.Add(tag);
+
+                            }
+                            find = false;
+                        }
+                        else
+                        {
+                            listTag.Add(tag);
+                        }
                     }
                 }
+                        
             }
 
-            return DataAccess.Event.Update(ev, idLocation, list_tag);
+            return DataAccess.Event.Update(ev, idLocation, listTag);
         }
 
         static public DataAccess.T_Event Get(long id, bool creation = false)
@@ -189,26 +216,29 @@ namespace ConcertFinderMVC.BusinessManagement
         {
             List<EventItem> list_eventItem = new List<EventItem>();
             List<DataAccess.T_Event> list_event = DataAccess.Event.GetListLastAddEvent(nbr, type);
-            foreach (DataAccess.T_Event myevent in list_event)
+            if (list_event != null)
             {
-                EventItem myeventitem = new EventItem()
+                foreach (DataAccess.T_Event myevent in list_event)
                 {
-                    Id = myevent.Id,
-                    Titre = myevent.Titre,
-                    Description = myevent.Description,
-                    Type = myevent.Type,
-                    StartDate = myevent.DateDebut,
-                    EndDate = myevent.DateFin.GetValueOrDefault(),
-                    Salle = myevent.T_Location.Name,
-                    Image = myevent.Image,
-                    Email = myevent.Email,
-                    Tel = myevent.Tel,
-                    Website = myevent.WebSite,
-                    CP = myevent.T_Location.CP,
-                    Ville = myevent.T_Location.Ville,
-                    Rue = myevent.T_Location.Rue
-                };
-                list_eventItem.Add(myeventitem);
+                    EventItem myeventitem = new EventItem()
+                    {
+                        Id = myevent.Id,
+                        Titre = myevent.Titre,
+                        Description = myevent.Description,
+                        Type = myevent.Type,
+                        StartDate = myevent.DateDebut,
+                        EndDate = myevent.DateFin.GetValueOrDefault(),
+                        Salle = myevent.T_Location.Name,
+                        Image = myevent.Image,
+                        Email = myevent.Email,
+                        Tel = myevent.Tel,
+                        Website = myevent.WebSite,
+                        CP = myevent.T_Location.CP,
+                        Ville = myevent.T_Location.Ville,
+                        Rue = myevent.T_Location.Rue
+                    };
+                    list_eventItem.Add(myeventitem);
+                }
             }
             return list_eventItem;
         }

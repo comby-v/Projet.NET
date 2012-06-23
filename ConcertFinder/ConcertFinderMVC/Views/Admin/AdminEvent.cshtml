@@ -12,12 +12,7 @@
 <div class="main">
     <div class="section_title">@Model.Page</div>
 
-    <ul id="menu_onglet">
-        @if (Model.User.Role.Equals(ConcertFinderMVC.Models.UserModel.GetRoleType((int)ConcertFinderMVC.Models.eRole.Admin)))
-        {
-                    <li id="onglet">@Html.ActionLink("Gerer les utlisateurs", "ManageUser", "Admin")</li>
-        }
-    
+    <ul id="menu_onglet">   
         <li id="onglet">@Html.ActionLink("Evenement valide", "ValidEvent", "Admin")</li>
         <li id="onglet">@Html.ActionLink("Evenement en attente", "NotValidEvent", "Admin")</li>
     </ul>
@@ -26,9 +21,9 @@
     <ul id="item">
         @foreach (ConcertFinderMVC.Models.EventItem eve in Model.listEvent)
         {
-            
+           
             <li class="item">
-                <a href='@Url.Content("/Event/Detail/" + eve.Id)'>
+                <a class="valide" href='@Url.Content("/Event/Detail/" + eve.Id)'>
                     @if (eve.Image != null)
                     {
                         <!--<img src="@@Url.Content("/ConcertFinderMVC/")@@item.Image" width="125" height="160" alt="flyers" class="flyers float-left" />-->
@@ -45,12 +40,7 @@
                     <em class="item_descr">
                         @ConcertFinderMVC.BusinessManagement.Tool.Truncate(eve.Description)
                     </em>
-                    @if (eve.Valide == false)
-                    { 
-                        <span id="valide">@Html.ActionLink("Verifier la validite", "Detail", "Event", new { id = @eve.Id, creation = true }, null)</span>
-                    }
-           
-            </a>
+               </a>
         </li>
         }
     </ul>

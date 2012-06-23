@@ -26,18 +26,18 @@
 
 .city_input
 {
-    margin: 0px 0px 10px 128px;
+    margin: 0px 0px 10px 130px;
 }
 
 
 .mail_input
 {
-    margin: 0px 0px 10px 142px;
+    margin: 0px 0px 10px 143px;
 }
 
 .tag_input
 {
-    margin: 0px 0px 10px 142px;
+    margin: 0px 0px 10px 146px;
 }
 
 .old_input
@@ -47,12 +47,12 @@
 
 .pass_input
 {
-     margin: 0px 0px 0px 34px;   
+     margin: 0px 0px 0px 30px;   
 }
 
 .confirm_input
 {
-    margin: 0px 0px 10px 15px;
+    margin: 0px 0px 10px 10px;
 }
 
 .submit

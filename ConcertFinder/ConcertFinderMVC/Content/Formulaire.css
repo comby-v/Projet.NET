@@ -39,18 +39,28 @@ textarea
     padding: 10px 0px 10px 15px;
     margin-left:15px;
     width:500px;
-    border: 2px groove black;
+    border: 1px solid #CCC;
     border-radius:15px;
     float:left;
 }
 
 #localite
 {
-    padding:10px 0px 10px 15px;
+    padding:10px 0px 10px 20px;
     width:500px;
-    border:2px groove black;
+    border:1px solid #CCC;
     border-radius:15px;
     float:right;
     margin-right:15px;
+}
+
+label
+{
+    display:block;
+}
+
+input
+{
+    display:block;
 }
 

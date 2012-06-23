@@ -111,6 +111,7 @@ a
     margin-top:10px;
 }
 
+
 .item p, li, ul
 {
     margin: 0px;
@@ -183,20 +184,8 @@ a
     margin-right: 20px;
 }
 
-#valide a
+.valide 
 {
-    padding: 6px;
-    border: 2px ridge #FF893A;
-    background-color: #FF893A ;
-    color:White;
-    border-radius: 5px;
-    float:right; 
-    position:relative;
-    bottom:-56px;
-    right:13px;
-}
-
-#valide a:hover
-{
-    color:#333;
+    display:block;
+    min-height:172px;
 }

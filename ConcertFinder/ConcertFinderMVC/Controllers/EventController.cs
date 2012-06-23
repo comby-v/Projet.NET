@@ -212,24 +212,23 @@ namespace ConcertFinderMVC.Controllers
                     DataAccess.T_User user = new T_User();
                     user = BusinessManagement.User.GetUserByPseudo(User.Identity.Name);
                     DataAccess.T_Location location = new T_Location ();
-                    if ((location = BusinessManagement.Location.GetLocationByCoord(form.Latitude, form.Longitude)) == null)
+                    if ((BusinessManagement.Location.GetLocationByCoord(form.Latitude, form.Longitude)) == null)
                     {
-                        DataAccess.T_Location location2 = new T_Location();
-                        location2.CP = form.CodePostal;
-                        location2.Latitude = form.Latitude;
-                        location2.Name = form.RoomName;
-                        location2.Pays = form.Country;
-                        location2.Rue = form.Address;
-                        location2.Ville = form.City;
-                        BusinessManagement.Location.Create(location2);
-                        location = location2;
-                    }
-                    else
-                    {
+                        
                         location.CP = form.CodePostal;
                         location.Latitude = form.Latitude;
                         location.Longitude = form.Longitude;
-                        location.Name = location.Name;
+                        location.Name = form.RoomName;
+                        location.Pays = form.Country;
+                        location.Rue = form.Address;
+                        location.Ville = form.City;
+                        BusinessManagement.Location.Create(location);
+                    }
+                    else
+                    {
+                        location = BusinessManagement.Location.GetLocationByCoord(form.Latitude, form.Longitude);
+                        location.CP = form.CodePostal;
+                        location.Name = form.RoomName;
                         location.Pays = form.Country;
                         location.Rue = form.Address;
                         location.Ville = form.City;

@@ -71,6 +71,33 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
+        public static Boolean Update(T_User upUser, List<T_Tag> tagList)
+        {
+            using (ConcertFinderEntities bdd = new ConcertFinderEntities())
+            {
+                try
+                {
+                    
+                    foreach (T_Tag tag in tagList)
+                    {
+                        bdd.Attach(tag);
+                        bdd.Attach(upUser);
+                        upUser.T_Tag.Add(tag);
+                    }
+
+                    var user = new T_User { Id = upUser.Id };
+                   // bdd.T_User.Attach(user);
+                    bdd.ApplyCurrentValues("T_User", upUser);
+                    bdd.SaveChanges();
+                }
+                catch (System.Data.UpdateException ex)
+                {
+                    throw;
+                }
+                return true;
+            }
+        }
+
         public static T_User Get(long idUser)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
@@ -196,18 +223,6 @@ namespace ConcertFinderMVC.DataAccess
                user = Get(Id);
                user.Deleted = true;
                return (Update(user));
-           }
-           catch (Exception)
-           {
-               return false;
-           }
-       }
-
-       static public bool ChangeParameter(T_User me)
-       {
-           try
-           {
-               return (Update(me));
            }
            catch (Exception)
            {

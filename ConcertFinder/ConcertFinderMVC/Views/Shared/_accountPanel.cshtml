@@ -1,8 +1,9 @@
 ﻿<p id="bienvenue">Bienvenue @User.Identity.Name</p>
 <div id="logo_content">
-   <a class="notif_logo" href="@Url.Content("/Account/Notifications/")"><img class="icon" src="@Url.Content("~/Content/Images/notif.gif")" alt="Notifications" /> <span id="Mynotifs">(@ConcertFinderMVC.BusinessManagement.Notification.Checks(User.Identity.Name))</span></a>
-   <a class="parametre_logo" href="@Url.Content("/Account/Parameter/")"><img class="icon" src="@Url.Content("~/Content/Images/parametres.png")" alt="Paramètres" /></a>
-   <a class="logout_logo" href="@Url.Content("/Account/LogOut/")"><img class="icon" src="@Url.Content("~/Content/Images/logout_30x30.png")" alt="Deconnexion" /></a>
+   <a class="notif_logo" href="@Url.Content("/Account/Notifications/")"></a><a href="@Url.Content("/Account/Notifications/")"><span class="float-left" style="margin-right: 40px;padding-top: 15px;margin-left: 2px;">(@ConcertFinderMVC.BusinessManagement.Notification.Checks(User.Identity.Name))</span></a>
+   <a class="parametre_logo" href="@Url.Content("/Account/Parameter/")"></a>
+   <a class="logout_logo" href="@Url.Content("/Account/LogOut/")"></a>
+   <div class="clear"></div>
 </div>
 
 

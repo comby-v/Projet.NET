@@ -126,6 +126,7 @@
     <Content Include="Content\Images\nav.png" />
     <Content Include="Content\Images\no_image.png" />
     <Content Include="Content\Images\parametres.png" />
+    <Content Include="Content\Images\sprite_logo.png" />
     <Content Include="Content\Images\victory.png" />
     <Content Include="Content\Images\yt_bg.png" />
     <Content Include="Content\Images\yt_bg_75.png" />

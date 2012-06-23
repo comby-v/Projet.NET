@@ -78,6 +78,8 @@ namespace ConcertFinderMVC.DataAccess
                         bdd.Attach(myevent);
                     }
 
+                    myevent.T_Location = location;
+/*
                     myevent.T_Location.Name = location.Name;
                     myevent.T_Location.Latitude = location.Latitude;
                     myevent.T_Location.Longitude = location.Longitude;
@@ -85,6 +87,8 @@ namespace ConcertFinderMVC.DataAccess
                     myevent.T_Location.Rue = location.Rue;
                     myevent.T_Location.CP = location.CP;
                     myevent.T_Location.Ville = location.Ville;
+                    */
+
 
                     var n_event = new T_Event { Id = myevent.Id };
                     //bdd.T_Event.Attach(n_event);

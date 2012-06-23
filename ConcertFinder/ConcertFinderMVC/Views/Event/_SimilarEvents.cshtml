@@ -8,7 +8,15 @@
     {
         <li class="similar_event">
             <p class="quick_title">@Html.ActionLink(item.Titre, "Detail", "Event", new { id = item.Id }, null)</p>
-            <img class="float-left" id="flyers_mini" src="@item.Image" alt="flyers" />
+            @if (@item.Image != null)
+            {
+                <img class="float-left" id="flyers_mini" src="@Url.Content("/")@item.Image" alt="flyers" />
+            }
+            else
+            {
+                <img class="float-left" id="flyers_mini" src="@Url.Content("~/Content/Images/no_image.png")" alt="flyers" />
+            }
+
             <p class="similar_infos float-left">
                 <span class="quick_infos">le @item.StartDate.ToShortDateString() à @item.StartDate.ToShortTimeString()</span>
                 <span class="quick_infos">A @item.Ville (@item.CP.Substring(0, 2))</span>

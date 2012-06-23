@@ -34,7 +34,7 @@ namespace ConcertFinderMVC.Controllers
                 Last = BusinessManagement.Event.GetListLastAddEvent(5),
                 Events = BusinessManagement.Event.GetListEvent(5, EventModel.GetEventType((int)eTypes.Concert))
             };
-            ViewBag.page_title = "Concert";
+            ViewBag.page_title = "Concerts";
             return View("Index", eventList);
         }
 

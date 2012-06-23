@@ -10,7 +10,6 @@
 #title_salle
 {
     display:block;
-    font-weight:bold;
     font-size:13px;
     margin:auto;
     text-align:center;
@@ -93,6 +92,7 @@
     height:300px;
     border: 1px solid #FF893A;
     margin-bottom:15px;
+    margin-top: 5px;
 }
 
 #direction

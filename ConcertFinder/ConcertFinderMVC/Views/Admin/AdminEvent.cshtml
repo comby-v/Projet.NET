@@ -10,29 +10,29 @@
 }
     
 <div class="main">
-    <div class="section_title">@Model.Page</div>
+    <div class="section_title float-left" >@Model.Page</div>
 
-    <ul id="menu_onglet">   
-        <li id="onglet">@Html.ActionLink("Evenement valide", "ValidEvent", "Admin")</li>
-        <li id="onglet">@Html.ActionLink("Evenement en attente", "NotValidEvent", "Admin")</li>
+   <ul class="clear" id="menu_onglet">   
+        <li class="custom_button" id="onglet">@Html.ActionLink("Evenement valide", "ValidEvent", "Admin")</li>
+        <li class="custom_button" id="onglet">@Html.ActionLink("Evenement en attente", "NotValidEvent", "Admin")</li>
     </ul>
 
 
     <ul id="item">
         @foreach (ConcertFinderMVC.Models.EventItem eve in Model.listEvent)
         {
-           
             <li class="item">
                 <a class="valide" href='@Url.Content("/Event/Detail?id=" + eve.Id + "&creation=true")'>
                     @if (eve.Image != null)
                     {
                         <!--<img src="@@Url.Content("/ConcertFinderMVC/")@@item.Image" width="125" height="160" alt="flyers" class="flyers float-left" />-->
-                        <img src="@Url.Content("/")@eve.Image" width="125" height="160" alt="flyers" class="flyers float-left" />
+                        <img src="@Url.Content("/")@eve.Image" alt="flyers" class="flyers float-left" />
                     }
                     else
                     {
-                        <img src="@Url.Content("~/Content/Images/no_avatar.gif")" width="125" height="160" alt="flyers" class="flyers float-left" />
+                        <img src="@Url.Content("~/Content/Images/no_image.png")" alt="flyers" class="flyers float-left" />
                     }
+
                     <strong class="item_titre">@eve.Titre</strong>
                     <span class="item_type float-left">@eve.Type</span>
                     <span class="item_Date float-right">@eve.StartDate.ToShortDateString() à @eve.Ville (@eve.CP.Substring(0, 2))</span>

@@ -21,7 +21,7 @@
     </p>
 
     <!-- Description et flyers-->
-    @if (@Model.Item.Image != null)
+    @if (Model.Item.Image != null)
     {
         <img class="float-left" id="flyers" src="@Url.Content("/")@Model.Item.Image" alt="flyers" />
     }
@@ -40,15 +40,24 @@
     <p>
         <strong> Adresse: </strong> <em>@Model.Item.Rue  @Model.Item.Ville, @Model.Item.CP @Model.Item.Pays</em>
     </p>
-    <p>
-       <strong>Site Web :</strong>  <a href="@Model.Item.Website">@Model.Item.Website</a>
-    </p> 
-    <p>
-        <strong >Email :</strong>  @Model.Item.Email
-    </p>
-    <p>
-        <strong>Tel :</strong> @Model.Item.Tel
-    </p>
+     @if (Model.Item.Website != null && Model.Item.Website != "")
+     {
+        <p>
+           <strong>Site Web :</strong>  <a href="@Model.Item.Website">@Model.Item.Website</a>
+        </p>
+     }
+     @if (Model.Item.Email != null && Model.Item.Email != "")
+     {        
+        <p>
+            <strong >Email :</strong>  @Model.Item.Email
+        </p>
+     }
+     @if (Model.Item.Tel != null && Model.Item.Tel != "")
+     {   
+        <p>
+            <strong>Tel :</strong> @Model.Item.Tel
+        </p>
+     }
     <div class="tag_list">
         <strong>Tags:</strong>
         @foreach (var tag in Model.Item.TagList)

@@ -50,7 +50,7 @@ namespace ConcertFinderMVC.Controllers
             AdminModels admin = new AdminModels();
             admin.User = ConcertFinderMVC.BusinessManagement.User.UserToUserItem(User.Identity.Name);
             admin.listEvent = BusinessManagement.Event.GetListNonValid();
-            admin.Page = "Evenement en attente";
+            admin.Page = "Evénéments en attente";
             return View("AdminEvent", admin);
         }
 
@@ -59,7 +59,7 @@ namespace ConcertFinderMVC.Controllers
             AdminModels admin = new AdminModels();
             admin.User = ConcertFinderMVC.BusinessManagement.User.UserToUserItem(User.Identity.Name);
             admin.listEvent = BusinessManagement.Event.GetListValid();
-            admin.Page = "Evenement Valides";
+            admin.Page = "Evénéments Valides";
             return View("AdminEvent", admin);
         }
 

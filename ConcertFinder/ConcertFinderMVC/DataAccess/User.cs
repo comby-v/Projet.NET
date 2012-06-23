@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ConcertFinderMVC.BusinessManagement;
+using System.Text.RegularExpressions;
 
 namespace ConcertFinderMVC.DataAccess
 {
@@ -71,23 +73,79 @@ namespace ConcertFinderMVC.DataAccess
             }
         }
 
-        public static Boolean Update(T_User upUser, List<T_Tag> tagList)
+        public static Boolean Update(string pseudo, Models.ParameterModel form)
         {
             using (ConcertFinderEntities bdd = new ConcertFinderEntities())
             {
                 try
                 {
-                    
-                    foreach (T_Tag tag in tagList)
+
+                    SimpleAES encryptor = new SimpleAES();
+            
+                    T_User user = bdd.T_User.Include("T_Tag").Include("T_Event").Where(x => x.Pseudo == pseudo).FirstOrDefault();
+
+                    if (user.Ville != form.MyCity && form.MyCity != null)
                     {
-                        bdd.Attach(tag);
-                        bdd.Attach(upUser);
-                        upUser.T_Tag.Add(tag);
+                        user.Ville = form.MyCity;
                     }
 
-                    var user = new T_User { Id = upUser.Id };
-                   // bdd.T_User.Attach(user);
-                    bdd.ApplyCurrentValues("T_User", upUser);
+                    if ((form.NewPassword != null) && (form.OldPassword != null) && (form.ConfirmPassword != null))
+                    {
+                        if (User.ValidateUser(pseudo, encryptor.EncryptToString(form.OldPassword)) && encryptor.EncryptToString(form.NewPassword) != user.Password)
+                        {
+                            user.Password = encryptor.EncryptToString(form.NewPassword);
+                        }
+                    }
+
+                    if (user.Mail != form.Email && (form.Email != null))
+                    {
+                        user.Mail = form.Email;
+                    }
+
+                    List<DataAccess.T_Tag> listTag = new List<DataAccess.T_Tag>();
+                    if (form.Tag != null)
+                    {
+                        
+                        string[] split = form.Tag.Split(new Char[] { ' ', ',', '.', ';' });
+                        foreach (string str in split)
+                        {
+                            if (str.Length > 2)
+                            {
+                                Regex r = new Regex("[a-z1-9*]");
+                                Match m = r.Match(str);
+                                if (m.Success)
+                                {
+                                    str.ToLower();
+                                    DataAccess.T_Tag tag = new DataAccess.T_Tag()
+                                    {
+                                        Name = str
+                                    };
+                                    if (bdd.T_Tag.Where(t => t.Name == tag.Name).FirstOrDefault() == null)
+                                    {
+                                        DataAccess.Tag.Create(tag);
+                                    }
+
+                                    tag = bdd.T_Tag.Where(t => t.Name == tag.Name).FirstOrDefault();
+
+
+                                    listTag.Add(tag);
+
+                                }
+                            }
+                        }
+                    }
+
+                    
+                    user.T_Tag.Clear();
+                    foreach (T_Tag tag in listTag)
+                    {
+                        bdd.Attach(tag);
+                        user.T_Tag.Add(tag);
+                    }
+
+                    var uuser = new T_User { Id = user.Id };
+                   
+                    bdd.ApplyCurrentValues("T_User", user);
                     bdd.SaveChanges();
                 }
                 catch (System.Data.UpdateException ex)

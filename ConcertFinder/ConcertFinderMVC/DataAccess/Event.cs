@@ -70,6 +70,7 @@ namespace ConcertFinderMVC.DataAccess
                     ev.Description = myevent.Description;
                     ev.DateDebut = myevent.StartDate;
                     ev.DateFin = myevent.EndDate;
+                    ev.Titre = myevent.Title;
                     ev.Email = myevent.Email;
                     ev.WebSite = myevent.Website;
                     ev.Tel = myevent.Phone;
@@ -97,8 +98,6 @@ namespace ConcertFinderMVC.DataAccess
                         location.Ville = myevent.City;
                         Location.Update(location);
                     }
-                   
-
 
                     List<DataAccess.T_Tag> listTag = new List<DataAccess.T_Tag>();    
                     string[] split = myevent.Tags.Split(new Char[] { ' ', ',', '.', ';' });
@@ -121,33 +120,12 @@ namespace ConcertFinderMVC.DataAccess
                                 }
 
                                 tag = bdd.T_Tag.Where(t => t.Name == tag.Name).FirstOrDefault();
-                                bool find = false;
-                                if (user.T_Tag.Count > 0)
-                                {
-                                    foreach (T_Tag eventtag in ev.T_Tag)
-                                    {
-                                        if ((eventtag.Name.Equals(tag.Name)))
-                                        {
-                                            find = true;
-                                            break;
-                                        }
-                                    }
-                                    if (!find)
-                                    {
-                                        listTag.Add(tag);
-
-                                    }
-                                    find = false;
-                                }
-                                else
-                                {
-                                    listTag.Add(tag);
-                                }
+                                listTag.Add(tag);                           
                             }
                         }
                     }
 
-                 
+                    ev.T_Tag.Clear();
                     if (listTag.Count > 0)
                     {
                         foreach (T_Tag tag in listTag)

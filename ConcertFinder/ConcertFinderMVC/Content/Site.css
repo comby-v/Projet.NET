@@ -105,7 +105,7 @@ header
     margin-top:14px;
     margin-left:20px;
 }
-
+/* Connection */
 #connect
 {
     margin-right:20px;
@@ -115,6 +115,7 @@ header
 #open_connect:hover
 {
     cursor:pointer;
+    text-decoration:underline;
 }
 
 #open_connect
@@ -201,10 +202,15 @@ header
     padding-right:8px;
 }
 
+#connexion_form input
+{
+    margin-top:-4px;
+}
+
 #register_form
 {
     padding-left:5px;
-    padding-right:10px;
+    padding-right:13px;
 }
 
 #pseudo_form .connexion_form

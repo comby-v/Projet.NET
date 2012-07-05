@@ -5,7 +5,7 @@
     <link href="@Url.Content("~/Content/Formulaire.css")" rel="Stylesheet" type="text/css" />
 }
 <div class="main">
-    <div class="section_title">Creation d'evenement</div>
+    <div class="section_title float-left">Creation d'evenement</div>
 @using (Html.BeginForm("CreateEvent", "Event", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -13,7 +13,7 @@
     @Html.HiddenFor(x => x.Latitude);
     @Html.HiddenFor(x => x.Longitude);
         
-    <div id="event">                                                             
+    <div id="event" class="clear">                                                             
             @Html.LabelFor(m => m.Title)
             @Html.TextBoxFor(m => m.Title)
             @Html.ValidationMessageFor(m => m.Title)
